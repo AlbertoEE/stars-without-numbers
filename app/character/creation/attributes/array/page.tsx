@@ -6,7 +6,7 @@ import { Tabs, Tab } from "@nextui-org/tabs";
 import Description from "./components/Description";
 import { attributeDescription } from "@/data/data";
 import { create } from 'zustand';
-import { DraggedState, handleSwap } from "@/utilities/DragAndDrop";
+import { DraggedState } from "@/utilities/DragAndDrop";
 import AttributeCreation from "./components/AttributeCreation";
 
 interface AttributeValue {
