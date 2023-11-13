@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
+import Head from 'next/head';
 
 export const metadata: Metadata = {
 	title: {
@@ -31,11 +32,9 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<head />
 			<body
 				className={clsx(
-					"min-h-screen bg-background font-sans antialiased",
-					fontSans.variable
+					"min-h-screen bg-background font-orbitron antialiased",
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>

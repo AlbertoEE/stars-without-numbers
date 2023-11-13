@@ -13,4 +13,11 @@ module.exports = {
   },
   darkMode: "class",
   plugins: [nextui()],
+  theme: {
+    extend: {
+      fontFamily: {
+        orbitron: ['Orbitron', 'sans-serif'],
+      },
+    },
+  },
 }
