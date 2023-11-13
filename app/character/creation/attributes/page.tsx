@@ -41,7 +41,7 @@ export const useStore = create<MyState>(((set) => ({
 
 export default function Home() {
   const [tab, setTab] = useState("standard");
-  const { initialValues, attributes, dragged, draggedOver, detail, setInitialValues, setAttributes, setDragged, setDraggedOver, setDetail } = useStore();
+  const { detail, setInitialValues, setAttributes } = useStore();
 
   useEffect(() => {
     switch (true) {
