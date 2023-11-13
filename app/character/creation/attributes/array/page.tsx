@@ -55,10 +55,6 @@ export default function Home() {
     setAttributes({ Strength: "0", Dexterity: "0", Constitution: "0", Intelligence: "0", Wisdom: "0", Charisma: "0", });
   }, [tab])
 
-  const handleSwapBetweenInitialAndAttributes = () => {
-    handleSwap(dragged, draggedOver, "initial", "attributes", initialValues, attributes, setInitialValues, setAttributes)
-  }
-
   return (
     <section className="flex flex-row items-center justify-center gap-4">
       <Card className="flex-1">
