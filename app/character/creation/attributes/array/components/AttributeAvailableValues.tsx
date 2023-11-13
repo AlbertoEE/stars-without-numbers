@@ -7,11 +7,12 @@ import { useStore } from "../page";
 export default function AttributeAvailableValues(props: {
     keyValue: string,
     value: string,
+    zoneName: string,
     onDragEnd: () => void,
     onClick?: () => void,
 }) {
     const { setDragged, setDraggedOver } = useStore();
-    const draggedState = { from: "initial", value: props.value, key: props.keyValue }
+    const draggedState = { from: props.zoneName, value: props.value, key: props.keyValue }
 
     return (
         <Card

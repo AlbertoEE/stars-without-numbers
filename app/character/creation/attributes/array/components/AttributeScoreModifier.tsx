@@ -7,10 +7,11 @@ import { attributeScoreModifier } from "@/data/data";
 export default function AttributeScoreModifier(props: {
     score: string,
     keyValue: string,
+    zoneName: string,
     onDragEnd: () => void,
 }) {
     const { setDragged, setDraggedOver, setDetail } = useStore();
-    const draggedState = { from: "attributes", value: props.score, key: props.keyValue }
+    const draggedState = { from: props.zoneName, value: props.score, key: props.keyValue }
     const modifier = attributeScoreModifier[props.score];
 
     const color = () => {
