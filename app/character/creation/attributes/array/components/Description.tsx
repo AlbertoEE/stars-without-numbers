@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 
