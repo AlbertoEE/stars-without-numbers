@@ -2,8 +2,8 @@ import { CardBody } from "@nextui-org/card";
 import { handleSwap } from "@/utilities/DragAndDrop";
 import AttributeAvailableValues from "./AttributeAvailableValues";
 import AttributeScoreModifier from "./AttributeScoreModifier";
-import { useStore } from "../page";
 import { rollDice } from "@/utilities/Roll";
+import { useStore } from "../state";
 
 export default function AttributeCreation(props: {
     random?: boolean,

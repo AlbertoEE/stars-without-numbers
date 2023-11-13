@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardBody } from "@nextui-org/card";
-import { useStore } from "../page";
+import { useStore } from "../state";
 
 
 export default function AttributeAvailableValues(props: {

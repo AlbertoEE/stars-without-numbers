@@ -1,8 +1,8 @@
 "use client";
 
 import { Card, CardBody } from "@nextui-org/card";
-import { useStore } from "../page";
 import { attributeScoreModifier } from "@/data/data";
+import { useStore } from "../state";
 
 export default function AttributeScoreModifier(props: {
     score: string,
