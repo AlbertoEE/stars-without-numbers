@@ -1,3 +1,5 @@
+"use client";
+
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
@@ -6,6 +8,7 @@ import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
+import StepProgressBar from "./character/creation/StepProgressBar";
 
 export const metadata: Metadata = {
 	title: {
@@ -29,6 +32,7 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body
@@ -38,21 +42,7 @@ export default function RootLayout({
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col h-screen">
-						<Navbar />
-						<div className="fixed h-[33vh] translate-y-[-50%] left-0 top-[50%] bg-gray-800">
-							<ul>
-								<li>hola</li>
-								<li>hola</li>
-								<li>hola</li>
-								<li>hola</li>
-								<li>hola</li>
-								<li>hola</li>
-								<li>hola</li>
-								<li>hola</li>
-								<li>hola</li>
-								<li>hola</li>
-							</ul>
-						</div>
+						<StepProgressBar/>
 						<main className="container mx-auto max-w-7xl pt-8 px-6 flex-grow">
 							{children}
 						</main>
