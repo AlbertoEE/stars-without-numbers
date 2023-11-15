@@ -6,10 +6,10 @@ export default function SplitDesign(props: {
 }) {
     return (
         <div className="flex flex-row items-center justify-center gap-4">
-            <Card className="flex-1">
+            <Card className="flex-1 h-[90vh] overflow-y-auto">
                 {props.leftChild}
             </Card>
-            <Card className="flex-1">
+            <Card className="flex-1 max-h-[90vh] overflow-y-auto">
                 {props.rightChild}
             </Card>
         </div>
