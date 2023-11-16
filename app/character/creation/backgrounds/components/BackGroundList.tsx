@@ -9,6 +9,8 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-o
 import { Button } from "@nextui-org/button";
 import { ChevronDownIcon } from "@/components/ChevronDownIcon";
 import { useState } from "react";
+import { Select, SelectItem } from "@nextui-org/select";
+
 
 
 export default function App() {
@@ -37,27 +39,18 @@ export default function App() {
 
     return (
         <div>
-            <Dropdown>
-                <DropdownTrigger className="hidden sm:flex">
-                    <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
-                        Choose
-                    </Button>
-                </DropdownTrigger>
-                <DropdownMenu
-                    disallowEmptySelection
-                    aria-label="Table Columns"
-                    closeOnSelect={false}
-                    selectedKeys={filter.choose}
-                    selectionMode="multiple"
-                    onSelectionChange={(data) => { setFilter({ ...filter, choose: data }) }}
-                >
-                    {["s"].map((status) => (
-                        <DropdownItem key={status} className="capitalize">
-                            {status.toUpperCase()}
-                        </DropdownItem>
-                    ))}
-                </DropdownMenu>
-            </Dropdown>
+            <Select
+                label="Favorite Animal"
+                placeholder="Select an animal"
+                selectionMode="multiple"
+                className="max-w-xs"
+            >
+                {["2"].map((animal) => (
+                    <SelectItem key={animal} value={animal}>
+                        {animal}
+                    </SelectItem>
+                ))}
+            </Select>
             <Dropdown>
                 <DropdownTrigger>
                     <Button
