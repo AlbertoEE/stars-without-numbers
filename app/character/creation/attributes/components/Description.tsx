@@ -1,7 +1,7 @@
 "use client";
 
-import { CardBody } from "@nextui-org/card";
-import { Image } from "@nextui-org/image";
+import { CardBody } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 import { useStore } from "../state";
 
 export default function Description(props: {

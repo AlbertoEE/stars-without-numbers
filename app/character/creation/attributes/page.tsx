@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Card } from "@nextui-org/card";
-import { Tabs, Tab } from "@nextui-org/tabs";
+import { Card } from "@nextui-org/react";
+import { Tabs, Tab } from "@nextui-org/react";
 import Description from "./components/Description";
 import { attributeDescription } from "@/data/data";
 import { create } from 'zustand';

@@ -1,4 +1,4 @@
-import { CardBody } from "@nextui-org/card";
+import { CardBody } from "@nextui-org/react";
 import { handleSwap } from "@/utilities/DragAndDrop";
 import AttributeAvailableValues from "./AttributeAvailableValues";
 import AttributeScoreModifier from "./AttributeScoreModifier";

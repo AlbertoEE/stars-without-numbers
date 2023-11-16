@@ -1,19 +1,19 @@
 "use client";
 
 import React from "react";
-import { backgrounds } from "@/data/data";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table";
-import { Card, CardBody } from "@nextui-org/card";
-import { User } from "@nextui-org/user";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
+import { backgrounds, skills } from "@/data/data";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
-import { ChevronDownIcon } from "@/components/ChevronDownIcon";
 import { useState } from "react";
 import { Select, SelectItem } from "@nextui-org/select";
-
-
+import { Input } from "@nextui-org/react";
 
 export default function App() {
+    const [values, setValues] = React.useState([]);
+
     const [filter, setFilter] = useState({
         choose: ""
     })
@@ -37,55 +37,67 @@ export default function App() {
         )
     }, [])
 
+    // <p className="text-small text-default-500">Selected: {Array.from(values).join(", ")}</p>
+
     return (
-        <div>
-            <Select
-                label="Favorite Animal"
-                placeholder="Select an animal"
-                selectionMode="multiple"
-                className="max-w-xs"
-            >
-                {["2"].map((animal) => (
-                    <SelectItem key={animal} value={animal}>
-                        {animal}
-                    </SelectItem>
-                ))}
-            </Select>
-            <Dropdown>
-                <DropdownTrigger>
-                    <Button
-                        variant="bordered"
-                    >
-                        Open Menu
-                    </Button>
-                </DropdownTrigger>
-                <DropdownMenu aria-label="Static Actions">
-                    <DropdownItem key="new">New file</DropdownItem>
-                    <DropdownItem key="copy">Copy link</DropdownItem>
-                    <DropdownItem key="edit">Edit file</DropdownItem>
-                    <DropdownItem key="delete" className="text-danger" color="danger">
-                        Delete file
-                    </DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
-            <Table hideHeader aria-label="Example static collection table">
-                <TableHeader columns={columns}>
-                    {(column) => (
-                        <TableColumn
-                            key={column.uid}
-                        >
-                            {column.name}
-                        </TableColumn>
-                    )}
-                </TableHeader>
-                <TableBody emptyContent={"No users found"} items={items}>
-                    {(item) => (
-                        <TableRow key={item.name}>
-                            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                        </TableRow>
-                    )}
-                </TableBody>
-            </Table>
+        <div className="max-h-full">
+            <div className="flex flex-row py-5 justify-center space-between gap-3 sticky top-0 z-50">
+                <Input
+                    label="Email"
+                    placeholder="Enter your email"
+                    className="max-w-[30%]"
+                    value={values}
+                    onValueChange={setValues}
+                />
+                <Select
+                    label="Choose filter"
+                    placeholder="Select skills"
+                    selectionMode="multiple"
+                    selectedKeys={values}
+                    className="max-w-[30%]"
+                    onSelectionChange={setValues}
+                >
+                    {Object.entries(skills).map(([key, value]) => (
+                        <SelectItem key={key} value={key}>
+                            {key}
+                        </SelectItem>
+                    ))}
+                </Select>
+                <Select
+                    label="Random filter"
+                    placeholder="Select skills"
+                    selectionMode="multiple"
+                    selectedKeys={values}
+                    className="max-w-[30%]"
+                    onSelectionChange={setValues}
+                >
+                    {Object.entries(skills).map(([key, value]) => (
+                        <SelectItem key={key} value={key}>
+                            {key}
+                        </SelectItem>
+                    ))}
+                </Select>
+            </div>
+            <div className="h-[85%] overflow-y-auto">
+                <Table hideHeader aria-label="Example static collection table">
+                    <TableHeader columns={columns}>
+                        {(column) => (
+                            <TableColumn
+                                key={column.uid}
+                            >
+                                {column.name}
+                            </TableColumn>
+                        )}
+                    </TableHeader>
+                    <TableBody emptyContent={"No users found"} items={items}>
+                        {(item) => (
+                            <TableRow key={item.name}>
+                                {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
+            </div>
         </div>
     );
 }

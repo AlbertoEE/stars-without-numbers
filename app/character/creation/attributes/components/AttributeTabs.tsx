@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Tabs, Tab } from "@nextui-org/tabs";
+import { Tabs, Tab } from "@nextui-org/react";
 import { useStore } from "../state";
 import AttributeCreation from "./AttributeCreation";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardBody } from "@nextui-org/card";
+import { Card, CardBody } from "@nextui-org/react";
 import { attributeScoreModifier } from "@/data/data";
 import { useStore } from "../state";
 
