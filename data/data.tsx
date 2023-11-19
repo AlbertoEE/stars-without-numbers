@@ -31,103 +31,134 @@ export const attributeScoreModifier = {
     20: 2,
 };
 
-export const skills = {
-    administer: {
+export interface Skill {
+    name: string,
+    description: string,
+    shortDescription: string,
+    type: SkillType[]
+}
+
+export enum SkillType {
+    generic,
+    combat,
+}
+
+export const skills: Skill[] = [
+    {
+        name: "administer",
         description: "Manage an organization, handle paperwork, analyze records, and keep an institution functioning on a daily basis.\n\nRoll it for bureaucratic expertise, organizational management, legal knowledge, dealing with government agencies, and understanding how institutions really work.",
         shortDescription: "Manage an organization, handle paperwork, analyze records, and keep an institution functioning on a daily basis.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    connect: {
+    {
+        name: "connect",
         description: "Find people who can be helpful to your purposes and get them to cooperate with you.\n\nRoll it to make useful connections with others, find people you know, know where to get illicit goods and services, and be familiar with foreign cultures and languages.\n\nYou can use it in place of Talk for persuading people you find via this skill.",
         shortDescription: "Find people who can be helpful to your purposes and get them to cooperate with you.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    exert: {
+    {
+        name: "exert",
         description: "Apply trained speed, strength, or stamina in some feat of physical exertion.\n\nRoll it to run, jump, lift, swim, climb, throw, and so forth.\n\nYou can use it as a combat skill when throwing things, though it doesn't qualify as a combat skill for other ends.",
         shortDescription: "Apply trained speed, strength, or stamina in some feat of physical exertion.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    fix: {
+    {
+        name: "fix",
         description: "Create and repair devices both simple and complex.\n\nHow complex will depend on your character's background; a lostworlder blacksmith is going to need some study time before he's ready to fix that broken fusion reactor, though he can do it eventually.\n\nRoll it to fix things, build things, and identify what something is supposed to do",
         shortDescription: "Create and repair devices both simple and complex.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    heal: {
+    {
+        name: "heal",
         description: "Employ medical and psychological treatment for the injured or disturbed.\n\nRoll it to cure diseases, stabilize the critically injured, treat psychological disorders, or diagnose illnesses.",
         shortDescription: "Employ medical and psychological treatment for the injured or disturbed.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    know: {
+    {
+        name: "know",
         description: "Know facts about academic or scientific fields.\n\nRoll it to understand planetary ecologies, remember relevant history, solve science mysteries, and know the basic facts about rare or esoteric topics ",
         shortDescription: "Know facts about academic or scientific fields.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    lead: {
+    {
+        name: "lead",
         description: "Convince others to also do whatever it is you're trying to do.\n\nTalk might persuade them that following you is smart, but Lead can make them do it even when they think it's a bad idea.\n\nRoll it to lead troops in combat, convince others to follow you, or maintain morale and discipline",
         shortDescription: "Convince others to also do whatever it is you're trying to do.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    notice: {
+    {
+        name: "notice",
         description: "Spot anomalies or interesting facts about your environment.\n\nRoll it for searching places, detecting ambushes, spotting things, and reading the emotional state of other people.",
         shortDescription: "Spot anomalies or interesting facts about your environment.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    perform: {
+    {
+        name: "perform",
         description: "Exhibit some performative skill.\n\nRoll it to dance, sing, orate, act, or otherwise put on a convincing or emotionally moving performance.",
         shortDescription: "Exhibit some performative skill.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    pilot: {
+    {
+        name: "pilot",
         description: "Use this skill to pilot vehicles or ride beasts.\n\nRoll it to fly spaceships, drive vehicles, ride animals, or tend to basic vehicle repair.\n\nThis skill doesn't help you with things entirely outside the scope of your background or experience, though with some practice a PC can expand their expertise",
         shortDescription: "Use this skill to pilot vehicles or ride beasts.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    program: {
+    {
+        name: "program",
         description: "Operating or hacking computing and communications hardware.\n\nRoll it to program or hack computers, control computer-operated hardware, operate communications tech, or decrypt things.",
         shortDescription: "Operating or hacking computing and communications hardware.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    punch: {
+    {
+        name: "punch",
         description: "Use it as a combat skill when fighting unarmed.\n\nIf your PC means to make a habit of this rather than as a recourse of desperation, you should take the Unarmed Fighter focus described later.",
         shortDescription: "Use it as a combat skill when fighting unarmed.",
-        type: ["AnySkill", "AnyCombat"],
+        type: [SkillType.generic, SkillType.combat],
     },
-    shoot: {
+    {
+        name: "shoot",
         description: "Use it as a combat skill when using ranged weaponry, whether hurled rocks, bows, laser pistols, combat rifles, or ship's gunnery",
         shortDescription: "Use it as a combat skill when using ranged weaponry.",
-        type: ["AnySkill", "AnyCombat"],
+        type: [SkillType.generic, SkillType.combat],
     },
-    sneak: {
+    {
+        name: "sneak",
         description: "Move without drawing notice.\n\nRoll it for stealth, disguise, infiltration, manual legerdemain, pickpocketing, and the defeat of security measures.",
         shortDescription: "Move without drawing notice.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    stab: {
+    {
+        name: "stab",
         description: "Use it as a combat skill when wielding melee weapons, whether primitive or complex.",
         shortDescription: "Use it as a combat skill when wielding melee weapons.",
-        type: ["AnySkill", "AnyCombat"],
+        type: [SkillType.generic, SkillType.combat],
     },
-    survive: {
+    {
+        name: "survive",
         description: "Obtain the basics of food, water, and shelter in hostile environments, along with avoiding their natural perils.\n\nRoll it to handle animals, navigate difficult terrain, scrounge urban resources, make basic tools, and avoid wild beasts or gangs.",
         shortDescription: "Obtain the basics of food, water, and shelter in hostile environments, along with avoiding their natural perils.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    talk: {
+    {
+        name: "talk",
         description: "Convince other people of the facts you want them to believe.\n\nWhat they do with that conviction may not be completely predictable.\n\nRoll it to persuade, charm, or deceive others in conversation.",
         shortDescription: "Convince other people of the facts you want them to believe.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    trade: {
+    {
+        name: "trade",
         description: "Find what you need on the market and sell what you have.\n\nRoll it to sell or buy things, figure out where to purchase hard-to-get or illicit goods, deal with customs agents, or run a business.",
         shortDescription: "Find what you need on the market and sell what you have.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-    work: {
+    {
+        name: "work",
         description: "This is a catch-all skill for professions not represented by other skills.\n\nRoll it to work at a particular profession, art, or trade.",
         shortDescription: "This is a catch-all skill for professions not represented by other skills.",
-        type: ["AnySkill"],
+        type: [SkillType.generic],
     },
-}
+]
 
 export interface Background {
     name: string,
@@ -159,9 +190,9 @@ export const backgrounds: Background[] = [
         description: "Standards of barbarism vary when many worlds are capable of interstellar spaceflight, but your hero comes from a savage world of low technology and high violence..\n\nTheir planet may have survived an all-consuming war, or been deprived of critical materials or energy resources, or simply have been colonized by confirmed Luddites..\n\nOther barbarians might be drawn from the impoverished underclass of advanced worlds or the technologically-degenerate inheritors of some high-tech space station or planetary hab.",
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "survive" }],
-            quick: [{ type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "anyCombat" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "Exert" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
-            learning: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "punch" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "survive" }],
+            quick: [{ type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "combat" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Exert" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "punch" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "survive" }],
         }
     },
     {
@@ -170,7 +201,7 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "talk" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "perform" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "talk" }],
         }
     },
@@ -180,8 +211,8 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "sneak" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "talk" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Physycal" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
-            learning: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "trade" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "physycal", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "trade" }],
         }
     },
     {
@@ -190,8 +221,8 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "sneak" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "talk" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
-            learning: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "trade" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "trade" }],
         }
     },
     {
@@ -200,8 +231,8 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "connect" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "talk" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
-            learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "program" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "trade" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "any Stat", amount: 1 }, { type: BenefitType.StatBenefit, name: "any" , amount: 1 }, { type: BenefitType.StatBenefit, name: "any" , amount: 1 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "program" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "trade" }],
         }
     },
     {
@@ -210,8 +241,8 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "perform" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "connect" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
-            learning: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "talk" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "talk" }],
         }
     },
     {
@@ -220,8 +251,8 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "trade" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "trade" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "connect" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
-            learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "trade" }, { type: BenefitType.SkillBenefit, name: "talk" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "trade" }, { type: BenefitType.SkillBenefit, name: "talk" }],
         }
     },
     {
@@ -230,8 +261,8 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "lead" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "administer" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
-            learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "talk" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "talk" }],
         }
     },
     {
@@ -240,7 +271,7 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "administer" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "connect" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "anySkill" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "trade" },],
         }
     },
@@ -250,7 +281,7 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "exert" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "survive" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "Exert" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Exert" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "trade" }, { type: BenefitType.SkillBenefit, name: "work" }],
         }
     },
@@ -260,7 +291,7 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "fix" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "notice" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "trade" }],
         }
     },
@@ -270,7 +301,7 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "pilot" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "shoot" }, { type: BenefitType.SkillBenefit, name: "trade" }],
-            growth: [{ type: BenefitType.SkillBenefit, name: "+1 Any Stat" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "+2 Physical" }, { type: BenefitType.SkillBenefit, name: "+2 Mental" }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "Connect" }, { type: BenefitType.SkillBenefit, name: "Any Skill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "shoot" }, { type: BenefitType.SkillBenefit, name: "trade" }],
         }
     },
@@ -280,7 +311,7 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "talk" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "connect" }],
-            growth: [{ type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "anySkill"},],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "anySkill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "talk" }],
         }
     },
@@ -290,7 +321,7 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "perform" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "administer" }],
-            growth: [{ type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "anySkill"},],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "anySkill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "program" }, { type: BenefitType.SkillBenefit, name: "talk" }],
         }
     },
@@ -298,10 +329,10 @@ export const backgrounds: Background[] = [
         name: "soldier",
         description: "Whatever the technology or structure of their parent world, a soldier’s work is universal.\n\nYour hero was a professional fighter, whether that took the form of a barbarian noble’s thegn, a faceless conscript in a planetary army, or an elite soldier in the service of a megacorp’s private military.\n\nWhether it was because they were on the losing side, choosing to leave the service, or being forced to flee a cause they couldn’t fight for, they now find themselves navigating a world where their most salable skill is one that can cause them a great deal of trouble.",
         skills: {
-            free: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }],
-            quick: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "survive" }],
-            growth: [{ type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "anySkill"},],
-            learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "survive" }],
+            free: [{ type: BenefitType.SkillBenefit, name: "combat" }],
+            quick: [{ type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "survive" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "anySkill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "lead" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "survive" }],
         }
     },
     {
@@ -310,7 +341,7 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "fix" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "program" }],
-            growth: [{ type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "anySkill"},],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "anySkill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "program" }, { type: BenefitType.SkillBenefit, name: "talk" }],
         }
     },
@@ -320,7 +351,7 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "fix" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "notice" }],
-            growth: [{ type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "anySkill"},],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "anySkill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "pilot" }],
         }
     },
@@ -328,10 +359,10 @@ export const backgrounds: Background[] = [
         name: "thug",
         description: "Your hero was a bruiser.\n\nThey might have had a notional allegiance to some so-called “army”, or have been part of some crime boss’ strong-arm crew, or simply been a private contractor of misfortune for those who failed to pay up.\n\nThey might have even been a fist in a righteous cause, defending their neighborhood from hostile outsiders or serving as informal muscle for a local leader in need of protection.\n\nWhatever the details, they’ve had to move on from their old life, and their new one is likely to involve a similar application of directed force.",
         skills: {
-            free: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }],
-            quick: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "connect" }],
-            growth: [{ type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "anySkill"},],
-            learning: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "talk" }],
+            free: [{ type: BenefitType.SkillBenefit, name: "combat" }],
+            quick: [{ type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "talk" }, { type: BenefitType.SkillBenefit, name: "connect" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "anySkill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "talk" }],
         }
     },
     {
@@ -340,8 +371,8 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "survive" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "notice" }],
-            growth: [{ type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "anySkill"},],
-            learning: [{ type: BenefitType.SkillBenefit, name: "anyCombat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "work" }],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "physical", amount: 2 }, { type: BenefitType.StatBenefit, name: "mental", amount: 2 }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "anySkill" },],
+            learning: [{ type: BenefitType.SkillBenefit, name: "combat" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "notice" }, { type: BenefitType.SkillBenefit, name: "perform" }, { type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "sneak" }, { type: BenefitType.SkillBenefit, name: "survive" }, { type: BenefitType.SkillBenefit, name: "work" }],
         }
     },
     {
@@ -350,21 +381,8 @@ export const backgrounds: Background[] = [
         skills: {
             free: [{ type: BenefitType.SkillBenefit, name: "work" }],
             quick: [{ type: BenefitType.SkillBenefit, name: "work" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }],
-            growth: [{ type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.StatBenefit, name: "anyStat", amount: 1 }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "anySkill"},],
+            growth: [{ type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.StatBenefit, name: "any", amount: 1 }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "anySkill" },],
             learning: [{ type: BenefitType.SkillBenefit, name: "administer" }, { type: BenefitType.SkillBenefit, name: "anySkill" }, { type: BenefitType.SkillBenefit, name: "connect" }, { type: BenefitType.SkillBenefit, name: "exert" }, { type: BenefitType.SkillBenefit, name: "fix" }, { type: BenefitType.SkillBenefit, name: "pilot" }, { type: BenefitType.SkillBenefit, name: "program" }, { type: BenefitType.SkillBenefit, name: "work" }],
         }
     },
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-

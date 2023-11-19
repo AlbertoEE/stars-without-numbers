@@ -1,4 +1,4 @@
-import { skills } from "@/data/data";
+import { Skill, skills } from "@/data/data";
 import { Image, PopoverTrigger, Tooltip } from "@nextui-org/react";
 
 export default function BackgroundDetailSection(props: {
@@ -23,7 +23,7 @@ export default function BackgroundDetailSection(props: {
     return (
         <div>
 
-            {props.title && <><h1 className="font-orbitron font-bold uppercase tracking-widest text-1xl p-4">{props.title}</h1><hr /></>}
+            {props.title && <><h1 className="font-orbitron font-bold uppercase tracking-widest text-1xl p-4">{props.title}</h1><hr className="mx-4" /></>}
             <div className="mt-4">
                 <table>
                     {props.thead &&
@@ -35,12 +35,12 @@ export default function BackgroundDetailSection(props: {
                         </thead>
                     }
                     <tbody>
-                        {elements.map(elementList =>
-                            <tr>{elementList.map(element =>
+                        {elements.map((elementList: string[]) =>
+                            <tr>{elementList.map((element: string) =>
                                 <td className="py-1 px-3">
-                                    <Tooltip content={skills[element].name}>
+                                    <Tooltip content={skills.find((skill: Skill) => skill.name == element)?.shortDescription}>
                                         <div className="flex flex-row">
-                                            <Image className="mx-4 my-0 flex-1" src={`/imgs/skills/${element}.svg`} alt="me" width="24" height="24" />
+                                            <Image loading="eager" className="mx-4 my-0 flex-1" src={`/imgs/skills/${element}.svg`} alt="me" width="24" height="24" />
                                             <div className="flex-1">{element}</div>
                                         </div>
                                     </Tooltip>

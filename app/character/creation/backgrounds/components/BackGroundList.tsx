@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { backgrounds, skills } from "@/data/data";
+import { Background, backgrounds, skills } from "@/data/data";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Image } from "@nextui-org/react";
 import { Card, CardBody } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/select";
@@ -32,13 +32,13 @@ export default function App() {
     }, [filterBackground, filterChooseSkill, filterRandomSkill])
 
 
-    const renderCell = React.useCallback((background: any, columnKey: React.Key) => {
+    const renderCell = React.useCallback((background: Background, columnKey: React.Key) => {
         return (
             <Card>
                 <CardBody className="text-center">
                     <div className="flex flex-row">
                         <Image className="mx-4 my-0" src={`/imgs/backgrounds/${background.name}.svg`} alt="me" width="24" height="24" />
-                        <div>{background[columnKey].toUpperCase()}</div>
+                        <div>{background.name.toUpperCase()}</div>
                     </div>
                 </CardBody>
             </Card>
