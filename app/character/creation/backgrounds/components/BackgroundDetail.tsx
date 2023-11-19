@@ -36,8 +36,8 @@ export default function BackgroundDetail() {
                         <h1 className="font-orbitron font-bold uppercase tracking-widest text-2xl p-4">{background.name}</h1>
                     </div>
                     <div className="flex flex-row">
-                        <div className="flex-1"><BackgroundDetailSection rows={3} columns={1} skills={background.skills.quick.map(e => e.name)} title="Predifined" /></div>
                         <div className="flex-1"><BackgroundDetailSection rows={1} columns={3} skills={background.skills.free.map(e => e.name)} title="Free Skill" /></div>
+                        <div className="flex-1"><BackgroundDetailSection rows={3} columns={1} skills={background.skills.quick.map(e => e.name)} title="Predifined" /></div>
                     </div>
                     <BackgroundDetailSection rows={2} columns={4} skills={background.skills.learning.map(e => e.name)} title="Choose" />
                     <div className="my-4">

@@ -25,7 +25,7 @@ export default function App() {
         }
 
         if (Array.from(filterChooseSkill).length > 0) {
-            filteredValues = filteredValues.filter((background) => Array.from(filterChooseSkill).every(r => background.skills.learning.includes(r)))
+            filteredValues = filteredValues.filter((background) => Array.from(filterChooseSkill).every(r => background.skills.learning.map(e => e.name).includes(r)))
         }
 
         return filteredValues

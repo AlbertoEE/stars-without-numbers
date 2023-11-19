@@ -1,5 +1,5 @@
 import { skills } from "@/data/data";
-import { PopoverTrigger, Tooltip } from "@nextui-org/react";
+import { Image, PopoverTrigger, Tooltip } from "@nextui-org/react";
 
 export default function BackgroundDetailSection(props: {
     columns: number,
@@ -35,7 +35,17 @@ export default function BackgroundDetailSection(props: {
                         </thead>
                     }
                     <tbody>
-                        {elements.map(elementList => <tr>{elementList.map(element => <td className="py-1 px-3">{element}</td>)}</tr>)}
+                        {elements.map(elementList =>
+                            <tr>{elementList.map(element =>
+                                <td className="py-1 px-3">
+                                    <Tooltip content={skills[element].name}>
+                                        <div className="flex flex-row">
+                                            <Image className="mx-4 my-0 flex-1" src={`/imgs/skills/${element}.svg`} alt="me" width="24" height="24" />
+                                            <div className="flex-1">{element}</div>
+                                        </div>
+                                    </Tooltip>
+                                </td>)}
+                            </tr>)}
                     </tbody>
                 </table>
             </div>
