@@ -3,20 +3,13 @@
 import React from "react";
 import { backgrounds, skills } from "@/data/data";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
-import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { Card, CardBody } from "@nextui-org/react";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
-import { Button } from "@nextui-org/button";
-import { useState } from "react";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Input } from "@nextui-org/react";
+import { useStore } from "../state";
 
 export default function App() {
-    const [values, setValues] = React.useState([]);
-
-    const [filter, setFilter] = useState({
-        choose: ""
-    })
+    const { filterBackground, filterChooseSkill, filterRandomSkill, detailBackground, setFilterBackground, setFilterChooseSkill, setFilterRandomSkill, setDetailBackground } = useStore();
 
     const columns = [
         { name: "NAME", uid: "name" },
@@ -24,8 +17,20 @@ export default function App() {
 
     let items = React.useMemo(() => {
         let filteredValues = [...backgrounds]
+        console.log(filterBackground)
+
+        if (filterBackground != "") {
+            filteredValues = filteredValues
+            .filter((background) => background.name.startsWith(filterBackground))
+        }
+
+        if(Array.from(filterChooseSkill).length > 0) {
+            filteredValues = filteredValues.filter((background) => Array.from(filterChooseSkill).every(r => background.skills.learning.includes(r)))
+        }
+
         return filteredValues
-    }, [backgrounds])
+    }, [filterBackground, filterChooseSkill, filterRandomSkill])
+
 
     const renderCell = React.useCallback((background: any, columnKey: React.Key) => {
         return (
@@ -37,25 +42,23 @@ export default function App() {
         )
     }, [])
 
-    // <p className="text-small text-default-500">Selected: {Array.from(values).join(", ")}</p>
-
     return (
         <div className="max-h-full">
             <div className="flex flex-row py-5 justify-center space-between gap-3 sticky top-0 z-50">
                 <Input
-                    label="Email"
-                    placeholder="Enter your email"
+                    label="Background"
+                    placeholder="Filter by background"
                     className="max-w-[30%]"
-                    value={values}
-                    onValueChange={setValues}
+                    value={filterBackground}
+                    onValueChange={setFilterBackground}
                 />
                 <Select
                     label="Choose filter"
                     placeholder="Select skills"
                     selectionMode="multiple"
-                    selectedKeys={values}
+                    selectedKeys={filterChooseSkill}
                     className="max-w-[30%]"
-                    onSelectionChange={setValues}
+                    onSelectionChange={setFilterChooseSkill}
                 >
                     {Object.entries(skills).map(([key, value]) => (
                         <SelectItem key={key} value={key}>
@@ -67,9 +70,9 @@ export default function App() {
                     label="Random filter"
                     placeholder="Select skills"
                     selectionMode="multiple"
-                    selectedKeys={values}
+                    selectedKeys={filterRandomSkill}
                     className="max-w-[30%]"
-                    onSelectionChange={setValues}
+                    onSelectionChange={setFilterRandomSkill}
                 >
                     {Object.entries(skills).map(([key, value]) => (
                         <SelectItem key={key} value={key}>
@@ -91,7 +94,7 @@ export default function App() {
                     </TableHeader>
                     <TableBody emptyContent={"No users found"} items={items}>
                         {(item) => (
-                            <TableRow key={item.name}>
+                            <TableRow onMouseOver={() => setDetailBackground(item.name)} key={item.name}>
                                 {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
                             </TableRow>
                         )}

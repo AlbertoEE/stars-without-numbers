@@ -1,102 +1,25 @@
+import { Background, backgrounds, skills } from "@/data/data"
+import { useStore } from "../state"
+import BackgroundDetailSection from "./BackgroundDetailSection"
+
 export default function BackgroundDetail() {
+    const { detailBackground } = useStore()
+
+    let background: Background | undefined = backgrounds.find(background => background.name == detailBackground)
+
+    if (background == undefined) return
+
     return (
         <div className="m-2">
-            <div className="my-4">
-                <h1 className="font-orbitron font-bold uppercase tracking-widest text-2xl p-4">Free Skill</h1>
-                <hr />
-                <div className="mt-4">
-                    <table>
-                        <tr>
-                            <td className="py-1 px-3">Example</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div className="my-4">
 
-                <h1 className="font-orbitron font-bold uppercase tracking-widest text-2xl p-4">Predefined</h1>
-                <hr />
-                <div className="mt-4">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td className="py-1 px-3">Example</td>
-                            </tr>
-                            <tr>
-                                <td className="py-1 px-3">Example</td>
-                            </tr>
-                            <tr>
-                                <td className="py-1 px-3">Example</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <BackgroundDetailSection rows={1} columns={3} skills={background.skills.free.map(e => e.name)} title="Free Skill" />
+            <BackgroundDetailSection rows={3} columns={1} skills={background.skills.quick.map(e => e.name)} title="Predifined" />
+            <BackgroundDetailSection rows={2} columns={4} skills={background.skills.learning.map(e => e.name)} title="Choose" />
             <div className="my-4">
-
-                <h1 className="font-orbitron font-bold uppercase tracking-widest text-2xl p-4">Choose</h1>
-                <hr />
-                <div className="mt-4">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                            </tr>
-                            <tr>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div className="my-4">
-
                 <h1 className="font-orbitron font-bold uppercase tracking-widest text-2xl p-4">Random</h1>
                 <hr />
-                <div className="mt-4">
-                    <table>
-                        <thead>
-                            <tr><td colspan="4" className="font-bold uppercase tracking-widest text-1xl py-1 px-3">Learning</td></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                            </tr>
-                            <tr>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table className="mt-3">
-                        <thead>
-                            <tr><td colspan="4" className="font-bold uppercase tracking-widest text-1xl py-1 px-3">Growth</td></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                            </tr>
-                            <tr>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                                <td className="py-1 px-3">Example</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <BackgroundDetailSection rows={2} columns={4} skills={background.skills.learning.map(e => e.name)} thead="Learning" />
+                <BackgroundDetailSection rows={2} columns={3} skills={background.skills.growth.map(e => e.name)} thead="Growth" />
             </div>
         </div>
     )
