@@ -2,7 +2,7 @@
 
 import React from "react";
 import { backgrounds, skills } from "@/data/data";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Image } from "@nextui-org/react";
 import { Card, CardBody } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Input } from "@nextui-org/react";
@@ -21,10 +21,10 @@ export default function App() {
 
         if (filterBackground != "") {
             filteredValues = filteredValues
-            .filter((background) => background.name.startsWith(filterBackground))
+                .filter((background) => background.name.startsWith(filterBackground))
         }
 
-        if(Array.from(filterChooseSkill).length > 0) {
+        if (Array.from(filterChooseSkill).length > 0) {
             filteredValues = filteredValues.filter((background) => Array.from(filterChooseSkill).every(r => background.skills.learning.includes(r)))
         }
 
@@ -36,7 +36,10 @@ export default function App() {
         return (
             <Card>
                 <CardBody className="text-center">
-                    {background[columnKey].toUpperCase()}
+                    <div className="flex flex-row">
+                        <Image className="mx-4 my-0" src={`/imgs/backgrounds/${background.name}.svg`} alt="me" width="24" height="24" />
+                        <div>{background[columnKey].toUpperCase()}</div>
+                    </div>
                 </CardBody>
             </Card>
         )

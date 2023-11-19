@@ -21,15 +21,15 @@ export default function BackgroundDetailSection(props: {
     }
 
     return (
-        <div className="my-4">
+        <div>
 
-            {props.title && <><h1 className="font-orbitron font-bold uppercase tracking-widest text-2xl p-4">{props.title}</h1><hr /></>}
+            {props.title && <><h1 className="font-orbitron font-bold uppercase tracking-widest text-1xl p-4">{props.title}</h1><hr /></>}
             <div className="mt-4">
                 <table>
                     {props.thead &&
                         <thead>
                             <tr>
-                                <td colSpan={4} className="font-bold uppercase tracking-widest text-1xl py-1 px-3">{props.thead}</td>
+                                <td colSpan={4} className="font-bold uppercase tracking-widest text-xs py-1 px-3">{props.thead}</td>
                             </tr>
 
                         </thead>
