@@ -1,4 +1,4 @@
-import { Skill, skills } from "@/data/data";
+import { SkillDefinition, skills } from "@/data/data";
 import { Image, Tooltip } from "@nextui-org/react";
 
 export default function BackgroundDetailSection(props: {
@@ -37,7 +37,7 @@ export default function BackgroundDetailSection(props: {
                         {elements.map((elementList: string[]) =>
                             <tr>{elementList.map((element: string) =>
                                 <td className="py-1 px-3">
-                                    <Tooltip content={skills.find((skill: Skill) => skill.name == element)?.shortDescription}>
+                                    <Tooltip content={skills.find((skill: SkillDefinition) => skill.name == element)?.shortDescription}>
                                         <div className="flex flex-row">
                                             <Image loading="eager" className="mx-4 my-0 flex-1" src={`/imgs/skills/${element}.svg`} alt="me" width="24" height="24" />
                                             <div className="flex-1">{element}</div>

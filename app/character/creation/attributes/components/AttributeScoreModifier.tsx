@@ -1,30 +1,29 @@
 "use client";
 
 import { Card, CardBody } from "@nextui-org/react";
-import { attributeScoreModifier } from "@/data/data";
 import { useStore } from "../state";
 
-export default function AttributeScoreModifier(props: {
+export default function AttributeScoreModifierRow(props: {
     score: string,
     keyValue: string,
     zoneName: string,
+    modifier: number,
     onDragEnd: () => void,
 }) {
     const { setDragged, setDraggedOver, setDetail } = useStore();
     const draggedState = { from: props.zoneName, value: props.score, key: props.keyValue }
-    const modifier = attributeScoreModifier[props.score];
 
     const color = () => {
         switch (true) {
-            case (modifier == "-2"):
+            case (props.modifier == -2):
                 return "bg-red-950"
-            case (modifier == "-1"):
+            case (props.modifier == -1):
                 return "bg-orange-950"
-            case (modifier == "0"):
+            case (props.modifier == 0):
                 return "bg-cyan-800"
-            case (modifier == "1"):
+            case (props.modifier == 1):
                 return "bg-green-800"
-            case (modifier == "2"):
+            case (props.modifier == 2):
                 return "bg-yellow-400"
         }
     }

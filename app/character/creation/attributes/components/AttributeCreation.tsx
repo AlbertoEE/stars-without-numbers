@@ -1,12 +1,14 @@
 import { CardBody } from "@nextui-org/react";
 import { handleSwap } from "@/utilities/DragAndDrop";
 import AttributeAvailableValues from "./AttributeAvailableValues";
-import AttributeScoreModifier from "./AttributeScoreModifier";
+import AttributeScoreModifierRow from "./AttributeScoreModifier";
 import { rollDice } from "@/utilities/Roll";
 import { useStore } from "../state";
+import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
 
 export default function AttributeCreation(props: {
     random?: boolean,
+    attributeScoreModifiers: AttributeScoreModifier
 }) {
     const { initialValues, attributes, dragged, draggedOver, setInitialValues, setAttributes } = useStore();
 
@@ -39,7 +41,8 @@ export default function AttributeCreation(props: {
             </div>
             <div>
                 {Object.entries(attributes).map(([key, value]) => (
-                    <AttributeScoreModifier
+                    <AttributeScoreModifierRow
+                        modifier={}
                         score={value}
                         keyValue={key}
                         key={key}
