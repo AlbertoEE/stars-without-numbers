@@ -1,5 +1,5 @@
 import { Skill, skills } from "@/data/data";
-import { Image, PopoverTrigger, Tooltip } from "@nextui-org/react";
+import { Image, Tooltip } from "@nextui-org/react";
 
 export default function BackgroundDetailSection(props: {
     columns: number,
@@ -22,7 +22,6 @@ export default function BackgroundDetailSection(props: {
 
     return (
         <div>
-
             {props.title && <><h1 className="font-orbitron font-bold uppercase tracking-widest text-1xl p-4">{props.title}</h1><hr className="mx-4" /></>}
             <div className="mt-4">
                 <table>

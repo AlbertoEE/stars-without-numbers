@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Background, backgrounds, skills } from "@/data/data";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Image } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Image, Selection } from "@nextui-org/react";
 import { Card, CardBody } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Input } from "@nextui-org/react";
@@ -61,11 +61,14 @@ export default function App() {
                     selectionMode="multiple"
                     selectedKeys={filterChooseSkill}
                     className="max-w-[30%]"
-                    onSelectionChange={setFilterChooseSkill}
+                    onSelectionChange={(keys: Selection) => setFilterChooseSkill(keys.toString())}
                 >
-                    {Object.entries(skills).map(([key, value]) => (
-                        <SelectItem key={key} value={key}>
-                            {key}
+                    {skills.map(skill => (
+                        <SelectItem key={skill.name} textValue={skill.name}>
+                            <div className="flex flex-row">
+                                <Image loading="eager" className="mx-4 my-0 flex-1" src={`/imgs/skills/${skill.name}.svg`} alt="me" width="24" height="24" />
+                                <div className="flex-1">{skill.name}</div>
+                            </div>
                         </SelectItem>
                     ))}
                 </Select>
