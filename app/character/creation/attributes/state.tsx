@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { DraggedState } from "@/utilities/DragAndDrop";
 
-interface AttributeValue {
+export interface AttributeValue {
     [key: string]: string;
 }
 

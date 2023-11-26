@@ -1,7 +1,7 @@
 import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
 import { AttributeScoreModifierRepository } from "./AttributeScoreModifierRepository";
 
-export class JsonAttributeScoreModifierRepository
+export class InMemoryAttributeScoreModifierRepository
   implements AttributeScoreModifierRepository
 {
   getAttributeScoreModifiers = () => attributeScoreModifier;

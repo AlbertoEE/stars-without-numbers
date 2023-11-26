@@ -1,6 +1,6 @@
 "use client";
 
-import Description from "./components/Description";
+import AttributeDescription from "./components/Description";
 import SplitDesign from "../components/SplitDesign";
 import AttributeTabs from "./components/AttributeTabs";
 import { useStore } from "./state";
@@ -9,22 +9,17 @@ import { InMemoryAttributeDefinitionRepository } from "@/data/AttributeDefinitio
 
 export default function Home() {
   const { detail } = useStore();
-  const attributeDefinitionRepository: AttributeDefinitionRepository =
-    new InMemoryAttributeDefinitionRepository();
+  const attributeDefinitionRepository: AttributeDefinitionRepository = new InMemoryAttributeDefinitionRepository();
   const attributes = attributeDefinitionRepository.getAttributes();
-  const attributeDescription: string | undefined = attributes.find(
-    (attribute) => attribute.name == detail
-  )?.description;
+  const attributeDescription: string | undefined = attributes.find((attribute) => attribute.name == detail)?.description;
 
   return (
     <SplitDesign
       leftChild={<AttributeTabs />}
       rightChild={
         attributeDescription ? (
-          <Description
-            imgPath={`${detail}.svg`}
-            title={detail}
-            description={attributeDescription}
+          <AttributeDescription
+            attribute={detail}
           />
         ) : (
           <div></div>

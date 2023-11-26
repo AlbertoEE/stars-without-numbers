@@ -2,28 +2,39 @@
 
 import { Card, CardBody } from "@nextui-org/react";
 import { useStore } from "../state";
+import useSWR from "swr";
+import { AttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/AttributeScoreModifierRepository";
+import { InMemoryAttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/InMemoryAttributeScoreModifierRepository";
+import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
 
 export default function AttributeScoreModifierRow(props: {
     score: string,
     keyValue: string,
     zoneName: string,
-    modifier: number,
     onDragEnd: () => void,
 }) {
     const { setDragged, setDraggedOver, setDetail } = useStore();
     const draggedState = { from: props.zoneName, value: props.score, key: props.keyValue }
 
+
+    const attributeScoreModifierRepository: AttributeScoreModifierRepository = new InMemoryAttributeScoreModifierRepository()
+    let { data } = useSWR<AttributeScoreModifier>("test", attributeScoreModifierRepository.getAttributeScoreModifiers)
+
+    if(!data) return;
+
+    const modifier = data[parseInt(props.score)]
+
     const color = () => {
         switch (true) {
-            case (props.modifier == -2):
+            case (modifier == -2):
                 return "bg-red-950"
-            case (props.modifier == -1):
+            case (modifier == -1):
                 return "bg-orange-950"
-            case (props.modifier == 0):
+            case (modifier == 0):
                 return "bg-cyan-800"
-            case (props.modifier == 1):
+            case (modifier == 1):
                 return "bg-green-800"
-            case (props.modifier == 2):
+            case (modifier == 2):
                 return "bg-yellow-400"
         }
     }

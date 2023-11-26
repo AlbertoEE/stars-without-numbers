@@ -8,7 +8,6 @@ import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
 
 export default function AttributeCreation(props: {
     random?: boolean,
-    attributeScoreModifiers: AttributeScoreModifier
 }) {
     const { initialValues, attributes, dragged, draggedOver, setInitialValues, setAttributes } = useStore();
 
@@ -20,7 +19,7 @@ export default function AttributeCreation(props: {
         if (Number.isNaN(parseInt(initialValues[key]))) {
             let result = rollDice(3, 6);
             let initialValuesClone = { ...initialValues };
-            initialValuesClone[key] = result;
+            initialValuesClone[key] = result.toString();
             setInitialValues(initialValuesClone);
         }
     }
@@ -42,7 +41,6 @@ export default function AttributeCreation(props: {
             <div>
                 {Object.entries(attributes).map(([key, value]) => (
                     <AttributeScoreModifierRow
-                        modifier={}
                         score={value}
                         keyValue={key}
                         key={key}
