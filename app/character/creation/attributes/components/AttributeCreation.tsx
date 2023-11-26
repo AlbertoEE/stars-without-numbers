@@ -42,8 +42,8 @@ export default function AttributeCreation(props: {
                 {Object.entries(attributes).map(([key, value]) => (
                     <AttributeScoreModifierRow
                         score={value}
-                        keyValue={key}
-                        key={key}
+                        keyValue={key.toLowerCase()}
+                        key={key.toLowerCase()}
                         onDragEnd={handleSwapBetweenInitialAndAttributes}
                         zoneName="attributes" />
                 ))}

@@ -18,7 +18,7 @@ export default function AttributeScoreModifierRow(props: {
 
 
     const attributeScoreModifierRepository: AttributeScoreModifierRepository = new InMemoryAttributeScoreModifierRepository()
-    let { data } = useSWR<AttributeScoreModifier>("test", attributeScoreModifierRepository.getAttributeScoreModifiers)
+    const { data } = useSWR<AttributeScoreModifier>("testAttributeScoreModifier", attributeScoreModifierRepository.getAttributeScoreModifiers)
 
     if(!data) return;
 

@@ -1,21 +1,42 @@
 "use client";
 
 import React from "react";
-import { Background, backgrounds, skills } from "@/data/data";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Image, Selection } from "@nextui-org/react";
 import { Card, CardBody } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Input } from "@nextui-org/react";
 import { useStore } from "../state";
+import { BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository";
+import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
+import useSWR from "swr";
+import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { SkillDefinitionRepository } from "@/data/SkillDefinition/SkillDefinitionRepository";
+import { InMemorySkillDefinitionRepository } from "@/data/SkillDefinition/InMemorySkillDefinitionRepository";
+import { SkillDefinition } from "@/models/SkillDefinitionModels";
 
 export default function App() {
-    const { filterBackground, filterChooseSkill, filterRandomSkill, detailBackground, setFilterBackground, setFilterChooseSkill, setFilterRandomSkill, setDetailBackground } = useStore();
+    const {
+        filterBackground,
+        filterChooseSkill,
+        filterRandomSkill,
+        detailBackground,
+        setFilterBackground,
+        setFilterChooseSkill,
+        setFilterRandomSkill,
+        setDetailBackground
+    } = useStore();
+
+    const skillsDefinitionRepository: SkillDefinitionRepository = new InMemorySkillDefinitionRepository()
+    const { data: skills } = useSWR<SkillDefinition[]>("testSkillDefinition", skillsDefinitionRepository.getSkills)
+    const backgroundDefinitionRepository: BackgroundDefinitionRepository = new InMemoryBackgroundDefinitionRepository()
+    const { data: backgrounds } = useSWR<BackgroundDefinition[]>("testBackgroundDefinition", backgroundDefinitionRepository.getBackgrounds)
 
     const columns = [
         { name: "NAME", uid: "name" },
     ];
 
     let items = React.useMemo(() => {
+        if(!backgrounds) return [];
         let filteredValues = [...backgrounds]
         console.log(filterBackground)
 
@@ -25,14 +46,13 @@ export default function App() {
         }
 
         if (Array.from(filterChooseSkill).length > 0) {
-            filteredValues = filteredValues.filter((background) => Array.from(filterChooseSkill).every(r => background.skills.learning.map(e => e.name).includes(r)))
+            filteredValues = filteredValues.filter((background) => Array.from(filterChooseSkill).every(r => background.benefits.learning.map(e => e.name).includes(r)))
         }
 
         return filteredValues
-    }, [filterBackground, filterChooseSkill, filterRandomSkill])
+    }, [filterBackground, filterChooseSkill, filterRandomSkill, backgrounds])
 
-
-    const renderCell = React.useCallback((background: Background, columnKey: React.Key) => {
+    const renderCell = React.useCallback((background: BackgroundDefinition, columnKey: React.Key) => {
         return (
             <Card>
                 <CardBody className="text-center">
@@ -44,6 +64,8 @@ export default function App() {
             </Card>
         )
     }, [])
+
+    if(!backgrounds || !skills) return <></>;
 
     return (
         <div className="max-h-full">

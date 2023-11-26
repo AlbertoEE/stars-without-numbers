@@ -1,5 +1,8 @@
-import { SkillDefinition, skills } from "@/data/data";
+import { InMemorySkillDefinitionRepository } from "@/data/SkillDefinition/InMemorySkillDefinitionRepository";
+import { SkillDefinitionRepository } from "@/data/SkillDefinition/SkillDefinitionRepository";
+import { SkillDefinition } from "@/models/SkillDefinitionModels";
 import { Image, Tooltip } from "@nextui-org/react";
+import useSWR from "swr";
 
 export default function BackgroundDetailSection(props: {
     columns: number,
@@ -8,6 +11,11 @@ export default function BackgroundDetailSection(props: {
     title?: string,
     thead?: string,
 }) {
+
+    const skillDefinitionRepository: SkillDefinitionRepository = new InMemorySkillDefinitionRepository();
+    const { data: skillDefinitions } = useSWR<SkillDefinition[]>("testBackgroundDefinition", skillDefinitionRepository.getSkills)
+
+    if(!skillDefinitions) return;
 
     let elements: string[][] = []
     let count = 0;
@@ -37,7 +45,7 @@ export default function BackgroundDetailSection(props: {
                         {elements.map((elementList: string[]) =>
                             <tr>{elementList.map((element: string) =>
                                 <td className="py-1 px-3">
-                                    <Tooltip content={skills.find((skill: SkillDefinition) => skill.name == element)?.shortDescription}>
+                                    <Tooltip content={skillDefinitions.find((skill: SkillDefinition) => skill.name == element)?.shortDescription}>
                                         <div className="flex flex-row">
                                             <Image loading="eager" className="mx-4 my-0 flex-1" src={`/imgs/skills/${element}.svg`} alt="me" width="24" height="24" />
                                             <div className="flex-1">{element}</div>

@@ -12,7 +12,7 @@ export default function AttributeDescription(props: {
     attribute: string
 }) {
     const attributeDefinitionRepository: AttributeDefinitionRepository = new InMemoryAttributeDefinitionRepository();
-    const { data } = useSWR<AttributeDefinition[]>(attributeDefinitionRepository.getAttributes)
+    const { data } = useSWR<AttributeDefinition[]>("testAttributeDefinition", attributeDefinitionRepository.getAttributes)
 
     if(!data) return;
 
