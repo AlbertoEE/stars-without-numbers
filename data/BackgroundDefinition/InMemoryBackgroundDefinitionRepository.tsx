@@ -321,10 +321,10 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       description:
         "Bodies wear and break, even on worlds that possess the full resources of advanced postech medicine.\n\nYour hero was a physician, one trained to cure the maladies of the body or the afflictions of the mind.\n\nSome physicians are conventional health workers, while others are ship's surgeons, military medics, missionary healers of an expanding faith, or dubious slum doctors who'll graft over laser burns with no awkward questions asked.\n\nWherever men and women go into danger, however, the skills of a physician are eagerly sought.",
       benefits: {
-        free: [{ type: BackgroundBenefitType.skill, name: "fix" }],
+        free: [{ type: BackgroundBenefitType.skill, name: "heal" }],
         quick: [
-          { type: BackgroundBenefitType.skill, name: "fix" },
-          { type: BackgroundBenefitType.skill, name: "perform" },
+          { type: BackgroundBenefitType.skill, name: "heal" },
+          { type: BackgroundBenefitType.skill, name: "know" },
           { type: BackgroundBenefitType.skill, name: "notice" },
         ],
         growth: [
@@ -339,8 +339,8 @@ const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.skill, name: "administer" },
           { type: BackgroundBenefitType.skill, name: "connect" },
           { type: BackgroundBenefitType.skill, name: "fix" },
-          { type: BackgroundBenefitType.skill, name: "fix" },
-          { type: BackgroundBenefitType.skill, name: "perform" },
+          { type: BackgroundBenefitType.skill, name: "heal" },
+          { type: BackgroundBenefitType.skill, name: "know" },
           { type: BackgroundBenefitType.skill, name: "notice" },
           { type: BackgroundBenefitType.skill, name: "talk" },
           { type: BackgroundBenefitType.skill, name: "trade" },

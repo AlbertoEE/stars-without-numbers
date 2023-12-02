@@ -36,7 +36,7 @@ export default function App() {
     ];
 
     let items = React.useMemo(() => {
-        if(!backgrounds) return [];
+        if (!backgrounds) return [];
         let filteredValues = [...backgrounds]
         console.log(filterBackground)
 
@@ -46,7 +46,15 @@ export default function App() {
         }
 
         if (Array.from(filterChooseSkill).length > 0) {
-            filteredValues = filteredValues.filter((background) => Array.from(filterChooseSkill).every(r => background.benefits.learning.map(e => e.name).includes(r)))
+            filteredValues = filteredValues.filter((background: BackgroundDefinition) =>
+                Array
+                    .from(filterChooseSkill)
+                    .every((filter: string) =>
+                        background.benefits.learning
+                            .map(e => e.name)
+                            .includes(filter)
+                    )
+            )
         }
 
         return filteredValues
@@ -65,7 +73,7 @@ export default function App() {
         )
     }, [])
 
-    if(!backgrounds || !skills) return <></>;
+    if (!backgrounds || !skills) return <></>;
 
     return (
         <div className="max-h-full">
@@ -83,7 +91,7 @@ export default function App() {
                     selectionMode="multiple"
                     selectedKeys={filterChooseSkill}
                     className="max-w-[30%]"
-                    onSelectionChange={(keys: Selection) => setFilterChooseSkill(keys.toString())}
+                    onSelectionChange={(keys: Selection) => setFilterChooseSkill(keys)}
                 >
                     {skills.map(skill => (
                         <SelectItem key={skill.name} textValue={skill.name}>

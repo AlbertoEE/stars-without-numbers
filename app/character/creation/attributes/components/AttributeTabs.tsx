@@ -19,7 +19,7 @@ export default function AttributeTabs() {
         setInitialValues({ A: "🎲", B: "🎲", C: "🎲", D: "🎲", E: "🎲", F: "🎲", G: "14", });
         break;
     }
-    setAttributes({ Strength: "0", Dexterity: "0", Constitution: "0", Intelligence: "0", Wisdom: "0", Charisma: "0", });
+    setAttributes({ strength: "0", dexterity: "0", constitution: "0", intelligence: "0", wisdom: "0", charisma: "0", });
   }, [tab])
 
   return (

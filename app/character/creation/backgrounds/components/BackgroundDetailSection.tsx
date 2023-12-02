@@ -13,7 +13,7 @@ export default function BackgroundDetailSection(props: {
 }) {
 
     const skillDefinitionRepository: SkillDefinitionRepository = new InMemorySkillDefinitionRepository();
-    const { data: skillDefinitions } = useSWR<SkillDefinition[]>("testBackgroundDefinition", skillDefinitionRepository.getSkills)
+    const { data: skillDefinitions } = useSWR<SkillDefinition[]>("testSkillDefinitionsDetailSection", skillDefinitionRepository.getSkills)
 
     if(!skillDefinitions) return;
 

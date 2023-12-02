@@ -13,7 +13,7 @@ export default function BackgroundDetail() {
     const [tab, setTab] = useState("backgroundDescription")
 
     const backgroundDefinitionRepository: BackgroundDefinitionRepository = new InMemoryBackgroundDefinitionRepository()
-    const { data: backgrounds } = useSWR<BackgroundDefinition[]>("testBackgroundDefinition", backgroundDefinitionRepository.getBackgrounds)
+    const { data: backgrounds } = useSWR<BackgroundDefinition[]>("testBackgroundDefinitionDetail", backgroundDefinitionRepository.getBackgrounds)
 
     if(!backgrounds) return;
 
