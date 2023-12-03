@@ -6,16 +6,17 @@ import { useState } from "react";
 import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import useSWR from "swr";
+import { Key } from "@react-types/shared";
 
 export default function BackgroundDetail() {
     const { detailBackground } = useStore()
 
-    const [tab, setTab] = useState("backgroundDescription")
+    const [tab, setTab] = useState<Key>("backgroundDescription")
 
     const backgroundDefinitionRepository: BackgroundDefinitionRepository = new InMemoryBackgroundDefinitionRepository()
     const { data: backgrounds } = useSWR<BackgroundDefinition[]>("testBackgroundDefinitionDetail", backgroundDefinitionRepository.getBackgrounds)
 
-    if(!backgrounds) return;
+    if (!backgrounds) return;
 
     let background: BackgroundDefinition | undefined = backgrounds.find(background => background.name == detailBackground)
 
@@ -47,9 +48,9 @@ export default function BackgroundDetail() {
                         <div><BackgroundDetailSection rows={1} columns={3} skills={background.benefits.free.map(e => e.name)} title="Free Skill" /></div>
                         <div><BackgroundDetailSection rows={3} columns={1} skills={background.benefits.quick.map(e => e.name)} title="Predifined" /></div>
                     </div>
-                    <BackgroundDetailSection rows={3} columns={3} skills={background.benefits.learning.map(e => e.name)} title="Choose" />
+                    <BackgroundDetailSection rows={3} columns={3} skills={background.benefits.learning.map(e => e.name)} title="Choose x 2" />
                     <div className="my-4">
-                        <h1 className="font-orbitron font-bold uppercase tracking-widest text-1xl p-4">Random</h1>
+                        <h1 className="font-orbitron font-bold uppercase tracking-widest text-1xl p-4">Random x 3</h1>
                         <hr />
                         <BackgroundDetailSection rows={3} columns={3} skills={background.benefits.learning.map(e => e.name)} thead="Learning" />
                         <BackgroundDetailSection rows={2} columns={3} skills={background.benefits.growth.map(e => e.name)} thead="Growth" />
@@ -57,6 +58,5 @@ export default function BackgroundDetail() {
                 </div>
             </Tab>
         </Tabs>
-
     )
 }

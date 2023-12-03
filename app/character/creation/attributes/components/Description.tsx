@@ -2,6 +2,7 @@
 
 import { AttributeDefinitionRepository } from "@/data/AttributeDefinition/AttributeDefinitionRepository";
 import { InMemoryAttributeDefinitionRepository } from "@/data/AttributeDefinition/InMemoryAttributeDefinitionRepository";
+import { attributeDefinitionRepository } from "@/injection/injection";
 import { AttributeDefinition } from "@/models/AttributeDefinitionModels";
 import { CardBody } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
@@ -11,7 +12,6 @@ import useSWR from 'swr'
 export default function AttributeDescription(props: {
     attribute: string
 }) {
-    const attributeDefinitionRepository: AttributeDefinitionRepository = new InMemoryAttributeDefinitionRepository();
     const { data } = useSWR<AttributeDefinition[]>("testAttributeDefinition", attributeDefinitionRepository.getAttributes)
 
     if (!data) return;
