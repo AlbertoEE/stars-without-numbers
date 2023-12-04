@@ -60,24 +60,11 @@ export default function App() {
         return filteredValues
     }, [filterBackground, filterChooseSkill, filterRandomSkill, backgrounds])
 
-    const renderCell = React.useCallback((background: BackgroundDefinition, columnKey: React.Key) => {
-        return (
-            <Card>
-                <CardBody className="text-center">
-                    <div className="flex flex-row">
-                        <Image className="mx-4 my-0" src={`/imgs/backgrounds/${background.name}.svg`} alt="me" width="24" height="24" />
-                        <div>{background.name.toUpperCase()}</div>
-                    </div>
-                </CardBody>
-            </Card>
-        )
-    }, [])
-
     if (!backgrounds || !skills) return <></>;
 
     return (
-        <div className="max-h-full">
-            <div className="flex flex-row py-5 justify-center space-between gap-3 sticky top-0 z-50">
+        <div className="h-full">
+            <div className="h-[13%] flex flex-row py-5 justify-center space-between gap-3 sticky top-0 z-50">
                 <Input
                     label="Background"
                     placeholder="Filter by background"
@@ -117,25 +104,17 @@ export default function App() {
                     ))}
                 </Select>
             </div>
-            <div className="h-[85%] overflow-y-auto">
-                <Table hideHeader aria-label="Example static collection table">
-                    <TableHeader columns={columns}>
-                        {(column) => (
-                            <TableColumn
-                                key={column.uid}
-                            >
-                                {column.name}
-                            </TableColumn>
-                        )}
-                    </TableHeader>
-                    <TableBody emptyContent={"No users found"} items={items}>
-                        {(item) => (
-                            <TableRow onMouseOver={() => setDetailBackground(item.name)} key={item.name}>
-                                {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                            </TableRow>
-                        )}
-                    </TableBody>
-                </Table>
+            <div className="h-[87%] overflow-y-auto px-5">
+                {items.map(item =>
+                    <Card className="mb-2" onMouseOver={() => setDetailBackground(item.name)} key={item.name}>
+                        <CardBody className="text-center">
+                            <div className="flex flex-row">
+                                <Image className="mx-4 my-0" src={`/imgs/backgrounds/${item.name}.svg`} alt="me" width="24" height="24" />
+                                <div>{item.name.toUpperCase()}</div>
+                            </div>
+                        </CardBody>
+                    </Card>
+                )}
             </div>
         </div>
     );
