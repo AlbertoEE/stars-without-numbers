@@ -91,7 +91,7 @@ export default function App() {
                     selectionMode="multiple"
                     selectedKeys={filterChooseSkill}
                     className="max-w-[30%]"
-                    onSelectionChange={(keys: Selection) => setFilterChooseSkill(keys)}
+                    onSelectionChange={(keys: Selection) => setFilterChooseSkill(Array.from(keys).map(key => key.toString()))}
                 >
                     {skills.map(skill => (
                         <SelectItem key={skill.name} textValue={skill.name}>
@@ -108,7 +108,7 @@ export default function App() {
                     selectionMode="multiple"
                     selectedKeys={filterRandomSkill}
                     className="max-w-[30%]"
-                    onSelectionChange={setFilterRandomSkill}
+                    onSelectionChange={(keys: Selection) => setFilterRandomSkill(Array.from(keys).map(key => key.toString()))}
                 >
                     {Object.entries(skills).map(([key, value]) => (
                         <SelectItem key={key} value={key}>

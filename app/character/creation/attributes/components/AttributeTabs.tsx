@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import { Tabs, Tab } from "@nextui-org/react";
 import { useStore } from "../state";
 import AttributeCreation from "./AttributeCreation";
+import {Key} from '@react-types/shared';
 
 
 export default function AttributeTabs() {
-  const [tab, setTab] = useState("standard");
+  const [tab, setTab] = useState<Key>("standard");
   const { detail, setInitialValues, setAttributes } = useStore();
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function AttributeTabs() {
         break;
     }
     setAttributes({ strength: "0", dexterity: "0", constitution: "0", intelligence: "0", wisdom: "0", charisma: "0", });
-  }, [tab])
+  }, [tab, setAttributes, setInitialValues])
 
   return (
       <Tabs key="a" aria-label="Options" classNames={{ tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider", }} selectedKey={tab} onSelectionChange={setTab} >

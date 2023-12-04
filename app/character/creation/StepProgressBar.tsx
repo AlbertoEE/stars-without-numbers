@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function StepProgressBar() {
 
-    const [test, setTest] = useState();
+    const [test, setTest] = useState<boolean>();
 
     return (
         <div className="fixed translate-y-[-50%] left-0 top-[50%] bg-white flex flex-col items-center justify-center p-1 rounded-r-lg">

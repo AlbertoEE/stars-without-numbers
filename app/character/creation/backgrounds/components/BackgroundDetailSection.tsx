@@ -42,9 +42,9 @@ export default function BackgroundDetailSection(props: {
                         </thead>
                     }
                     <tbody>
-                        {elements.map((elementList: string[]) =>
-                            <tr>{elementList.map((element: string) =>
-                                <td className="py-1 px-3">
+                        {elements.map((elementList: string[], index: number) =>
+                            <tr key={index}>{elementList.map((element: string, index: number) =>
+                                <td className="py-1 px-3" key={index}>
                                     <Tooltip content={skillDefinitions.find((skill: SkillDefinition) => skill.name == element)?.shortDescription}>
                                         <div className="flex flex-row">
                                             <Image loading="eager" className="mx-4 my-0 flex-1" src={`/imgs/skills/${element}.svg`} alt="me" width="24" height="24" />

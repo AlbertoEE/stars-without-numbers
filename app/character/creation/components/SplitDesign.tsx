@@ -6,13 +6,13 @@ export default function SplitDesign(props: {
     rightChild: React.ReactNode,
 }) {
     return (
-        <div className="flex flex-row items-center justify-center gap-4">
-            <Card className="flex-1 max-h-[90%] min-w[50%]">
+        <div className="flex flex-row items-center justify-center gap-4 w-full">
+            <Card className="flex-1 max-h-[90vh]">
                 <CardBody>
                     {props.leftChild}
                 </CardBody>
             </Card>
-            <Card className="flex-1 invisible max-h-[90%] min-w[50%]">
+            <Card className="flex-1 max-h-[90vh]">
                 <CardBody>
                     {props.rightChild}
                 </CardBody>
