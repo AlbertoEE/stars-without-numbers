@@ -2,6 +2,7 @@ import { Tab, Tabs } from "@nextui-org/react";
 import { useState } from "react";
 import { Key } from "@react-types/shared";
 import ChooseSkill from "./ChooseSkill";
+import RandomSKill from "./RandomSkill";
 
 export default function SkillSelection() {
     const [tab, setTab] = useState<Key>("skillsChoose")
@@ -18,6 +19,7 @@ export default function SkillSelection() {
                 <ChooseSkill />
             </Tab>
             <Tab key="skillsRandom" title="Random">
+                <RandomSKill />
             </Tab>
         </Tabs>
     )
