@@ -7,7 +7,7 @@ import { useStore } from "./state";
 import { AttributeDefinitionRepository } from "@/data/AttributeDefinition/AttributeDefinitionRepository";
 import { InMemoryAttributeDefinitionRepository } from "@/data/AttributeDefinition/InMemoryAttributeDefinitionRepository";
 
-export default function Home() {
+export default function Page({ params }: { params: { id: string } }) {
   const { detail } = useStore();
   const attributeDefinitionRepository: AttributeDefinitionRepository = new InMemoryAttributeDefinitionRepository();
   const attributes = attributeDefinitionRepository.getAttributes();

@@ -1,37 +1,18 @@
-class Character {
+export interface Character {
+  id: string;
   attributes: Attributes;
-
-  constructor(attributes: Attributes) {
-    this.attributes = attributes;
-  }
 }
 
-class Attributes {
+export interface Attributes {
   strength: Attribute;
   dexterity: Attribute;
   constitution: Attribute;
   intelligence: Attribute;
   wisdom: Attribute;
   charisma: Attribute;
-  
-  constructor(
-    strength: Attribute, 
-    dexterity: Attribute, 
-    constitution: Attribute, 
-    intelligence: Attribute, 
-    wisdom: Attribute, 
-    charisma: Attribute
-) {
-    this.strength = strength
-    this.dexterity = dexterity
-    this.constitution = constitution
-    this.intelligence = intelligence
-    this.wisdom = wisdom
-    this.charisma = charisma
-  }
 }
 
-class Attribute {
+export class Attribute {
   value: number;
   modifier: number;
 
