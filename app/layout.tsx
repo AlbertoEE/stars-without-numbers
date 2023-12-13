@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 import { Providers } from "./providers";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-import StepProgressBar from "./character/creation/StepProgressBar";
+import StepProgressBar from "./character/[id]/creation/StepProgressBar";
 
 export default function RootLayout({
   children,

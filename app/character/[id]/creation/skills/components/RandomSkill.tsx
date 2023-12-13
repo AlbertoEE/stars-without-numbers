@@ -6,6 +6,10 @@ export default function RandomSKill() {
     const [chosenSkills, setChosenSkills] = useState<string[]>([]);
     const [availableRolls, setAvailableRolls] = useState<number>(3);
 
+    function random(table: "learning" | "growth") {
+        
+    }
+
     return (
         <>
             <div>
@@ -18,7 +22,7 @@ export default function RandomSKill() {
                         <CardBody className="text-center justify-center">🎲</CardBody>
                     </Card>
                     <div className="ml-1">Growth table</div>
-                    <Card className="h-12" isPressable >
+                    <Card className="h-12" >
                         <CardBody className="text-center justify-center">3/3</CardBody>
                     </Card>
                 </div>

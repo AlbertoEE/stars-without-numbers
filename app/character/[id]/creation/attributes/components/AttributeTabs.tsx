@@ -5,11 +5,14 @@ import { Tabs, Tab } from "@nextui-org/react";
 import { useStore } from "../state";
 import AttributeCreation from "./AttributeCreation";
 import {Key} from '@react-types/shared';
+import { useParams, useSearchParams } from "next/navigation";
 
 
 export default function AttributeTabs() {
+  const searchParams = useParams()
+
   const [tab, setTab] = useState<Key>("standard");
-  const { detail, setInitialValues, setAttributes } = useStore();
+  const { attributes, setInitialValues, setAttributes } = useStore();
 
   useEffect(() => {
     switch (true) {
@@ -22,6 +25,11 @@ export default function AttributeTabs() {
     }
     setAttributes({ strength: "0", dexterity: "0", constitution: "0", intelligence: "0", wisdom: "0", charisma: "0", });
   }, [tab, setAttributes, setInitialValues])
+
+  useEffect(() => {
+    console.log(2)
+    //localStorage.setItem()
+  }, [attributes])
 
   return (
       <Tabs key="a" aria-label="Options" classNames={{ tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider", }} selectedKey={tab} onSelectionChange={setTab} >

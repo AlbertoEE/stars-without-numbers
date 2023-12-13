@@ -16,15 +16,7 @@ export default function Home() {
   return (
     <SplitDesign
       leftChild={<AttributeTabs />}
-      rightChild={
-        attributeDescription ? (
-          <AttributeDescription
-            attribute={detail}
-          />
-        ) : (
-          <div></div>
-        )
-      }
+      rightChild={ attributeDescription && ( <AttributeDescription attribute={detail} /> ) }
     />
   );
 }
