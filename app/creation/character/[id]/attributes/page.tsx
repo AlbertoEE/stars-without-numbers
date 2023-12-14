@@ -15,7 +15,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <SplitDesign
-      leftChild={<AttributeTabs />}
+      leftChild={<AttributeTabs characterId={params.id}/>}
       rightChild={ attributeDescription && ( <AttributeDescription attribute={detail} /> ) }
     />
   );

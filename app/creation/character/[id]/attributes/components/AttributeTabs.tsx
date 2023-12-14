@@ -5,7 +5,7 @@ import { Tabs, Tab } from "@nextui-org/react";
 import { useStore } from "../state";
 import AttributeCreation from "./AttributeCreation";
 import { Key } from "@react-types/shared";
-import { Attribute, Character } from "@/models/chatacter";
+import { Attribute, Attributes, Character } from "@/models/chatacter";
 
 export default function AttributeTabs(props: { characterId: string }) {
   const [tab, setTab] = useState<Key>("standard");
@@ -46,37 +46,22 @@ export default function AttributeTabs(props: { characterId: string }) {
   }, [tab, setAttributes, setInitialValues]);
 
   useEffect(() => {
-    const charactersSerialized: string | null =
+    const charactersString: string | null =
       localStorage.getItem("characters");
-    if (charactersSerialized) {
-      const characters: Character[] = JSON.parse(charactersSerialized);
-      const character: Character | undefined = characters.find(
-        (e) => e.id == props.characterId
-      );
-      if (character) {
-        character.attributes.strength = new Attribute(
-          parseInt(attributes["strength"])
-        );
-
-        character.attributes.dexterity = new Attribute(
-          parseInt(attributes["dexterity"])
-        );
-
-        character.attributes.constitution = new Attribute(
-          parseInt(attributes["constitution"])
-        );
-
-        character.attributes.wisdom = new Attribute(
-          parseInt(attributes["wisdom"])
-        );
-
-        character.attributes.intelligence = new Attribute(
-          parseInt(attributes["intelligence"])
-        );
-
-        character.attributes.charisma = new Attribute(
-          parseInt(attributes["charisma"])
-        );
+    if (charactersString) {
+      const characters: Character[] = JSON.parse(charactersString);
+      const characterIndex: number = characters.findIndex( (e) => e.id == props.characterId );
+      if (characterIndex !== -1) {
+        const attributesStorage: Attributes = {
+          strength: new Attribute(parseInt(attributes["strength"])),
+          dexterity: new Attribute( parseInt(attributes["dexterity"]) ),
+          constitution: new Attribute( parseInt(attributes["constitution"]) ),
+          wisdom: new Attribute( parseInt(attributes["wisdom"])),
+          intelligence: new Attribute( parseInt(attributes["intelligence"]) ),
+          charisma: new Attribute( parseInt(attributes["charisma"]) ),
+        }
+        characters[characterIndex] = { ...characters[characterIndex], attributes: attributesStorage };
+        localStorage.setItem("characters", JSON.stringify(characters));
       }
     }
   }, [attributes]);
