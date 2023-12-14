@@ -1,7 +1,7 @@
 "use client";
 
 import AttributeDescription from "./components/Description";
-import SplitDesign from "../components/SplitDesign";
+import SplitDesign from "../../../components/SplitDesign";
 import AttributeTabs from "./components/AttributeTabs";
 import { useStore } from "./state";
 import { AttributeDefinitionRepository } from "@/data/AttributeDefinition/AttributeDefinitionRepository";

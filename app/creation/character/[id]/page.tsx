@@ -1,8 +1,10 @@
 "use client";
 
 import { Card, CardBody } from "@nextui-org/react";
-import SplitDesign from "./components/SplitDesign";
+import SplitDesign from "../../components/SplitDesign";
 import { usePathname, useRouter } from "next/navigation";
+import { Image } from "@nextui-org/react";
+import SectionButton from "./components/SectionButton";
 
 export default function Page() {
   const router = useRouter();
@@ -11,24 +13,17 @@ export default function Page() {
   return (
     <SplitDesign
       leftChild={
-        <div className="grid grid-cols-2 gap-5">
-          <Card isPressable onPress={
-            () => router.push(`${pathName}/attributes`)
-          }>
-            <CardBody>Attributes</CardBody>
-          </Card>
-          <Card>
-            <CardBody>Background</CardBody>
-          </Card>
-          <Card>
-            <CardBody>Skills</CardBody>
-          </Card>
-          <Card>
-            <CardBody>Class</CardBody>
-          </Card>
+        <div className="p-5">
+          <SectionButton path="attributes"/>
+
+          <SectionButton path="backgrounds"/>
+
+          <SectionButton path="skills"/>
+
+          <SectionButton path="class"/>
         </div>
       }
-      rightChild={<div></div>}
+      rightChild={<div>s</div>}
     />
   );
 }

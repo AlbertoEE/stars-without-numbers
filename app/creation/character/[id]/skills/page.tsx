@@ -1,6 +1,6 @@
 "use client";
 
-import SplitDesign from "../components/SplitDesign";
+import SplitDesign from "../../../components/SplitDesign";
 import SkillDetail from "./components/SkillDetail";
 import SkillSelection from "./components/SkillSelection";
 

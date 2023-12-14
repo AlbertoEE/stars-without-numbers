@@ -1,5 +1,5 @@
-export interface Character {
-  id: string;
+export class Character {
+  public id: string;
   attributes: Attributes;
 }
 
