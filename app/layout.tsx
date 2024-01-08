@@ -2,6 +2,7 @@
 
 import "@/styles/globals.css";
 import { Providers } from "./providers";
+import CustomNavbar from "./components/CustomNavbar";
 
 export default function RootLayout({
   children,
@@ -14,8 +15,9 @@ export default function RootLayout({
       <body className="h-screen">
         <Providers>
           <div className="h-full min-h-screen font-orbitron antialiased dark bg-background flex flex-col items-center justify-center">
+            <CustomNavbar />
             <main className="container h-full mx-auto max-w-7xl pt-8 px-6 flex flex-col items-center justify-center">
-                {children}
+              {children}
             </main>
           </div>
         </Providers>
