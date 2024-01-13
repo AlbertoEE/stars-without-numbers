@@ -6,9 +6,9 @@ export default function SplitDesign(props: {
   leftChild: React.ReactNode;
   rightChild: React.ReactNode;
 }) {
-    const router = useRouter();
-    const path = usePathname().split("/");
-    path.pop()
+  const router = useRouter();
+  const path = usePathname().split("/");
+  path.pop()
 
   return (
     <div className="flex flex-row items-center justify-center gap-4 w-full h-full">
@@ -16,7 +16,11 @@ export default function SplitDesign(props: {
         <Card className="h-[90%] w-full">{props.leftChild}</Card>
         <Button className="m-5" onPress={() => router.push(path.join("/"))}>BACK</Button>
       </div>
-      <Card className="w-1/2 max-h-[90%]">{props.rightChild}</Card>
-    </div>
+
+      <div className="h-[90%] w-1/2 flex flex-col items-center">
+        <Card className="w-full h-[90%]">{props.rightChild}</Card>
+        <Button className="m-5 invisible" onPress={() => router.push(path.join("/"))}>BACK</Button>
+      </div>
+    </div >
   );
 }

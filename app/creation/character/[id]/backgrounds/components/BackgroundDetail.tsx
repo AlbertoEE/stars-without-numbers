@@ -1,6 +1,6 @@
 import { BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository";
 import { useStore } from "../state"
-import BackgroundDetailSection from "./BackgroundDetailSection"
+import BackgroundSkillTypeSection from "./BackgroundSkillTypeSection"
 import { Divider, Image, Tab, Tabs } from "@nextui-org/react"
 import { useState } from "react";
 import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
@@ -12,6 +12,7 @@ export default function BackgroundDetail() {
     const { detailBackground } = useStore()
 
     const [tab, setTab] = useState<Key>("backgroundDescription")
+    const [tabSkills, setTabSkills] = useState<Key>("predifined")
 
     const backgroundDefinitionRepository: BackgroundDefinitionRepository = new InMemoryBackgroundDefinitionRepository()
     const { data: backgrounds } = useSWR<BackgroundDefinition[]>("testBackgroundDefinitionDetail", backgroundDefinitionRepository.getBackgrounds)
@@ -31,30 +32,57 @@ export default function BackgroundDetail() {
             onSelectionChange={setTab}
         >
             <Tab key="backgroundDescription" title="Description">
-                <div className="flex flex-row">
-                    <Image className="ml-4 mb-4" src={`/imgs/backgrounds/${background.name}.svg`} alt="me" width="64" height="64" />
-                    <h1 className="font-orbitron font-bold uppercase tracking-widest text-2xl p-4">{background.name}</h1>
-                </div>
-                <hr />
-                <div className="px-3 py-4 whitespace-pre-line">{background.description}</div>
-            </Tab>
-            <Tab key="backgroundSkills" title="Skills">
-                <div className="m-2">
+                <div className="p-5">
                     <div className="flex flex-row">
                         <Image className="ml-4 mb-4" src={`/imgs/backgrounds/${background.name}.svg`} alt="me" width="64" height="64" />
-                        <h1 className="font-orbitron font-bold uppercase tracking-widest text-2xl p-4">{background.name}</h1>
+                        <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">{background.name}</h1>
                     </div>
-                    <div className="flex flex-row">
-                        <div><BackgroundDetailSection rows={1} columns={3} skills={background.benefits.free.map(e => e.name)} title="Free Skill" /></div>
-                        <div><BackgroundDetailSection rows={3} columns={1} skills={background.benefits.quick.map(e => e.name)} title="Predifined" /></div>
+                    <div className="px-3 py-4 whitespace-pre-line">{background.description}</div>
+                </div>
+            </Tab>
+            <Tab key="skills" title="Skills">
+                <div className="w-full">
+                    <div className="p-5">
+                        <div className="flex flex-row">
+                            <Image className="ml-4 mb-4" src={`/imgs/backgrounds/${background.name}.svg`} alt="me" width="64" height="64" />
+                            <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">{background.name}</h1>
+                        </div>
                     </div>
-                    <BackgroundDetailSection rows={3} columns={3} skills={background.benefits.learning.map(e => e.name)} title="Choose x 2" />
-                    <div className="my-4">
-                        <h1 className="font-orbitron font-bold uppercase tracking-widest text-1xl p-4">Random x 3</h1>
-                        <hr />
-                        <BackgroundDetailSection rows={3} columns={3} skills={background.benefits.learning.map(e => e.name)} thead="Learning" />
-                        <BackgroundDetailSection rows={2} columns={3} skills={background.benefits.growth.map(e => e.name)} thead="Growth" />
-                    </div>
+                    <Tabs
+                        key="underlined"
+                        variant="underlined"
+                        aria-label="Options"
+                        fullWidth
+                        selectedKey={tabSkills}
+                        onSelectionChange={setTabSkills}
+                    >
+                        <Tab key="predifined" title="Predefined">
+                            <BackgroundSkillTypeSection
+                                rows={3}
+                                columns={1}
+                                skills={background.benefits.quick.map(e => e.name)}
+                            />
+                        </Tab>
+                        <Tab key="choose" title="Choose">
+                            <BackgroundSkillTypeSection
+                                rows={3}
+                                columns={3}
+                                skills={background.benefits.learning.map(e => e.name)}
+                            />
+                        </Tab>
+                        <Tab key="random" title="Random">
+                            <BackgroundSkillTypeSection
+                                rows={3}
+                                columns={3}
+                                skills={background.benefits.learning.map(e => e.name)}
+                                thead="Learning" />
+                            <BackgroundSkillTypeSection
+                                rows={2}
+                                columns={3}
+                                skills={background.benefits.growth.map(e => e.name)}
+                                thead="Growth" />
+                        </Tab>
+                    </Tabs>
                 </div>
             </Tab>
         </Tabs>

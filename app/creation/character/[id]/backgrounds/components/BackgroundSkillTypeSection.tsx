@@ -4,18 +4,17 @@ import { SkillDefinition } from "@/models/SkillDefinitionModels";
 import { Image, Tooltip } from "@nextui-org/react";
 import useSWR from "swr";
 
-export default function BackgroundDetailSection(props: {
+export default function BackgroundSkillTypeSection(props: {
     columns: number,
     rows: number,
     skills: string[],
-    title?: string,
     thead?: string,
 }) {
 
     const skillDefinitionRepository: SkillDefinitionRepository = new InMemorySkillDefinitionRepository();
     const { data: skillDefinitions } = useSWR<SkillDefinition[]>("testSkillDefinitionsDetailSection", skillDefinitionRepository.getSkills)
 
-    if(!skillDefinitions) return;
+    if (!skillDefinitions) return;
 
     let elements: string[][] = []
     let count = 0;
@@ -30,7 +29,11 @@ export default function BackgroundDetailSection(props: {
 
     return (
         <div>
-            {props.title && <><h1 className="font-orbitron font-bold uppercase tracking-widest text-1xl p-4">{props.title}</h1><hr className="mx-4" /></>}
+            <div className="p-5">
+                Here you can pick two other skills from the table below, if you pick skills, you can select exactly the
+                talents you want for your hero. You may pick the same skill twice if you
+                wish, to improve its starting proficiency. . No starting character can begin with a skill level higher than level-1.
+            </div>
             <div className="mt-4">
                 <table>
                     {props.thead &&
