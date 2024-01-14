@@ -62,20 +62,6 @@ export default function BackgroundDetail() {
       </Tab>
       <Tab key="skills" title="Skills">
         <div className="w-full">
-          <div className="p-5">
-            <div className="flex flex-row">
-              <Image
-                className="ml-4 mb-4"
-                src={`/imgs/backgrounds/${background.name}.svg`}
-                alt="me"
-                width="64"
-                height="64"
-              />
-              <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">
-                {background.name}
-              </h1>
-            </div>
-          </div>
           <Tabs
             key="underlined"
             variant="underlined"

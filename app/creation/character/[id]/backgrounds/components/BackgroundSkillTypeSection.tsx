@@ -26,13 +26,12 @@ export default function BackgroundSkillTypeSection(props: {
       case "choose":
         return <SelectSkillLevelButton skillName={skillName} />;
       case "random":
-        return <SelectSkillLevelButton skillName={skillName} />;
+        return <SkillDisplayCell skillName={skillName} />;
     }
   }
 
   return (
     <div>
-      <div className="mt-4">
         <table>
           {props.thead && (
             <thead>
@@ -60,7 +59,6 @@ export default function BackgroundSkillTypeSection(props: {
             ))}
           </tbody>
         </table>
-      </div>
     </div>
   );
 }
