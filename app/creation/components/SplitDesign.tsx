@@ -19,7 +19,7 @@ export default function SplitDesign(props: {
 
       <div className="h-[90%] w-1/2 flex flex-col items-center">
         <Card className="w-full h-[90%]">{props.rightChild}</Card>
-        <Button className="m-5 invisible" onPress={() => router.push(path.join("/"))}>BACK</Button>
+        <Button className="m-5" onPress={() => router.push(path.join("/"))}>DONE</Button>
       </div>
     </div >
   );

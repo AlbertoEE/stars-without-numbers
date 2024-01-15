@@ -20,13 +20,15 @@ export default function BackgroundSkillTypeSection(props: {
   }
 
   function renderSkillComponent(skillName: string, method: string) {
+    let path = skillName.includes("stat") ? "/imgs/attributes/" : "/imgs/skills/";
+    
     switch (method) {
       case "predifined":
-        return <SkillDisplayCell skillName={skillName} />;
+        return <SkillDisplayCell skillName={skillName} imgPath={`${path}${skillName}.svg`}/>;
       case "choose":
-        return <SelectSkillLevelButton skillName={skillName} />;
+        return <SelectSkillLevelButton skillName={skillName} imgPath={`${path}${skillName}.svg`}/>;
       case "random":
-        return <SkillDisplayCell skillName={skillName} />;
+        return <SkillDisplayCell skillName={skillName} imgPath={`${path}${skillName}.svg`}/>;
     }
   }
 

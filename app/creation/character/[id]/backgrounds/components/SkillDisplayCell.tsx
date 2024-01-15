@@ -2,6 +2,7 @@ import { Image } from "@nextui-org/react";
 
 export default function SkillDisplayCell(props: {
     skillName: string;
+    imgPath: string;
 }) {
     return  <div
       className="flex flex-row"
@@ -9,7 +10,7 @@ export default function SkillDisplayCell(props: {
       <Image
         loading="eager"
         className="mx-4 my-0 flex-1"
-        src={`/imgs/skills/${props.skillName}.svg`}
+        src={props.imgPath}
         alt="me"
         width="24"
         height="24"
