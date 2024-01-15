@@ -64,7 +64,7 @@ export default function SelectSkillLevelButton(props: {
         height="24"
       />
       <div className="flex-1">
-        {props.skillName} - {chosenSkills.get(props.skillName) ?? "x"}
+        {props.skillName} {chosenSkills.get(props.skillName) && `- ${chosenSkills.get(props.skillName)}`}
       </div>
     </div>;
 }

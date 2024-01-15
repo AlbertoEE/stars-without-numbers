@@ -7,7 +7,7 @@ import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinit
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import useSWR from "swr";
 import { Key } from "@react-types/shared";
-import RandomSkillTab from "./RandomSkillTab";
+import RandomSkillTab from "./random/RandomSkillTab";
 
 export default function BackgroundDetail() {
   const { detailBackground } = useStore();
@@ -102,8 +102,8 @@ export default function BackgroundDetail() {
                 level-1.
               </div>
               <BackgroundSkillTypeSection
-                rows={3}
-                columns={3}
+                rows={9}
+                columns={1}
                 skills={background.benefits.learning.map((e) => e.name)}
                 skillBuyMethod="choose"
               />

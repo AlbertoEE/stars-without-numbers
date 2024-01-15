@@ -1,5 +1,5 @@
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import BackgroundSkillTypeSection from "./BackgroundSkillTypeSection";
+import BackgroundSkillTypeSection from "../BackgroundSkillTypeSection";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { useState } from "react";
 import { rollDice } from "@/utilities/Roll";
