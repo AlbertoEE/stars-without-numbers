@@ -1,5 +1,6 @@
 import { InMemorySkillDefinitionRepository } from "@/data/SkillDefinition/InMemorySkillDefinitionRepository";
 import { SkillDefinitionRepository } from "@/data/SkillDefinition/SkillDefinitionRepository";
+import { AttributeDefinitionType } from "@/models/AttributeDefinitionModels";
 import { BackgroundBenefit } from "@/models/BackgroundDefinitionModels";
 import {
   SkillDefinition,
@@ -15,49 +16,62 @@ import {
 } from "@nextui-org/react";
 import { useState } from "react";
 import useSWR from "swr";
+import { useStore } from "../../state";
 
 export default function PredifinedBenefitlDisplayCell(props: {
   benefit: BackgroundBenefit;
   imgPath: string;
 }) {
   const [selectedKeys, setSelectedKeys] = useState(undefined);
-  const skillsDefinitionRepository: SkillDefinitionRepository =
-    new InMemorySkillDefinitionRepository();
-  const { data: skills } = useSWR<SkillDefinition[]>(
-    "testSkillDefinition",
-    skillsDefinitionRepository.getSkills
-  );
-
-  if(!skills) return
+  const { skillDefinitions, attributeDefinitions } = useStore()
 
   function render() {
     if (props.benefit.subtype == "specific")
       return <div className="flex-1">{props.benefit.name}</div>;
 
-    if (props.benefit.subtype == SkillDefinitionType.combat)
-      return (
-        <Dropdown>
-          <DropdownTrigger>
-            <Button variant="bordered">
-              {selectedKeys ? selectedKeys : `Choose ${props.benefit.name}`}
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu
-            aria-label="Single selection example"
-            variant="flat"
-            disallowEmptySelection
-            selectionMode="single"
-            selectedKeys={selectedKeys}
-            onSelectionChange={setSelectedKeys}
-          >
-            {
-            skills!!
-              .filter((skill: SkillDefinition) => skill.type.includes(SkillDefinitionType.combat))
-              .map((skill: SkillDefinition) => <DropdownItem key={skill.name}>{skill.name}</DropdownItem>)
-              }
+    let list;
+
+    switch (props.benefit.subtype) {
+      case SkillDefinitionType.combat:
+        list = skillDefinitions!!
+          .filter((skill: SkillDefinition) => skill.type.includes(SkillDefinitionType.combat))
+          .map((skill: SkillDefinition) => <DropdownItem key={skill.name}>{skill.name}</DropdownItem>)
+        break;
+      case SkillDefinitionType.any:
+        list = skillDefinitions!!
+          .filter((skill: SkillDefinition) => skill.type.includes(SkillDefinitionType.any))
+          .map((skill: SkillDefinition) => <DropdownItem key={skill.name}>{skill.name}</DropdownItem>)
+        break;
+      case AttributeDefinitionType.any:
+        list = skillDefinitions!!
+          .filter((skill: SkillDefinition) => skill.type.includes(SkillDefinitionType.any))
+          .map((skill: SkillDefinition) => <DropdownItem key={skill.name}>{skill.name}</DropdownItem>)
+        break;
+      case AttributeDefinitionType.mental:
+        return;
+      case AttributeDefinitionType.physical:
+        return;
+    }
+
+    return (
+      <Dropdown>
+        <DropdownTrigger>
+          <Button variant="bordered">
+            {selectedKeys ? selectedKeys : `Choose ${props.benefit.name}`}
+          </Button>
+        </DropdownTrigger>
+        <DropdownMenu
+          aria-label="Single selection example"
+          variant="flat"
+          disallowEmptySelection
+          selectionMode="single"
+          selectedKeys={selectedKeys}
+          onSelectionChange={setSelectedKeys}
+        >
+          {list}
           </DropdownMenu>
-        </Dropdown>
-      );
+      </Dropdown>
+    );
   }
 
   return (
