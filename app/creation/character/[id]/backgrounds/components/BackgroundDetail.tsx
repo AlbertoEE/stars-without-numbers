@@ -8,6 +8,8 @@ import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import useSWR from "swr";
 import { Key } from "@react-types/shared";
 import RandomSkillTab from "./random/RandomSkillTab";
+import PredefinedBenefitsTab from "./predifined/PredifinedBenefitsTab";
+import ChooseBenefitsTab from "./choose/ChooseBenefitsTab";
 
 export default function BackgroundDetail() {
   const { detailBackground } = useStore();
@@ -71,42 +73,10 @@ export default function BackgroundDetail() {
             onSelectionChange={setTabSkills}
           >
             <Tab key="predifined" title="Predefined">
-              <div className="p-5">
-                Here you can pick two other skills from the table below.
-                <br />
-                <br />
-                You may pick the same skill twice if you wish, to improve its
-                starting proficiency.
-                <br />
-                <br />
-                No starting character can begin with a skill level higher than
-                level-1.
-              </div>
-              <BackgroundSkillTypeSection
-                rows={3}
-                columns={1}
-                skills={background.benefits.quick.map((e) => e.name)}
-                skillBuyMethod="predifined"
-              />
+              <PredefinedBenefitsTab background={background}/>
             </Tab>
             <Tab key="choose" title="Choose">
-              <div className="p-5">
-                Here you can pick two other skills from the table below.
-                <br />
-                <br />
-                You may pick the same skill twice if you wish, to improve its
-                starting proficiency.
-                <br />
-                <br />
-                No starting character can begin with a skill level higher than
-                level-1.
-              </div>
-              <BackgroundSkillTypeSection
-                rows={9}
-                columns={1}
-                skills={background.benefits.learning.map((e) => e.name)}
-                skillBuyMethod="choose"
-              />
+              <ChooseBenefitsTab background={background}/>
             </Tab>
             <Tab key="random" title="Random">
               <RandomSkillTab background={background}/>

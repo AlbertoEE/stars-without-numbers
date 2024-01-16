@@ -1,3 +1,6 @@
+import { AttributeDefinitionType } from "./AttributeDefinitionModels";
+import { SkillDefinitionType } from "./SkillDefinitionModels";
+
 export interface BackgroundDefinition {
   name: string;
   description: string;
@@ -6,13 +9,14 @@ export interface BackgroundDefinition {
 
 export interface BackgroundBenefits {
   free: BackgroundBenefit[];
-  quick: BackgroundBenefit[];
+  predifined: BackgroundBenefit[];
   growth: BackgroundBenefit[];
   learning: BackgroundBenefit[];
 }
 
 export interface BackgroundBenefit {
   type: BackgroundBenefitType;
+  subtype: SkillDefinitionType | AttributeDefinitionType | "specific"
   name: string;
   amount?: number;
 }

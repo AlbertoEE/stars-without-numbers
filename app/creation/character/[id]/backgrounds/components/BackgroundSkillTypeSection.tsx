@@ -1,34 +1,35 @@
+import { BackgroundBenefit, BackgroundBenefitType } from "@/models/BackgroundDefinitionModels";
 import SelectSkillLevelButton from "./SelectSkillLevelButton";
-import SkillDisplayCell from "./SkillDisplayCell";
+import PredifinedBenefitlDisplayCell from "./SkillDisplayCell";
 
 export default function BackgroundSkillTypeSection(props: {
   columns: number;
   rows: number;
-  skills: string[];
+  benefits: BackgroundBenefit[];
   thead?: string;
   skillBuyMethod: "predifined" | "random" | "choose";
 }) {
-  let elements: string[][] = [];
+  let benefitsAsTable: BackgroundBenefit[][] = [];
   let count = 0;
 
   for (let i = 0; i < props.rows; i++) {
-    elements.push([]);
+    benefitsAsTable.push([]);
     for (let j = 0; j < props.columns; j++) {
-      elements[i].push(props.skills[count]);
+      benefitsAsTable[i].push(props.benefits[count]);
       count++;
     }
   }
 
-  function renderSkillComponent(skillName: string, method: string) {
-    let path = skillName.includes("stat") ? "/imgs/attributes/" : "/imgs/skills/";
+  function renderSkillComponent(benefit: BackgroundBenefit, method: string) {
+    let path = benefit.type == BackgroundBenefitType.stat ? "/imgs/attributes/" : "/imgs/skills/";
     
     switch (method) {
       case "predifined":
-        return <SkillDisplayCell skillName={skillName} imgPath={`${path}${skillName}.svg`}/>;
+        return <PredifinedBenefitlDisplayCell benefit={benefit} imgPath={`${path}${benefit.name}.svg`}/>;
       case "choose":
-        return <SelectSkillLevelButton skillName={skillName} imgPath={`${path}${skillName}.svg`}/>;
+        //return <SelectSkillLevelButton skillName={benefit} imgPath={`${path}${benefit}.svg`}/>;
       case "random":
-        return <SkillDisplayCell skillName={skillName} imgPath={`${path}${skillName}.svg`}/>;
+        return <PredifinedBenefitlDisplayCell benefit={benefit} imgPath={`${path}${benefit.name}.svg`}/>;
     }
   }
 
@@ -48,13 +49,13 @@ export default function BackgroundSkillTypeSection(props: {
             </thead>
           )}
           <tbody>
-            {elements.map((elementList: string[], index: number) => (
+            {benefitsAsTable.map((benefits: BackgroundBenefit[], index: number) => (
               <tr key={index} className="select-none">
-                {elementList
-                  .filter((element) => element != undefined)
-                  .map((element: string, index: number) => (
+                {benefits
+                  .filter((benefit: BackgroundBenefit) => benefit != undefined)
+                  .map((benefit: BackgroundBenefit, index: number) => (
                     <td className="py-1 px-3" key={index}>
-                      {renderSkillComponent(element, props.skillBuyMethod)}
+                      {renderSkillComponent(benefit, props.skillBuyMethod)}
                     </td>
                   ))}
               </tr>

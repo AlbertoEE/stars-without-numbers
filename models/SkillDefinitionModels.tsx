@@ -6,6 +6,6 @@ export interface SkillDefinition {
 }
 
 export enum SkillDefinitionType {
-  generic,
+  any,
   combat,
 }

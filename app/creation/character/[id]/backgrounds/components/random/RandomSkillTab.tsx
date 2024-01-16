@@ -71,7 +71,7 @@ export default function RandomSkillTab(props: {
           <BackgroundSkillTypeSection
             rows={8}
             columns={1}
-            skills={props.background.benefits.learning.map((e) => e.name)}
+            benefits={props.background.benefits.learning.map((e) => e.name)}
             skillBuyMethod="random"
           />
         </Card>
@@ -84,7 +84,7 @@ export default function RandomSkillTab(props: {
           <BackgroundSkillTypeSection
             rows={6}
             columns={1}
-            skills={props.background.benefits.growth.map((e) => e.name)}
+            benefits={props.background.benefits.growth.map((e) => e.name)}
             skillBuyMethod="random"
           />
         </Card>
