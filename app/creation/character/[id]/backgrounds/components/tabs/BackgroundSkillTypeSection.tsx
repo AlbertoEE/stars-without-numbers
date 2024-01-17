@@ -1,6 +1,6 @@
 import { BackgroundBenefit, BackgroundBenefitType } from "@/models/BackgroundDefinitionModels";
-import SelectSkillLevelButton from "./SelectSkillLevelButton";
-import PredifinedBenefitlDisplayCell from "./SkillDisplayCell";
+import SelectSkillLevelButton from "./choose/SelectSkillLevelButton";
+import PredifinedBenefitlDisplayCell from "./predifined/PredifinedBenefitlDisplayCell";
 
 export default function BackgroundSkillTypeSection(props: {
   columns: number;
@@ -35,33 +35,24 @@ export default function BackgroundSkillTypeSection(props: {
 
   return (
     <div>
-        <table>
-          {props.thead && (
-            <thead>
-              <tr>
-                <td
-                  colSpan={4}
-                  className="font-bold uppercase tracking-widest text-xs py-1 px-3"
-                >
-                  {props.thead}
-                </td>
-              </tr>
-            </thead>
-          )}
-          <tbody>
-            {benefitsAsTable.map((benefits: BackgroundBenefit[], index: number) => (
-              <tr key={index} className="select-none">
-                {benefits
-                  .filter((benefit: BackgroundBenefit) => benefit != undefined)
-                  .map((benefit: BackgroundBenefit, index: number) => (
-                    <td className="py-1 px-3" key={index}>
-                      {renderSkillComponent(benefit, props.skillBuyMethod)}
-                    </td>
-                  ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {props.thead && (
+        <div className="font-bold uppercase tracking-widest text-xs py-1 px-3">
+          {props.thead}
+        </div>
+      )}
+      <div className="flex flex-col">
+        {benefitsAsTable.map((benefits, rowIndex) => (
+          <div key={rowIndex} className="flex flex-1">
+            {benefits
+              .filter(benefit => benefit != undefined)
+              .map((benefit, cellIndex) => (
+                <div className="flex-1 py-1 px-3" key={cellIndex}>
+                  {renderSkillComponent(benefit, props.skillBuyMethod)}
+                </div>
+              ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

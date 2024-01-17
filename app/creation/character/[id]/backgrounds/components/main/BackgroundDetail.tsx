@@ -1,15 +1,15 @@
 import { BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository";
-import { useStore } from "../state";
-import BackgroundSkillTypeSection from "./BackgroundSkillTypeSection";
+import { useStore } from "../../state";
+import BackgroundSkillTypeSection from "../tabs/BackgroundSkillTypeSection";
 import { Divider, Image, Tab, Tabs } from "@nextui-org/react";
 import { useState } from "react";
 import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import useSWR from "swr";
 import { Key } from "@react-types/shared";
-import RandomSkillTab from "./random/RandomSkillTab";
-import PredefinedBenefitsTab from "./predifined/PredifinedBenefitsTab";
-import ChooseBenefitsTab from "./choose/ChooseBenefitsTab";
+import RandomSkillTab from "../tabs/random/RandomSkillTab";
+import PredefinedBenefitsTab from "../tabs/predifined/PredifinedBenefitsTab";
+import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
 
 export default function BackgroundDetail() {
   const { detailBackground } = useStore();

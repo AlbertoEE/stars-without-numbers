@@ -1,5 +1,5 @@
 import { SyntheticEvent } from "react";
-import { useStore } from "../state";
+import { useStore } from "../../../state";
 import { Image } from "@nextui-org/react";
 
 export default function SelectSkillLevelButton(props: {

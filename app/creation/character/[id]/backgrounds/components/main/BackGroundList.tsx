@@ -14,7 +14,7 @@ import {
 import { Card, CardBody } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Input } from "@nextui-org/react";
-import { useStore } from "../state";
+import { useStore } from "../../state";
 import { BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository";
 import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
 import useSWR from "swr";

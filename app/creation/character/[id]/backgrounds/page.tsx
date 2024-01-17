@@ -1,8 +1,8 @@
 "use client";
 
 import SplitDesign from "../../../components/SplitDesign";
-import BackgroundList from "./components/BackGroundList";
-import BackgroundDetail from "./components/BackgroundDetail";
+import BackgroundList from "./components/main/BackGroundList";
+import BackgroundDetail from "./components/main/BackgroundDetail";
 
 export default function Page() {
 

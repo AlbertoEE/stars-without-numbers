@@ -1,13 +1,13 @@
-import { InMemorySkillDefinitionRepository } from "@/data/SkillDefinition/InMemorySkillDefinitionRepository";
-import { SkillDefinitionRepository } from "@/data/SkillDefinition/SkillDefinitionRepository";
 import { AttributeDefinitionType } from "@/models/AttributeDefinitionModels";
-import { BackgroundBenefit } from "@/models/BackgroundDefinitionModels";
+import {
+  BackgroundBenefit,
+  BackgroundBenefitType,
+} from "@/models/BackgroundDefinitionModels";
 import {
   SkillDefinition,
   SkillDefinitionType,
 } from "@/models/SkillDefinitionModels";
 import {
-  Button,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -15,15 +15,19 @@ import {
   Image,
 } from "@nextui-org/react";
 import { useState } from "react";
-import useSWR from "swr";
-import { useStore } from "../../state";
+import { useStore } from "../../../../state";
 
 export default function PredifinedBenefitlDisplayCell(props: {
   benefit: BackgroundBenefit;
   imgPath: string;
 }) {
   const [selectedKeys, setSelectedKeys] = useState(undefined);
-  const { skillDefinitions, attributeDefinitions } = useStore()
+  const { skillDefinitions, attributeDefinitions } = useStore();
+
+  let folderPath =
+    props.benefit.type == BackgroundBenefitType.stat
+      ? "/imgs/attributes/"
+      : "/imgs/skills/";
 
   function render() {
     if (props.benefit.subtype == "specific")
@@ -34,18 +38,30 @@ export default function PredifinedBenefitlDisplayCell(props: {
     switch (props.benefit.subtype) {
       case SkillDefinitionType.combat:
         list = skillDefinitions!!
-          .filter((skill: SkillDefinition) => skill.type.includes(SkillDefinitionType.combat))
-          .map((skill: SkillDefinition) => <DropdownItem key={skill.name}>{skill.name}</DropdownItem>)
+          .filter((skill: SkillDefinition) =>
+            skill.type.includes(SkillDefinitionType.combat)
+          )
+          .map((skill: SkillDefinition) => (
+            <DropdownItem key={skill.name}>{skill.name}</DropdownItem>
+          ));
         break;
       case SkillDefinitionType.any:
         list = skillDefinitions!!
-          .filter((skill: SkillDefinition) => skill.type.includes(SkillDefinitionType.any))
-          .map((skill: SkillDefinition) => <DropdownItem key={skill.name}>{skill.name}</DropdownItem>)
+          .filter((skill: SkillDefinition) =>
+            skill.type.includes(SkillDefinitionType.any)
+          )
+          .map((skill: SkillDefinition) => (
+            <DropdownItem key={skill.name}>{skill.name}</DropdownItem>
+          ));
         break;
       case AttributeDefinitionType.any:
         list = skillDefinitions!!
-          .filter((skill: SkillDefinition) => skill.type.includes(SkillDefinitionType.any))
-          .map((skill: SkillDefinition) => <DropdownItem key={skill.name}>{skill.name}</DropdownItem>)
+          .filter((skill: SkillDefinition) =>
+            skill.type.includes(SkillDefinitionType.any)
+          )
+          .map((skill: SkillDefinition) => (
+            <DropdownItem key={skill.name}>{skill.name}</DropdownItem>
+          ));
         break;
       case AttributeDefinitionType.mental:
         return;
@@ -56,9 +72,9 @@ export default function PredifinedBenefitlDisplayCell(props: {
     return (
       <Dropdown>
         <DropdownTrigger>
-          <Button variant="bordered">
+          <div className="cursor-pointer font-thin antialiased">
             {selectedKeys ? selectedKeys : `Choose ${props.benefit.name}`}
-          </Button>
+          </div>
         </DropdownTrigger>
         <DropdownMenu
           aria-label="Single selection example"
@@ -69,7 +85,7 @@ export default function PredifinedBenefitlDisplayCell(props: {
           onSelectionChange={setSelectedKeys}
         >
           {list}
-          </DropdownMenu>
+        </DropdownMenu>
       </Dropdown>
     );
   }
@@ -79,7 +95,11 @@ export default function PredifinedBenefitlDisplayCell(props: {
       <Image
         loading="eager"
         className="mx-4 my-0 flex-1"
-        src={props.imgPath}
+        src={
+          folderPath +
+          (selectedKeys ? selectedKeys.currentKey : props.benefit.name) +
+          ".svg"
+        }
         alt="me"
         width="24"
         height="24"
