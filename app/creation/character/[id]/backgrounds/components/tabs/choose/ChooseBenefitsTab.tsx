@@ -20,7 +20,7 @@ export default function ChooseBenefitsTab(props: {
       <BackgroundSkillTypeSection
         rows={9}
         columns={1}
-        benefits={props.background.benefits.learning.map((e) => e.name)}
+        benefits={props.background.benefits.learning}
         skillBuyMethod="choose"
       />
     </>

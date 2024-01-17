@@ -1,4 +1,4 @@
-import { AttributeDefinitionType } from "@/models/AttributeDefinitionModels";
+import { AttributeDefinition, AttributeDefinitionType } from "@/models/AttributeDefinitionModels";
 import {
   BackgroundBenefit,
   BackgroundBenefitType,
@@ -17,17 +17,13 @@ import {
 import { useState } from "react";
 import { useStore } from "../../../../state";
 
-export default function PredifinedBenefitlDisplayCell(props: {
+export default function PredifinedBenefitCell(props: {
   benefit: BackgroundBenefit;
-  imgPath: string;
 }) {
   const [selectedKeys, setSelectedKeys] = useState(undefined);
   const { skillDefinitions, attributeDefinitions } = useStore();
 
-  let folderPath =
-    props.benefit.type == BackgroundBenefitType.stat
-      ? "/imgs/attributes/"
-      : "/imgs/skills/";
+  let folderPath = props.benefit.type == BackgroundBenefitType.stat ? "/imgs/attributes/" : "/imgs/skills/";
 
   function render() {
     if (props.benefit.subtype == "specific")
@@ -55,18 +51,32 @@ export default function PredifinedBenefitlDisplayCell(props: {
           ));
         break;
       case AttributeDefinitionType.any:
-        list = skillDefinitions!!
-          .filter((skill: SkillDefinition) =>
-            skill.type.includes(SkillDefinitionType.any)
+        list = attributeDefinitions!!
+          .filter((attribute: AttributeDefinition) =>
+            attribute.type.includes(AttributeDefinitionType.any)
           )
-          .map((skill: SkillDefinition) => (
-            <DropdownItem key={skill.name}>{skill.name}</DropdownItem>
+          .map((attribute: AttributeDefinition) => (
+            <DropdownItem key={attribute.name}>{attribute.name}</DropdownItem>
           ));
         break;
       case AttributeDefinitionType.mental:
-        return;
+        list = attributeDefinitions!!
+          .filter((attribute: AttributeDefinition) =>
+            attribute.type.includes(AttributeDefinitionType.mental)
+          )
+          .map((attribute: AttributeDefinition) => (
+            <DropdownItem key={attribute.name}>{attribute.name}</DropdownItem>
+          ));
+        break;
       case AttributeDefinitionType.physical:
-        return;
+        list = attributeDefinitions!!
+          .filter((attribute: AttributeDefinition) =>
+            attribute.type.includes(AttributeDefinitionType.physical)
+          )
+          .map((attribute: AttributeDefinition) => (
+            <DropdownItem key={attribute.name}>{attribute.name}</DropdownItem>
+          ));
+        break;
     }
 
     return (
@@ -95,11 +105,7 @@ export default function PredifinedBenefitlDisplayCell(props: {
       <Image
         loading="eager"
         className="mx-4 my-0 flex-1"
-        src={
-          folderPath +
-          (selectedKeys ? selectedKeys.currentKey : props.benefit.name) +
-          ".svg"
-        }
+        src={folderPath + (selectedKeys ? selectedKeys.currentKey : props.benefit.name) + ".svg"}
         alt="me"
         width="24"
         height="24"

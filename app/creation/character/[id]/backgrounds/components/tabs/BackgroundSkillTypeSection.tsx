@@ -1,6 +1,6 @@
 import { BackgroundBenefit, BackgroundBenefitType } from "@/models/BackgroundDefinitionModels";
-import SelectSkillLevelButton from "./choose/SelectSkillLevelButton";
-import PredifinedBenefitlDisplayCell from "./predifined/PredifinedBenefitlDisplayCell";
+import ChooseBenefitCell from "./choose/ChooseBenefitCell";
+import PredifinedBenefitCell from "./predifined/PredifinedBenefitCell";
 
 export default function BackgroundSkillTypeSection(props: {
   columns: number;
@@ -22,14 +22,14 @@ export default function BackgroundSkillTypeSection(props: {
 
   function renderSkillComponent(benefit: BackgroundBenefit, method: string) {
     let path = benefit.type == BackgroundBenefitType.stat ? "/imgs/attributes/" : "/imgs/skills/";
-    
+
     switch (method) {
       case "predifined":
-        return <PredifinedBenefitlDisplayCell benefit={benefit} imgPath={`${path}${benefit.name}.svg`}/>;
+        return <PredifinedBenefitCell benefit={benefit} />;
       case "choose":
-        //return <SelectSkillLevelButton skillName={benefit} imgPath={`${path}${benefit}.svg`}/>;
+        return <ChooseBenefitCell benefit={benefit}/>;
       case "random":
-        return <PredifinedBenefitlDisplayCell benefit={benefit} imgPath={`${path}${benefit.name}.svg`}/>;
+        return <PredifinedBenefitCell benefit={benefit} />;
     }
   }
 
