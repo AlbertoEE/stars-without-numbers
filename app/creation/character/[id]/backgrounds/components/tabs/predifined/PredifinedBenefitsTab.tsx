@@ -1,11 +1,9 @@
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import PredifinedBenefitCell from "./PredifinedBenefitCell";
-import { useState } from "react";
 
 export default function PredefinedBenefitsTab(props: {
   background: BackgroundDefinition;
 }) {
-  const [selectedKeys, setSelectedKeys] = useState(undefined);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository";
 import { useStore } from "../../state";
 import BackgroundSkillTypeSection from "../tabs/BackgroundSkillTypeSection";
-import { Divider, Image, Tab, Tabs } from "@nextui-org/react";
+import { Button, Card, Divider, Image, Tab, Tabs } from "@nextui-org/react";
 import { useState } from "react";
 import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
@@ -10,6 +10,8 @@ import { Key } from "@react-types/shared";
 import RandomSkillTab from "../tabs/random/RandomSkillTab";
 import PredefinedBenefitsTab from "../tabs/predifined/PredifinedBenefitsTab";
 import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
+import router from "next/router";
+import path from "path";
 
 export default function BackgroundDetail() {
   const { detailBackground } = useStore();
@@ -32,58 +34,63 @@ export default function BackgroundDetail() {
 
   if (background == undefined) return;
 
-  return (
-    <Tabs
-      key="a"
-      aria-label="Options"
-      classNames={{
-        tabList:
-          "gap-6 w-full relative rounded-none p-0 border-b border-divider",
-      }}
-      selectedKey={tab}
-      onSelectionChange={setTab}
-    >
-      <Tab key="backgroundDescription" title="Description">
-        <div className="p-5">
-          <div className="flex flex-row">
-            <Image
-              className="ml-4 mb-4"
-              src={`/imgs/backgrounds/${background.name}.svg`}
-              alt="me"
-              width="64"
-              height="64"
-            />
-            <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">
-              {background.name}
-            </h1>
+  return (<>
+
+    <Card className="w-full h-[90%]">
+      <Tabs
+        key="a"
+        aria-label="Options"
+        classNames={{
+          tabList:
+            "gap-6 w-full relative rounded-none p-0 border-b border-divider",
+        }}
+        selectedKey={tab}
+        onSelectionChange={setTab}
+      >
+        <Tab key="backgroundDescription" title="Description">
+          <div className="p-5">
+            <div className="flex flex-row">
+              <Image
+                className="ml-4 mb-4"
+                src={`/imgs/backgrounds/${background.name}.svg`}
+                alt="me"
+                width="64"
+                height="64"
+              />
+              <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">
+                {background.name}
+              </h1>
+            </div>
+            <div className="px-3 py-4 whitespace-pre-line">
+              {background.description}
+            </div>
           </div>
-          <div className="px-3 py-4 whitespace-pre-line">
-            {background.description}
+        </Tab>
+        <Tab key="skills" title="Skills">
+          <div className="w-full">
+            <Tabs
+              key="underlined"
+              variant="underlined"
+              aria-label="Options"
+              fullWidth
+              selectedKey={tabSkills}
+              onSelectionChange={setTabSkills}
+            >
+              <Tab key="predifined" title="Predefined">
+                <PredefinedBenefitsTab background={background} />
+              </Tab>
+              <Tab key="choose" title="Choose">
+                <ChooseBenefitsTab background={background} />
+              </Tab>
+              <Tab key="random" title="Random">
+                <RandomSkillTab background={background} />
+              </Tab>
+            </Tabs>
           </div>
-        </div>
-      </Tab>
-      <Tab key="skills" title="Skills">
-        <div className="w-full">
-          <Tabs
-            key="underlined"
-            variant="underlined"
-            aria-label="Options"
-            fullWidth
-            selectedKey={tabSkills}
-            onSelectionChange={setTabSkills}
-          >
-            <Tab key="predifined" title="Predefined">
-              <PredefinedBenefitsTab background={background}/>
-            </Tab>
-            <Tab key="choose" title="Choose">
-              <ChooseBenefitsTab background={background}/>
-            </Tab>
-            <Tab key="random" title="Random">
-              <RandomSkillTab background={background}/>
-            </Tab>
-          </Tabs>
-        </div>
-      </Tab>
-    </Tabs>
+        </Tab>
+      </Tabs>
+    </Card>
+    <Button className="m-5" onPress={() => router.push(path.join("/"))}>DONE</Button>
+  </>
   );
 }
