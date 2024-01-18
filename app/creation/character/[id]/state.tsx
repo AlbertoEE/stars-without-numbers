@@ -9,7 +9,7 @@ interface MyState {
     setAttributeDefinitions: (newAttributeDefinitions: AttributeDefinition[]) => void;
 }
 
-export const useStore = create<MyState>(((set) => ({
+export const useGlobalStore = create<MyState>(((set) => ({
     skillDefinitions: [],
     attributeDefinitions: [],
     setSkillDefinitions: (newSkillDefinitions) => set({ skillDefinitions: newSkillDefinitions }),

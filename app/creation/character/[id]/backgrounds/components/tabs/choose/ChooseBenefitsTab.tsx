@@ -1,10 +1,19 @@
-import { Tab } from "@nextui-org/react";
 import BackgroundSkillTypeSection from "../BackgroundSkillTypeSection";
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { useStore } from "../../../state";
 
 export default function ChooseBenefitsTab(props: {
-    background: BackgroundDefinition;
-  }) {
+  background: BackgroundDefinition;
+}) {
+  const {chosenSkills} = useStore();
+
+  function calculateTotalSkillPoints(): number {
+    return Array.from(chosenSkills.values()).reduce(
+      (total, level) => total + (level ? level + 1 : 1),
+      0
+    );
+  }
+
   return (
     <>
       <div className="p-5">
@@ -17,6 +26,7 @@ export default function ChooseBenefitsTab(props: {
         <br />
         No starting character can begin with a skill level higher than level-1.
       </div>
+      <div>{calculateTotalSkillPoints() + "/2"}</div>
       <BackgroundSkillTypeSection
         rows={9}
         columns={1}
