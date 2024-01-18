@@ -1,11 +1,15 @@
 import BackgroundSkillTypeSection from "../BackgroundSkillTypeSection";
-import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import {
+  BackgroundBenefit,
+  BackgroundDefinition,
+} from "@/models/BackgroundDefinitionModels";
 import { useStore } from "../../../state";
+import ChooseBenefitCell from "./ChooseBenefitCell";
 
 export default function ChooseBenefitsTab(props: {
   background: BackgroundDefinition;
 }) {
-  const {chosenSkills} = useStore();
+  const { chosenSkills } = useStore();
 
   function calculateTotalSkillPoints(): number {
     return Array.from(chosenSkills.values()).reduce(
@@ -27,12 +31,13 @@ export default function ChooseBenefitsTab(props: {
         No starting character can begin with a skill level higher than level-1.
       </div>
       <div>{calculateTotalSkillPoints() + "/2"}</div>
-      <BackgroundSkillTypeSection
-        rows={9}
-        columns={1}
-        benefits={props.background.benefits.learning}
-        skillBuyMethod="choose"
-      />
+      <div className="flex flex-col">
+        {props.background.benefits.learning.map((benefit) => (
+          <div className="flex-1 py-1 px-3" key={benefit.name}>
+            <ChooseBenefitCell benefit={benefit} />
+          </div>
+        ))}
+      </div>
     </>
   );
 }

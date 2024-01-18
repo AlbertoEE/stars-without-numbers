@@ -48,7 +48,7 @@ const backgroundDefinitions: BackgroundDefinition[] = [
         predifined: [
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
+          { type: BackgroundBenefitType.skill, name: "know" , subtype: "specific" },
         ],
         growth: [
           { type: BackgroundBenefitType.stat, name: "any stat", amount: 1, subtype: AttributeDefinitionType.any },

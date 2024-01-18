@@ -21,8 +21,6 @@ export default function BackgroundSkillTypeSection(props: {
   }
 
   function renderSkillComponent(benefit: BackgroundBenefit, method: string) {
-    let path = benefit.type == BackgroundBenefitType.stat ? "/imgs/attributes/" : "/imgs/skills/";
-
     switch (method) {
       case "predifined":
         return <PredifinedBenefitCell benefit={benefit} />;

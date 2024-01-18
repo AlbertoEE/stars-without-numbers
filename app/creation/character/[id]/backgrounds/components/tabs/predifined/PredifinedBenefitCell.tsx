@@ -1,16 +1,15 @@
 import { BackgroundBenefit, BackgroundBenefitType, } from "@/models/BackgroundDefinitionModels";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Image, } from "@nextui-org/react";
-import { useState } from "react";
 import { useGlobalStore } from "../../../../state";
 import BenefitImage from "../commons/BenefitImage";
+import { Key, Selection } from "@react-types/shared"
 
 export default function PredifinedBenefitCell(props: {
   benefit: BackgroundBenefit;
+  selectedKeys: Iterable<Key>;
+  setSelectedKeys: (keys: Selection) => any;
 }) {
-  const [selectedKeys, setSelectedKeys] = useState(undefined);
   const { skillDefinitions, attributeDefinitions } = useGlobalStore();
-
-  let folderPath = props.benefit.type == BackgroundBenefitType.stat ? "/imgs/attributes/" : "/imgs/skills/";
   
   function generateList() {
     const definitions = props.benefit.type == BackgroundBenefitType.skill ? skillDefinitions : attributeDefinitions;
@@ -20,7 +19,7 @@ export default function PredifinedBenefitCell(props: {
   }
   
   function renderDropdown() {
-    const dropdownLabel = selectedKeys ? `${selectedKeys.currentKey} ⚙️` : `${props.benefit.name} ⚙️`;
+    const dropdownLabel = props.selectedKeys ? `${props.selectedKeys.currentKey} ⚙️` : `${props.benefit.name} ⚙️`;
   
     return (
       <Dropdown>
@@ -32,35 +31,19 @@ export default function PredifinedBenefitCell(props: {
           variant="flat"
           disallowEmptySelection
           selectionMode="single"
-          selectedKeys={selectedKeys}
-          onSelectionChange={setSelectedKeys}
+          selectedKeys={props.selectedKeys}
+          onSelectionChange={props.setSelectedKeys}
         >
           {generateList()}
         </DropdownMenu>
       </Dropdown>
     );
   }
-  
-  function render() {
-    if (props.benefit.subtype === "specific") {
-      return (
-        <>
-          <div>{props.benefit.name}</div>
-        </>
-      );
-    } else {
-      return (
-        <>
-          {renderDropdown()}
-        </>
-      );
-    }
-  }
 
   return (
     <div className="flex flex-row">
       <BenefitImage benefit={props.benefit} />
-      {render()}
+      {props.benefit.subtype === "specific"? <div>{props.benefit.name}</div> : renderDropdown()}
     </div>
   );
 }
