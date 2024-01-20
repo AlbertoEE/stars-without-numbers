@@ -1,6 +1,7 @@
 export class Character {
-  public id: string;
+  id: string;
   attributes: Attributes;
+  skills: 
 }
 
 export interface Attributes {
@@ -45,5 +46,13 @@ export class Attribute {
     }
 
     return -999;
+  }
+}
+
+class GoodGreeter {
+  name: string;
+ 
+  constructor() {
+    this.name = "hello";
   }
 }
