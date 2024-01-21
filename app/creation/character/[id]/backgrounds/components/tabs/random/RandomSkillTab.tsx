@@ -7,10 +7,13 @@ import { useState } from "react";
 import { rollDice } from "@/utilities/Roll";
 import PredifinedBenefitCell from "../predifined/PredifinedBenefitCell";
 import RandomBenefitCell from "./RandomBenefitCell";
+import RandomBenefitCellResult from "./RandomBenefitCellResult";
+import { useStore } from "../../../state";
 
 export default function RandomSkillTab(props: {
   background: BackgroundDefinition;
 }) {
+  const {chosenSkills, chosenAttributes} = useStore();
   const [rolls, setRolls] = useState({
     availableRolls: 3,
     growthRolls: 0,
@@ -147,8 +150,14 @@ export default function RandomSkillTab(props: {
       <h1>Result:</h1>
       <div className="flex flex-col">
         {results?.map((e) => (
-          <PredifinedBenefitCell benefit={e} />
+          <RandomBenefitCellResult benefit={e} />
         ))}
+      </div>
+      <div>
+        {chosenAttributes}
+      </div>
+      <div>
+        {chosenSkills}
       </div>
     </>
   );

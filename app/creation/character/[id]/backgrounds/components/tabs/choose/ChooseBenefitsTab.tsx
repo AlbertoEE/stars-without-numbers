@@ -34,7 +34,7 @@ export default function ChooseBenefitsTab(props: {
       <div>{calculateTotalSkillPoints() + "/2"}</div>
       <div className="flex flex-col">
         {props.background.benefits.learning.map((benefit) => (
-          <div className="flex-1 py-1 px-3" key={benefit.name}>
+          <div className="flex-1 py-1 px-3">
             <ChooseBenefitCell benefit={benefit} />
           </div>
         ))}
