@@ -2,30 +2,35 @@ import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { useState } from "react";
 import { rollDice } from "@/utilities/Roll";
+import PredifinedBenefitCell from "../predifined/PredifinedBenefitCell";
 
 export default function RandomSkillTab(props: {
   background: BackgroundDefinition;
 }) {
-  const [rolls, setRolls] = useState({ availableRolls: 3, growthRolls: 0, learningRolls: 0 });
-  const [results, setResults] = useState<string[]>([])
-  const growthSkills = props.background.benefits.growth
-  const learningSkills = props.background.benefits.learning
+  const [rolls, setRolls] = useState({
+    availableRolls: 3,
+    growthRolls: 0,
+    learningRolls: 0,
+  });
+  const [results, setResults] = useState<string[]>([]);
+  const growthSkills = props.background.benefits.growth;
+  const learningSkills = props.background.benefits.learning;
 
   function handleRoll() {
     setResults([]);
     for (let i = 0; i < rolls.growthRolls; i++) {
       let diceRollResult = rollDice(1, growthSkills.length) - 1;
-      setResults((prev) => [
-        ...prev,
-        growthSkills.at(diceRollResult)!.name
-      ]);
+      setResults((prev) => [...prev, growthSkills.at(diceRollResult)!.name]);
     }
 
-    console.log(results)
+    console.log(results);
   }
 
-  function handleRollSelection(sign: "minus" | "plus", table: "growth" | "learning") {
-    setRolls(prev => {
+  function handleRollSelection(
+    sign: "minus" | "plus",
+    table: "growth" | "learning"
+  ) {
+    setRolls((prev) => {
       let { availableRolls, growthRolls, learningRolls } = prev;
 
       if (sign === "minus") {
@@ -61,36 +66,67 @@ export default function RandomSkillTab(props: {
         proficiency.
       </div>
       <div className="flex flex-row justify-around">
-        <Card className="p-5 w-[40%]">
+        <Card className="p-5 w-[43%]">
           <div className="flex flex-row items-center justify-center">
-            <div><Button onPress={() => handleRollSelection("minus", "learning")} className="text-2xl m-2" size="sm">-</Button></div>
+            <div>
+              <Button
+                onPress={() => handleRollSelection("minus", "learning")}
+                className="text-2xl m-2"
+                size="sm"
+              >
+                -
+              </Button>
+            </div>
             <div>{rolls.learningRolls}</div>
-            <div><Button onPress={() => handleRollSelection("plus", "learning")} className="text-2xl m-2" size="sm">+</Button></div>
+            <div>
+              <Button
+                onPress={() => handleRollSelection("plus", "learning")}
+                className="text-2xl m-2"
+                size="sm"
+              >
+                +
+              </Button>
+            </div>
           </div>
-          {/* <BackgroundSkillTypeSection
-            rows={8}
-            columns={1}
-            benefits={props.background.benefits.learning.map((e) => e.name)}
-            skillBuyMethod="random"
-          /> */}
+          {props.background.benefits.learning.map((benefit) => (
+            <div className="flex-1 py-1 px-3" key={benefit.name}>
+              <PredifinedBenefitCell benefit={benefit} />
+            </div>
+          ))}
         </Card>
-        <Card className="p-5 w-[40%]">
+        <Card className="p-5 w-[43%]">
           <div className="flex flex-row items-center justify-center">
-            <div><Button onPress={() => handleRollSelection("minus", "growth")} className="text-2xl m-2" size="sm">-</Button></div>
+            <div>
+              <Button
+                onPress={() => handleRollSelection("minus", "growth")}
+                className="text-2xl m-2"
+                size="sm"
+              >
+                -
+              </Button>
+            </div>
             <div>{rolls.growthRolls}</div>
-            <div><Button onPress={() => handleRollSelection("plus", "growth")} className="text-2xl m-2" size="sm">+</Button></div>
+            <div>
+              <Button
+                onPress={() => handleRollSelection("plus", "growth")}
+                className="text-2xl m-2"
+                size="sm"
+              >
+                +
+              </Button>
+            </div>
           </div>
-          {/* <BackgroundSkillTypeSection
-            rows={6}
-            columns={1}
-            benefits={props.background.benefits.growth.map((e) => e.name)}
-            skillBuyMethod="random"
-          /> */}
+          {props.background.benefits.growth.map((benefit) => (
+            <div className="flex-1 py-1 px-3" key={benefit.name}>
+              <PredifinedBenefitCell benefit={benefit} />
+            </div>
+          ))}
         </Card>
-
         <div className="flex flex-col items-center justify-center m-2 gap-5">
           <Card className="h-12 w-16">
-            <CardBody className="text-center justify-center">{rolls.availableRolls}/3</CardBody>
+            <CardBody className="text-center justify-center">
+              {rolls.availableRolls}/3
+            </CardBody>
           </Card>
           <Card className="h-12 w-16" isPressable onPress={handleRoll}>
             <CardBody className="text-center justify-center">🎲</CardBody>

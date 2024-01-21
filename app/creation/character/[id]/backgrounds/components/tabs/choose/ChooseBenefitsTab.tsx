@@ -39,13 +39,6 @@ export default function ChooseBenefitsTab(props: {
           </div>
         ))}
       </div>
-      <Button
-        onPress={() => {
-          console.log(chosenSkills);
-        }}
-      >
-        CLICK
-      </Button>
     </>
   );
 }

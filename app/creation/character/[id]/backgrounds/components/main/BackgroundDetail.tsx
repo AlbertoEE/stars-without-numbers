@@ -12,6 +12,7 @@ import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
 import router from "next/router";
 import path from "path";
 import { Character, Skill } from "@/models/chatacter";
+import { getCharacter, updateCharacter } from "@/data/CharacterCRUD/CharacterCRUDLocalStorage";
 
 export default function BackgroundDetail(props: { characterId: string }) {
   const { detailBackground, setChosenSkills, chosenSkills } = useStore();
@@ -98,19 +99,18 @@ export default function BackgroundDetail(props: { characterId: string }) {
       <Button
         className="m-5"
         onPress={() => {
-          const charactersString: string | null =
-            localStorage.getItem("characters");
-          if (charactersString) {
-            const characters: Character[] = JSON.parse(charactersString);
-            const character: Character = characters.find(
-              (e) => e.id == props.characterId
-            );
-            chosenSkills.forEach((level, name) => {
-              character.standardSkills.push(new Skill(name, level));
-            })
-            
-            localStorage.setItem("characters", JSON.stringify(characters));
-          }
+          let character: Character | undefined = getCharacter(
+            props.characterId
+          );
+
+          if (character == undefined) return;
+          character!.standardSkills = []
+
+          chosenSkills.forEach((level, name) => {
+            character!.standardSkills.push(new Skill(name, level));
+          });
+
+          updateCharacter(character)
         }}
       >
         DONE
