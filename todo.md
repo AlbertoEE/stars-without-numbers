@@ -1,0 +1,1 @@
+- Delete react key whenever its not needed and let react handle it

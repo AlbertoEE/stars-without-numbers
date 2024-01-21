@@ -1,8 +1,12 @@
-import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import {
+  BackgroundBenefit,
+  BackgroundDefinition,
+} from "@/models/BackgroundDefinitionModels";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { useState } from "react";
 import { rollDice } from "@/utilities/Roll";
 import PredifinedBenefitCell from "../predifined/PredifinedBenefitCell";
+import RandomBenefitCell from "./RandomBenefitCell";
 
 export default function RandomSkillTab(props: {
   background: BackgroundDefinition;
@@ -12,18 +16,25 @@ export default function RandomSkillTab(props: {
     growthRolls: 0,
     learningRolls: 0,
   });
-  const [results, setResults] = useState<string[]>([]);
+  const [results, setResults] = useState<BackgroundBenefit[]>();
   const growthSkills = props.background.benefits.growth;
   const learningSkills = props.background.benefits.learning;
 
   function handleRoll() {
     setResults([]);
+    let x = [];
+
     for (let i = 0; i < rolls.growthRolls; i++) {
       let diceRollResult = rollDice(1, growthSkills.length) - 1;
-      setResults((prev) => [...prev, growthSkills.at(diceRollResult)!.name]);
+      x.push(growthSkills[diceRollResult]);
     }
+    for (let i = 0; i < rolls.learningRolls; i++) {
+      let diceRollResult = rollDice(1, learningSkills.length) - 1;
+      x.push(learningSkills[diceRollResult]);
+    }
+    setResults(x);
 
-    console.log(results);
+    console.log(x);
   }
 
   function handleRollSelection(
@@ -89,8 +100,8 @@ export default function RandomSkillTab(props: {
             </div>
           </div>
           {props.background.benefits.learning.map((benefit) => (
-            <div className="flex-1 py-1 px-3" key={benefit.name}>
-              <PredifinedBenefitCell benefit={benefit} />
+            <div className="flex-1 py-1 px-3">
+              <RandomBenefitCell benefit={benefit} />
             </div>
           ))}
         </Card>
@@ -117,8 +128,8 @@ export default function RandomSkillTab(props: {
             </div>
           </div>
           {props.background.benefits.growth.map((benefit) => (
-            <div className="flex-1 py-1 px-3" key={benefit.name}>
-              <PredifinedBenefitCell benefit={benefit} />
+            <div className="py-1 px-3">
+              <RandomBenefitCell benefit={benefit} />
             </div>
           ))}
         </Card>
@@ -132,6 +143,12 @@ export default function RandomSkillTab(props: {
             <CardBody className="text-center justify-center">🎲</CardBody>
           </Card>
         </div>
+      </div>
+      <h1>Result:</h1>
+      <div className="flex flex-col">
+        {results?.map((e) => (
+          <PredifinedBenefitCell benefit={e} />
+        ))}
       </div>
     </>
   );
