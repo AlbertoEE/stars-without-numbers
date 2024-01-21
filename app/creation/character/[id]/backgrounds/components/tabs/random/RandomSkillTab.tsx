@@ -1,5 +1,4 @@
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import BackgroundSkillTypeSection from "../BackgroundSkillTypeSection";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { useState } from "react";
 import { rollDice } from "@/utilities/Roll";
@@ -68,12 +67,12 @@ export default function RandomSkillTab(props: {
             <div>{rolls.learningRolls}</div>
             <div><Button onPress={() => handleRollSelection("plus", "learning")} className="text-2xl m-2" size="sm">+</Button></div>
           </div>
-          <BackgroundSkillTypeSection
+          {/* <BackgroundSkillTypeSection
             rows={8}
             columns={1}
             benefits={props.background.benefits.learning.map((e) => e.name)}
             skillBuyMethod="random"
-          />
+          /> */}
         </Card>
         <Card className="p-5 w-[40%]">
           <div className="flex flex-row items-center justify-center">
@@ -81,12 +80,12 @@ export default function RandomSkillTab(props: {
             <div>{rolls.growthRolls}</div>
             <div><Button onPress={() => handleRollSelection("plus", "growth")} className="text-2xl m-2" size="sm">+</Button></div>
           </div>
-          <BackgroundSkillTypeSection
+          {/* <BackgroundSkillTypeSection
             rows={6}
             columns={1}
             benefits={props.background.benefits.growth.map((e) => e.name)}
             skillBuyMethod="random"
-          />
+          /> */}
         </Card>
 
         <div className="flex flex-col items-center justify-center m-2 gap-5">

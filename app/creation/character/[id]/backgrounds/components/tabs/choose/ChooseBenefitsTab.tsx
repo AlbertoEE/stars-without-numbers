@@ -5,6 +5,7 @@ import {
 } from "@/models/BackgroundDefinitionModels";
 import { useStore } from "../../../state";
 import ChooseBenefitCell from "./ChooseBenefitCell";
+import { Button } from "@nextui-org/react";
 
 export default function ChooseBenefitsTab(props: {
   background: BackgroundDefinition;
@@ -38,6 +39,13 @@ export default function ChooseBenefitsTab(props: {
           </div>
         ))}
       </div>
+      <Button
+        onPress={() => {
+          console.log(chosenSkills);
+        }}
+      >
+        CLICK
+      </Button>
     </>
   );
 }

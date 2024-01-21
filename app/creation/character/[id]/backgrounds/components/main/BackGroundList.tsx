@@ -29,6 +29,7 @@ export default function App() {
     filterChooseSkill,
     filterRandomSkill,
     detailBackground,
+    setChosenSkills,
     setFilterBackground,
     setFilterChooseSkill,
     setFilterRandomSkill,
@@ -47,8 +48,6 @@ export default function App() {
     "testBackgroundDefinition",
     backgroundDefinitionRepository.getBackgrounds
   );
-
-  const columns = [{ name: "NAME", uid: "name" }];
 
   let items = React.useMemo(() => {
     if (!backgrounds) return [];
@@ -72,6 +71,11 @@ export default function App() {
 
     return filteredValues;
   }, [filterBackground, filterChooseSkill, filterRandomSkill, backgrounds]);
+
+  function handleOnBackgroundPress(backgroundName: string) {
+    setChosenSkills(new Map<string, number>([]))
+    setDetailBackground(backgroundName)
+  }
 
   if (!backgrounds || !skills) return <></>;
 
@@ -133,7 +137,7 @@ export default function App() {
           <Card
             className={`mb-2 w-full ${item.name == detailBackground && 'bg-blue-500'}`}
             isPressable
-            onPress={() => setDetailBackground(item.name)}
+            onPress={() => handleOnBackgroundPress(item.name)}
             key={item.name}
           >
             <CardBody className="text-center">

@@ -24,30 +24,22 @@ export default function ChooseBenefitCell(props: {
     setChosenSkills(newChosenSkills);
   }
 
-  function render() {
-    return (
-      <>
-        <ButtonLevelUpBenefit
-          benefit={props.benefit}
-          chosenBenefit={selectedKeys?.currentKey}
-        />
-        {props.benefit.subtype === "specific" ? (
-          <div>{props.benefit.name}</div>
-        ) : (
-          <DropDownGenericBenefit
-            benefit={props.benefit}
-            selectedKeys={selectedKeys}
-            handleOnDropdownChange={handleOnDropdownChange}
-          />
-        )}
-      </>
-    );
-  }
-
   return (
     <div className="flex flex-row items-center gap-2 select-none">
       <BenefitImage benefit={props.benefit} />
-      {render()}
+      <ButtonLevelUpBenefit
+        benefit={props.benefit}
+        chosenBenefit={selectedKeys?.currentKey}
+      />
+      {props.benefit.subtype === "specific" ? (
+        <div>{props.benefit.name}</div>
+      ) : (
+        <DropDownGenericBenefit
+          benefit={props.benefit}
+          selectedKeys={selectedKeys}
+          handleOnDropdownChange={handleOnDropdownChange}
+        />
+      )}
     </div>
   );
 }

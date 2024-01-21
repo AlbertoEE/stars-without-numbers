@@ -12,13 +12,6 @@ export default function DropDownGenericBenefit(props: {
 }) {
   const { skillDefinitions, attributeDefinitions } = useGlobalStore();
 
-  function handleOnDropdownChange() {
-    const newChosenSkills = new Map(chosenSkills);
-    newChosenSkills.delete(selectedKeys?.currentKey);
-    setSelectedKeys(keys);
-    setChosenSkills(newChosenSkills);
-  }
-
   function generateList() {
     const definitions =
       props.benefit.type == BackgroundBenefitType.skill

@@ -11,8 +11,7 @@ export default function Page() {
       <Button
         onPress={() => {
           const randomUUID = crypto.randomUUID();
-          const character = new Character();
-          character.id = randomUUID;
+          const character = new Character(randomUUID);
 
           const charactersString = localStorage.getItem("characters");
           const characters = charactersString
