@@ -13,7 +13,7 @@ import { useStore } from "../../../state";
 export default function RandomSkillTab(props: {
   background: BackgroundDefinition;
 }) {
-  const {chosenSkills, chosenAttributes} = useStore();
+  const { chosenSkills, chosenAttributes } = useStore();
   const [rolls, setRolls] = useState({
     availableRolls: 3,
     growthRolls: 0,
@@ -79,6 +79,13 @@ export default function RandomSkillTab(props: {
         You may pick the same skill twice if you wish, to improve its starting
         proficiency.
       </div>
+      <div className="flex flex-row">
+        <Card className="h-12 w-24 m-auto mb-2" isPressable isDisabled={true} onPress={handleRoll} >
+          <CardBody className="text-center justify-center">
+            {rolls.availableRolls}/3 🎲
+          </CardBody>
+        </Card>
+      </div>
       <div className="flex flex-row justify-around">
         <Card className="p-5 w-[43%]">
           <div className="flex flex-row items-center justify-center">
@@ -136,16 +143,6 @@ export default function RandomSkillTab(props: {
             </div>
           ))}
         </Card>
-        <div className="flex flex-col items-center justify-center m-2 gap-5">
-          <Card className="h-12 w-16">
-            <CardBody className="text-center justify-center">
-              {rolls.availableRolls}/3
-            </CardBody>
-          </Card>
-          <Card className="h-12 w-16" isPressable onPress={handleRoll}>
-            <CardBody className="text-center justify-center">🎲</CardBody>
-          </Card>
-        </div>
       </div>
       <h1>Result:</h1>
       <div className="flex flex-col">
