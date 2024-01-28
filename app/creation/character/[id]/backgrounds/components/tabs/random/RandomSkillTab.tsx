@@ -42,11 +42,11 @@ export default function RandomSkillTab(props: {
     setChosenBenefits(results
       .filter((benefit: BackgroundBenefit) => benefit.subtype == "specific")
       .map((benefit) => {
-        return {name: benefit.name, type: "skill"}
+        return { name: benefit.name, type: "skill" }
       }));
   }
 
-  useEffect(() => {}, [results]);
+  useEffect(() => { }, [results]);
 
   function reset() {
     setResults([]);
@@ -94,17 +94,6 @@ export default function RandomSkillTab(props: {
         proficiency.
       </div>
       <div className="flex flex-row">
-        {rolledDice == false && (
-          <Card
-            className="h-12 w-24 m-auto mb-2"
-            isPressable
-            onPress={handleRoll}
-          >
-            <CardBody className="text-center justify-center">
-              {3 - rolls.availableRolls}/3 🎲
-            </CardBody>
-          </Card>
-        )}
         {rolledDice && (
           <Card className="h-12 w-24 m-auto mb-2" isPressable onPress={reset}>
             <CardBody className="text-center justify-center">Reset ↻</CardBody>
@@ -170,6 +159,17 @@ export default function RandomSkillTab(props: {
             ))}
           </Card>
         </div>
+      )}
+      {rolledDice == false && (
+        <Card
+          className="h-12 w-24 m-auto mt-2"
+          isPressable
+          onPress={handleRoll}
+        >
+          <CardBody className="text-center justify-center">
+            {3 - rolls.availableRolls}/3 🎲
+          </CardBody>
+        </Card>
       )}
       <div className="flex flex-col gap-2">
         {results?.map((e) => (

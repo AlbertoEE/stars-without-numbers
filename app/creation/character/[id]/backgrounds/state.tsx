@@ -32,7 +32,6 @@ interface MyState {
   chosenSkillsMap: Map<string, number>;
   chosenAttributesMap: Map<string, number>;
   chosenBenefits: SimpleBenefit[];
-  chosenSkillPointsLeft: number;
   setFilterBackground: (newFilterBackground: string) => void;
   setFilterChooseSkill: (newFilterChooseSkill: string[]) => void;
   setFilterRandomSkill: (newFilterRandomSkill: string[]) => void;
@@ -40,7 +39,6 @@ interface MyState {
   setChosenSkillsMap: (newChosenSkills: Map<string, number>) => void;
   setChosenAttributesMap: (newChosenAttributes: Map<string, number>) => void;
   setChosenBenefits: (newChosenBenefits: SimpleBenefit[]) => void;
-  setChosenSkillPointsLeft: (newChosenSkillPointsLeft: number) => void;
 }
 
 export const useStore = create<MyState>((set) => ({
@@ -51,7 +49,6 @@ export const useStore = create<MyState>((set) => ({
   chosenSkillsMap: new Map(),
   chosenAttributesMap: new Map(),
   chosenBenefits: [],
-  chosenSkillPointsLeft: 2,
   setFilterBackground: (newFilterBackground) =>
     set({ filterBackground: newFilterBackground }),
   setFilterChooseSkill: (newFilterChooseSkill) =>
@@ -66,6 +63,4 @@ export const useStore = create<MyState>((set) => ({
     set({ chosenAttributesMap: newChosenAttributes }),
   setChosenBenefits: (newChosenBenefits) =>
     set({ chosenBenefits: newChosenBenefits }),
-  setChosenSkillPointsLeft: (newChosenBenefits) =>
-    set({ chosenSkillPointsLeft: newChosenBenefits }),
 }));

@@ -14,8 +14,6 @@ export default function ButtonLevelUpBenefit(props: {
   const {
     chosenBenefits,
     setChosenBenefits,
-    chosenSkillPointsLeft,
-    setChosenSkillPointsLeft,
   } = useStore();
 
   function handleChooseSkill(sign: "plus" | "minus") {
