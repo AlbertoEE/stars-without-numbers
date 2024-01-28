@@ -7,17 +7,12 @@ import { useEffect, useState } from "react";
 import { rollDice } from "@/utilities/Roll";
 import RandomBenefitCell from "./RandomBenefitCell";
 import RandomBenefitCellResult from "./RandomBenefitCellResult";
-import { useStore } from "../../../state";
+import { SimpleBenefit, useStore } from "../../../state";
 
 export default function RandomSkillTab(props: {
   background: BackgroundDefinition;
 }) {
-  const {
-    chosenSkillsMap: chosenSkills,
-    chosenAttributesMap: chosenAttributes,
-    setChosenAttributesMap: setChosenAttributes,
-    setChosenSkillsMap: setChosenSkills,
-  } = useStore();
+  const { chosenBenefits, setChosenBenefits } = useStore();
   const [rolledDice, setRolledDice] = useState<boolean>(false);
   const [rolls, setRolls] = useState({
     availableRolls: 3,
@@ -44,19 +39,11 @@ export default function RandomSkillTab(props: {
     }
     setResults(results);
 
-    let cloneChosenSkills: Map<string, number> = new Map();
-
-    results
+    setChosenBenefits(results
       .filter((benefit: BackgroundBenefit) => benefit.subtype == "specific")
-      .forEach((benefit) => {
-        let currentSkillLevel = cloneChosenSkills.get(benefit.name)
-        if (currentSkillLevel == undefined) {
-          cloneChosenSkills.set(benefit.name, 0);
-        } else {
-          cloneChosenSkills.set(benefit.name, currentSkillLevel + 1);
-        }
-      });
-    setChosenSkills(cloneChosenSkills);
+      .map((benefit) => {
+        return {name: benefit.name, type: "skill"}
+      }));
   }
 
   useEffect(() => {}, [results]);
@@ -64,8 +51,7 @@ export default function RandomSkillTab(props: {
   function reset() {
     setResults([]);
     setRolledDice(false);
-    setChosenAttributes(new Map());
-    setChosenSkills(new Map());
+    setChosenBenefits([]);
   }
 
   function handleRollSelection(
@@ -190,8 +176,7 @@ export default function RandomSkillTab(props: {
           <RandomBenefitCellResult benefit={e} />
         ))}
       </div>
-      <div>{chosenAttributes}</div>
-      <div>{chosenSkills}</div>
+      <div>{chosenBenefits.map(e => e.name)}</div>
     </>
   );
 }

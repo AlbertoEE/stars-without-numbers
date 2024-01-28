@@ -4,23 +4,23 @@ import {
 } from "@/models/BackgroundDefinitionModels";
 import PredifinedBenefitCell from "./PredifinedBenefitCell";
 import { Button } from "@nextui-org/react";
-import { useStore } from "../../../state";
+import { SimpleBenefit, useStore } from "../../../state";
 import { useEffect } from "react";
 
 export default function PredefinedBenefitsTab(props: {
   background: BackgroundDefinition;
 }) {
-  const { chosenSkillsMap: chosenSkills, setChosenSkillsMap: setChosenSkills,detailBackground } = useStore();
+  const { detailBackground, chosenBenefits, setChosenBenefits } = useStore();
   useEffect(() => {
-    const newChosenSkills = new Map(chosenSkills); // Create a new Map based on the current state
+    const predifinedBenefits: SimpleBenefit[] = []; // Create a new Map based on the current state
 
     props.background.benefits.predifined.forEach((benefit) => {
       if (benefit.subtype == "specific") {
-        newChosenSkills.set(benefit.name, 0); // Update the new Map inside the loop
+        predifinedBenefits.push({ name: benefit.name, type: "skill" });
       }
     });
 
-    setChosenSkills(newChosenSkills);
+    setChosenBenefits(predifinedBenefits);
   }, [detailBackground]);
 
   return (
@@ -41,6 +41,9 @@ export default function PredefinedBenefitsTab(props: {
             <PredifinedBenefitCell benefit={benefit} />
           </div>
         ))}
+      </div>
+      <div>
+        {chosenBenefits.map(e => e.name)}
       </div>
     </>
   );

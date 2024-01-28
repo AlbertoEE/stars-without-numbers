@@ -5,81 +5,31 @@ import {
 import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
 import BenefitImage from "../commons/BenefitImage";
 import { useState } from "react";
-import { useStore } from "../../../state";
+import { addBenefit, deleteBenefit, useStore } from "../../../state";
 
 export default function RandomBenefitCellResult(props: {
   benefit: BackgroundBenefit;
 }) {
-  const {
-    chosenAttributesMap: chosenAttributes,
-    setChosenAttributesMap: setChosenAttributes,
-    chosenSkillsMap: chosenSkills,
-    setChosenSkillsMap: setChosenSkills,
-  } = useStore();
+  const { chosenBenefits, setChosenBenefits } = useStore();
   const [selectedKeys, setSelectedKeys] = useState();
   const [selectedKeys2, setSelectedKeys2] = useState();
   const [selectedKeys3, setSelectedKeys3] = useState();
 
-  function handleOnDropdownChangeStat(
+  function handleOnDropdownChange(
     keys: Selection,
     selectedKeys: any,
-    setSelectedKeys: any
+    setSelectedKeys: any,
+    type: "skill" | "stat"
   ) {
-    let newChosenAttributes = new Map(chosenAttributes);
-    if (props.benefit.type === BackgroundBenefitType.stat) {
-      if (selectedKeys) {
-        if (newChosenAttributes.get(selectedKeys.currentKey) == 1) {
-          newChosenAttributes.delete(selectedKeys.currentKey);
-        } else {
-          newChosenAttributes.set(
-            selectedKeys.currentKey,
-            newChosenAttributes.get(selectedKeys.currentKey) - 1
-          );
-        }
-      }
-
-      if (newChosenAttributes.has(keys.currentKey)) {
-        newChosenAttributes.set(
-          keys.currentKey,
-          newChosenAttributes.get(keys.currentKey) + 1
-        );
-      } else {
-        newChosenAttributes.set(keys.currentKey, 1);
-      }
-
-      setSelectedKeys(keys);
-      setChosenAttributes(newChosenAttributes);
-    }
-  }
-
-  function handleOnDropdownChangeSkill(
-    keys: Selection,
-    selectedKeys: any,
-    setSelectedKeys: any
-  ) {
-    let newChosenSkills = new Map(chosenSkills);
+    let cloneChosenBenefits = [...chosenBenefits];
     if (selectedKeys) {
-      if (newChosenSkills.get(selectedKeys.currentKey) == 0) {
-        newChosenSkills.delete(selectedKeys.currentKey);
-      } else {
-        newChosenSkills.set(
-          selectedKeys.currentKey,
-          newChosenSkills.get(selectedKeys.currentKey) - 1
-        );
-      }
+      deleteBenefit(cloneChosenBenefits, selectedKeys.currentKey);
     }
 
-    if (newChosenSkills.has(keys.currentKey)) {
-      newChosenSkills.set(
-        keys.currentKey,
-        newChosenSkills.get(keys.currentKey) + 1
-      );
-    } else {
-      newChosenSkills.set(keys.currentKey, 0);
-    }
+    addBenefit(cloneChosenBenefits, keys.currentKey, type);
 
     setSelectedKeys(keys);
-    setChosenSkills(newChosenSkills);
+    setChosenBenefits(cloneChosenBenefits);
   }
 
   function render() {
@@ -93,7 +43,12 @@ export default function RandomBenefitCellResult(props: {
               benefit={props.benefit}
               selectedKeys={selectedKeys}
               handleOnDropdownChange={(keys: Selection) =>
-                handleOnDropdownChangeStat(keys, selectedKeys, setSelectedKeys)
+                handleOnDropdownChange(
+                  keys,
+                  selectedKeys,
+                  setSelectedKeys,
+                  "stat"
+                )
               }
             />
           </div>
@@ -108,10 +63,11 @@ export default function RandomBenefitCellResult(props: {
                 benefit={props.benefit}
                 selectedKeys={selectedKeys}
                 handleOnDropdownChange={(keys: Selection) =>
-                  handleOnDropdownChangeStat(
+                  handleOnDropdownChange(
                     keys,
                     selectedKeys,
-                    setSelectedKeys
+                    setSelectedKeys,
+                    "stat"
                   )
                 }
               />
@@ -123,10 +79,11 @@ export default function RandomBenefitCellResult(props: {
                 benefit={props.benefit}
                 selectedKeys={selectedKeys2}
                 handleOnDropdownChange={(keys: Selection) =>
-                  handleOnDropdownChangeStat(
+                  handleOnDropdownChange(
                     keys,
                     selectedKeys2,
-                    setSelectedKeys2
+                    setSelectedKeys2,
+                    "stat"
                   )
                 }
               />
@@ -146,7 +103,7 @@ export default function RandomBenefitCellResult(props: {
             benefit={props.benefit}
             selectedKeys={selectedKeys3}
             handleOnDropdownChange={(keys: Selection) =>
-              handleOnDropdownChangeSkill(keys, selectedKeys3, setSelectedKeys3)
+              handleOnDropdownChange(keys, selectedKeys3, setSelectedKeys3, "skill")
             }
           />
         )}
