@@ -1,5 +1,5 @@
 import { BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository";
-import { useStore } from "../../state";
+import { SimpleBenefit, useStore } from "../../state";
 import { Button, Card, Image, Tab, Tabs } from "@nextui-org/react";
 import { useState } from "react";
 import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
@@ -12,10 +12,13 @@ import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
 import router from "next/router";
 import path from "path";
 import { Character, Skill } from "@/models/chatacter";
-import { getCharacter, updateCharacter } from "@/data/CharacterCRUD/CharacterCRUDLocalStorage";
+import {
+  getCharacter,
+  updateCharacter,
+} from "@/data/CharacterCRUD/CharacterCRUDLocalStorage";
 
 export default function BackgroundDetail(props: { characterId: string }) {
-  const { detailBackground, setChosenSkills, chosenSkills } = useStore();
+  const { detailBackground, chosenBenefits, setChosenBenefits } = useStore();
 
   const [tab, setTab] = useState<Key>("backgroundDescription");
   const [tabSkills, setTabSkills] = useState<Key>("predifined");
@@ -35,8 +38,8 @@ export default function BackgroundDetail(props: { characterId: string }) {
 
   if (background == undefined) return;
 
-  function handleSkillTabChange(key: Key) {
-    setChosenSkills(new Map<string, number>([]));
+  function handleBenefitTabChange(key: Key) {
+    setChosenBenefits(new Array());
     setTabSkills(key);
   }
 
@@ -80,7 +83,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
                 aria-label="Options"
                 fullWidth
                 selectedKey={tabSkills}
-                onSelectionChange={handleSkillTabChange}
+                onSelectionChange={handleBenefitTabChange}
               >
                 <Tab key="predifined" title="Predefined">
                   <PredefinedBenefitsTab background={background} />
@@ -104,13 +107,13 @@ export default function BackgroundDetail(props: { characterId: string }) {
           );
 
           if (character == undefined) return;
-          character!.standardSkills = []
+          character!.standardSkills = [];
 
-          chosenSkills.forEach((level, name) => {
-            character!.standardSkills.push(new Skill(name, level));
-          });
+          // chosenSkills.forEach((level, name) => {
+          //   character!.standardSkills.push(new Skill(name, level));
+          // });
 
-          updateCharacter(character)
+          updateCharacter(character);
         }}
       >
         DONE

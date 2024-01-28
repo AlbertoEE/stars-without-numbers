@@ -43,6 +43,9 @@ export default function DropDownGenericBenefit(props: {
           selectionMode="single"
           selectedKeys={props.selectedKeys}
           onSelectionChange={props.handleOnDropdownChange}
+          classNames={{
+            list: "max-h-52 overflow-y-auto",
+          }}
         >
           {generateList()}
         </DropdownMenu>

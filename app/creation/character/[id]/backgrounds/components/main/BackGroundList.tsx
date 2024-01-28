@@ -29,7 +29,7 @@ export default function App() {
     filterChooseSkill,
     filterRandomSkill,
     detailBackground,
-    setChosenSkills,
+    setChosenBenefits,
     setFilterBackground,
     setFilterChooseSkill,
     setFilterRandomSkill,
@@ -73,7 +73,7 @@ export default function App() {
   }, [filterBackground, filterChooseSkill, filterRandomSkill, backgrounds]);
 
   function handleOnBackgroundPress(backgroundName: string) {
-    setChosenSkills(new Map<string, number>([]))
+    setChosenBenefits(new Array());
     setDetailBackground(backgroundName)
   }
 

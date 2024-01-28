@@ -13,10 +13,10 @@ export default function RandomSkillTab(props: {
   background: BackgroundDefinition;
 }) {
   const {
-    chosenSkills,
-    chosenAttributes,
-    setChosenAttributes,
-    setChosenSkills,
+    chosenSkillsMap: chosenSkills,
+    chosenAttributesMap: chosenAttributes,
+    setChosenAttributesMap: setChosenAttributes,
+    setChosenSkillsMap: setChosenSkills,
   } = useStore();
   const [rolledDice, setRolledDice] = useState<boolean>(false);
   const [rolls, setRolls] = useState({
@@ -29,7 +29,7 @@ export default function RandomSkillTab(props: {
   const learningSkills = props.background.benefits.learning;
 
   function handleRoll() {
-    if(rolls.availableRolls != 0) return
+    if (rolls.availableRolls != 0) return;
     setResults([]);
     setRolledDice(true);
     let results = [];
@@ -44,15 +44,22 @@ export default function RandomSkillTab(props: {
     }
     setResults(results);
 
-    results.filter((benefit: BackgroundBenefit) => benefit.subtype == "specific").reduce((acc, benefit) => {
-      acc[benefit.name] = (acc[benefit.name] || 0) + 1;
-      return acc;
-  }, {} as Record<string, number>);
+    let cloneChosenSkills: Map<string, number> = new Map();
+
+    results
+      .filter((benefit: BackgroundBenefit) => benefit.subtype == "specific")
+      .forEach((benefit) => {
+        let currentSkillLevel = cloneChosenSkills.get(benefit.name)
+        if (currentSkillLevel == undefined) {
+          cloneChosenSkills.set(benefit.name, 0);
+        } else {
+          cloneChosenSkills.set(benefit.name, currentSkillLevel + 1);
+        }
+      });
+    setChosenSkills(cloneChosenSkills);
   }
 
-  useEffect(() => {
-
-  }, [results])
+  useEffect(() => {}, [results]);
 
   function reset() {
     setResults([]);
@@ -178,9 +185,7 @@ export default function RandomSkillTab(props: {
           </Card>
         </div>
       )}
-
-      <h1>Result:</h1>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-2">
         {results?.map((e) => (
           <RandomBenefitCellResult benefit={e} />
         ))}

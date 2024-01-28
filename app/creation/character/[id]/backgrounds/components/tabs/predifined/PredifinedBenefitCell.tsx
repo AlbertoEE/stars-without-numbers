@@ -8,7 +8,7 @@ import { useStore } from "../../../state";
 export default function PredifinedBenefitCell(props: {
   benefit: BackgroundBenefit;
 }) {
-  const { chosenSkills, setChosenSkills } = useStore();
+  const { chosenSkillsMap: chosenSkills, setChosenSkillsMap: setChosenSkills } = useStore();
   const [selectedKeys, setSelectedKeys] = useState<Iterable<Key> | undefined>(
     undefined
   );

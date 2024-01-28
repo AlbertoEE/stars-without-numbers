@@ -10,7 +10,7 @@ import { useEffect } from "react";
 export default function PredefinedBenefitsTab(props: {
   background: BackgroundDefinition;
 }) {
-  const { chosenSkills, setChosenSkills,detailBackground } = useStore();
+  const { chosenSkillsMap: chosenSkills, setChosenSkillsMap: setChosenSkills,detailBackground } = useStore();
   useEffect(() => {
     const newChosenSkills = new Map(chosenSkills); // Create a new Map based on the current state
 

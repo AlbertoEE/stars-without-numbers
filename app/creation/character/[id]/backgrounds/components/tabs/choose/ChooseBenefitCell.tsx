@@ -12,7 +12,7 @@ import BenefitImage from "../commons/BenefitImage";
 export default function ChooseBenefitCell(props: {
   benefit: BackgroundBenefit;
 }) {
-  const { chosenSkills, setChosenSkills } = useStore();
+  const { chosenSkillsMap: chosenSkills, setChosenSkillsMap: setChosenSkills } = useStore();
   const [selectedKeys, setSelectedKeys] = useState<
     Iterable<Key> | undefined | "all"
   >(undefined);

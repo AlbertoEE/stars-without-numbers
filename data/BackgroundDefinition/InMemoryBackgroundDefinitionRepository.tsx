@@ -61,7 +61,7 @@ const backgroundDefinitions: BackgroundDefinition[] = [
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
+          { type: BackgroundBenefitType.skill, name: "know" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "lead" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },

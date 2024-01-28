@@ -10,7 +10,12 @@ import { useStore } from "../../../state";
 export default function RandomBenefitCellResult(props: {
   benefit: BackgroundBenefit;
 }) {
-  const { chosenAttributes, setChosenAttributes, chosenSkills, setChosenSkills } = useStore();
+  const {
+    chosenAttributesMap: chosenAttributes,
+    setChosenAttributesMap: setChosenAttributes,
+    chosenSkillsMap: chosenSkills,
+    setChosenSkillsMap: setChosenSkills,
+  } = useStore();
   const [selectedKeys, setSelectedKeys] = useState();
   const [selectedKeys2, setSelectedKeys2] = useState();
   const [selectedKeys3, setSelectedKeys3] = useState();
@@ -81,8 +86,9 @@ export default function RandomBenefitCellResult(props: {
     if (props.benefit.type == BackgroundBenefitType.stat) {
       if (props.benefit.amount === 1) {
         return (
-          <>
+          <div className="flex flex-row">
             <BenefitImage benefit={props.benefit} />
+            <div className="mr-2">+1</div>
             <DropDownGenericBenefit
               benefit={props.benefit}
               selectedKeys={selectedKeys}
@@ -90,14 +96,14 @@ export default function RandomBenefitCellResult(props: {
                 handleOnDropdownChangeStat(keys, selectedKeys, setSelectedKeys)
               }
             />
-          </>
+          </div>
         );
       } else if (props.benefit.amount == 2) {
         return (
           <>
             <div className="flex flex-row">
               <BenefitImage benefit={props.benefit} />
-              <div>Choose {props.benefit.amount}</div>
+              <div className="mr-2">+1</div>
               <DropDownGenericBenefit
                 benefit={props.benefit}
                 selectedKeys={selectedKeys}
@@ -109,6 +115,10 @@ export default function RandomBenefitCellResult(props: {
                   )
                 }
               />
+            </div>
+            <div className="flex flex-row">
+              <BenefitImage benefit={props.benefit} />
+              <div className="mr-2">+1</div>
               <DropDownGenericBenefit
                 benefit={props.benefit}
                 selectedKeys={selectedKeys2}
@@ -127,7 +137,7 @@ export default function RandomBenefitCellResult(props: {
     }
 
     return (
-      <>
+      <div className="flex flex-row">
         <BenefitImage benefit={props.benefit} />
         {props.benefit.subtype === "specific" ? (
           <div>{props.benefit.name}</div>
@@ -136,16 +146,13 @@ export default function RandomBenefitCellResult(props: {
             benefit={props.benefit}
             selectedKeys={selectedKeys3}
             handleOnDropdownChange={(keys: Selection) =>
-              handleOnDropdownChangeSkill(
-                keys,
-                selectedKeys3,
-                setSelectedKeys3
-              )}
+              handleOnDropdownChangeSkill(keys, selectedKeys3, setSelectedKeys3)
+            }
           />
         )}
-      </>
+      </div>
     );
   }
 
-  return <div className="flex flex-row">{render()}</div>;
+  return render();
 }

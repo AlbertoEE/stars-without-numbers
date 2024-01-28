@@ -10,14 +10,7 @@ import { Button } from "@nextui-org/react";
 export default function ChooseBenefitsTab(props: {
   background: BackgroundDefinition;
 }) {
-  const { chosenSkills } = useStore();
-
-  function calculateTotalSkillPoints(): number {
-    return Array.from(chosenSkills.values()).reduce(
-      (total, level) => total + (level ? level + 1 : 1),
-      0
-    );
-  }
+  const { chosenBenefits } = useStore();
 
   return (
     <>
@@ -31,13 +24,16 @@ export default function ChooseBenefitsTab(props: {
         <br />
         No starting character can begin with a skill level higher than level-1.
       </div>
-      <div>{calculateTotalSkillPoints() + "/2"}</div>
+      <div>{2 + "/2"}</div>
       <div className="flex flex-col">
         {props.background.benefits.learning.map((benefit) => (
           <div className="flex-1 py-1 px-3">
             <ChooseBenefitCell benefit={benefit} />
           </div>
         ))}
+      </div>
+      <div>
+        {chosenBenefits.map(e => e.name)}
       </div>
     </>
   );
