@@ -1,11 +1,11 @@
 "use client";
 
-import AttributeDescription from "./components/Description";
-import SplitDesign from "../../../components/SplitDesign";
-import AttributeTabs from "./components/AttributeTabs";
-import { useStore } from "./state";
 import { AttributeDefinitionRepository } from "@/data/AttributeDefinition/AttributeDefinitionRepository";
 import { InMemoryAttributeDefinitionRepository } from "@/data/AttributeDefinition/InMemoryAttributeDefinitionRepository";
+import { useStore } from "./state";
+import SplitDesign from "../../../components/SplitDesign";
+import AttributeTabs from "./components/AttributeTabs";
+import AttributeDescription from "./components/Description";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { detail } = useStore();

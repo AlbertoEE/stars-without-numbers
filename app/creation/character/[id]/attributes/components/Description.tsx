@@ -1,12 +1,9 @@
 "use client";
 
-import { AttributeDefinitionRepository } from "@/data/AttributeDefinition/AttributeDefinitionRepository";
-import { InMemoryAttributeDefinitionRepository } from "@/data/AttributeDefinition/InMemoryAttributeDefinitionRepository";
 import { attributeDefinitionRepository } from "@/injection/injection";
 import { AttributeDefinition } from "@/models/AttributeDefinitionModels";
-import { CardBody } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
-import useSWR from 'swr'
+import { CardBody, Image } from "@nextui-org/react";
+import useSWR from 'swr';
 
 
 export default function AttributeDescription(props: {

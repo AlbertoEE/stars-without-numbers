@@ -1,6 +1,6 @@
 import { Tab, Tabs } from "@nextui-org/react";
-import { useState } from "react";
 import { Key } from "@react-types/shared";
+import { useState } from "react";
 import ChooseSkill from "./ChooseSkill";
 import RandomSKill from "./RandomSkill";
 

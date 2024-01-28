@@ -1,21 +1,19 @@
 import { BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository";
-import { SimpleBenefit, useStore } from "../../state";
-import { Button, Card, Image, Tab, Tabs } from "@nextui-org/react";
-import { useState } from "react";
 import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
-import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import useSWR from "swr";
-import { Key } from "@react-types/shared";
-import RandomSkillTab from "../tabs/random/RandomSkillTab";
-import PredefinedBenefitsTab from "../tabs/predifined/PredifinedBenefitsTab";
-import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
-import router from "next/router";
-import path from "path";
-import { Character, Skill } from "@/models/chatacter";
 import {
   getCharacter,
   updateCharacter,
 } from "@/data/CharacterCRUD/CharacterCRUDLocalStorage";
+import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { Character } from "@/models/chatacter";
+import { Button, Card, Image, Tab, Tabs } from "@nextui-org/react";
+import { Key } from "@react-types/shared";
+import { useState } from "react";
+import { useStore } from "../../state";
+import useSWR from "swr";
+import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
+import PredefinedBenefitsTab from "../tabs/predifined/PredifinedBenefitsTab";
+import RandomSkillTab from "../tabs/random/RandomSkillTab";
 
 export default function BackgroundDetail(props: { characterId: string }) {
   const { detailBackground, chosenBenefits, setChosenBenefits } = useStore();

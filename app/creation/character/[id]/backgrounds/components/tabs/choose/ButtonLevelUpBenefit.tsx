@@ -1,11 +1,11 @@
 import { BackgroundBenefit } from "@/models/BackgroundDefinitionModels";
-import {
-  SimpleBenefit,
-  addBenefit,
-  deleteBenefit,
-  useStore,
-} from "../../../state";
 import { Button } from "@nextui-org/react";
+import {
+    SimpleBenefit,
+    addBenefit,
+    deleteBenefit,
+    useStore,
+} from "../../../state";
 
 export default function ButtonLevelUpBenefit(props: {
   benefit: BackgroundBenefit;

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Tabs, Tab } from "@nextui-org/react";
+import { Attribute, Attributes, Character } from "@/models/chatacter";
+import { Tab, Tabs } from "@nextui-org/react";
+import { Key } from "@react-types/shared";
+import { useEffect, useState } from "react";
 import { useStore } from "../state";
 import AttributeCreation from "./AttributeCreation";
-import { Key } from "@react-types/shared";
-import { Attribute, Attributes, Character } from "@/models/chatacter";
 
 export default function AttributeTabs(props: { characterId: string }) {
   const [tab, setTab] = useState<Key>("standard");

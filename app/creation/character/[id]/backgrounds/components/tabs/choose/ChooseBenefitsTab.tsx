@@ -1,11 +1,8 @@
-import BackgroundSkillTypeSection from "../BackgroundSkillTypeSection";
 import {
-  BackgroundBenefit,
-  BackgroundDefinition,
+  BackgroundDefinition
 } from "@/models/BackgroundDefinitionModels";
 import { useStore } from "../../../state";
 import ChooseBenefitCell from "./ChooseBenefitCell";
-import { Button } from "@nextui-org/react";
 
 export default function ChooseBenefitsTab(props: {
   background: BackgroundDefinition;

@@ -1,9 +1,7 @@
 "use client";
 
-import { Card, CardBody } from "@nextui-org/react";
-import SplitDesign from "../../components/SplitDesign";
 import { usePathname, useRouter } from "next/navigation";
-import { Image } from "@nextui-org/react";
+import SplitDesign from "../../components/SplitDesign";
 import SectionButton from "./components/SectionButton";
 
 export default function Page() {

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { ReactNode, useEffect } from 'react';
-import useSWR from 'swr';
-import { useGlobalStore } from './state'; // Adjust the import path as needed
-import { skillsDefinitionRepository, attributeDefinitionRepository } from '@/injection/injection';
+import { attributeDefinitionRepository, skillsDefinitionRepository } from '@/injection/injection';
 import { AttributeDefinition } from '@/models/AttributeDefinitionModels';
 import { SkillDefinition } from '@/models/SkillDefinitionModels';
+import { ReactNode, useEffect } from 'react';
+import { useGlobalStore } from './state'; // Adjust the import path as needed
+import useSWR from 'swr';
 
 
 export default function Layout(props: { children: ReactNode }) {

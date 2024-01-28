@@ -1,13 +1,12 @@
-import { useState } from "react";
-import { Key, Selection } from "@react-types/shared";
-import { useStore } from "../../../state";
 import {
-  BackgroundBenefit,
-  BackgroundBenefitType,
+    BackgroundBenefit
 } from "@/models/BackgroundDefinitionModels";
+import { Key, Selection } from "@react-types/shared";
+import { useState } from "react";
+import { useStore } from "../../../state";
+importBenefitImage from "../commons/BenefitImage";
 import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
 import ButtonLevelUpBenefit from "./ButtonLevelUpBenefit";
-import BenefitImage from "../commons/BenefitImage";
 
 export default function ChooseBenefitCell(props: {
   benefit: BackgroundBenefit;

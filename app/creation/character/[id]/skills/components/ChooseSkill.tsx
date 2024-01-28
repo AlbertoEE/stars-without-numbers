@@ -1,5 +1,5 @@
 import { SkillDefinition } from "@/models/SkillDefinitionModels";
-import { Card, CardBody, CardFooter, CheckboxGroup, Image } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { useState } from "react";
 
 export default function ChooseSkill(props: {

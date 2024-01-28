@@ -1,11 +1,11 @@
 "use client";
 
-import { Card, CardBody } from "@nextui-org/react";
-import { useStore } from "../state";
-import useSWR from "swr";
 import { AttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/AttributeScoreModifierRepository";
 import { InMemoryAttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/InMemoryAttributeScoreModifierRepository";
 import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
+import { Card, CardBody } from "@nextui-org/react";
+import { useStore } from "../state";
+import useSWR from "swr";
 
 export default function AttributeScoreModifierRow(props: {
     score: string,

@@ -2,12 +2,12 @@ import {
   BackgroundBenefit,
   BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels";
+import { rollDice } from "@/utilities/Roll";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { rollDice } from "@/utilities/Roll";
+import { useStore } from "../../../state";
 import RandomBenefitCell from "./RandomBenefitCell";
 import RandomBenefitCellResult from "./RandomBenefitCellResult";
-import { SimpleBenefit, useStore } from "../../../state";
 
 export default function RandomSkillTab(props: {
   background: BackgroundDefinition;

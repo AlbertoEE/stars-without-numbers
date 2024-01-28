@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, Divider, Image } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { useState } from "react";
 
 export default function RandomSKill() {

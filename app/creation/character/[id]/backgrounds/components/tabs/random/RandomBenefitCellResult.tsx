@@ -1,11 +1,11 @@
 import {
-  BackgroundBenefit,
-  BackgroundBenefitType,
+    BackgroundBenefit,
+    BackgroundBenefitType,
 } from "@/models/BackgroundDefinitionModels";
-import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
-import BenefitImage from "../commons/BenefitImage";
 import { useState } from "react";
 import { addBenefit, deleteBenefit, useStore } from "../../../state";
+import BenefitImage from "../commons/BenefitImage";
+import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
 
 export default function RandomBenefitCellResult(props: {
   benefit: BackgroundBenefit;

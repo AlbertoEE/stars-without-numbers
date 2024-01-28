@@ -1,9 +1,9 @@
+import { AttributeDefinition } from "@/models/AttributeDefinitionModels";
 import { BackgroundBenefit, BackgroundBenefitType, } from "@/models/BackgroundDefinitionModels";
-import { DropdownItem, Dropdown, DropdownTrigger, DropdownMenu, } from "@nextui-org/react";
+import { SkillDefinition } from "@/models/SkillDefinitionModels";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, } from "@nextui-org/react";
 import { Key, Selection } from "@react-types/shared";
 import { useGlobalStore } from "../../../../state";
-import { SkillDefinition } from "@/models/SkillDefinitionModels";
-import { AttributeDefinition } from "@/models/AttributeDefinitionModels";
 
 export default function DropDownGenericBenefit(props: {
   benefit: BackgroundBenefit;

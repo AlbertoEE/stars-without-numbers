@@ -1,11 +1,9 @@
 import {
-  BackgroundBenefit,
-  BackgroundDefinition,
+    BackgroundDefinition
 } from "@/models/BackgroundDefinitionModels";
-import PredifinedBenefitCell from "./PredifinedBenefitCell";
-import { Button } from "@nextui-org/react";
-import { SimpleBenefit, useStore } from "../../../state";
 import { useEffect } from "react";
+import { SimpleBenefit, useStore } from "../../../state";
+import PredifinedBenefitCell from "./PredifinedBenefitCell";
 
 export default function PredefinedBenefitsTab(props: {
   background: BackgroundDefinition;
