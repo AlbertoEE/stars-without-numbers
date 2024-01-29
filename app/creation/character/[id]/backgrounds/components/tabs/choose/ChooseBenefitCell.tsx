@@ -1,5 +1,5 @@
 import {
-    BackgroundBenefit
+  BackgroundBenefit
 } from "@/models/BackgroundDefinitionModels";
 import { Key, Selection } from "@react-types/shared";
 import { useState } from "react";
@@ -27,8 +27,8 @@ export default function ChooseBenefitCell(props: {
     <div className="flex flex-row items-center gap-2 select-none">
       <BenefitImage benefit={props.benefit} />
       <ButtonLevelUpBenefit
-        benefit={props.benefit}
-        chosenBenefit={selectedKeys?.currentKey}
+        backgroundBenefit={props.benefit}
+        dropdownChosenBenefit={selectedKeys?.currentKey}
       />
       {props.benefit.subtype === "specific" ? (
         <div>{props.benefit.name}</div>

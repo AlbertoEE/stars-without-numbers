@@ -15,7 +15,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "survive", subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "survive" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
         ],
@@ -46,7 +45,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "know" , subtype: "specific" },
         ],
@@ -77,7 +75,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "sneak" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
         ],
@@ -108,7 +105,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "sneak" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "sneak" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
         ],
@@ -139,7 +135,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
         ],
@@ -170,7 +165,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
         ],
@@ -201,7 +195,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "trade" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "trade" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
         ],
@@ -232,7 +225,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "lead" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "lead" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
         ],
@@ -263,7 +255,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
         ],
@@ -294,7 +285,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "exert", subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "sneak" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "survive" , subtype: "specific" },
         ],
@@ -325,7 +315,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "heal" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "heal" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "know" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
         ],
@@ -356,7 +345,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "pilot" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "pilot" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "shoot" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "trade" , subtype: "specific" },
         ],
@@ -387,7 +375,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "lead" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
         ],
@@ -418,7 +405,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
         ],
@@ -449,7 +435,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "survive" , subtype: "specific" },
         ],
@@ -480,7 +465,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "fix" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "fix" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "pilot" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "program" , subtype: "specific" },
         ],
@@ -511,7 +495,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "fix" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "fix" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
         ],
@@ -542,7 +525,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
         ],
@@ -573,7 +555,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "survive", subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "survive" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "sneak" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
         ],
@@ -604,7 +585,6 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: [{ type: BackgroundBenefitType.skill, name: "work" , subtype: "specific" }],
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "work" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
         ],

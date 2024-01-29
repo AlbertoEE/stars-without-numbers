@@ -11,15 +11,8 @@ export default function ChooseBenefitsTab(props: {
 
   return (
     <>
-      <div className="p-5">
-        Here you can pick two other skills from the table below.
-        <br />
-        <br />
-        You may pick the same skill twice if you wish, to improve its starting
-        proficiency.
-        <br />
-        <br />
-        No starting character can begin with a skill level higher than level-1.
+      <div className="p-5 whitespace-pre-line">
+        {"Here you can pick two other skills from the table below.\n\n You may pick the same skill twice if you wish, to improve its starting proficiency. No starting character can begin with a skill level higher than level-1."}
       </div>
       <div>{2 + "/2"}</div>
       <div className="flex flex-col">

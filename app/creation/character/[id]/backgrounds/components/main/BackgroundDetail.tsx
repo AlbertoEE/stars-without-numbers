@@ -1,45 +1,22 @@
-import { BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository";
-import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
-import {
-  getCharacter,
-  updateCharacter,
-} from "@/data/CharacterCRUD/CharacterCRUDLocalStorage";
-import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import { Character, Skill, Stat } from "@/models/chatacter";
 import { Button, Card, Image, Tab, Tabs } from "@nextui-org/react";
 import { Key } from "@react-types/shared";
 import { useState } from "react";
-import { SimpleBenefit, useStore } from "../../state";
-import useSWR from "swr";
+import { useStore } from "../../state";
 import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
 import PredefinedBenefitsTab from "../tabs/predifined/PredifinedBenefitsTab";
 import RandomSkillTab from "../tabs/random/RandomSkillTab";
-import { useGlobalStore } from "../../../state";
 
 export default function BackgroundDetail(props: { characterId: string }) {
   const { detailBackground, chosenBenefits, setChosenBenefits } = useStore();
 
   const [tab, setTab] = useState<Key>("backgroundDescription");
   const [tabSkills, setTabSkills] = useState<Key>("predifined");
-  const {} = useGlobalStore()
 
-  const backgroundDefinitionRepository: BackgroundDefinitionRepository =
-    new InMemoryBackgroundDefinitionRepository();
-  const { data: backgrounds } = useSWR<BackgroundDefinition[]>(
-    "testBackgroundDefinitionDetail",
-    backgroundDefinitionRepository.getBackgrounds
-  );
-
-  if (!backgrounds) return;
-
-  let background: BackgroundDefinition | undefined = backgrounds.find(
-    (background) => background.name == detailBackground
-  );
-
-  if (background == undefined) return;
+  if (detailBackground == undefined) return;
 
   function handleBenefitTabChange(key: Key) {
-    setChosenBenefits(new Array());
+    setChosenBenefits(
+      [{ name: detailBackground!.benefits.free[0].name, type: "skill" }]);
     setTabSkills(key);
   }
 
@@ -61,17 +38,17 @@ export default function BackgroundDetail(props: { characterId: string }) {
               <div className="flex flex-row">
                 <Image
                   className="ml-4 mb-4"
-                  src={`/imgs/backgrounds/${background.name}.svg`}
+                  src={`/imgs/backgrounds/${detailBackground.name}.svg`}
                   alt="me"
                   width="64"
                   height="64"
                 />
                 <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">
-                  {background.name}
+                  {detailBackground.name}
                 </h1>
               </div>
               <div className="px-3 py-4 whitespace-pre-line">
-                {background.description}
+                {detailBackground.description}
               </div>
             </div>
           </Tab>
@@ -86,13 +63,13 @@ export default function BackgroundDetail(props: { characterId: string }) {
                 onSelectionChange={handleBenefitTabChange}
               >
                 <Tab key="predifined" title="Predefined">
-                  <PredefinedBenefitsTab background={background} />
+                  <PredefinedBenefitsTab backgroundDefinition={detailBackground} />
                 </Tab>
                 <Tab key="choose" title="Choose">
-                  <ChooseBenefitsTab background={background} />
+                  <ChooseBenefitsTab background={detailBackground} />
                 </Tab>
                 <Tab key="random" title="Random">
-                  <RandomSkillTab background={background} />
+                  <RandomSkillTab background={detailBackground} />
                 </Tab>
               </Tabs>
             </div>

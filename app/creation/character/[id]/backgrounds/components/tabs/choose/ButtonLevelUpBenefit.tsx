@@ -1,18 +1,19 @@
 import { BackgroundBenefit } from "@/models/BackgroundDefinitionModels";
 import { Button } from "@nextui-org/react";
 import {
-    SimpleBenefit,
-    addBenefit,
-    deleteBenefit,
-    useStore,
+  SimpleBenefit,
+  addBenefit,
+  deleteBenefit,
+  useStore,
 } from "../../../state";
 
 export default function ButtonLevelUpBenefit(props: {
-  benefit: BackgroundBenefit;
-  chosenBenefit: string | undefined;
+  backgroundBenefit: BackgroundBenefit;
+  dropdownChosenBenefit: string | undefined;
 }) {
   const {
     chosenBenefits,
+    detailBackground,
     setChosenBenefits,
   } = useStore();
 
@@ -20,9 +21,9 @@ export default function ButtonLevelUpBenefit(props: {
     const benefitName = getBenefitName();
     const cloneChosenBenefits: SimpleBenefit[] = [...chosenBenefits];
 
-    if (sign === "plus" && chosenBenefits.length < 2) {
+    if (sign === "plus" && chosenBenefits.length < 3) {
       addBenefit(cloneChosenBenefits, benefitName, "skill");
-    } else if (sign === "minus" && chosenBenefits.length != 0) {
+    } else if (sign === "minus" && chosenBenefits.length != 1) {
       if (cloneChosenBenefits.find((e) => e.name == benefitName)) {
         deleteBenefit(cloneChosenBenefits, benefitName);
       }
@@ -32,26 +33,30 @@ export default function ButtonLevelUpBenefit(props: {
   }
 
   function getBenefitName() {
-    return props.benefit.subtype === "specific" ||
-      props.chosenBenefit == undefined
-      ? props.benefit.name
-      : props.chosenBenefit;
+    return props.backgroundBenefit.subtype === "specific" ||
+      props.dropdownChosenBenefit == undefined
+      ? props.backgroundBenefit.name
+      : props.dropdownChosenBenefit;
   }
 
   const skillLevel = chosenBenefits.filter(
     (benefit) =>
       benefit.name ==
-      (props.benefit.subtype === "specific" || props.chosenBenefit == undefined
-        ? props.benefit.name
-        : props.chosenBenefit)
+      (props.backgroundBenefit.subtype === "specific" || props.dropdownChosenBenefit == undefined
+        ? props.backgroundBenefit.name
+        : props.dropdownChosenBenefit)
   ).length - 1;
+
+  function checkFreeIsStillInChosenBenefits() {
+    return props.backgroundBenefit.name == detailBackground?.benefits.free[0].name && chosenBenefits.filter(e => e.name == props.backgroundBenefit.name).length == 1
+  }
 
   return (
     <>
       <Button
         isIconOnly
         isDisabled={
-          !props.chosenBenefit && props.benefit.subtype !== "specific"
+          (!props.dropdownChosenBenefit && props.backgroundBenefit.subtype !== "specific") || checkFreeIsStillInChosenBenefits()
         }
         className="h-4"
         onPress={() => handleChooseSkill("minus")}
@@ -65,7 +70,7 @@ export default function ButtonLevelUpBenefit(props: {
       <Button
         isIconOnly
         isDisabled={
-          !props.chosenBenefit && props.benefit.subtype !== "specific"
+          !props.dropdownChosenBenefit && props.backgroundBenefit.subtype !== "specific"
         }
         className="h-4"
         onPress={() => handleChooseSkill("plus")}

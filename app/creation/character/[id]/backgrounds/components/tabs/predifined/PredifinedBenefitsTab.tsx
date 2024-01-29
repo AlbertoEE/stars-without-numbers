@@ -1,22 +1,26 @@
 import {
-    BackgroundDefinition
+  BackgroundDefinition
 } from "@/models/BackgroundDefinitionModels";
 import { useEffect } from "react";
 import { SimpleBenefit, useStore } from "../../../state";
 import PredifinedBenefitCell from "./PredifinedBenefitCell";
 
 export default function PredefinedBenefitsTab(props: {
-  background: BackgroundDefinition;
+  backgroundDefinition: BackgroundDefinition;
 }) {
   const { detailBackground, chosenBenefits, setChosenBenefits } = useStore();
   useEffect(() => {
     const predifinedBenefits: SimpleBenefit[] = []; // Create a new Map based on the current state
 
-    props.background.benefits.predifined.forEach((benefit) => {
+    props.backgroundDefinition.benefits.predifined.forEach((benefit) => {
       if (benefit.subtype == "specific") {
         predifinedBenefits.push({ name: benefit.name, type: "skill" });
       }
     });
+
+    if (props.backgroundDefinition.benefits.free[0].subtype == "specific") {
+      predifinedBenefits.push({ name: props.backgroundDefinition.benefits.free[0].name, type: "skill" })
+    }
 
     setChosenBenefits(predifinedBenefits);
   }, [detailBackground]);
@@ -34,11 +38,16 @@ export default function PredefinedBenefitsTab(props: {
         No starting character can begin with a skill level higher than level-1.
       </div>
       <div className="flex flex-col">
-        {props.background.benefits.predifined.map((benefit) => (
-          <div className="flex-1 py-1 px-3" key={benefit.name}>
+        {props.backgroundDefinition.benefits.predifined.map((benefit) => (
+          <div className="flex-1 py-1 px-3">
             <PredifinedBenefitCell benefit={benefit} />
           </div>
         ))}
+        {
+          <div className="flex-1 py-1 px-3">
+            <PredifinedBenefitCell benefit={props.backgroundDefinition.benefits.free[0]} />
+          </div>
+        }
       </div>
       <div>
         {chosenBenefits.map(e => e.name)}

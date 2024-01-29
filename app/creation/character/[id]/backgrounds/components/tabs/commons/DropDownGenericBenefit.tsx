@@ -10,7 +10,7 @@ export default function DropDownGenericBenefit(props: {
   selectedKeys: Iterable<Key> | undefined;
   handleOnDropdownChange: (keys: Selection) => any;
 }) {
-  const { skillDefinitions, attributeDefinitions } = useGlobalStore();
+  const { skillDefinitionList: skillDefinitions, attributeDefinitionList: attributeDefinitions } = useGlobalStore();
 
   function generateList() {
     const definitions =

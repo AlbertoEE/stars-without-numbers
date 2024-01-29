@@ -1,3 +1,4 @@
+import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import { create } from "zustand";
 
 export interface SimpleBenefit {
@@ -28,14 +29,14 @@ interface MyState {
   filterBackground: string;
   filterChooseSkill: string[];
   filterRandomSkill: string[];
-  detailBackground: string;
+  detailBackground: BackgroundDefinition | undefined;
   chosenSkillsMap: Map<string, number>;
   chosenAttributesMap: Map<string, number>;
   chosenBenefits: SimpleBenefit[];
   setFilterBackground: (newFilterBackground: string) => void;
   setFilterChooseSkill: (newFilterChooseSkill: string[]) => void;
   setFilterRandomSkill: (newFilterRandomSkill: string[]) => void;
-  setDetailBackground: (newDetailBackground: string) => void;
+  setDetailBackground: (newDetailBackground: BackgroundDefinition) => void;
   setChosenSkillsMap: (newChosenSkills: Map<string, number>) => void;
   setChosenAttributesMap: (newChosenAttributes: Map<string, number>) => void;
   setChosenBenefits: (newChosenBenefits: SimpleBenefit[]) => void;
@@ -45,7 +46,7 @@ export const useStore = create<MyState>((set) => ({
   filterBackground: "",
   filterChooseSkill: [],
   filterRandomSkill: [],
-  detailBackground: "",
+  detailBackground: undefined,
   chosenSkillsMap: new Map(),
   chosenAttributesMap: new Map(),
   chosenBenefits: [],

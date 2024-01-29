@@ -66,9 +66,9 @@ export default function App() {
     return filteredValues;
   }, [filterBackground, filterChooseSkill, filterRandomSkill, backgrounds]);
 
-  function handleOnBackgroundPress(backgroundName: string) {
-    setChosenBenefits(new Array());
-    setDetailBackground(backgroundName)
+  function handleOnBackgroundPress(backgroundDefinition: BackgroundDefinition) {
+    setChosenBenefits([{name: backgroundDefinition.benefits.free[0].name, type: "skill"}]);
+    setDetailBackground(backgroundDefinition)
   }
 
   if (!backgrounds || !skills) return <></>;
@@ -129,9 +129,9 @@ export default function App() {
       <div className="h-[87%] overflow-y-auto px-5">
         {items.map((item) => (
           <Card
-            className={`mb-2 w-full ${item.name == detailBackground && 'bg-blue-500'}`}
-            isPressable={item.name != detailBackground}
-            onPress={() => handleOnBackgroundPress(item.name)}
+            className={`mb-2 w-full ${item.name == detailBackground?.name && 'bg-blue-500'}`}
+            isPressable={item.name != detailBackground?.name}
+            onPress={() => handleOnBackgroundPress(item)}
             key={item.name}
           >
             <CardBody className="text-center">

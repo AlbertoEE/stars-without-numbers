@@ -13,31 +13,34 @@ import useSWR from "swr";
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 
 export default function Layout(props: { children: ReactNode }) {
-  const { setAttributeDefinitions, setSkillDefinitions } = useGlobalStore();
-  const { data: skillDefinitions } = useSWR<SkillDefinition[]>(
+  const { setAttributeDefinitions, setSkillDefinitions, setBackgroundDefinitionList } = useGlobalStore();
+  const { data: skillDefinitionList } = useSWR<SkillDefinition[]>(
     "GlobalSkillDefinition",
     skillsDefinitionRepository.getSkills
   );
-  const { data: attributeDefinitions } = useSWR<AttributeDefinition[]>(
+  const { data: attributeDefinitionList } = useSWR<AttributeDefinition[]>(
     "GlobalAttributeDefinition",
     attributeDefinitionRepository.getAttributes
   );
 
-  const { data: backgrounds } = useSWR<BackgroundDefinition[]>(
-    "testBackgroundDefinition",
+  const { data: backgroundDefinitionList } = useSWR<BackgroundDefinition[]>(
+    "GlobalBackgroundDefinition",
     backgroundDefinitionRepository.getBackgrounds
   );
 
   useEffect(() => {
-    if (attributeDefinitions && skillDefinitions) {
-      setSkillDefinitions(skillDefinitions);
-      setAttributeDefinitions(attributeDefinitions);
+    if (attributeDefinitionList && skillDefinitionList && backgroundDefinitionList) {
+      setSkillDefinitions(skillDefinitionList);
+      setAttributeDefinitions(attributeDefinitionList);
+      setBackgroundDefinitionList(backgroundDefinitionList);
     }
   }, [
-    skillDefinitions,
-    attributeDefinitions,
+    skillDefinitionList,
+    attributeDefinitionList,
+    backgroundDefinitionList,
     setSkillDefinitions,
     setAttributeDefinitions,
+    setBackgroundDefinitionList,
   ]);
 
   return props.children;
