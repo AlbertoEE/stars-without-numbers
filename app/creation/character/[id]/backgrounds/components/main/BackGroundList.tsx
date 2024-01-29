@@ -130,7 +130,7 @@ export default function App() {
         {items.map((item) => (
           <Card
             className={`mb-2 w-full ${item.name == detailBackground && 'bg-blue-500'}`}
-            isPressable
+            isPressable={item.name != detailBackground}
             onPress={() => handleOnBackgroundPress(item.name)}
             key={item.name}
           >

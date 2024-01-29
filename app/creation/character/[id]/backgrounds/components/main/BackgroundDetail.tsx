@@ -5,21 +5,23 @@ import {
   updateCharacter,
 } from "@/data/CharacterCRUD/CharacterCRUDLocalStorage";
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import { Character } from "@/models/chatacter";
+import { Character, Skill, Stat } from "@/models/chatacter";
 import { Button, Card, Image, Tab, Tabs } from "@nextui-org/react";
 import { Key } from "@react-types/shared";
 import { useState } from "react";
-import { useStore } from "../../state";
+import { SimpleBenefit, useStore } from "../../state";
 import useSWR from "swr";
 import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
 import PredefinedBenefitsTab from "../tabs/predifined/PredifinedBenefitsTab";
 import RandomSkillTab from "../tabs/random/RandomSkillTab";
+import { useGlobalStore } from "../../../state";
 
 export default function BackgroundDetail(props: { characterId: string }) {
   const { detailBackground, chosenBenefits, setChosenBenefits } = useStore();
 
   const [tab, setTab] = useState<Key>("backgroundDescription");
   const [tabSkills, setTabSkills] = useState<Key>("predifined");
+  const {} = useGlobalStore()
 
   const backgroundDefinitionRepository: BackgroundDefinitionRepository =
     new InMemoryBackgroundDefinitionRepository();
@@ -100,18 +102,38 @@ export default function BackgroundDetail(props: { characterId: string }) {
       <Button
         className="m-5"
         onPress={() => {
-          let character: Character | undefined = getCharacter(
-            props.characterId
-          );
+          // let character: Character | undefined = getCharacter(
+          //   props.characterId
+          // );
 
-          if (character == undefined) return;
-          character!.standardSkills = [];
+          // if (character == undefined) return;
+          // character!.standardSkills = [];
 
-          // chosenSkills.forEach((level, name) => {
-          //   character!.standardSkills.push(new Skill(name, level));
-          // });
+          // function condenseList(arr: SimpleBenefit[]): Map<string, number> {
+          //   let counts = new Map<string, number>();
 
-          updateCharacter(character);
+          //   for (let item of arr) {
+          //     counts.set(item.name, (counts.get(item.name) || 0) + 1);
+          //   }
+
+          //   return counts;
+          // }
+
+          // condenseList(chosenBenefits.filter((e) => e.type == "skill")).forEach(
+          //   (value, key) => {
+          //     character!.standardSkills.push(new Skill(key, value - 1));
+          //   }
+          // );
+
+          // condenseList(chosenBenefits.filter((e) => e.type == "stat")).forEach(
+          //   (value, key: string) => {
+          //     character!.stats[key] = new Stat(
+          //       character!.stats[key].value + value
+          //     );
+          //   }
+          // );
+
+          // updateCharacter(character);
         }}
       >
         DONE

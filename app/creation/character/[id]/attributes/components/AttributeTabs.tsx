@@ -1,6 +1,6 @@
 "use client";
 
-import { Attribute, Attributes, Character } from "@/models/chatacter";
+import { Stat, Stats, Character } from "@/models/chatacter";
 import { Tab, Tabs } from "@nextui-org/react";
 import { Key } from "@react-types/shared";
 import { useEffect, useState } from "react";
@@ -52,15 +52,15 @@ export default function AttributeTabs(props: { characterId: string }) {
       const characters: Character[] = JSON.parse(charactersString);
       const characterIndex: number = characters.findIndex( (e) => e.id == props.characterId );
       if (characterIndex !== -1) {
-        const attributesStorage: Attributes = {
-          strength: new Attribute(parseInt(attributes["strength"])),
-          dexterity: new Attribute( parseInt(attributes["dexterity"]) ),
-          constitution: new Attribute( parseInt(attributes["constitution"]) ),
-          wisdom: new Attribute( parseInt(attributes["wisdom"])),
-          intelligence: new Attribute( parseInt(attributes["intelligence"]) ),
-          charisma: new Attribute( parseInt(attributes["charisma"]) ),
+        const attributesStorage: Stats = {
+          strength: new Stat(parseInt(attributes["strength"])),
+          dexterity: new Stat( parseInt(attributes["dexterity"]) ),
+          constitution: new Stat( parseInt(attributes["constitution"]) ),
+          wisdom: new Stat( parseInt(attributes["wisdom"])),
+          intelligence: new Stat( parseInt(attributes["intelligence"]) ),
+          charisma: new Stat( parseInt(attributes["charisma"]) ),
         }
-        characters[characterIndex] = { ...characters[characterIndex], attributes: attributesStorage };
+        characters[characterIndex] = { ...characters[characterIndex], stats: attributesStorage };
         localStorage.setItem("characters", JSON.stringify(characters));
       }
     }
