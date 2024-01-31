@@ -1,7 +1,10 @@
-import { BackgroundBenefit } from "@/models/BackgroundDefinitionModels";
+import {
+  BackgroundBenefit,
+  BackgroundBenefitType,
+} from "@/models/BackgroundDefinitionModels";
 import { Key, Selection } from "@react-types/shared";
 import { useState } from "react";
-import { addBenefit, deleteBenefit, useStore } from "../../../state";
+import { addBenefit, deleteBenefitByName, useStore } from "../../../state";
 import BenefitImage from "../commons/BenefitImage";
 import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
 
@@ -14,11 +17,15 @@ export default function PredifinedBenefitCell(props: {
   );
 
   function handleOnDropdownChange(keys: Selection) {
-      const chosenBenefitsClone = [...chosenBenefits];
-      deleteBenefit(chosenBenefitsClone, selectedKeys?.currentKey)
-      addBenefit(chosenBenefitsClone, keys.currentKey, "skill");
-      setSelectedKeys(keys);
-      setChosenBenefits(chosenBenefitsClone);
+    const chosenBenefitsClone = [...chosenBenefits];
+    deleteBenefitByName(chosenBenefitsClone, selectedKeys?.currentKey);
+    addBenefit(chosenBenefitsClone, {
+      name: keys.currentKey,
+      type: BackgroundBenefitType.skill,
+      subtype: "specific",
+    });
+    setSelectedKeys(keys);
+    setChosenBenefits(chosenBenefitsClone);
   }
 
   return (

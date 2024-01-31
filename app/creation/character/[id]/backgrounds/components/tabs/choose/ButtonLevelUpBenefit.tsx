@@ -1,11 +1,10 @@
-import { BackgroundBenefit } from "@/models/BackgroundDefinitionModels";
-import { Button } from "@nextui-org/react";
 import {
-  SimpleBenefit,
-  addBenefit,
-  deleteBenefit,
-  useStore,
-} from "../../../state";
+  BackgroundBenefit,
+  BackgroundBenefitType,
+} from "@/models/BackgroundDefinitionModels";
+import { Button } from "@nextui-org/react";
+import { addBenefit, deleteBenefitByName, useStore } from "../../../state";
+import { useGlobalStore } from "../../../../state";
 
 export default function ButtonLevelUpBenefit(props: {
   backgroundBenefit: BackgroundBenefit;
@@ -13,42 +12,52 @@ export default function ButtonLevelUpBenefit(props: {
 }) {
   const {
     chosenBenefits,
-    detailBackground,
+    focusedBackground: detailBackground,
     setChosenBenefits,
   } = useStore();
 
   function handleChooseSkill(sign: "plus" | "minus") {
-    const benefitName = getBenefitName();
-    const cloneChosenBenefits: SimpleBenefit[] = [...chosenBenefits];
+    const chosenBenefit: BackgroundBenefit = getChosenBenefit();
+    const cloneChosenBenefits: BackgroundBenefit[] = [...chosenBenefits];
 
     if (sign === "plus" && chosenBenefits.length < 3) {
-      addBenefit(cloneChosenBenefits, benefitName, "skill");
+      addBenefit(cloneChosenBenefits, chosenBenefit);
     } else if (sign === "minus" && chosenBenefits.length != 1) {
-      if (cloneChosenBenefits.find((e) => e.name == benefitName)) {
-        deleteBenefit(cloneChosenBenefits, benefitName);
+      if (cloneChosenBenefits.find((e) => e.name == chosenBenefit.name)) {
+        deleteBenefitByName(cloneChosenBenefits, chosenBenefit.name);
       }
     }
 
     setChosenBenefits(cloneChosenBenefits);
   }
 
-  function getBenefitName() {
+  function getChosenBenefit(): BackgroundBenefit {
     return props.backgroundBenefit.subtype === "specific" ||
       props.dropdownChosenBenefit == undefined
-      ? props.backgroundBenefit.name
-      : props.dropdownChosenBenefit;
+      ? props.backgroundBenefit
+      : {
+          type: BackgroundBenefitType.skill,
+          subtype: "specific",
+          name: props.dropdownChosenBenefit,
+        };
   }
 
-  const skillLevel = chosenBenefits.filter(
-    (benefit) =>
-      benefit.name ==
-      (props.backgroundBenefit.subtype === "specific" || props.dropdownChosenBenefit == undefined
-        ? props.backgroundBenefit.name
-        : props.dropdownChosenBenefit)
-  ).length - 1;
+  const skillLevel =
+    chosenBenefits.filter(
+      (benefit) =>
+        benefit.name ==
+        (props.backgroundBenefit.subtype === "specific" ||
+        props.dropdownChosenBenefit == undefined
+          ? props.backgroundBenefit.name
+          : props.dropdownChosenBenefit)
+    ).length - 1;
 
   function checkFreeIsStillInChosenBenefits() {
-    return props.backgroundBenefit.name == detailBackground?.benefits.free[0].name && chosenBenefits.filter(e => e.name == props.backgroundBenefit.name).length == 1
+    return (
+      props.backgroundBenefit.name == detailBackground?.benefits.free.name &&
+      chosenBenefits.filter((e) => e.name == props.backgroundBenefit.name)
+        .length == 1
+    );
   }
 
   return (
@@ -56,7 +65,9 @@ export default function ButtonLevelUpBenefit(props: {
       <Button
         isIconOnly
         isDisabled={
-          (!props.dropdownChosenBenefit && props.backgroundBenefit.subtype !== "specific") || checkFreeIsStillInChosenBenefits()
+          (!props.dropdownChosenBenefit &&
+            props.backgroundBenefit.subtype !== "specific") ||
+          checkFreeIsStillInChosenBenefits()
         }
         className="h-4"
         onPress={() => handleChooseSkill("minus")}
@@ -70,7 +81,8 @@ export default function ButtonLevelUpBenefit(props: {
       <Button
         isIconOnly
         isDisabled={
-          !props.dropdownChosenBenefit && props.backgroundBenefit.subtype !== "specific"
+          !props.dropdownChosenBenefit &&
+          props.backgroundBenefit.subtype !== "specific"
         }
         className="h-4"
         onPress={() => handleChooseSkill("plus")}

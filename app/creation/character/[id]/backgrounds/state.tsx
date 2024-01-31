@@ -1,21 +1,15 @@
-import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { BackgroundBenefit, BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import { create } from "zustand";
 
-export interface SimpleBenefit {
-  name: string;
-  type: "skill" | "stat";
-}
-
 export function addBenefit(
-  cloneChosenBenefits: SimpleBenefit[],
-  benefitName: string,
-  type: "skill" | "stat"
+  cloneChosenBenefits: BackgroundBenefit[],
+  benefit: BackgroundBenefit,
 ) {
-  cloneChosenBenefits.push({ name: benefitName, type: type });
+  cloneChosenBenefits.push(benefit);
 }
 
-export function deleteBenefit(
-  cloneChosenBenefits: SimpleBenefit[],
+export function deleteBenefitByName(
+  cloneChosenBenefits: BackgroundBenefit[],
   benefitName: string
 ) {
   const index = cloneChosenBenefits.findIndex(
@@ -29,24 +23,24 @@ interface MyState {
   filterBackground: string;
   filterChooseSkill: string[];
   filterRandomSkill: string[];
-  detailBackground: BackgroundDefinition | undefined;
+  focusedBackground: BackgroundDefinition | undefined;
   chosenSkillsMap: Map<string, number>;
   chosenAttributesMap: Map<string, number>;
-  chosenBenefits: SimpleBenefit[];
+  chosenBenefits: BackgroundBenefit[];
   setFilterBackground: (newFilterBackground: string) => void;
   setFilterChooseSkill: (newFilterChooseSkill: string[]) => void;
   setFilterRandomSkill: (newFilterRandomSkill: string[]) => void;
-  setDetailBackground: (newDetailBackground: BackgroundDefinition) => void;
+  setFocusedBackground: (newFocusedBackground: BackgroundDefinition) => void;
   setChosenSkillsMap: (newChosenSkills: Map<string, number>) => void;
   setChosenAttributesMap: (newChosenAttributes: Map<string, number>) => void;
-  setChosenBenefits: (newChosenBenefits: SimpleBenefit[]) => void;
+  setChosenBenefits: (newChosenBenefits: BackgroundBenefit[]) => void;
 }
 
 export const useStore = create<MyState>((set) => ({
   filterBackground: "",
   filterChooseSkill: [],
   filterRandomSkill: [],
-  detailBackground: undefined,
+  focusedBackground: undefined,
   chosenSkillsMap: new Map(),
   chosenAttributesMap: new Map(),
   chosenBenefits: [],
@@ -56,8 +50,8 @@ export const useStore = create<MyState>((set) => ({
     set({ filterChooseSkill: newFilterChooseSkill }),
   setFilterRandomSkill: (newFilterRandomSkill) =>
     set({ filterRandomSkill: newFilterRandomSkill }),
-  setDetailBackground: (newDetailBackground) =>
-    set({ detailBackground: newDetailBackground }),
+  setFocusedBackground: (newFocusedBackground) =>
+    set({ focusedBackground: newFocusedBackground }),
   setChosenSkillsMap: (newChosenSkills) =>
     set({ chosenSkillsMap: newChosenSkills }),
   setChosenAttributesMap: (newChosenAttributes) =>

@@ -8,7 +8,7 @@ import PredifinedBenefitCell from "./PredifinedBenefitCell";
 export default function PredefinedBenefitsTab(props: {
   backgroundDefinition: BackgroundDefinition;
 }) {
-  const { detailBackground, chosenBenefits, setChosenBenefits } = useStore();
+  const { focusedBackground: detailBackground, chosenBenefits, setChosenBenefits } = useStore();
   useEffect(() => {
     const predifinedBenefits: SimpleBenefit[] = []; // Create a new Map based on the current state
 
@@ -18,8 +18,8 @@ export default function PredefinedBenefitsTab(props: {
       }
     });
 
-    if (props.backgroundDefinition.benefits.free[0].subtype == "specific") {
-      predifinedBenefits.push({ name: props.backgroundDefinition.benefits.free[0].name, type: "skill" })
+    if (props.backgroundDefinition.benefits.free.subtype == "specific") {
+      predifinedBenefits.push({ name: props.backgroundDefinition.benefits.free.name, type: "skill" })
     }
 
     setChosenBenefits(predifinedBenefits);
@@ -45,7 +45,7 @@ export default function PredefinedBenefitsTab(props: {
         ))}
         {
           <div className="flex-1 py-1 px-3">
-            <PredifinedBenefitCell benefit={props.backgroundDefinition.benefits.free[0]} />
+            <PredifinedBenefitCell benefit={props.backgroundDefinition.benefits.free} />
           </div>
         }
       </div>

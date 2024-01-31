@@ -7,7 +7,7 @@ import PredefinedBenefitsTab from "../tabs/predifined/PredifinedBenefitsTab";
 import RandomSkillTab from "../tabs/random/RandomSkillTab";
 
 export default function BackgroundDetail(props: { characterId: string }) {
-  const { detailBackground, chosenBenefits, setChosenBenefits } = useStore();
+  const { focusedBackground: detailBackground, chosenBenefits, setChosenBenefits } = useStore();
 
   const [tab, setTab] = useState<Key>("backgroundDescription");
   const [tabSkills, setTabSkills] = useState<Key>("predifined");
@@ -16,7 +16,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
 
   function handleBenefitTabChange(key: Key) {
     setChosenBenefits(
-      [{ name: detailBackground!.benefits.free[0].name, type: "skill" }]);
+      [{ name: detailBackground!.benefits.free.name, type: "skill" }]);
     setTabSkills(key);
   }
 

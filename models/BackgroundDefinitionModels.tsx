@@ -8,7 +8,7 @@ export interface BackgroundDefinition {
 }
 
 export interface BackgroundBenefits {
-  free: BackgroundBenefit[];
+  free: BackgroundBenefit;
   predifined: BackgroundBenefit[];
   growth: BackgroundBenefit[];
   learning: BackgroundBenefit[];

@@ -1,9 +1,9 @@
 import {
-    BackgroundBenefit,
-    BackgroundBenefitType,
+  BackgroundBenefit,
+  BackgroundBenefitType,
 } from "@/models/BackgroundDefinitionModels";
 import { useState } from "react";
-import { addBenefit, deleteBenefit, useStore } from "../../../state";
+import { addBenefit, deleteBenefitByName, useStore } from "../../../state";
 import BenefitImage from "../commons/BenefitImage";
 import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
 
@@ -19,14 +19,19 @@ export default function RandomBenefitCellResult(props: {
     keys: Selection,
     selectedKeys: any,
     setSelectedKeys: any,
-    type: "skill" | "stat"
+    type: BackgroundBenefitType
   ) {
     let cloneChosenBenefits = [...chosenBenefits];
     if (selectedKeys) {
-      deleteBenefit(cloneChosenBenefits, selectedKeys.currentKey);
+      deleteBenefitByName(cloneChosenBenefits, selectedKeys.currentKey);
     }
 
-    addBenefit(cloneChosenBenefits, keys.currentKey, type);
+    addBenefit(cloneChosenBenefits, {
+      name: keys.currentKey,
+      type: type,
+      subtype: "specific",
+      amount: 1,
+    });
 
     setSelectedKeys(keys);
     setChosenBenefits(cloneChosenBenefits);
@@ -47,7 +52,7 @@ export default function RandomBenefitCellResult(props: {
                   keys,
                   selectedKeys,
                   setSelectedKeys,
-                  "stat"
+                  BackgroundBenefitType.stat
                 )
               }
             />
@@ -67,7 +72,7 @@ export default function RandomBenefitCellResult(props: {
                     keys,
                     selectedKeys,
                     setSelectedKeys,
-                    "stat"
+                    BackgroundBenefitType.stat
                   )
                 }
               />
@@ -83,7 +88,7 @@ export default function RandomBenefitCellResult(props: {
                     keys,
                     selectedKeys2,
                     setSelectedKeys2,
-                    "stat"
+                    BackgroundBenefitType.stat
                   )
                 }
               />
@@ -103,7 +108,12 @@ export default function RandomBenefitCellResult(props: {
             benefit={props.benefit}
             selectedKeys={selectedKeys3}
             handleOnDropdownChange={(keys: Selection) =>
-              handleOnDropdownChange(keys, selectedKeys3, setSelectedKeys3, "skill")
+              handleOnDropdownChange(
+                keys,
+                selectedKeys3,
+                setSelectedKeys3,
+                BackgroundBenefitType.skill
+              )
             }
           />
         )}

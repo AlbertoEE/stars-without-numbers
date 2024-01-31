@@ -1,11 +1,6 @@
 "use client";
 
-import { BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository";
-import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
-import { InMemorySkillDefinitionRepository } from "@/data/SkillDefinition/InMemorySkillDefinitionRepository";
-import { SkillDefinitionRepository } from "@/data/SkillDefinition/SkillDefinitionRepository";
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import { SkillDefinition } from "@/models/SkillDefinitionModels";
 import {
   Card, CardBody,
   Image,
@@ -15,37 +10,29 @@ import {
 import { Select, SelectItem } from "@nextui-org/select";
 import { useStore } from "../../state";
 import React from "react";
-import useSWR from "swr";
+import { useGlobalStore } from "../../../state";
 
 export default function App() {
   const {
     filterBackground,
     filterChooseSkill,
     filterRandomSkill,
-    detailBackground,
+    focusedBackground: detailBackground,
     setChosenBenefits,
     setFilterBackground,
     setFilterChooseSkill,
     setFilterRandomSkill,
-    setDetailBackground,
+    setFocusedBackground: setDetailBackground,
   } = useStore();
 
-  const skillsDefinitionRepository: SkillDefinitionRepository =
-    new InMemorySkillDefinitionRepository();
-  const { data: skills } = useSWR<SkillDefinition[]>(
-    "testSkillDefinition",
-    skillsDefinitionRepository.getSkills
-  );
-  const backgroundDefinitionRepository: BackgroundDefinitionRepository =
-    new InMemoryBackgroundDefinitionRepository();
-  const { data: backgrounds } = useSWR<BackgroundDefinition[]>(
-    "testBackgroundDefinition",
-    backgroundDefinitionRepository.getBackgrounds
-  );
+  const {
+    skillDefinitionList,
+    backgroundDefinitionList,
+  } = useGlobalStore()
 
   let items = React.useMemo(() => {
-    if (!backgrounds) return [];
-    let filteredValues = [...backgrounds];
+    if (!backgroundDefinitionList) return [];
+    let filteredValues = [...backgroundDefinitionList];
     console.log(filterBackground);
 
     if (filterBackground != "") {
@@ -64,14 +51,14 @@ export default function App() {
     }
 
     return filteredValues;
-  }, [filterBackground, filterChooseSkill, filterRandomSkill, backgrounds]);
+  }, [filterBackground, filterChooseSkill, filterRandomSkill, backgroundDefinitionList]);
 
   function handleOnBackgroundPress(backgroundDefinition: BackgroundDefinition) {
-    setChosenBenefits([{name: backgroundDefinition.benefits.free[0].name, type: "skill"}]);
+    setChosenBenefits([{name: backgroundDefinition.benefits.free.name, type: "skill"}]);
     setDetailBackground(backgroundDefinition)
   }
 
-  if (!backgrounds || !skills) return <></>;
+  if (!backgroundDefinitionList || !skillDefinitionList) return <></>;
 
   return (
     <div className="h-full">
@@ -93,7 +80,7 @@ export default function App() {
             setFilterChooseSkill(Array.from(keys).map((key) => key.toString()))
           }
         >
-          {skills.map((skill) => (
+          {skillDefinitionList.map((skill) => (
             <SelectItem key={skill.name} textValue={skill.name}>
               <div className="flex flex-row">
                 <Image
@@ -119,7 +106,7 @@ export default function App() {
             setFilterRandomSkill(Array.from(keys).map((key) => key.toString()))
           }
         >
-          {Object.entries(skills).map(([key, value]) => (
+          {Object.entries(skillDefinitionList).map(([key, value]) => (
             <SelectItem key={key} value={key}>
               {key}
             </SelectItem>
