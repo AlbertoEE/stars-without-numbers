@@ -14,6 +14,7 @@ export default function RandomMain(props: {
 }) {
   const { chosenBenefits, setChosenBenefits } = useStore();
   const [rolledDice, setRolledDice] = useState<boolean>(false);
+  const [results, setResults] = useState<BackgroundBenefit[]>([]);
   const [rolls, setRolls] = useState({
     availableRolls: 3,
     growthRolls: 0,
@@ -37,9 +38,9 @@ export default function RandomMain(props: {
       results.push(learningSkills[diceRollResult]);
     }
 
-    results.push(props.background.benefits.free)
+    results.push(props.background.benefits.free);
 
-    setChosenBenefits(results);
+    setResults(results);
   }
 
   function reset() {
@@ -158,7 +159,7 @@ export default function RandomMain(props: {
         </Card>
       )}
       <div className="flex flex-col gap-2">
-        {chosenBenefits?.map((e) => (
+        {results.map((e) => (
           <RandomBenefitCellResult benefit={e} />
         ))}
       </div>
