@@ -15,8 +15,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
   if (detailBackground == undefined) return;
 
   function handleBenefitTabChange(key: Key) {
-    setChosenBenefits(
-      [{ name: detailBackground!.benefits.free.name, type: "skill" }]);
+    setChosenBenefits([detailBackground!.benefits.free]);
     setTabSkills(key);
   }
 

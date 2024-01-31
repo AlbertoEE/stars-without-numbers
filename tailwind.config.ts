@@ -12,7 +12,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        orbitron: ['Orbitron', 'sans-serif'],
+        'roboto-mono': ['Roboto Mono', 'monospace'],
       },
     },
   },

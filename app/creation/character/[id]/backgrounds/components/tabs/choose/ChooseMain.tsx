@@ -10,7 +10,7 @@ export default function ChooseMain(props: {
 
   return (
     <>
-      <Card className="h-12 w-24 m-auto mt-2">
+      <Card className="h-12 w-24 m-auto mb-4">
         <CardBody className="text-center justify-center">
           {chosenBenefits.length - 1 + "/2"}
         </CardBody>
