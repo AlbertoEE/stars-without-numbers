@@ -73,7 +73,7 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       description:
         "Your hero's career was one of proffered pleasure..\n\nSimple prostitution is one form of this background, perhaps as an ordinary streetwalker, a part-time amateur with bills to pay, or an expensive companion to the wealthy, but other forms of satisfaction exist among the many worlds..\n\nRefined artists of conversation and grace command high fees in some societies, while others pay well for the simple company of certain men and women with the right bloodlines, special appearance, or auspicious personal qualities esteemed by their culture.",
       benefits: {
-        free: { type: BackgroundBenefitType.skill, name: "sneak" , subtype: "specific" },
+        free: { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
         predifined: [
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },

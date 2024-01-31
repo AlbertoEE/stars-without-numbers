@@ -37,7 +37,8 @@ export default function RandomMain(props: {
       let diceRollResult = rollDice(1, learningSkills.length) - 1;
       results.push(learningSkills[diceRollResult]);
     }
-
+    
+    setChosenBenefits([props.background.benefits.free]);
     results.push(props.background.benefits.free);
 
     setResults(results);
@@ -45,7 +46,7 @@ export default function RandomMain(props: {
 
   function reset() {
     setRolledDice(false);
-    setChosenBenefits([props.background.benefits.free]);
+    setResults([]);
   }
 
   function handleRollSelection(

@@ -52,12 +52,22 @@ export default function ButtonLevelUpBenefit(props: {
           : props.dropdownChosenBenefit)
     ).length - 1;
 
+  function checkBenefitCount(expectedCount: number): boolean {
+    const isBenefitNameMatch =
+      props.backgroundBenefit.name == detailBackground?.benefits.free.name;
+    const benefitCount = chosenBenefits.filter(
+      (e) => e.name == props.backgroundBenefit.name
+    ).length;
+
+    return isBenefitNameMatch && benefitCount == expectedCount;
+  }
+
   function checkFreeIsStillInChosenBenefits() {
-    return (
-      props.backgroundBenefit.name == detailBackground?.benefits.free.name &&
-      chosenBenefits.filter((e) => e.name == props.backgroundBenefit.name)
-        .length == 1
-    );
+    return checkBenefitCount(1);
+  }
+
+  function checkFreeAlreadyMaxLevel() {
+    return checkBenefitCount(2);
   }
 
   return (
@@ -81,8 +91,9 @@ export default function ButtonLevelUpBenefit(props: {
       <Button
         isIconOnly
         isDisabled={
-          !props.dropdownChosenBenefit &&
-          props.backgroundBenefit.subtype !== "specific"
+          (!props.dropdownChosenBenefit &&
+            props.backgroundBenefit.subtype !== "specific") ||
+          checkFreeAlreadyMaxLevel()
         }
         className="h-4"
         onPress={() => handleChooseSkill("plus")}

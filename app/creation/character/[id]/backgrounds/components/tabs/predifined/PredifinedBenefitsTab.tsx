@@ -1,26 +1,29 @@
 import {
-  BackgroundDefinition
+  BackgroundBenefit,
+  BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels";
 import { useEffect } from "react";
-import { SimpleBenefit, useStore } from "../../../state";
+import { useStore } from "../../../state";
 import PredifinedBenefitCell from "./PredifinedBenefitCell";
 
 export default function PredefinedBenefitsTab(props: {
   backgroundDefinition: BackgroundDefinition;
 }) {
-  const { focusedBackground: detailBackground, chosenBenefits, setChosenBenefits } = useStore();
+  const {
+    focusedBackground: detailBackground,
+    chosenBenefits,
+    setChosenBenefits,
+  } = useStore();
   useEffect(() => {
-    const predifinedBenefits: SimpleBenefit[] = []; // Create a new Map based on the current state
+    const predifinedBenefits: BackgroundBenefit[] = []; 
 
-    props.backgroundDefinition.benefits.predifined.forEach((benefit) => {
-      if (benefit.subtype == "specific") {
-        predifinedBenefits.push({ name: benefit.name, type: "skill" });
-      }
-    });
+    props.backgroundDefinition.benefits.predifined
+      .filter((benefit) => benefit.subtype == "specific")
+      .forEach((benefit) => {
+        predifinedBenefits.push(benefit);
+      });
 
-    if (props.backgroundDefinition.benefits.free.subtype == "specific") {
-      predifinedBenefits.push({ name: props.backgroundDefinition.benefits.free.name, type: "skill" })
-    }
+    predifinedBenefits.push(props.backgroundDefinition.benefits.free);
 
     setChosenBenefits(predifinedBenefits);
   }, [detailBackground]);
@@ -45,13 +48,13 @@ export default function PredefinedBenefitsTab(props: {
         ))}
         {
           <div className="flex-1 py-1 px-3">
-            <PredifinedBenefitCell benefit={props.backgroundDefinition.benefits.free} />
+            <PredifinedBenefitCell
+              benefit={props.backgroundDefinition.benefits.free}
+            />
           </div>
         }
       </div>
-      <div>
-        {chosenBenefits.map(e => e.name)}
-      </div>
+      <div>{chosenBenefits.map((e) => e.name)}</div>
     </>
   );
 }
