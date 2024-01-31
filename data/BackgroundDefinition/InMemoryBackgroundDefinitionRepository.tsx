@@ -433,9 +433,9 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       description:
         "Whatever the technology or structure of their parent world, a soldier’s work is universal.\n\nYour hero was a professional fighter, whether that took the form of a barbarian noble’s thegn, a faceless conscript in a planetary army, or an elite soldier in the service of a megacorp’s private military.\n\nWhether it was because they were on the losing side, choosing to leave the service, or being forced to flee a cause they couldn’t fight for, they now find themselves navigating a world where their most salable skill is one that can cause them a great deal of trouble.",
       benefits: {
-        free: { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+        free: { type: BackgroundBenefitType.skill, name: "exert", subtype: "specific" },
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
+          { type: BackgroundBenefitType.skill, name: "combat skill" , subtype: SkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "survive" , subtype: "specific" },
         ],
         growth: [
@@ -523,10 +523,10 @@ const backgroundDefinitions: BackgroundDefinition[] = [
       description:
         "Your hero was a bruiser.\n\nThey might have had a notional allegiance to some so-called “army”, or have been part of some crime boss’ strong-arm crew, or simply been a private contractor of misfortune for those who failed to pay up.\n\nThey might have even been a fist in a righteous cause, defending their neighborhood from hostile outsiders or serving as informal muscle for a local leader in need of protection.\n\nWhatever the details, they’ve had to move on from their old life, and their new one is likely to involve a similar application of directed force.",
       benefits: {
-        free: { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+        free: { type: BackgroundBenefitType.skill, name: "connect", subtype: "specific" },
         predifined: [
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
+          { type: BackgroundBenefitType.skill, name: "combat skill" , subtype: SkillDefinitionType.combat },
         ],
         growth: [
           { type: BackgroundBenefitType.stat, name: "any stat", amount: 1, subtype: AttributeDefinitionType.any },
