@@ -30,7 +30,6 @@ export default function AttributeCreation(props: {
                     <AttributeAvailableValues
                         value={value}
                         keyValue={key}
-                        key={key}
                         onDragEnd={handleSwapBetweenInitialAndAttributes}
                         zoneName="initial"
                         {...(props.random ? { onClick: () => rollAndApply(key) } : null)} />
@@ -38,11 +37,10 @@ export default function AttributeCreation(props: {
                 ))}
             </div>
             <div>
-                {Object.entries(attributes).map(([key, value]) => (
+                {Object.entries(attributes).map(([statName, value]) => (
                     <AttributeScoreModifierRow
                         score={value}
-                        keyValue={key.toLowerCase()}
-                        key={key.toLowerCase()}
+                        statName={statName.toLowerCase()}
                         onDragEnd={handleSwapBetweenInitialAndAttributes}
                         zoneName="attributes" />
                 ))}

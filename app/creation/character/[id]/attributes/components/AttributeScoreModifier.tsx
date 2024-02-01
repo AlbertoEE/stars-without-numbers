@@ -4,23 +4,24 @@ import { AttributeScoreModifierRepository } from "@/data/AttributeScoreModififer
 import { InMemoryAttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/InMemoryAttributeScoreModifierRepository";
 import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
 import { Card, CardBody } from "@nextui-org/react";
-import { useStore } from "../state";
+import { Image } from "@nextui-org/react";
 import useSWR from "swr";
+import { useStore } from "../state";
 
 export default function AttributeScoreModifierRow(props: {
     score: string,
-    keyValue: string,
+    statName: string,
     zoneName: string,
     onDragEnd: () => void,
 }) {
     const { setDragged, setDraggedOver, setDetail } = useStore();
-    const draggedState = { from: props.zoneName, value: props.score, key: props.keyValue }
+    const draggedState = { from: props.zoneName, value: props.score, key: props.statName }
 
 
     const attributeScoreModifierRepository: AttributeScoreModifierRepository = new InMemoryAttributeScoreModifierRepository()
     const { data } = useSWR<AttributeScoreModifier>("testAttributeScoreModifier", attributeScoreModifierRepository.getAttributeScoreModifiers)
 
-    if(!data) return;
+    if (!data) return;
 
     const modifier = data[parseInt(props.score)]
 
@@ -41,9 +42,9 @@ export default function AttributeScoreModifierRow(props: {
 
     return (
         <Card
-            onMouseOver={() => setDetail(props.keyValue)}
+            onMouseOver={() => setDetail(props.statName)}
             className="mb-2"
-            key={props.keyValue}
+            key={props.statName}
             onDragEnter={() => setDraggedOver(draggedState)}
         >
             <CardBody className="flex flex-row items-center justify-center">
@@ -51,7 +52,17 @@ export default function AttributeScoreModifierRow(props: {
                     <tbody>
                         <tr>
                             <td className="w-1/2">
-                                <div>{props.keyValue}</div>
+                                <div className="flex flex-row items-center">
+                                    <Image
+                                        loading="eager"
+                                        className="mx-4 my-0 flex-1"
+                                        src={`/imgs/attributes/${props.statName}.svg`}
+                                        alt="me"
+                                        width="34"
+                                        height="34"
+                                    />
+                                    <div>{props.statName.toUpperCase()}</div>
+                                </div>
                             </td>
                             <td className="w-1/2">
                                 <div className="flex flex-row justify-around">

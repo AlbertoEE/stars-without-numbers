@@ -12,6 +12,10 @@ export default function AttributeDescription(props: {
 }) {
     const { attributeDefinitionList } = useGlobalStore()
 
+    const attributeDefinition = attributeDefinitionList.find(attribute => attribute.name == props.attribute)
+
+    if(!attributeDefinition) return;
+
     return (
 
         <Card className="w-full h-[90%]">
