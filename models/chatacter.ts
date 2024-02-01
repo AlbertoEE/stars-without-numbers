@@ -8,7 +8,7 @@ export class Character {
   classSkillPoints = 0;
   mana: Mana;
   hitPoints: HitPoints = new HitPoints();
-  stats: Stats = new Stats();
+  stats: Attributes = new Attributes();
   standardSkills: Skill[] = [];
   class: Class[]
   savingThrows: SavingThrow[];
@@ -19,7 +19,7 @@ export class Character {
     this.id = id;
     this.name = "";
     this.hitPoints = new HitPoints();
-    this.stats = new Stats();
+    this.stats = new Attributes();
     this.standardSkills = [];
     this.level = 0;
     this.savingThrows = [
@@ -102,25 +102,25 @@ export class Skill {
   }
 }
 
-export class Stats {
-  strength: Stat;
-  dexterity: Stat;
-  constitution: Stat;
-  intelligence: Stat;
-  wisdom: Stat;
-  charisma: Stat;
+export class Attributes {
+  strength: Attribute;
+  dexterity: Attribute;
+  constitution: Attribute;
+  intelligence: Attribute;
+  wisdom: Attribute;
+  charisma: Attribute;
 
   constructor() {
-    this.strength = new Stat(0);
-    this.dexterity = new Stat(0);
-    this.constitution = new Stat(0);
-    this.intelligence = new Stat(0);
-    this.wisdom = new Stat(0);
-    this.charisma = new Stat(0);
+    this.strength = new Attribute(0);
+    this.dexterity = new Attribute(0);
+    this.constitution = new Attribute(0);
+    this.intelligence = new Attribute(0);
+    this.wisdom = new Attribute(0);
+    this.charisma = new Attribute(0);
   }
 }
 
-export class Stat {
+export class Attribute {
   value: number;
   modifier: number;
 

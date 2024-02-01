@@ -3,7 +3,7 @@ import {
 } from "@/models/BackgroundDefinitionModels";
 import { Key, Selection } from "@react-types/shared";
 import { useState } from "react";
-import { useStore } from "../../../state";
+import { deleteBenefitByName, useStore } from "../../../state";
 import BenefitImage from "../commons/BenefitImage";
 import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
 import ButtonLevelUpBenefit from "./ButtonLevelUpBenefit";
@@ -11,16 +11,16 @@ import ButtonLevelUpBenefit from "./ButtonLevelUpBenefit";
 export default function ChooseBenefitCell(props: {
   benefit: BackgroundBenefit;
 }) {
-  const { chosenSkillsMap: chosenSkills, setChosenSkillsMap: setChosenSkills } = useStore();
+  const { chosenBenefits, setChosenBenefits } = useStore();
   const [selectedKeys, setSelectedKeys] = useState<
     Iterable<Key> | undefined | "all"
   >(undefined);
 
   function handleOnDropdownChange(keys: Selection) {
-    const newChosenSkills = new Map(chosenSkills);
-    newChosenSkills.delete(selectedKeys?.currentKey);
+    const cloneChosenBenefits = [...chosenBenefits];
+    deleteBenefitByName(cloneChosenBenefits, selectedKeys?.currentKey)
     setSelectedKeys(keys);
-    setChosenSkills(newChosenSkills);
+    setChosenBenefits(cloneChosenBenefits);
   }
 
   return (

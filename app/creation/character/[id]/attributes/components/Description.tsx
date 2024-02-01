@@ -1,16 +1,13 @@
 "use client";
 
-import { attributeDefinitionRepository } from "@/injection/injection";
-import { AttributeDefinition } from "@/models/AttributeDefinitionModels";
 import { Card, CardBody, Image } from "@nextui-org/react";
-import useSWR from 'swr';
-import { useGlobalStore } from "../../state";
+import { useDefinitionData } from "../../state";
 
 
 export default function AttributeDescription(props: {
     attribute: string
 }) {
-    const { attributeDefinitionList } = useGlobalStore()
+    const { attributeDefinitionList } = useDefinitionData()
 
     const attributeDefinition = attributeDefinitionList.find(attribute => attribute.name == props.attribute)
 

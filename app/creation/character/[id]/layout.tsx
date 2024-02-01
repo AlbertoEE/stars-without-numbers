@@ -6,14 +6,14 @@ import {
   skillsDefinitionRepository,
 } from "@/injection/injection";
 import { AttributeDefinition } from "@/models/AttributeDefinitionModels";
+import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import { SkillDefinition } from "@/models/SkillDefinitionModels";
 import { ReactNode, useEffect } from "react";
-import { useGlobalStore } from "./state"; // Adjust the import path as needed
 import useSWR from "swr";
-import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { useDefinitionData } from "./state"; // Adjust the import path as needed
 
 export default function Layout(props: { children: ReactNode }) {
-  const { setAttributeDefinitions, setSkillDefinitions, setBackgroundDefinitionList } = useGlobalStore();
+  const { setAttributeDefinitions, setSkillDefinitions, setBackgroundDefinitionList } = useDefinitionData();
   const { data: skillDefinitionList } = useSWR<SkillDefinition[]>(
     "GlobalSkillDefinition",
     skillsDefinitionRepository.getSkills

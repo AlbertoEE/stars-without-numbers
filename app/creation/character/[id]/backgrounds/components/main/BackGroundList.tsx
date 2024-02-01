@@ -2,15 +2,15 @@
 
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import {
-  Card, CardBody,
-  Image,
-  Input,
-  Selection
+    Card, CardBody,
+    Image,
+    Input,
+    Selection
 } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/select";
-import { useStore } from "../../state";
 import React from "react";
-import { useGlobalStore } from "../../../state";
+import { useDefinitionData } from "../../../state";
+import { useStore } from "../../state";
 
 export default function App() {
   const {
@@ -28,7 +28,7 @@ export default function App() {
   const {
     skillDefinitionList,
     backgroundDefinitionList,
-  } = useGlobalStore()
+  } = useDefinitionData()
 
   let items = React.useMemo(() => {
     if (!backgroundDefinitionList) return [];

@@ -3,14 +3,14 @@ import { BackgroundBenefit, BackgroundBenefitType, } from "@/models/BackgroundDe
 import { SkillDefinition } from "@/models/SkillDefinitionModels";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, } from "@nextui-org/react";
 import { Key, Selection } from "@react-types/shared";
-import { useGlobalStore } from "../../../../state";
+import { useDefinitionData } from "../../../../state";
 
 export default function DropDownGenericBenefit(props: {
   benefit: BackgroundBenefit;
   selectedKeys: Iterable<Key> | undefined;
   handleOnDropdownChange: (keys: Selection) => any;
 }) {
-  const { skillDefinitionList: skillDefinitions, attributeDefinitionList: attributeDefinitions } = useGlobalStore();
+  const { skillDefinitionList: skillDefinitions, attributeDefinitionList: attributeDefinitions } = useDefinitionData();
 
   function generateList() {
     const definitions =

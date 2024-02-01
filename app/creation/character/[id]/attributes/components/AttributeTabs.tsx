@@ -1,6 +1,6 @@
 "use client";
 
-import { Stat, Stats, Character } from "@/models/chatacter";
+import { Attribute, Attributes } from "@/models/chatacter";
 import { Tab, Tabs } from "@nextui-org/react";
 import { Key } from "@react-types/shared";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import AttributeCreation from "./AttributeCreation";
 
 export default function AttributeTabs(props: { characterId: string }) {
   const [tab, setTab] = useState<Key>("standard");
-  const { attributes, setInitialValues, setAttributes } = useStore();
+  const { chosenAttributes: attributes, setInitialValues, setChosenAttributes: setAttributes } = useStore();
 
   useEffect(() => {
     switch (true) {
@@ -43,27 +43,18 @@ export default function AttributeTabs(props: { characterId: string }) {
       wisdom: "0",
       charisma: "0",
     });
-  }, [tab, setAttributes, setInitialValues]);
+  }, []);
 
   useEffect(() => {
-    const charactersString: string | null =
-      localStorage.getItem("characters");
-    if (charactersString) {
-      const characters: Character[] = JSON.parse(charactersString);
-      const characterIndex: number = characters.findIndex( (e) => e.id == props.characterId );
-      if (characterIndex !== -1) {
-        const attributesStorage: Stats = {
-          strength: new Stat(parseInt(attributes["strength"])),
-          dexterity: new Stat( parseInt(attributes["dexterity"]) ),
-          constitution: new Stat( parseInt(attributes["constitution"]) ),
-          wisdom: new Stat( parseInt(attributes["wisdom"])),
-          intelligence: new Stat( parseInt(attributes["intelligence"]) ),
-          charisma: new Stat( parseInt(attributes["charisma"]) ),
-        }
-        characters[characterIndex] = { ...characters[characterIndex], stats: attributesStorage };
-        localStorage.setItem("characters", JSON.stringify(characters));
-      }
+    const attributesStorage: Attributes = {
+      strength: new Attribute(parseInt(attributes["strength"])),
+      dexterity: new Attribute(parseInt(attributes["dexterity"])),
+      constitution: new Attribute(parseInt(attributes["constitution"])),
+      wisdom: new Attribute(parseInt(attributes["wisdom"])),
+      intelligence: new Attribute(parseInt(attributes["intelligence"])),
+      charisma: new Attribute(parseInt(attributes["charisma"])),
     }
+
   }, [attributes]);
 
   return (

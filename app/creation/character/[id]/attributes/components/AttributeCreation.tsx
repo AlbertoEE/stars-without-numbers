@@ -8,7 +8,7 @@ import AttributeScoreModifierRow from "./AttributeScoreModifier";
 export default function AttributeCreation(props: {
     random?: boolean,
 }) {
-    const { initialValues, attributes, dragged, draggedOver, setInitialValues, setAttributes } = useStore();
+    const { initialValues, chosenAttributes: attributes, dragged, draggedOver, setInitialValues, setChosenAttributes: setAttributes } = useStore();
 
     const handleSwapBetweenInitialAndAttributes = () => {
         handleSwap(dragged, draggedOver, "initial", "attributes", initialValues, attributes, setInitialValues, setAttributes)

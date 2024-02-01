@@ -78,38 +78,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
       <Button
         className="m-5"
         onPress={() => {
-          // let character: Character | undefined = getCharacter(
-          //   props.characterId
-          // );
-
-          // if (character == undefined) return;
-          // character!.standardSkills = [];
-
-          // function condenseList(arr: SimpleBenefit[]): Map<string, number> {
-          //   let counts = new Map<string, number>();
-
-          //   for (let item of arr) {
-          //     counts.set(item.name, (counts.get(item.name) || 0) + 1);
-          //   }
-
-          //   return counts;
-          // }
-
-          // condenseList(chosenBenefits.filter((e) => e.type == "skill")).forEach(
-          //   (value, key) => {
-          //     character!.standardSkills.push(new Skill(key, value - 1));
-          //   }
-          // );
-
-          // condenseList(chosenBenefits.filter((e) => e.type == "stat")).forEach(
-          //   (value, key: string) => {
-          //     character!.stats[key] = new Stat(
-          //       character!.stats[key].value + value
-          //     );
-          //   }
-          // );
-
-          // updateCharacter(character);
+          
         }}
       >
         DONE
