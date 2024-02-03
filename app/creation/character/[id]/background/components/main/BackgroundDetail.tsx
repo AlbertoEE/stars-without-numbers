@@ -23,10 +23,11 @@ export default function BackgroundDetail(props: { characterId: string }) {
     <div className="w-full h-full">
       <Tabs
         key="a"
-        aria-label="Options"
+        aria-label="Options" 
         classNames={{
-          tabList:
-            "gap-6 w-full relative rounded-none p-0 border-b border-divider",
+          base: "w-full h-[5%]",
+          tabList: "w-full gap-6 relative rounded-none p-0 border-b border-divider",
+          panel: "p-0 h-[95%]"
         }}
         selectedKey={tab}
         onSelectionChange={setTab}
