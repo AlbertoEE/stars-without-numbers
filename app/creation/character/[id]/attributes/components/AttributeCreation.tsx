@@ -24,8 +24,8 @@ export default function AttributeCreation(props: {
     }
 
     return (
-        <CardBody className="h-full flex flex-col">
-            <div className="flex flex-row items-center justify-center gap-4 pb-4 h-full flex-1">
+        <CardBody className="h-full flex flex-col gap-2">
+            <div className="flex flex-row items-center justify-center gap-4 h-full flex-1">
                 {Object.entries(initialValues).map(([key, value]) => (
                     <AttributeAvailableValues
                         value={value}

@@ -20,69 +20,59 @@ export default function BackgroundDetail(props: { characterId: string }) {
   }
 
   return (
-    <>
-      <Card className="w-full h-[90%]">
-        <Tabs
-          key="a"
-          aria-label="Options"
-          classNames={{
-            tabList:
-              "gap-6 w-full relative rounded-none p-0 border-b border-divider",
-          }}
-          selectedKey={tab}
-          onSelectionChange={setTab}
-        >
-          <Tab key="backgroundDescription" title="Description">
-            <div className="p-5">
-              <div className="flex flex-row">
-                <Image
-                  className="ml-4 mb-4"
-                  src={`/imgs/backgrounds/${detailBackground.name}.svg`}
-                  alt="me"
-                  width="64"
-                  height="64"
-                />
-                <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">
-                  {detailBackground.name}
-                </h1>
-              </div>
-              <div className="px-3 py-4 whitespace-pre-line">
-                {detailBackground.description}
-              </div>
-            </div>
-          </Tab>
-          <Tab key="skills" title="Skills">
-            <div className="w-full">
-              <Tabs
-                key="underlined"
-                variant="underlined"
-                aria-label="Options"
-                fullWidth
-                selectedKey={tabSkills}
-                onSelectionChange={handleBenefitTabChange}
-              >
-                <Tab key="predifined" title="Predefined">
-                  <PredefinedBenefitsTab backgroundDefinition={detailBackground} />
-                </Tab>
-                <Tab key="choose" title="Choose">
-                  <ChooseBenefitsTab background={detailBackground} />
-                </Tab>
-                <Tab key="random" title="Random">
-                  <RandomSkillTab background={detailBackground} />
-                </Tab>
-              </Tabs>
-            </div>
-          </Tab>
-        </Tabs>
-      </Card>
-      <Button
-        className="m-5"
-        onPress={() => {
-          
+    <div className="w-full h-full">
+      <Tabs
+        key="a"
+        aria-label="Options"
+        classNames={{
+          tabList:
+            "gap-6 w-full relative rounded-none p-0 border-b border-divider",
         }}
+        selectedKey={tab}
+        onSelectionChange={setTab}
       >
-        DONE
-      </Button>
-    </>
+        <Tab key="backgroundDescription" title="Description">
+          <div className="p-5">
+            <div className="flex flex-row">
+              <Image
+                className="ml-4 mb-4"
+                src={`/imgs/backgrounds/${detailBackground.name}.svg`}
+                alt="me"
+                width="64"
+                height="64"
+              />
+              <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">
+                {detailBackground.name}
+              </h1>
+            </div>
+            <div className="px-3 py-4 whitespace-pre-line">
+              {detailBackground.description}
+            </div>
+          </div>
+        </Tab>
+        <Tab key="skills" title="Skills">
+          <div className="w-full">
+            <Tabs
+              key="underlined"
+              variant="underlined"
+              aria-label="Options"
+              fullWidth
+              selectedKey={tabSkills}
+              onSelectionChange={handleBenefitTabChange}
+            >
+              <Tab key="predifined" title="Predefined">
+                <PredefinedBenefitsTab backgroundDefinition={detailBackground} />
+              </Tab>
+              <Tab key="choose" title="Choose">
+                <ChooseBenefitsTab background={detailBackground} />
+              </Tab>
+              <Tab key="random" title="Random">
+                <RandomSkillTab background={detailBackground} />
+              </Tab>
+            </Tabs>
+          </div>
+        </Tab>
+      </Tabs>
+    </div>
   );
 }

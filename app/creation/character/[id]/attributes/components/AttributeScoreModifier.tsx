@@ -42,8 +42,7 @@ export default function AttributeScoreModifierRow(props: {
     return (
         <Card
             onMouseOver={() => setDetail(props.statName)}
-            className="flex-1 mb-2"
-            key={props.statName}
+            className="flex-1"
             onDragEnter={() => setDraggedOver(draggedState)}
         >
             <CardBody className="flex flex-row items-center justify-center">

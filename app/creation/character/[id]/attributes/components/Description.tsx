@@ -11,11 +11,10 @@ export default function AttributeDescription(props: {
 
     const attributeDefinition = attributeDefinitionList.find(attribute => attribute.name == props.attribute)
 
-    if(!attributeDefinition) return;
+    if (!attributeDefinition) return;
 
     return (
-
-        <Card className="w-full h-[90%]">
+        <div className="w-full h-full">
             <CardBody className="p-5">
                 <div>
                     <div className="flex flex-row">
@@ -30,6 +29,6 @@ export default function AttributeDescription(props: {
                     </div>
                 </div>
             </CardBody>
-        </Card>
+        </div>
     )
 }

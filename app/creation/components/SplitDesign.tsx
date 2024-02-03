@@ -12,14 +12,8 @@ export default function SplitDesign(props: {
 
   return (
     <div className="flex flex-row items-center justify-center gap-4 w-full h-full">
-      <div className="h-[90%] w-1/2 flex flex-col items-center">
-        <Card className="h-[90%] w-full">{props.leftChild}</Card>
-        <Button className="m-5" onPress={() => router.push(path.join("/"))}>BACK</Button>
-      </div>
-
-      <div className="h-[90%] w-1/2 flex flex-col items-center">
-        {props.rightChild}
-      </div>
+      <Card className="h-[80%] w-1/2 flex flex-col items-center">{props.leftChild}</Card>
+      <Card className="h-[80%] w-1/2 flex flex-col items-center">{props.rightChild}</Card>
     </div >
   );
 }

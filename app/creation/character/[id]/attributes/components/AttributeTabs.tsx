@@ -41,23 +41,22 @@ export default function AttributeTabs(props: { characterId: string }) {
   }
 
   return (
-    <>
+    <div className="h-full w-full">
       <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">⚠️ Progress Could be lost!</ModalHeader>
               <ModalBody>
                 <p>
-                  Test
-                </p>
+                  If you change the attribute selection method you will lose the progress you have made so far. Are you sure you want to select a new method?                </p>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
                 <Button color="primary" onPress={changeTabButClean}>
-                  Action
+                  Yes
                 </Button>
               </ModalFooter>
             </>
@@ -68,19 +67,20 @@ export default function AttributeTabs(props: { characterId: string }) {
         key="a"
         aria-label="Options"
         classNames={{
-          tabList:
-            "gap-6 w-full relative rounded-none p-0 border-b border-divider",
+          base: "w-full h-[5%]",
+          tabList: "w-full gap-6 relative rounded-none p-0 border-b border-divider",
+          panel: "p-0 h-[95%]"
         }}
         selectedKey={tab}
         onSelectionChange={handleAttributeTabChange}
       >
-        <Tab key="standard" title="Standard Array" className="h-full">
+        <Tab key="standard" title="Standard Array">
           <AttributeCreation />
         </Tab>
         <Tab key="random" title="Roll Dice">
           <AttributeCreation random />
         </Tab>
       </Tabs>
-    </>
+    </div>
   );
 }

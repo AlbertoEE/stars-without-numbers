@@ -61,8 +61,8 @@ export default function App() {
   if (!backgroundDefinitionList || !skillDefinitionList) return <></>;
 
   return (
-    <div className="h-full">
-      <div className="h-[13%] flex flex-row py-5 justify-center space-between gap-3 sticky top-0 z-50">
+    <div className="h-full w-full p-5 flex flex-col gap-2">
+      <div className="flex flex-row justify-center space-between gap-3">
         <Input
           label="Background"
           placeholder="Filter by background"
@@ -113,7 +113,7 @@ export default function App() {
           ))}
         </Select>
       </div>
-      <div className="h-[87%] overflow-y-auto px-5">
+      <div className="overflow-y-auto flex-1">
         {items.map((item) => (
           <Card
             className={`mb-2 w-full ${item.name == detailBackground?.name && 'bg-blue-500'}`}

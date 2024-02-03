@@ -16,7 +16,7 @@ export default function RootLayout({
         <Providers>
           <div className="h-full min-h-screen font-roboto-mono antialiased dark bg-background flex flex-col items-center justify-center">
             <CustomNavbar />
-            <main className="container h-full mx-auto max-w-7xl pt-8 px-6 flex flex-col items-center justify-center">
+            <main className="container h-[90%] mx-auto max-w-7xl pt-8 px-6 flex flex-col items-center justify-center">
               {children}
             </main>
           </div>
