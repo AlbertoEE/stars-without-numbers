@@ -49,6 +49,22 @@ export default function Layout(props: { children: ReactNode }) {
     setBackgroundDefinitionList,
   ]);
 
+  useEffect(() => {
+    // Solo añadir el listener si `window` está definido (lado del cliente)
+    if (typeof window !== 'undefined') {
+      const handleBeforeUnload = (e) => {
+        e.preventDefault();
+        e.returnValue = ''; // Algunos navegadores requieren que `returnValue` se establezca.
+      };
+  
+      window.addEventListener('beforeunload', handleBeforeUnload);
+  
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    }
+  }, []);
+
   const handleNavigate = (end: string) => {
     const currentPath = pathName;
 
