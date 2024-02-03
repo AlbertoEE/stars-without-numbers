@@ -5,7 +5,7 @@ export interface AttributeValue {
     [key: string]: string;
 }
 
-interface MyState {
+interface BasicAttributesState {
     initialValues: AttributeValue,
     chosenAttributes: AttributeValue;
     dragged: DraggedState;
@@ -18,9 +18,9 @@ interface MyState {
     setDetail: (newDetail: string) => void;
 }
 
-export const useStore = create<MyState>(((set) => ({
+export const useStoreBasicAttributes = create<BasicAttributesState>(((set) => ({
     initialValues: { A: "14", B: "12", C: "11", D: "10", E: "9", F: "7", },
-    chosenAttributes: { Strength: "0", Dexterity: "0", Constitution: "0", Intelligence: "0", Wisdom: "0", Charisma: "0", },
+    chosenAttributes: { strength: "0", dexterity: "0", constitution: "0", intelligence: "0", wisdom: "0", charisma: "0", },
     dragged: { from: "", value: "", key: "" },
     draggedOver: { from: "", value: "", key: "" },
     detail: "",

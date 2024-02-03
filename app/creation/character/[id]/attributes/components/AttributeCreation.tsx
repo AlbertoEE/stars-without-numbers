@@ -1,14 +1,14 @@
 import { handleSwap } from "@/utilities/DragAndDrop";
 import { rollDice } from "@/utilities/Roll";
 import { CardBody } from "@nextui-org/react";
-import { useStore } from "../state";
+import { useStoreBasicAttributes } from "../state";
 import AttributeAvailableValues from "./AttributeAvailableValues";
 import AttributeScoreModifierRow from "./AttributeScoreModifier";
 
 export default function AttributeCreation(props: {
     random?: boolean,
 }) {
-    const { initialValues, chosenAttributes: attributes, dragged, draggedOver, setInitialValues, setChosenAttributes: setAttributes } = useStore();
+    const { initialValues, chosenAttributes: attributes, dragged, draggedOver, setInitialValues, setChosenAttributes: setAttributes } = useStoreBasicAttributes();
 
     const handleSwapBetweenInitialAndAttributes = () => {
         handleSwap(dragged, draggedOver, "initial", "attributes", initialValues, attributes, setInitialValues, setAttributes)
@@ -24,8 +24,8 @@ export default function AttributeCreation(props: {
     }
 
     return (
-        <CardBody>
-            <div className="flex flex-row items-center justify-center gap-4 pb-4">
+        <CardBody className="h-full flex flex-col">
+            <div className="flex flex-row items-center justify-center gap-4 pb-4 h-full flex-1">
                 {Object.entries(initialValues).map(([key, value]) => (
                     <AttributeAvailableValues
                         value={value}
@@ -36,15 +36,13 @@ export default function AttributeCreation(props: {
 
                 ))}
             </div>
-            <div>
-                {Object.entries(attributes).map(([statName, value]) => (
-                    <AttributeScoreModifierRow
-                        score={value}
-                        statName={statName.toLowerCase()}
-                        onDragEnd={handleSwapBetweenInitialAndAttributes}
-                        zoneName="attributes" />
-                ))}
-            </div>
+            {Object.entries(attributes).map(([statName, value]) => (
+                <AttributeScoreModifierRow
+                    score={value}
+                    statName={statName.toLowerCase()}
+                    onDragEnd={handleSwapBetweenInitialAndAttributes}
+                    zoneName="attributes" />
+            ))}
         </CardBody>
     )
 }

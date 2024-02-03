@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardBody } from "@nextui-org/react";
-import { useStore } from "../state";
+import { useStoreBasicAttributes } from "../state";
 
 
 export default function AttributeAvailableValues(props: {
@@ -11,12 +11,12 @@ export default function AttributeAvailableValues(props: {
     onDragEnd: () => void,
     onClick?: () => void,
 }) {
-    const { setDragged, setDraggedOver } = useStore();
+    const { setDragged, setDraggedOver } = useStoreBasicAttributes();
     const draggedState = { from: props.zoneName, value: props.value, key: props.keyValue }
 
     return (
         <Card
-            className="w-16 h-16"
+            className="w-12 h-12"
             key={props.keyValue}
             draggable
             onDragStart={() => setDragged(draggedState)}

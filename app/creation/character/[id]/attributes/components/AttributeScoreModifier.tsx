@@ -3,10 +3,9 @@
 import { AttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/AttributeScoreModifierRepository";
 import { InMemoryAttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/InMemoryAttributeScoreModifierRepository";
 import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
-import { Card, CardBody } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
+import { Card, CardBody, Image } from "@nextui-org/react";
 import useSWR from "swr";
-import { useStore } from "../state";
+import { useStoreBasicAttributes } from "../state";
 
 export default function AttributeScoreModifierRow(props: {
     score: string,
@@ -14,7 +13,7 @@ export default function AttributeScoreModifierRow(props: {
     zoneName: string,
     onDragEnd: () => void,
 }) {
-    const { setDragged, setDraggedOver, setDetail } = useStore();
+    const { setDragged, setDraggedOver, setDetail } = useStoreBasicAttributes();
     const draggedState = { from: props.zoneName, value: props.score, key: props.statName }
 
 
@@ -43,7 +42,7 @@ export default function AttributeScoreModifierRow(props: {
     return (
         <Card
             onMouseOver={() => setDetail(props.statName)}
-            className="mb-2"
+            className="flex-1 mb-2"
             key={props.statName}
             onDragEnter={() => setDraggedOver(draggedState)}
         >
@@ -67,7 +66,7 @@ export default function AttributeScoreModifierRow(props: {
                             <td className="w-1/2">
                                 <div className="flex flex-row justify-around">
                                     <Card
-                                        className="w-16 h-16"
+                                        className="w-12 h-12"
                                         draggable
                                         onDragStart={() => setDragged(draggedState)}
                                         onDragEnter={() => setDraggedOver(draggedState)}
@@ -83,7 +82,7 @@ export default function AttributeScoreModifierRow(props: {
                                 <div className="mr-6">MOD</div>
                             </td>
                             <td>
-                                <Card className={`w-16 h-16 ${color()}`}>
+                                <Card className={`w-12 h-12 ${color()}`}>
                                     <CardBody className="flex items-center justify-center text-center px-3 py-1">
                                         {modifier}
                                     </CardBody>
