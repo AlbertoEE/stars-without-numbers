@@ -1,21 +1,21 @@
 import { Button, Card, Image, Tab, Tabs } from "@nextui-org/react";
 import { Key } from "@react-types/shared";
 import { useState } from "react";
-import { useStore } from "../../state";
 import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
 import PredefinedBenefitsTab from "../tabs/predifined/PredifinedBenefitsTab";
 import RandomSkillTab from "../tabs/random/RandomSkillTab";
+import { useStoreBackgroundState } from "../../../state";
 
 export default function BackgroundDetail(props: { characterId: string }) {
-  const { focusedBackground: detailBackground, chosenBenefits, setChosenBenefits } = useStore();
+  const { focusedBackground, setChosenBenefits } = useStoreBackgroundState();
 
   const [tab, setTab] = useState<Key>("backgroundDescription");
   const [tabSkills, setTabSkills] = useState<Key>("predifined");
 
-  if (detailBackground == undefined) return;
+  if (focusedBackground == undefined) return;
 
   function handleBenefitTabChange(key: Key) {
-    setChosenBenefits([detailBackground!.benefits.free]);
+    setChosenBenefits([focusedBackground!.benefits.free]);
     setTabSkills(key);
   }
 
@@ -37,17 +37,17 @@ export default function BackgroundDetail(props: { characterId: string }) {
             <div className="flex flex-row">
               <Image
                 className="ml-4 mb-4"
-                src={`/imgs/backgrounds/${detailBackground.name}.svg`}
+                src={`/imgs/backgrounds/${focusedBackground.name}.svg`}
                 alt="me"
                 width="64"
                 height="64"
               />
               <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">
-                {detailBackground.name}
+                {focusedBackground.name}
               </h1>
             </div>
             <div className="px-3 py-4 whitespace-pre-line">
-              {detailBackground.description}
+              {focusedBackground.description}
             </div>
           </div>
         </Tab>
@@ -62,13 +62,13 @@ export default function BackgroundDetail(props: { characterId: string }) {
               onSelectionChange={handleBenefitTabChange}
             >
               <Tab key="predifined" title="Predefined">
-                <PredefinedBenefitsTab backgroundDefinition={detailBackground} />
+                <PredefinedBenefitsTab backgroundDefinition={focusedBackground} />
               </Tab>
               <Tab key="choose" title="Choose">
-                <ChooseBenefitsTab background={detailBackground} />
+                <ChooseBenefitsTab background={focusedBackground} />
               </Tab>
               <Tab key="random" title="Random">
-                <RandomSkillTab background={detailBackground} />
+                <RandomSkillTab background={focusedBackground} />
               </Tab>
             </Tabs>
           </div>

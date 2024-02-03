@@ -3,14 +3,14 @@ import {
   BackgroundBenefitType,
 } from "@/models/BackgroundDefinitionModels";
 import { useState } from "react";
-import { addBenefit, deleteBenefitByName, useStore } from "../../../state";
 import BenefitImage from "../commons/BenefitImage";
 import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
+import { addBenefit, deleteBenefitByName, useStoreBackgroundState } from "../../../../state";
 
 export default function RandomBenefitCellResult(props: {
   benefit: BackgroundBenefit;
 }) {
-  const { chosenBenefits, setChosenBenefits } = useStore();
+  const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
   const [selectedKeys, setSelectedKeys] = useState();
   const [selectedKeys2, setSelectedKeys2] = useState();
   const [selectedKeys3, setSelectedKeys3] = useState();

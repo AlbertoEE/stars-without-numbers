@@ -2,9 +2,66 @@ import { AttributeDefinition } from '@/models/AttributeDefinitionModels';
 import { BackgroundBenefit, BackgroundDefinition } from '@/models/BackgroundDefinitionModels';
 import { SkillDefinition } from '@/models/SkillDefinitionModels';
 import { Attributes } from '@/models/chatacter';
-import { create } from 'zustand';
+import { DraggedState } from "@/utilities/DragAndDrop";
+import { create } from "zustand";
 
-interface DefinitionData {
+export function addBenefit(
+    cloneChosenBenefits: BackgroundBenefit[],
+    benefit: BackgroundBenefit,
+) {
+    cloneChosenBenefits.push(benefit);
+}
+
+export function deleteBenefitByName(
+    cloneChosenBenefits: BackgroundBenefit[],
+    benefitName: string
+) {
+    const index = cloneChosenBenefits.findIndex(
+        (obj) => obj.name === benefitName
+    );
+    if (index !== -1) {
+        cloneChosenBenefits.splice(index, 1);
+    }
+}
+interface BackgroundState {
+    filterBackground: string;
+    filterChooseSkill: string[];
+    filterRandomSkill: string[];
+    focusedBackground: BackgroundDefinition | undefined;
+    chosenBenefits: BackgroundBenefit[];
+    randomResults: BackgroundBenefit[];
+    setFilterBackground: (newFilterBackground: string) => void;
+    setFilterChooseSkill: (newFilterChooseSkill: string[]) => void;
+    setFilterRandomSkill: (newFilterRandomSkill: string[]) => void;
+    setFocusedBackground: (newFocusedBackground: BackgroundDefinition) => void;
+    setChosenBenefits: (newChosenBenefits: BackgroundBenefit[]) => void;
+    setRandomResults: (newRandomResults: BackgroundBenefit[]) => void;
+}
+
+export const useStoreBackgroundState = create<BackgroundState>((set) => ({
+    filterBackground: "",
+    filterChooseSkill: [],
+    filterRandomSkill: [],
+    focusedBackground: undefined,
+    chosenSkillsMap: new Map(),
+    chosenBenefits: [],
+    randomResults: [],
+    setFilterBackground: (newFilterBackground) =>
+        set({ filterBackground: newFilterBackground }),
+    setFilterChooseSkill: (newFilterChooseSkill) =>
+        set({ filterChooseSkill: newFilterChooseSkill }),
+    setFilterRandomSkill: (newFilterRandomSkill) =>
+        set({ filterRandomSkill: newFilterRandomSkill }),
+    setFocusedBackground: (newFocusedBackground) =>
+        set({ focusedBackground: newFocusedBackground }),
+    setChosenBenefits: (newChosenBenefits) =>
+        set({ chosenBenefits: newChosenBenefits }),
+    setRandomResults: (newRandomResults) =>
+        set({ randomResults: newRandomResults }),
+}));
+
+
+interface DefinitionDataState {
     skillDefinitionList: SkillDefinition[],
     attributeDefinitionList: AttributeDefinition[],
     backgroundDefinitionList: BackgroundDefinition[],
@@ -13,7 +70,7 @@ interface DefinitionData {
     setBackgroundDefinitionList: (newBackgroundDefinitionList: BackgroundDefinition[]) => void;
 }
 
-export const useDefinitionData = create<DefinitionData>(((set) => ({
+export const useStoreDefinitionDataState = create<DefinitionDataState>(((set) => ({
     skillDefinitionList: [],
     attributeDefinitionList: [],
     backgroundDefinitionList: [],
@@ -22,16 +79,46 @@ export const useDefinitionData = create<DefinitionData>(((set) => ({
     setBackgroundDefinitionList: (newBackgroundDefinitionList) => set({ backgroundDefinitionList: newBackgroundDefinitionList }),
 })));
 
-interface PlayerDecisions {
+interface PlayerDecisionsState {
     baseAttributesDecision: Attributes,
     backgroundBenefitsDecision: BackgroundBenefit[],
     setBaseAttributesDecision: (newBaseAttributesDecision: Attributes) => void;
     setBackgroundBenefitsDecision: (newAttributeDefinitionList: BackgroundBenefit[]) => void;
 }
 
-export const useDecisions = create<PlayerDecisions>(((set) => ({
+export const useStorePlayerDecisionsState = create<PlayerDecisionsState>(((set) => ({
     baseAttributesDecision: new Attributes(),
     backgroundBenefitsDecision: [],
     setBaseAttributesDecision: (newBaseAttributesDecision) => set({ baseAttributesDecision: newBaseAttributesDecision }),
     setBackgroundBenefitsDecision: (newAttributeDefinitionList) => set({ backgroundBenefitsDecision: newAttributeDefinitionList }),
+})));
+
+export interface AttributeValue {
+    [key: string]: string;
+}
+
+interface BasicAttributesState {
+    initialValues: AttributeValue,
+    chosenAttributes: AttributeValue;
+    dragged: DraggedState;
+    draggedOver: DraggedState;
+    detail: string;
+    setInitialValues: (newAttributes: AttributeValue) => void;
+    setChosenAttributes: (newAttributes: AttributeValue) => void;
+    setDragged: (newDraggedState: DraggedState) => void;
+    setDraggedOver: (newDraggedState: DraggedState) => void;
+    setDetail: (newDetail: string) => void;
+}
+
+export const useStoreBasicAttributesState = create<BasicAttributesState>(((set) => ({
+    initialValues: { A: "14", B: "12", C: "11", D: "10", E: "9", F: "7", },
+    chosenAttributes: { strength: "0", dexterity: "0", constitution: "0", intelligence: "0", wisdom: "0", charisma: "0", },
+    dragged: { from: "", value: "", key: "" },
+    draggedOver: { from: "", value: "", key: "" },
+    detail: "",
+    setInitialValues: (newInitialValues) => set({ initialValues: newInitialValues }),
+    setChosenAttributes: (newAttributes) => set({ chosenAttributes: newAttributes }),
+    setDragged: (newDragged) => set({ dragged: newDragged }),
+    setDraggedOver: (newDraggedOver) => set({ draggedOver: newDraggedOver }),
+    setDetail: (newDetail) => set({ detail: newDetail }),
 })));

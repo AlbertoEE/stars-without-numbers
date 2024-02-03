@@ -1,14 +1,15 @@
 import { BackgroundBenefit, BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import { useEffect } from "react";
-import { useStore } from "../../../state";
 import PredifinedBenefitCell from "./PredifinedBenefitCell";
+import { useStoreBackgroundState } from "../../../../state";
 
 export default function PredifinedMain(props: { backgroundDefinition: BackgroundDefinition }) {
     const {
         focusedBackground: detailBackground,
         chosenBenefits,
         setChosenBenefits,
-    } = useStore();
+    } = useStoreBackgroundState();
+    
     useEffect(() => {
         const predifinedBenefits: BackgroundBenefit[] = [];
 

@@ -4,13 +4,13 @@ import { Attribute, Attributes } from "@/models/chatacter";
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Tab, Tabs, useDisclosure } from "@nextui-org/react";
 import { Key } from "@react-types/shared";
 import { useEffect, useState } from "react";
-import { useStoreBasicAttributes } from "../state";
 import AttributeCreation from "./AttributeCreation";
+import { useStoreBasicAttributesState } from "../../state";
 
 export default function AttributeTabs(props: { characterId: string }) {
   const [tab, setTab] = useState<Key>("standard");
   const [proposedTab, setProposedTab] = useState<Key>("");
-  const { chosenAttributes, setInitialValues, setChosenAttributes } = useStoreBasicAttributes();
+  const { chosenAttributes, setInitialValues, setChosenAttributes } = useStoreBasicAttributesState();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {

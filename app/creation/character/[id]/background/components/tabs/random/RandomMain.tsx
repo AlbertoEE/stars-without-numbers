@@ -7,14 +7,14 @@ import { Card, CardBody, Button } from "@nextui-org/react";
 import { useState } from "react";
 import RandomBenefitCell from "./RandomBenefitCell";
 import RandomBenefitCellResult from "./RandomBenefitCellResult";
-import { useStore } from "../../../state";
+import { useStoreBackgroundState } from "../../../../state";
 
 export default function RandomMain(props: {
   background: BackgroundDefinition;
 }) {
-  const { chosenBenefits, setChosenBenefits } = useStore();
+  const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
   const [rolledDice, setRolledDice] = useState<boolean>(false);
-  const [results, setResults] = useState<BackgroundBenefit[]>([]);
+  const [randomResults, setRandomResults] = useState<BackgroundBenefit[]>([]);
   const [rolls, setRolls] = useState({
     availableRolls: 3,
     growthRolls: 0,
@@ -41,12 +41,12 @@ export default function RandomMain(props: {
     setChosenBenefits([props.background.benefits.free]);
     results.push(props.background.benefits.free);
 
-    setResults(results);
+    setRandomResults(results);
   }
 
   function reset() {
     setRolledDice(false);
-    setResults([]);
+    setRandomResults([]);
   }
 
   function handleRollSelection(
@@ -160,7 +160,7 @@ export default function RandomMain(props: {
         </Card>
       )}
       <div className="flex flex-col gap-2">
-        {results.map((e) => (
+        {randomResults.map((e) => (
           <RandomBenefitCellResult benefit={e} />
         ))}
       </div>

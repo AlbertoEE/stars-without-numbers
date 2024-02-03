@@ -2,15 +2,14 @@
 
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import {
-    Card, CardBody,
-    Image,
-    Input,
-    Selection
+  Card, CardBody,
+  Image,
+  Input,
+  Selection
 } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/select";
 import React from "react";
-import { useDefinitionData } from "../../../state";
-import { useStore } from "../../state";
+import { useStoreBackgroundState, useStoreDefinitionDataState } from "../../../state";
 
 export default function App() {
   const {
@@ -23,12 +22,12 @@ export default function App() {
     setFilterChooseSkill,
     setFilterRandomSkill,
     setFocusedBackground: setDetailBackground,
-  } = useStore();
+  } = useStoreBackgroundState();
 
   const {
     skillDefinitionList,
     backgroundDefinitionList,
-  } = useDefinitionData()
+  } = useStoreDefinitionDataState()
 
   let items = React.useMemo(() => {
     if (!backgroundDefinitionList) return [];

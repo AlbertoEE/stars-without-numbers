@@ -4,14 +4,14 @@ import {
 } from "@/models/BackgroundDefinitionModels";
 import { Key, Selection } from "@react-types/shared";
 import { useState } from "react";
-import { addBenefit, deleteBenefitByName, useStore } from "../../../state";
 import BenefitImage from "../commons/BenefitImage";
 import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
+import { addBenefit, deleteBenefitByName, useStoreBackgroundState } from "../../../../state";
 
 export default function PredifinedBenefitCell(props: {
   benefit: BackgroundBenefit;
 }) {
-  const { chosenBenefits, setChosenBenefits } = useStore();
+  const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
   const [selectedKeys, setSelectedKeys] = useState<Iterable<Key> | undefined>(
     undefined
   );

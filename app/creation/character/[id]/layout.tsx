@@ -12,14 +12,14 @@ import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
 import useSWR from "swr";
 import SectionButton from "./components/SectionButton";
-import { useDefinitionData } from "./state"; // Adjust the import path as needed
+import { useStoreDefinitionDataState } from "./state"; // Adjust the import path as needed
 
 export default function Layout(props: { children: ReactNode }) {
 
   const router = useRouter();
   const pathName = usePathname();
 
-  const { setAttributeDefinitions, setSkillDefinitions, setBackgroundDefinitionList } = useDefinitionData();
+  const { setAttributeDefinitions, setSkillDefinitions, setBackgroundDefinitionList } = useStoreDefinitionDataState();
   const { data: skillDefinitionList } = useSWR<SkillDefinition[]>(
     "GlobalSkillDefinition",
     skillsDefinitionRepository.getSkills

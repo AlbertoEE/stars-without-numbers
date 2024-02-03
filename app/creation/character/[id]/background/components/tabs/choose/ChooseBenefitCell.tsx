@@ -3,15 +3,15 @@ import {
 } from "@/models/BackgroundDefinitionModels";
 import { Key, Selection } from "@react-types/shared";
 import { useState } from "react";
-import { deleteBenefitByName, useStore } from "../../../state";
 import BenefitImage from "../commons/BenefitImage";
 import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
 import ButtonLevelUpBenefit from "./ButtonLevelUpBenefit";
+import { deleteBenefitByName, useStoreBackgroundState } from "../../../../state";
 
 export default function ChooseBenefitCell(props: {
   benefit: BackgroundBenefit;
 }) {
-  const { chosenBenefits, setChosenBenefits } = useStore();
+  const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
   const [selectedKeys, setSelectedKeys] = useState<
     Iterable<Key> | undefined | "all"
   >(undefined);

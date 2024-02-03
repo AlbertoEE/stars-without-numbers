@@ -1,12 +1,12 @@
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import { useStore } from "../../../state";
 import ChooseBenefitCell from "./ChooseBenefitCell";
 import { Card, CardBody } from "@nextui-org/react";
+import { useStoreBackgroundState } from "../../../../state";
 
 export default function ChooseMain(props: {
   background: BackgroundDefinition;
 }) {
-  const { chosenBenefits } = useStore();
+  const { chosenBenefits } = useStoreBackgroundState();
 
   return (
     <>

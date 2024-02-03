@@ -5,10 +5,10 @@ import { InMemoryAttributeDefinitionRepository } from "@/data/AttributeDefinitio
 import SplitDesign from "../../../components/SplitDesign";
 import AttributeTabs from "./components/AttributeTabs";
 import AttributeDescription from "./components/Description";
-import { useStoreBasicAttributes } from "./state";
+import { useStoreBasicAttributesState } from "../state";
 
 export default function Page({ params }: { params: { id: string } }) {
-  const { detail } = useStoreBasicAttributes();
+  const { detail } = useStoreBasicAttributesState();
   const attributeDefinitionRepository: AttributeDefinitionRepository = new InMemoryAttributeDefinitionRepository();
   const attributes = attributeDefinitionRepository.getAttributes();
   const attributeDescription: string | undefined = attributes.find((attribute) => attribute.name == detail)?.description;

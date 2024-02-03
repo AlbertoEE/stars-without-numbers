@@ -3,7 +3,7 @@ import {
     BackgroundBenefitType,
 } from "@/models/BackgroundDefinitionModels";
 import { Button } from "@nextui-org/react";
-import { addBenefit, deleteBenefitByName, useStore } from "../../../state";
+import { deleteBenefitByName, useStoreBackgroundState } from "../../../../state";
 
 export default function ButtonLevelUpBenefit(props: {
   backgroundBenefit: BackgroundBenefit;
@@ -13,7 +13,7 @@ export default function ButtonLevelUpBenefit(props: {
     chosenBenefits,
     focusedBackground: detailBackground,
     setChosenBenefits,
-  } = useStore();
+  } = useStoreBackgroundState();
 
   function handleChooseSkill(sign: "plus" | "minus") {
     const chosenBenefit: BackgroundBenefit = getChosenBenefit();

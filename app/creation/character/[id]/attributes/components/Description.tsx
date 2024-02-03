@@ -1,13 +1,13 @@
 "use client";
 
-import { Card, CardBody, Image } from "@nextui-org/react";
-import { useDefinitionData } from "../../state";
+import { CardBody, Image } from "@nextui-org/react";
+import { useStoreDefinitionDataState } from "../../state";
 
 
 export default function AttributeDescription(props: {
     attribute: string
 }) {
-    const { attributeDefinitionList } = useDefinitionData()
+    const { attributeDefinitionList } = useStoreDefinitionDataState()
 
     const attributeDefinition = attributeDefinitionList.find(attribute => attribute.name == props.attribute)
 

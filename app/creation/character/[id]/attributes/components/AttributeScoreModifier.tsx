@@ -5,7 +5,7 @@ import { InMemoryAttributeScoreModifierRepository } from "@/data/AttributeScoreM
 import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
 import { Card, CardBody, Image } from "@nextui-org/react";
 import useSWR from "swr";
-import { useStoreBasicAttributes } from "../state";
+import { useStoreBasicAttributesState } from "../../state";
 
 export default function AttributeScoreModifierRow(props: {
     score: string,
@@ -13,7 +13,7 @@ export default function AttributeScoreModifierRow(props: {
     zoneName: string,
     onDragEnd: () => void,
 }) {
-    const { setDragged, setDraggedOver, setDetail } = useStoreBasicAttributes();
+    const { setDragged, setDraggedOver, setDetail } = useStoreBasicAttributesState();
     const draggedState = { from: props.zoneName, value: props.score, key: props.statName }
 
 
