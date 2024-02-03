@@ -4,6 +4,7 @@ import { SkillDefinition } from '@/models/SkillDefinitionModels';
 import { Attributes } from '@/models/chatacter';
 import { DraggedState } from "@/utilities/DragAndDrop";
 import { create } from "zustand";
+import { Key } from "@react-types/shared";
 
 export function addBenefit(
     cloneChosenBenefits: BackgroundBenefit[],
@@ -30,12 +31,16 @@ interface BackgroundState {
     focusedBackground: BackgroundDefinition | undefined;
     chosenBenefits: BackgroundBenefit[];
     randomResults: BackgroundBenefit[];
+    backgroundTab: Key;
+    backgroundBenefitTab: Key;
     setFilterBackground: (newFilterBackground: string) => void;
     setFilterChooseSkill: (newFilterChooseSkill: string[]) => void;
     setFilterRandomSkill: (newFilterRandomSkill: string[]) => void;
     setFocusedBackground: (newFocusedBackground: BackgroundDefinition) => void;
     setChosenBenefits: (newChosenBenefits: BackgroundBenefit[]) => void;
     setRandomResults: (newRandomResults: BackgroundBenefit[]) => void;
+    setBackgroundTab: (newBackgroundTab: Key) => void;
+    setBackgroundBenefitTab: (newBackgroundBenefitTab: Key) => void;
 }
 
 export const useStoreBackgroundState = create<BackgroundState>((set) => ({
@@ -46,6 +51,8 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
     chosenSkillsMap: new Map(),
     chosenBenefits: [],
     randomResults: [],
+    backgroundTab: "backgroundDescription",
+    backgroundBenefitTab: "predifined",
     setFilterBackground: (newFilterBackground) =>
         set({ filterBackground: newFilterBackground }),
     setFilterChooseSkill: (newFilterChooseSkill) =>
@@ -58,6 +65,10 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
         set({ chosenBenefits: newChosenBenefits }),
     setRandomResults: (newRandomResults) =>
         set({ randomResults: newRandomResults }),
+    setBackgroundTab: (newBackgroundTab) =>
+        set({ backgroundTab: newBackgroundTab }),
+    setBackgroundBenefitTab: (newBackgroundBenefitTab) =>
+        set({ backgroundBenefitTab: newBackgroundBenefitTab }),
 }));
 
 

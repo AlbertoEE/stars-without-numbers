@@ -7,30 +7,34 @@ import RandomSkillTab from "../tabs/random/RandomSkillTab";
 import { useStoreBackgroundState } from "../../../state";
 
 export default function BackgroundDetail(props: { characterId: string }) {
-  const { focusedBackground, setChosenBenefits } = useStoreBackgroundState();
-
-  const [tab, setTab] = useState<Key>("backgroundDescription");
-  const [tabSkills, setTabSkills] = useState<Key>("predifined");
+  const {
+    focusedBackground,
+    setChosenBenefits,
+    backgroundTab,
+    setBackgroundTab,
+    backgroundBenefitTab,
+    setBackgroundBenefitTab
+  } = useStoreBackgroundState();
 
   if (focusedBackground == undefined) return;
 
   function handleBenefitTabChange(key: Key) {
     setChosenBenefits([focusedBackground!.benefits.free]);
-    setTabSkills(key);
+    setBackgroundBenefitTab(key);
   }
 
   return (
     <div className="w-full h-full">
       <Tabs
         key="a"
-        aria-label="Options" 
+        aria-label="Options"
         classNames={{
           base: "w-full h-[5%]",
           tabList: "w-full gap-6 relative rounded-none p-0 border-b border-divider",
           panel: "p-0 h-[95%]"
         }}
-        selectedKey={tab}
-        onSelectionChange={setTab}
+        selectedKey={backgroundTab}
+        onSelectionChange={setBackgroundTab}
       >
         <Tab key="backgroundDescription" title="Description">
           <div className="p-5">
@@ -58,7 +62,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
               variant="underlined"
               aria-label="Options"
               fullWidth
-              selectedKey={tabSkills}
+              selectedKey={backgroundBenefitTab}
               onSelectionChange={handleBenefitTabChange}
             >
               <Tab key="predifined" title="Predefined">

@@ -1,6 +1,6 @@
 "use client";
 
-import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { BackgroundBenefitType, BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import {
   Card, CardBody,
   Image,
@@ -16,12 +16,12 @@ export default function App() {
     filterBackground,
     filterChooseSkill,
     filterRandomSkill,
-    focusedBackground: detailBackground,
+    focusedBackground,
     setChosenBenefits,
     setFilterBackground,
     setFilterChooseSkill,
     setFilterRandomSkill,
-    setFocusedBackground: setDetailBackground,
+    setFocusedBackground,
   } = useStoreBackgroundState();
 
   const {
@@ -53,8 +53,8 @@ export default function App() {
   }, [filterBackground, filterChooseSkill, filterRandomSkill, backgroundDefinitionList]);
 
   function handleOnBackgroundPress(backgroundDefinition: BackgroundDefinition) {
-    setChosenBenefits([{name: backgroundDefinition.benefits.free.name, type: "skill"}]);
-    setDetailBackground(backgroundDefinition)
+    setChosenBenefits([{ name: backgroundDefinition.benefits.free.name, type: BackgroundBenefitType.skill, subtype: "specific" }]);
+    setFocusedBackground(backgroundDefinition)
   }
 
   if (!backgroundDefinitionList || !skillDefinitionList) return <></>;
@@ -115,8 +115,8 @@ export default function App() {
       <div className="overflow-y-auto px-5 pb-5 flex-1">
         {items.map((item) => (
           <Card
-            className={`mb-2 w-full ${item.name == detailBackground?.name && 'bg-blue-500'}`}
-            isPressable={item.name != detailBackground?.name}
+            className={`mb-2 w-full ${item.name == focusedBackground?.name && 'bg-blue-500'}`}
+            isPressable={item.name != focusedBackground?.name}
             onPress={() => handleOnBackgroundPress(item)}
             key={item.name}
           >

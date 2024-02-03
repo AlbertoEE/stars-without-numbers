@@ -12,9 +12,8 @@ import { useStoreBackgroundState } from "../../../../state";
 export default function RandomMain(props: {
   background: BackgroundDefinition;
 }) {
-  const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
+  const { chosenBenefits, setChosenBenefits, randomResults, setRandomResults } = useStoreBackgroundState();
   const [rolledDice, setRolledDice] = useState<boolean>(false);
-  const [randomResults, setRandomResults] = useState<BackgroundBenefit[]>([]);
   const [rolls, setRolls] = useState({
     availableRolls: 3,
     growthRolls: 0,
@@ -37,7 +36,7 @@ export default function RandomMain(props: {
       let diceRollResult = rollDice(1, learningSkills.length) - 1;
       results.push(learningSkills[diceRollResult]);
     }
-    
+
     setChosenBenefits([props.background.benefits.free]);
     results.push(props.background.benefits.free);
 
