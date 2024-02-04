@@ -25,7 +25,7 @@ export default function DropDownGenericBenefit(props: {
   }
 
   function renderDropdown() {
-    const dropdownLabel = props.selectedKeys
+    const dropdownLabel = props.selectedKeys && props.selectedKeys.size > 0
       ? `${props.selectedKeys.currentKey} ⚙️`
       : `${props.benefit.name} ⚙️`;
 

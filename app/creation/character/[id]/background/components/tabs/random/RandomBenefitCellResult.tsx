@@ -2,36 +2,61 @@ import {
   BackgroundBenefit,
   BackgroundBenefitType,
 } from "@/models/BackgroundDefinitionModels";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BenefitImage from "../commons/BenefitImage";
 import DropDownGenericBenefit from "../commons/DropDownGenericBenefit";
-import { addBenefit, deleteBenefitByName, useStoreBackgroundState } from "../../../../state";
+import {
+  addBenefit,
+  deleteBenefitByName,
+  useStoreBackgroundState,
+} from "../../../../state";
+import { Key, Selection } from "@react-types/shared";
 
 export default function RandomBenefitCellResult(props: {
   benefit: BackgroundBenefit;
 }) {
   const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
-  const [selectedKeys, setSelectedKeys] = useState();
-  const [selectedKeys2, setSelectedKeys2] = useState();
-  const [selectedKeys3, setSelectedKeys3] = useState();
+  const [selectedKeys, setSelectedKeys] = useState<Set<Key>>(new Set<Key>());
+  const [selectedKeys2, setSelectedKeys2] = useState<Set<Key>>(new Set<Key>());
+  const [selectedKeys3, setSelectedKeys3] = useState<Set<Key>>(new Set<Key>());
+
+  useEffect(() => {
+    if (props.benefit.subtype != "specific") {
+      if (props.benefit.selected) {
+        if (props.benefit.selected[0])
+          setSelectedKeys(prev => prev.add(props.benefit.selected[0].name));
+        if (props.benefit.selected[1])
+          setSelectedKeys2(prev => prev.add(props.benefit.selected[1].name));
+      }
+    }
+  }, []);
 
   function handleOnDropdownChange(
-    keys: Selection,
+    keys: Set<Key>,
     selectedKeys: any,
     setSelectedKeys: any,
     type: BackgroundBenefitType
   ) {
     let cloneChosenBenefits = [...chosenBenefits];
-    if (selectedKeys) {
-      deleteBenefitByName(cloneChosenBenefits, selectedKeys.currentKey);
-    }
 
-    addBenefit(cloneChosenBenefits, {
-      name: keys.currentKey,
-      type: type,
-      subtype: "specific",
-      amount: 1,
-    });
+    let foundBenefitIndex = cloneChosenBenefits.findIndex(
+      (benefit) => JSON.stringify(benefit) == JSON.stringify(props.benefit)
+    );
+
+    if (foundBenefitIndex !== -1) {
+      let foundBenefit = cloneChosenBenefits[foundBenefitIndex];
+
+      foundBenefit.selected = foundBenefit.selected || [];
+
+      selectedKeys &&
+        deleteBenefitByName(foundBenefit.selected, selectedKeys.currentKey);
+
+      addBenefit(foundBenefit.selected, {
+        name: keys.currentKey,
+        type: type,
+        subtype: "specific",
+      });
+    }
 
     setSelectedKeys(keys);
     setChosenBenefits(cloneChosenBenefits);

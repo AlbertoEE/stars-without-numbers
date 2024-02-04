@@ -15,8 +15,6 @@ export default function RandomMain(props: {
   const {
     chosenBenefits,
     setChosenBenefits,
-    randomResults,
-    setRandomResults,
     rolledDice,
     setRolledDice,
   } = useStoreBackgroundState();
@@ -47,12 +45,12 @@ export default function RandomMain(props: {
     setChosenBenefits([props.background.benefits.free]);
     results.push(props.background.benefits.free);
 
-    setRandomResults(results);
+    setChosenBenefits(results);
   }
 
   function reset() {
     setRolledDice(false);
-    setRandomResults([]);
+    //setChosenBenefits([]);
   }
 
   function handleRollSelection(
@@ -159,11 +157,11 @@ export default function RandomMain(props: {
         </Card>
       )}
       <div className="flex flex-col gap-2">
-        {randomResults.map((e) => (
+        {chosenBenefits.map((e) => (
           <RandomBenefitCellResult benefit={e} />
         ))}
       </div>
-      <div>{chosenBenefits.map((e) => e.name)}</div>
+      <div>{JSON.stringify(chosenBenefits)}</div>
     </>
   );
 }

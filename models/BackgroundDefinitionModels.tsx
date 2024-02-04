@@ -19,6 +19,7 @@ export interface BackgroundBenefit {
   subtype: SkillDefinitionType | AttributeDefinitionType | "specific"
   name: string;
   amount?: number;
+  selected?: BackgroundBenefit[];
 }
 
 export enum BackgroundBenefitType {
