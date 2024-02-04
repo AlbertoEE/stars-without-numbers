@@ -12,8 +12,15 @@ import { useStoreBackgroundState } from "../../../../state";
 export default function RandomMain(props: {
   background: BackgroundDefinition;
 }) {
-  const { chosenBenefits, setChosenBenefits, randomResults, setRandomResults } = useStoreBackgroundState();
-  const [rolledDice, setRolledDice] = useState<boolean>(false);
+  const {
+    chosenBenefits,
+    setChosenBenefits,
+    randomResults,
+    setRandomResults,
+    rolledDice,
+    setRolledDice,
+  } = useStoreBackgroundState();
+
   const [rolls, setRolls] = useState({
     availableRolls: 3,
     growthRolls: 0,
@@ -80,13 +87,6 @@ export default function RandomMain(props: {
 
   return (
     <>
-      <div className="flex flex-row">
-        {rolledDice && (
-          <Card className="h-12 w-24 m-auto mb-2" isPressable onPress={reset}>
-            <CardBody className="text-center justify-center">Reset ↻</CardBody>
-          </Card>
-        )}
-      </div>
       {rolledDice == false && (
         <div className="flex flex-row justify-around">
           <Card className="p-5 w-[43%]">

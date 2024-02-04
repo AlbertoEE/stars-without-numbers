@@ -33,6 +33,7 @@ interface BackgroundState {
     randomResults: BackgroundBenefit[];
     backgroundTab: Key;
     backgroundBenefitTab: Key;
+    rolledDice: boolean;
     setFilterBackground: (newFilterBackground: string) => void;
     setFilterChooseSkill: (newFilterChooseSkill: string[]) => void;
     setFilterRandomSkill: (newFilterRandomSkill: string[]) => void;
@@ -41,6 +42,7 @@ interface BackgroundState {
     setRandomResults: (newRandomResults: BackgroundBenefit[]) => void;
     setBackgroundTab: (newBackgroundTab: Key) => void;
     setBackgroundBenefitTab: (newBackgroundBenefitTab: Key) => void;
+    setRolledDice: (newRolledDice: boolean) => void;
 }
 
 export const useStoreBackgroundState = create<BackgroundState>((set) => ({
@@ -53,6 +55,7 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
     randomResults: [],
     backgroundTab: "backgroundDescription",
     backgroundBenefitTab: "predifined",
+    rolledDice: false,
     setFilterBackground: (newFilterBackground) =>
         set({ filterBackground: newFilterBackground }),
     setFilterChooseSkill: (newFilterChooseSkill) =>
@@ -69,6 +72,8 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
         set({ backgroundTab: newBackgroundTab }),
     setBackgroundBenefitTab: (newBackgroundBenefitTab) =>
         set({ backgroundBenefitTab: newBackgroundBenefitTab }),
+    setRolledDice: (newRolledDice) =>
+        set({ rolledDice: newRolledDice }),
 }));
 
 
