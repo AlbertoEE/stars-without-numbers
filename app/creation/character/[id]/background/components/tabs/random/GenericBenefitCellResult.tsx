@@ -18,33 +18,10 @@ export default function GenericBenefitCellResult(props: {
 }) {
   const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
 
-  const [keysDropdownFirst, setKeysDropdownFirst] = useState<Set<Key>>(
-    new Set<Key>()
-  );
-  const [keysDropdownSecond, setKeysDropdownSecond] = useState<Set<Key>>(
-    new Set<Key>()
-  );
-
-  useEffect(() => {
-    if (props.benefit.subtype != "specific") {
-      props.benefit.selected?.get(0) &&
-        setKeysDropdownFirst((prev) =>
-        prev.add(props.benefit.selected!.get(0)!.name)
-        );
-      props.benefit.selected?.get(1) &&
-        setKeysDropdownSecond((prev) =>
-          prev.add(props.benefit.selected!.get(1)!.name)
-        );
-    }
-  }, []);
-
   function handleOnDropdownChange(
     keys: Selection,
-    setDropDownKeys: any,
-    type: BackgroundBenefitType,
     option: number,
   ) {
-    if (keys == "all") return;
 
     let cloneChosenBenefits = [...chosenBenefits];
 
@@ -54,19 +31,17 @@ export default function GenericBenefitCellResult(props: {
 
     foundBenefit.selected.set(option, {
       name: keys.currentKey,
-      type: type,
+      type: props.benefit.type,
       subtype: "specific",
     })
 
-    setDropDownKeys(keys);
     setChosenBenefits(cloneChosenBenefits);
   }
 
   function renderGenericBenefitRow(
-    selectedKeys: any,
-    setSelectedKeys: any,
     option: number,
   ) {
+    props.benefit
     return (
       <div className="flex flex-row">
         <BenefitImage benefit={props.benefit} />
@@ -74,13 +49,11 @@ export default function GenericBenefitCellResult(props: {
         <DropDownGenericBenefit
           dropDownName={props.benefit.selected?.get(option)?.name}
           benefit={props.benefit}
-          selectedKeys={selectedKeys}
+          selectedKeys={props.benefit.selected ? new Set<Key>(props.benefit.selected.get(option)?.name) : new Set<Key>()}
           handleOnDropdownChange={(keys: Selection) =>
             handleOnDropdownChange(
               keys,
-              setSelectedKeys,
-              props.benefit.type,
-              option
+              option,
             )
           }
         />
@@ -88,11 +61,13 @@ export default function GenericBenefitCellResult(props: {
     );
   }
 
-  return (
-    <>
-      {renderGenericBenefitRow(keysDropdownFirst, setKeysDropdownFirst, 0)}
-      {props.benefit.amount == 2 &&
-        renderGenericBenefitRow(keysDropdownSecond, setKeysDropdownSecond, 1)}
-    </>
-  );
+  function render() {
+    let rows = []
+    for(let i = 0; i < props.benefit.amount!; i++) {
+      rows.push(renderGenericBenefitRow(i))
+    }
+    return rows;
+  }
+
+  return render();
 }
