@@ -1,16 +1,28 @@
 import { AttributeDefinition } from "@/models/AttributeDefinitionModels";
-import { BackgroundBenefit, BackgroundBenefitType, } from "@/models/BackgroundDefinitionModels";
+import {
+  BackgroundBenefit,
+  BackgroundBenefitType,
+} from "@/models/BackgroundDefinitionModels";
 import { SkillDefinition } from "@/models/SkillDefinitionModels";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, } from "@nextui-org/react";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/react";
 import { Key, Selection } from "@react-types/shared";
 import { useStoreDefinitionDataState } from "../../../../state";
 
 export default function DropDownGenericBenefit(props: {
   benefit: BackgroundBenefit;
   selectedKeys: Iterable<Key> | undefined;
+  dropDownName?: string;
   handleOnDropdownChange: (keys: Selection) => any;
 }) {
-  const { skillDefinitionList: skillDefinitions, attributeDefinitionList: attributeDefinitions } = useStoreDefinitionDataState();
+  const {
+    skillDefinitionList: skillDefinitions,
+    attributeDefinitionList: attributeDefinitions,
+  } = useStoreDefinitionDataState();
 
   function generateList() {
     const definitions =
@@ -25,7 +37,9 @@ export default function DropDownGenericBenefit(props: {
   }
 
   function renderDropdown() {
-    const dropdownLabel = props.selectedKeys && props.selectedKeys.size > 0
+    const dropdownLabel = props.dropDownName
+      ? props.dropDownName
+      : props.selectedKeys && props.selectedKeys.size > 0
       ? `${props.selectedKeys.currentKey} ⚙️`
       : `${props.benefit.name} ⚙️`;
 

@@ -6,18 +6,15 @@ import { rollDice } from "@/utilities/Roll";
 import { Card, CardBody, Button } from "@nextui-org/react";
 import { useState } from "react";
 import RandomBenefitCell from "./RandomBenefitCell";
-import RandomBenefitCellResult from "./RandomBenefitCellResult";
 import { useStoreBackgroundState } from "../../../../state";
+import RandomGenericBenefitCellResult from "./GenericBenefitCellResult";
+import BenefitImage from "../commons/BenefitImage";
 
 export default function RandomMain(props: {
   background: BackgroundDefinition;
 }) {
-  const {
-    chosenBenefits,
-    setChosenBenefits,
-    rolledDice,
-    setRolledDice,
-  } = useStoreBackgroundState();
+  const { chosenBenefits, setChosenBenefits, rolledDice, setRolledDice } =
+    useStoreBackgroundState();
 
   const [rolls, setRolls] = useState({
     availableRolls: 3,
@@ -35,15 +32,15 @@ export default function RandomMain(props: {
 
     for (let i = 0; i < rolls.growthRolls; i++) {
       let diceRollResult = rollDice(1, growthSkills.length) - 1;
-      results.push(growthSkills[diceRollResult]);
+      results.push({ ...growthSkills[diceRollResult] });
     }
     for (let i = 0; i < rolls.learningRolls; i++) {
       let diceRollResult = rollDice(1, learningSkills.length) - 1;
-      results.push(learningSkills[diceRollResult]);
+      results.push({ ...learningSkills[diceRollResult] });
     }
 
     setChosenBenefits([props.background.benefits.free]);
-    results.push(props.background.benefits.free);
+    results.push({ ...props.background.benefits.free });
 
     setChosenBenefits(results);
   }
@@ -157,11 +154,20 @@ export default function RandomMain(props: {
         </Card>
       )}
       <div className="flex flex-col gap-2">
-        {chosenBenefits.map((e) => (
-          <RandomBenefitCellResult benefit={e} />
-        ))}
+        {chosenBenefits.map((e: BackgroundBenefit, i) =>
+          e.subtype !== "specific" ? (
+            <RandomGenericBenefitCellResult benefit={e} index={i} />
+          ) : (
+            <div className="flex flex-row">
+              <BenefitImage benefit={e} />
+              <div>{e.name}</div>
+            </div>
+          )
+        )}
       </div>
-      <div>{JSON.stringify(chosenBenefits)}</div>
+      <div className="h-64 overflow-y-auto">
+        <pre>{JSON.stringify(chosenBenefits, null, 4)}</pre>
+      </div>
     </>
   );
 }

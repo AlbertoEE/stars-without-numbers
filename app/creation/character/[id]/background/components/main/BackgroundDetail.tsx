@@ -1,4 +1,16 @@
-import { Button, Card, Image, Tab, Tabs } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  Image,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Tab,
+  Tabs,
+  useDisclosure,
+} from "@nextui-org/react";
 import { Key } from "@react-types/shared";
 import { useState } from "react";
 import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
@@ -13,25 +25,72 @@ export default function BackgroundDetail(props: { characterId: string }) {
     backgroundTab,
     setBackgroundTab,
     backgroundBenefitTab,
-    setBackgroundBenefitTab
+    setBackgroundBenefitTab,
+    setRolledDice,
   } = useStoreBackgroundState();
+
+  const [proposedTab, setProposedTab] = useState<Key>("");
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   if (focusedBackground == undefined) return;
 
   function handleBenefitTabChange(key: Key) {
+    if (key == backgroundBenefitTab) return;
+
+    if (backgroundBenefitTab == "predifined") {
+      setChosenBenefits([focusedBackground!.benefits.free]);
+      setBackgroundBenefitTab(key);
+      return;
+    }
+
+    setProposedTab(key);
+    onOpen();
+  }
+
+  function changeTabButClean() {
+    setRolledDice(false);
     setChosenBenefits([focusedBackground!.benefits.free]);
-    setBackgroundBenefitTab(key);
+    setBackgroundBenefitTab(proposedTab);
+    onClose();
   }
 
   return (
     <div className="w-full h-full">
+      <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                ⚠️ Progress Could be lost!
+              </ModalHeader>
+              <ModalBody>
+                <p>
+                  If you change the background benefit selection method you will
+                  lose the progress you have made so far. Are you sure you want
+                  to select a new method?{" "}
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={changeTabButClean}>
+                  Yes
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
       <Tabs
         key="a"
         aria-label="Options"
         classNames={{
           base: "w-full h-[5%]",
-          tabList: "w-full gap-6 relative rounded-none p-0 border-b border-divider",
-          panel: "p-0 h-[95%]"
+          tabList:
+            "w-full gap-6 relative rounded-none p-0 border-b border-divider",
+          panel: "p-0 h-[95%]",
         }}
         selectedKey={backgroundTab}
         onSelectionChange={setBackgroundTab}
@@ -66,7 +125,9 @@ export default function BackgroundDetail(props: { characterId: string }) {
               onSelectionChange={handleBenefitTabChange}
             >
               <Tab key="predifined" title="Predefined">
-                <PredefinedBenefitsTab backgroundDefinition={focusedBackground} />
+                <PredefinedBenefitsTab
+                  backgroundDefinition={focusedBackground}
+                />
               </Tab>
               <Tab key="choose" title="Choose">
                 <ChooseBenefitsTab background={focusedBackground} />
