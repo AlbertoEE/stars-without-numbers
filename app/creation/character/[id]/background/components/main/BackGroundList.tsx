@@ -5,11 +5,13 @@ import {
   Card, CardBody,
   Image,
   Input,
-  Selection
+  Selection,
+  useDisclosure
 } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/select";
-import React from "react";
+import React, { useState } from "react";
 import { useStoreBackgroundState, useStoreDefinitionDataState } from "../../../state";
+import ModalWarning from "@/app/creation/components/ModalWarning";
 
 export default function App() {
   const {
@@ -23,6 +25,10 @@ export default function App() {
     setFilterRandomSkill,
     setFocusedBackground,
   } = useStoreBackgroundState();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [proposedBackground, setProposedBackground] = useState<BackgroundDefinition>();
 
   const {
     skillDefinitionList,
@@ -53,14 +59,33 @@ export default function App() {
   }, [filterBackground, filterChooseSkill, filterRandomSkill, backgroundDefinitionList]);
 
   function handleOnBackgroundPress(backgroundDefinition: BackgroundDefinition) {
-    setChosenBenefits([{ name: backgroundDefinition.benefits.free.name, type: BackgroundBenefitType.skill, subtype: "specific" }]);
-    setFocusedBackground(backgroundDefinition)
+    setProposedBackground(backgroundDefinition)
+    onOpen()
+  }
+
+  function onAcceptModal() {
+    setChosenBenefits(
+      [
+        {
+          name: proposedBackground!.benefits.free.name,
+          type: BackgroundBenefitType.skill,
+          subtype: "specific"
+        }
+      ]);
+    setFocusedBackground(proposedBackground!)
+    onClose()
   }
 
   if (!backgroundDefinitionList || !skillDefinitionList) return <></>;
 
   return (
     <div className="h-full w-full flex flex-col">
+      <ModalWarning
+        isOpen={isOpen}
+        onClose={onClose}
+        onAccept={onAcceptModal}
+        warning={"If you change the background you will lose your progress. Are you sure?"}
+      />
       <div className="flex flex-row justify-center space-between gap-3 p-5">
         <Input
           label="Background"

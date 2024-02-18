@@ -3,12 +3,11 @@ import {
   BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels";
 import { rollDice } from "@/utilities/Roll";
-import { Card, CardBody, Button } from "@nextui-org/react";
+import { Button, Card, CardBody } from "@nextui-org/react";
 import { useState } from "react";
-import RandomBenefitCell from "./RandomBenefitCell";
 import { useStoreBackgroundState } from "../../../../state";
-import RandomGenericBenefitCellResult from "./GenericBenefitCellResult";
-import BenefitImage from "../commons/BenefitImage";
+import SpecificBenefitCell from "./SpecificBenefitCell";
+import GenericBenefitCellResult from "./GenericBenefitCellResult";
 
 export default function RandomMain(props: {
   background: BackgroundDefinition;
@@ -43,11 +42,6 @@ export default function RandomMain(props: {
     results.push({ ...props.background.benefits.free });
 
     setChosenBenefits(results);
-  }
-
-  function reset() {
-    setRolledDice(false);
-    //setChosenBenefits([]);
   }
 
   function handleRollSelection(
@@ -108,7 +102,7 @@ export default function RandomMain(props: {
             </div>
             {props.background.benefits.learning.map((benefit) => (
               <div className="flex-1 py-1 px-3">
-                <RandomBenefitCell benefit={benefit} />
+                <SpecificBenefitCell benefit={benefit} />
               </div>
             ))}
           </Card>
@@ -136,7 +130,7 @@ export default function RandomMain(props: {
             </div>
             {props.background.benefits.growth.map((benefit) => (
               <div className="py-1 px-3">
-                <RandomBenefitCell benefit={benefit} />
+                <SpecificBenefitCell benefit={benefit} />
               </div>
             ))}
           </Card>
@@ -155,14 +149,7 @@ export default function RandomMain(props: {
       )}
       <div className="flex flex-col gap-2">
         {chosenBenefits.map((e: BackgroundBenefit, i) =>
-          e.subtype !== "specific" ? (
-            <RandomGenericBenefitCellResult benefit={e} index={i} />
-          ) : (
-            <div className="flex flex-row">
-              <BenefitImage benefit={e} />
-              <div>{e.name}</div>
-            </div>
-          )
+          e.subtype !== "specific" ? (<GenericBenefitCellResult benefit={e} index={i} />) : (<SpecificBenefitCell benefit={e} />)
         )}
       </div>
       <div className="h-64 overflow-y-auto">

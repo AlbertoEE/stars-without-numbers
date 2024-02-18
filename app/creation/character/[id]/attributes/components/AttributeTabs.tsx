@@ -8,9 +8,8 @@ import AttributeCreation from "./AttributeCreation";
 import { useStoreBasicAttributesState } from "../../state";
 
 export default function AttributeTabs(props: { characterId: string }) {
-  const [tab, setTab] = useState<Key>("standard");
   const [proposedTab, setProposedTab] = useState<Key>("");
-  const { chosenAttributes, setInitialValues, setChosenAttributes } = useStoreBasicAttributesState();
+  const { chosenAttributes, setInitialValues, setChosenAttributes, attributeTab, setAttributeTab } = useStoreBasicAttributesState();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
@@ -20,7 +19,7 @@ export default function AttributeTabs(props: { characterId: string }) {
 
 
   function handleAttributeTabChange(key: Key) {
-    if (key == tab) return;
+    if (key == attributeTab) return;
 
     setProposedTab(key);
     onOpen();
@@ -36,7 +35,7 @@ export default function AttributeTabs(props: { characterId: string }) {
         break;
     }
     setChosenAttributes({ strength: "0", dexterity: "0", constitution: "0", intelligence: "0", wisdom: "0", charisma: "0", });
-    setTab(proposedTab);
+    setAttributeTab(proposedTab);
     onClose()
   }
 
@@ -71,7 +70,7 @@ export default function AttributeTabs(props: { characterId: string }) {
           tabList: "w-full gap-6 relative rounded-none p-0 border-b border-divider",
           panel: "p-0 h-[95%]"
         }}
-        selectedKey={tab}
+        selectedKey={attributeTab}
         onSelectionChange={handleAttributeTabChange}
       >
         <Tab key="standard" title="Standard Array">

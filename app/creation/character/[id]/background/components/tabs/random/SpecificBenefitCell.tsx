@@ -1,7 +1,7 @@
 import { BackgroundBenefit } from "@/models/BackgroundDefinitionModels";
 import BenefitImage from "../commons/BenefitImage";
 
-export default function RandomBenefitCell(props: {
+export default function SpecificBenefitCell(props: {
   benefit: BackgroundBenefit;
 }) {
   return (

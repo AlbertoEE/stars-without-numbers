@@ -27,7 +27,6 @@ export default function GenericBenefitCellResult(props: {
   }
 
   function renderGenericBenefitRow(option: number) {
-    props.benefit;
     return (
       <div className="flex flex-row">
         <BenefitImage benefit={props.benefit} />
@@ -37,8 +36,8 @@ export default function GenericBenefitCellResult(props: {
           benefit={props.benefit}
           selectedKeys={
             props.benefit.selected
-              ? new Set<Key>(props.benefit.selected.get(option)?.name)
-              : new Set<Key>()
+              ? new Set([props.benefit.selected.get(option)?.name])
+              : new Set()
           }
           handleOnDropdownChange={(keys: Selection) =>
             handleOnDropdownChange(keys, option)

@@ -6,6 +6,44 @@ import { DraggedState } from "@/utilities/DragAndDrop";
 import { create } from "zustand";
 import { Key } from "@react-types/shared";
 
+
+// Attributes
+export interface AttributeValue {
+    [key: string]: string;
+}
+
+interface BasicAttributesState {
+    initialValues: AttributeValue,
+    chosenAttributes: AttributeValue;
+    dragged: DraggedState;
+    draggedOver: DraggedState;
+    detail: string;
+    attributeTab: Key;
+    setInitialValues: (newAttributes: AttributeValue) => void;
+    setChosenAttributes: (newAttributes: AttributeValue) => void;
+    setDragged: (newDraggedState: DraggedState) => void;
+    setDraggedOver: (newDraggedState: DraggedState) => void;
+    setDetail: (newDetail: string) => void;
+    setAttributeTab: (newAttributeTab: Key) => void;
+}
+
+export const useStoreBasicAttributesState = create<BasicAttributesState>(((set) => ({
+    initialValues: { A: "14", B: "12", C: "11", D: "10", E: "9", F: "7", },
+    chosenAttributes: { strength: "0", dexterity: "0", constitution: "0", intelligence: "0", wisdom: "0", charisma: "0", },
+    dragged: { from: "", value: "", key: "" },
+    draggedOver: { from: "", value: "", key: "" },
+    detail: "",
+    attributeTab: "standard",
+    setInitialValues: (newInitialValues) => set({ initialValues: newInitialValues }),
+    setChosenAttributes: (newAttributes) => set({ chosenAttributes: newAttributes }),
+    setDragged: (newDragged) => set({ dragged: newDragged }),
+    setDraggedOver: (newDraggedOver) => set({ draggedOver: newDraggedOver }),
+    setDetail: (newDetail) => set({ detail: newDetail }),
+    setAttributeTab: (newAttributeTab: Key) => set({attributeTab: newAttributeTab}),
+})));
+
+
+// Backgrounds
 export function addBenefit(
     cloneChosenBenefits: BackgroundBenefit[],
     benefit: BackgroundBenefit,
@@ -77,6 +115,7 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
 }));
 
 
+// Definitions
 interface DefinitionDataState {
     skillDefinitionList: SkillDefinition[],
     attributeDefinitionList: AttributeDefinition[],
@@ -95,46 +134,3 @@ export const useStoreDefinitionDataState = create<DefinitionDataState>(((set) =>
     setBackgroundDefinitionList: (newBackgroundDefinitionList) => set({ backgroundDefinitionList: newBackgroundDefinitionList }),
 })));
 
-interface PlayerDecisionsState {
-    baseAttributesDecision: Attributes,
-    backgroundBenefitsDecision: BackgroundBenefit[],
-    setBaseAttributesDecision: (newBaseAttributesDecision: Attributes) => void;
-    setBackgroundBenefitsDecision: (newAttributeDefinitionList: BackgroundBenefit[]) => void;
-}
-
-export const useStorePlayerDecisionsState = create<PlayerDecisionsState>(((set) => ({
-    baseAttributesDecision: new Attributes(),
-    backgroundBenefitsDecision: [],
-    setBaseAttributesDecision: (newBaseAttributesDecision) => set({ baseAttributesDecision: newBaseAttributesDecision }),
-    setBackgroundBenefitsDecision: (newAttributeDefinitionList) => set({ backgroundBenefitsDecision: newAttributeDefinitionList }),
-})));
-
-export interface AttributeValue {
-    [key: string]: string;
-}
-
-interface BasicAttributesState {
-    initialValues: AttributeValue,
-    chosenAttributes: AttributeValue;
-    dragged: DraggedState;
-    draggedOver: DraggedState;
-    detail: string;
-    setInitialValues: (newAttributes: AttributeValue) => void;
-    setChosenAttributes: (newAttributes: AttributeValue) => void;
-    setDragged: (newDraggedState: DraggedState) => void;
-    setDraggedOver: (newDraggedState: DraggedState) => void;
-    setDetail: (newDetail: string) => void;
-}
-
-export const useStoreBasicAttributesState = create<BasicAttributesState>(((set) => ({
-    initialValues: { A: "14", B: "12", C: "11", D: "10", E: "9", F: "7", },
-    chosenAttributes: { strength: "0", dexterity: "0", constitution: "0", intelligence: "0", wisdom: "0", charisma: "0", },
-    dragged: { from: "", value: "", key: "" },
-    draggedOver: { from: "", value: "", key: "" },
-    detail: "",
-    setInitialValues: (newInitialValues) => set({ initialValues: newInitialValues }),
-    setChosenAttributes: (newAttributes) => set({ chosenAttributes: newAttributes }),
-    setDragged: (newDragged) => set({ dragged: newDragged }),
-    setDraggedOver: (newDraggedOver) => set({ draggedOver: newDraggedOver }),
-    setDetail: (newDetail) => set({ detail: newDetail }),
-})));
