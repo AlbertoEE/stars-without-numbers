@@ -7,7 +7,7 @@ export class InMemoryBackgroundDefinitionRepository implements BackgroundDefinit
     getBackgrounds = () => backgroundDefinitions;
 }
 
-const backgroundDefinitions: BackgroundDefinition[] = [
+export const backgroundDefinitions: BackgroundDefinition[] = [
     {
       name: "barbarian",
       description:
