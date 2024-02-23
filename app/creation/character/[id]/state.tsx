@@ -1,10 +1,9 @@
 import { AttributeDefinition } from '@/models/AttributeDefinitionModels';
 import { BackgroundBenefit, BackgroundDefinition } from '@/models/BackgroundDefinitionModels';
 import { SkillDefinition } from '@/models/SkillDefinitionModels';
-import { Attributes } from '@/models/chatacter';
 import { DraggedState } from "@/utilities/DragAndDrop";
-import { create } from "zustand";
 import { Key } from "@react-types/shared";
+import { create } from "zustand";
 
 
 // Attributes

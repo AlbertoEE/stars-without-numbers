@@ -1,11 +1,10 @@
 "use client";
 
-import { Attribute, Attributes } from "@/models/chatacter";
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Tab, Tabs, useDisclosure } from "@nextui-org/react";
 import { Key } from "@react-types/shared";
 import { useEffect, useState } from "react";
-import AttributeCreation from "./AttributeCreation";
 import { useStoreBasicAttributesState } from "../../state";
+import AttributeCreation from "./AttributeCreation";
 
 export default function AttributeTabs(props: { characterId: string }) {
   const [proposedTab, setProposedTab] = useState<Key>("");

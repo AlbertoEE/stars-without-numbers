@@ -1,10 +1,11 @@
 "use client";
 
-import { Card, Tab, Tabs, Tooltip } from "@nextui-org/react";
+import { Button, Card, Divider, Tab, Tabs, Tooltip } from "@nextui-org/react";
 import SplitDesign from "../../../components/SplitDesign";
 import { useState } from "react";
 import BenefitImage from "../background/components/tabs/commons/BenefitImage";
 import { backgroundDefinitions } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository";
+import Image from "next/image";
 
 export default function Page({ params }: { params: { id: string } }) {
     const [tab, setTab] = useState();
@@ -38,318 +39,258 @@ export default function Page({ params }: { params: { id: string } }) {
                             onSelectionChange={setTab2}
                         >
                             <Tab key="standard" title="Psyonic">
-                                <div className="w-full h-full flex flex-col items-center justify-evenly">
-                                    <Card className="flex flex-row items-center w-[90%] justify-around h-[15%]">
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
+                                <div className="w-full h-full flex flex-col items-center justify-evenly p-5">
+                                    <div className="self-start flex flex-row items-center w-full">
+                                        <h1 className="mr-4">PSYCHIC SUCCOR</h1>
+                                        <Divider className="flex-1" />
+                                    </div>
+                                    <div className="flex flex-row items-center w-[90%] justify-around h-[15%] gap-6">
+                                        <div className="border-2 rounded-full h-8 w-8 flex flex-row items-center justify-center">
+                                            C
+                                        </div>
+                                        <Card className="flex flex-row items-center w-full justify-around h-full">
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    0
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    1
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    2
+                                                </Card>
+                                            </Tooltip><Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    3
+                                                </Card>
+                                            </Tooltip><Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={""}
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    4
+                                                </Card>
+                                            </Tooltip>
+                                        </Card>
+                                    </div>
+                                    <div className="self-start flex flex-row items-center w-full">
+                                        <h1 className="mr-4">TECHNIQUES</h1>
+                                        <Divider className="flex-1" />
+                                    </div>
+                                    <div className="flex flex-row items-center w-[90%] justify-around h-[15%] gap-6">
+                                        <div className="border-2 rounded-full h-8 w-8 flex flex-row items-center justify-center">
+                                            1
+                                        </div>
+                                        <Card className="flex flex-row items-center w-full justify-around h-full">
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                        </Card>
+                                    </div>
+                                    <div className="flex flex-row items-center w-[90%] justify-around h-[15%] gap-6">
+                                        <div className="border-2 rounded-full h-8 w-8 flex flex-row items-center justify-center">
+                                            2
+                                        </div>
+                                        <Card className="flex flex-row items-center w-full justify-around h-full">
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                        </Card>
+                                    </div>
+                                    <div className="flex flex-row items-center w-[90%] justify-around h-[15%] gap-6">
+                                        <div className="border-2 rounded-full h-8 w-8 flex flex-row items-center justify-center">
+                                            3
+                                        </div>
+                                        <Card className="flex flex-row items-center w-full justify-around h-full">
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                        </Card>
+                                    </div>
+                                    <div className="flex flex-row items-center w-[90%] justify-around h-[15%] gap-6">
+                                        <div className="border-2 rounded-full h-8 w-8 flex flex-row items-center justify-center">
+                                            4
+                                        </div>
+                                        <Card className="flex flex-row items-center w-full justify-around h-full">
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                            <Tooltip
+                                                delay={0}
+                                                closeDelay={0}
+                                                content={"Super Technique"
+                                                }
+                                            >
+                                                <Card className="flex flex-row items-center justify-center h-14 w-14" >
+                                                    <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
+                                                </Card>
+                                            </Tooltip>
+                                        </Card>
+                                    </div>
 
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                0
-                                            </Card>
-                                        </Tooltip><Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                0
-                                            </Card>
-                                        </Tooltip><Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                0
-                                            </Card>
-                                        </Tooltip><Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                0
-                                            </Card>
-                                        </Tooltip><Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Super Technique</div>
-                                                    <div className="text-tiny">The biopsion has mastered techniques of emergency
-                                                        tissue reinforcement and system stabilization. As an
-                                                        Instant action, they can Commit Effort for the scene to
-                                                        keep themself or a target they can touch active even at
-                                                        zero hit points. This technique must be used once every
-                                                        round on the target or they collapse at the end of the
-                                                        round.
-                                                    </div>
-                                                    <br />
-                                                    <div>
-                                                        If the target suffers hit point damage, the biopsion must Instantly Commit Effort for the scene or the
-                                                        target goes down immediately with a mortal wound. A
-                                                        Heavy weapon hit on a subject of this power or similar
-                                                        physical dismemberment will always kill a target, regardless of this technique.
-                                                    </div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                0
-                                            </Card>
-                                        </Tooltip>
-                                    </Card>
-                                    <Card className="flex flex-row items-center w-[90%] justify-around h-[15%]">
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                    </Card>
-                                    <Card className="flex flex-row items-center w-[90%] justify-around h-[15%]">
-
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                    </Card>
-                                    <Card className="flex flex-row items-center w-[90%] justify-around h-[15%]">
-
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                    </Card>
-                                    <Card className="flex flex-row items-center w-[90%] justify-around h-[15%]">
-
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                        <Tooltip
-                                            delay={0}
-                                            closeDelay={0}
-                                            content={
-                                                <div className="px-1 py-2 bg-black text-white w-64">
-                                                    <div className="text-small font-bold">Custom Content</div>
-                                                    <div className="text-tiny">This is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip contentThis is a custom tooltip content</div>
-                                                    <br />
-
-                                                </div>
-                                            }
-                                        >
-                                            <Card className="flex flex-row items-center justify-center h-16 w-16" >
-                                                <BenefitImage benefit={backgroundDefinitions[0].benefits.growth[0]} />
-                                            </Card>
-                                        </Tooltip>
-                                    </Card>
                                 </div>
                             </Tab>
                             <Tab key="random" title="Warrior">
@@ -378,7 +319,39 @@ export default function Page({ params }: { params: { id: string } }) {
                 </Tabs></div>
             }
             rightChild={
-                <div className="w-full h-full"></div>
+                <div className="w-full h-full p-5 flex flex-col">
+                    <div className="flex flex-row">
+                        <h1 className="mb-6">TECHNIQUE NAME</h1>
+                        <div className="ml-auto">
+                            Available CSP 5/5
+                        </div>
+                    </div>
+                    <div>The biopsion’s Psychic Succor may now also affect all
+                        allies within ten meters of the target. Allies can decline
+                        the healing if they don’t require it or don’t want to take
+                        the additional System Strain.</div>
+                    <br />
+                    <div>Each use of this technique
+                        requires that the biopsion Commit Effort for the day in
+                        addition to the cost of the Psychic Succor.</div>
+                    <br />
+                    <div>
+                        <ul>
+                            <li>Cost: 3 CSPs</li>
+                            <li>Skill Type: Passive</li>
+                            <li>Commitment: All Effort points until the end of the day</li>
+                        </ul>
+                    </div>
+                    <br />
+                    <div className="flex flex-row justify-center gap-4 mt-auto mb-8">
+                        <Button color="danger">
+                            Sell Technique
+                        </Button>
+                        <Button color="success">
+                            Buy Technique
+                        </Button>
+                    </div>
+                </div>
             }
         />
     );

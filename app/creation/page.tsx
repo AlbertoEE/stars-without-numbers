@@ -1,6 +1,6 @@
 "use client";
 
-import { Character } from "@/models/chatacter";
+import { Character } from "@/models/Chatacter";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
