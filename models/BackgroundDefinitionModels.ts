@@ -1,5 +1,5 @@
 import { AttributeDefinitionType } from "./AttributeDefinitionModels";
-import { SkillDefinitionType } from "./SkillDefinitionModels";
+import { StandardSkillDefinitionType } from "./StandardSkillDefinitionModels";
 
 export interface BackgroundDefinition {
   name: string;
@@ -16,7 +16,7 @@ export interface BackgroundBenefits {
 
 export interface BackgroundBenefit {
   type: BackgroundBenefitType;
-  subtype: SkillDefinitionType | AttributeDefinitionType | "specific"
+  subtype: StandardSkillDefinitionType | AttributeDefinitionType | "specific"
   name: string;
   amount?: number;
   selected?: Map<number, BackgroundBenefit | undefined>;

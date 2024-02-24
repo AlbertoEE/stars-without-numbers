@@ -3,7 +3,7 @@ import {
   BackgroundBenefit,
   BackgroundBenefitType,
 } from "@/models/BackgroundDefinitionModels";
-import { SkillDefinition } from "@/models/SkillDefinitionModels";
+import { StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels";
 import {
   Dropdown,
   DropdownItem,
@@ -30,7 +30,7 @@ export default function DropDownGenericBenefit(props: {
         ? skillDefinitions
         : attributeDefinitions;
     return definitions
-      .filter((def: SkillDefinition | AttributeDefinition) =>
+      .filter((def: StandardSkillDefinition | AttributeDefinition) =>
         def.type.includes(props.benefit.subtype)
       )
       .map((def) => <DropdownItem key={def.name}>{def.name}</DropdownItem>);

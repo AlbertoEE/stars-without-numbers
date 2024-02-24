@@ -7,7 +7,7 @@ import {
 } from "@/injection/injection";
 import { AttributeDefinition } from "@/models/AttributeDefinitionModels";
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import { SkillDefinition } from "@/models/SkillDefinitionModels";
+import { StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
 import useSWR from "swr";
@@ -20,7 +20,7 @@ export default function Layout(props: { children: ReactNode }) {
   const pathName = usePathname();
 
   const { setAttributeDefinitions, setSkillDefinitions, setBackgroundDefinitionList } = useStoreDefinitionDataState();
-  const { data: skillDefinitionList } = useSWR<SkillDefinition[]>(
+  const { data: skillDefinitionList } = useSWR<StandardSkillDefinition[]>(
     "GlobalSkillDefinition",
     skillsDefinitionRepository.getSkills
   );

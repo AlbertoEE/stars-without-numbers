@@ -1,7 +1,7 @@
-import { BackgroundDefinition, BackgroundBenefitType } from "@/models/BackgroundDefinitionModels";
-import { BackgroundDefinitionRepository } from "./BackgroundDefinitionRepository";
-import { SkillDefinitionType } from "@/models/SkillDefinitionModels";
 import { AttributeDefinitionType } from "@/models/AttributeDefinitionModels";
+import { BackgroundBenefitType, BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { StandardSkillDefinitionType } from "@/models/StandardSkillDefinitionModels";
+import { BackgroundDefinitionRepository } from "./BackgroundDefinitionRepository";
 
 export class InMemoryBackgroundDefinitionRepository implements BackgroundDefinitionRepository {
     getBackgrounds = () => backgroundDefinitions;
@@ -16,7 +16,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
         free: { type: BackgroundBenefitType.skill, name: "survive", subtype: "specific" },
         predifined: [
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
         ],
         growth: [
           { type: BackgroundBenefitType.stat, name: "any stat", amount: 1, subtype: AttributeDefinitionType.any },
@@ -24,10 +24,10 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "lead" , subtype: "specific" },
@@ -54,7 +54,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
@@ -84,10 +84,10 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
@@ -114,10 +114,10 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
@@ -144,11 +144,11 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "any stat", amount: 1, subtype: AttributeDefinitionType.any },
           { type: BackgroundBenefitType.stat, name: "any stat", amount: 1, subtype: AttributeDefinitionType.any },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "program" , subtype: "specific" },
@@ -174,10 +174,10 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
@@ -204,11 +204,11 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "fix" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
@@ -234,11 +234,11 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "lead" , subtype: "specific" },
@@ -264,11 +264,11 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "lead" , subtype: "specific" },
@@ -294,7 +294,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
@@ -324,7 +324,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
@@ -354,7 +354,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
@@ -384,7 +384,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
@@ -414,7 +414,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
@@ -435,7 +435,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
       benefits: {
         free: { type: BackgroundBenefitType.skill, name: "exert", subtype: "specific" },
         predifined: [
-          { type: BackgroundBenefitType.skill, name: "combat skill" , subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill" , subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "survive" , subtype: "specific" },
         ],
         growth: [
@@ -444,11 +444,11 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "fix" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "lead" , subtype: "specific" },
@@ -474,7 +474,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
@@ -504,7 +504,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
@@ -526,7 +526,7 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
         free: { type: BackgroundBenefitType.skill, name: "connect", subtype: "specific" },
         predifined: [
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "combat skill" , subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill" , subtype: StandardSkillDefinitionType.combat },
         ],
         growth: [
           { type: BackgroundBenefitType.stat, name: "any stat", amount: 1, subtype: AttributeDefinitionType.any },
@@ -534,15 +534,15 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "sneak" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "survive" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "talk" , subtype: "specific" },
         ],
@@ -564,10 +564,10 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "physical stat", amount: 2, subtype: AttributeDefinitionType.physical },
           { type: BackgroundBenefitType.stat, name: "mental stat", amount: 2, subtype: AttributeDefinitionType.mental },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
-          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: SkillDefinitionType.combat },
+          { type: BackgroundBenefitType.skill, name: "combat skill", subtype: StandardSkillDefinitionType.combat },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "notice" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "perform" , subtype: "specific" },
@@ -594,11 +594,11 @@ export const backgroundDefinitions: BackgroundDefinition[] = [
           { type: BackgroundBenefitType.stat, name: "any stat", amount: 1, subtype: AttributeDefinitionType.any },
           { type: BackgroundBenefitType.stat, name: "any stat", amount: 1, subtype: AttributeDefinitionType.any },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
         ],
         learning: [
           { type: BackgroundBenefitType.skill, name: "administer" , subtype: "specific" },
-          { type: BackgroundBenefitType.skill, name: "any skill", subtype: SkillDefinitionType.any },
+          { type: BackgroundBenefitType.skill, name: "any skill", subtype: StandardSkillDefinitionType.any },
           { type: BackgroundBenefitType.skill, name: "connect" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "exert" , subtype: "specific" },
           { type: BackgroundBenefitType.skill, name: "fix" , subtype: "specific" },

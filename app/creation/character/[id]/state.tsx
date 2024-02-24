@@ -1,6 +1,6 @@
 import { AttributeDefinition } from '@/models/AttributeDefinitionModels';
 import { BackgroundBenefit, BackgroundDefinition } from '@/models/BackgroundDefinitionModels';
-import { SkillDefinition } from '@/models/SkillDefinitionModels';
+import { StandardSkillDefinition } from '@/models/StandardSkillDefinitionModels';
 import { DraggedState } from "@/utilities/DragAndDrop";
 import { Key } from "@react-types/shared";
 import { create } from "zustand";
@@ -116,10 +116,10 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
 
 // Definitions
 interface DefinitionDataState {
-    skillDefinitionList: SkillDefinition[],
+    skillDefinitionList: StandardSkillDefinition[],
     attributeDefinitionList: AttributeDefinition[],
     backgroundDefinitionList: BackgroundDefinition[],
-    setSkillDefinitions: (newSkillDefinitionList: SkillDefinition[]) => void;
+    setSkillDefinitions: (newSkillDefinitionList: StandardSkillDefinition[]) => void;
     setAttributeDefinitions: (newAttributeDefinitionList: AttributeDefinition[]) => void;
     setBackgroundDefinitionList: (newBackgroundDefinitionList: BackgroundDefinition[]) => void;
 }
