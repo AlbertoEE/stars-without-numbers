@@ -3,7 +3,7 @@ import { Tab, Tabs, Divider, Card, Tooltip } from "@nextui-org/react";
 import BenefitImage from "../../../../background/components/tabs/commons/BenefitImage";
 import { useState } from "react";
 
-export default function PsyquicTab(props: {
+export default function PsyquicBenefits(props: {
 
 }) {
 
