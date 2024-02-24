@@ -3,6 +3,7 @@
 import { Button } from "@nextui-org/react";
 import SplitDesign from "../../../components/SplitDesign";
 import GameClassSelection from "./components/GameClassSelection";
+import GameClassDescription from "./components/GameClassDescription";
 
 export default function Page({ params }: { params: { id: string } }) {
 
@@ -11,12 +12,10 @@ export default function Page({ params }: { params: { id: string } }) {
     return (
         <SplitDesign
             leftChild={
-                <div className="w-full h-full">
-                    <GameClassSelection />
-                </div>
+                <GameClassSelection />
             }
             rightChild={
-                <></>
+                <GameClassDescription />
             }
         />
     );
