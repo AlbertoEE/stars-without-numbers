@@ -38,7 +38,7 @@ const gameClassDefinitionList: GameClassDefinition[] = [
             },
             {
                 summary: "Re-roll enemy/own attacks",
-                details: ["Once per scene, as an Instant ability, you can either choose to ne- gate a successful attack roll against you or turn a missed attack roll you made into a successful hit. You can use this ability after the dice are rolled, but it cannot be used against environmental dam- age, effects without an attack roll, or hits on a vehicle you’re occupying."]
+                details: ["Once per scene, as an Instant ability, you can either choose to negate a successful attack roll against you or turn a missed attack roll you made into a successful hit. You can use this ability after the dice are rolled, but it cannot be used against environmental damage, effects without an attack roll, or hits on a vehicle you’re occupying."]
             },
             {
                 summary: "Extra Hit Points and Attack Bonus",
@@ -100,7 +100,7 @@ const gameClassDefinitionList: GameClassDefinition[] = [
             {
                 summary: "Partial Psychic",
                 details: [
-                    "Pick one psychic discipline as a bonus skill at level-0 but you cannot learn or improve any other psychic skill.",
+                    "Pick one psychic discipline at level-0 but you cannot learn or improve any other psychic skill.",
                     "Your maximum Effort is equal to 1 + highest psychic skill + (Wisdom or Constitution) modifiers cannot be lower than 1."
                 ]
             }

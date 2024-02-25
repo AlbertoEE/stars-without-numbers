@@ -25,19 +25,23 @@ export default function GameClassDescription() {
   }
 
   return (
-    <div className="w-full h-full flex flex-col p-10 justify-evenly">
-      <h1 className="text-4xl italic">{focusedGameClass.name.toUpperCase()}</h1>
-      {focusedGameClass.abilities.map((ability: Ability) => (
-        <div>
-          {ability.summary !== "" && (
-            <div className="text-2xl text-primary">{`> ${ability.summary}`}</div>
-          )}
-          <div>{renderDetails(ability.details)}</div>
-        </div>
-      ))}
-      <div className="flex flex-row justify-center">
+    <div className="w-full h-full">
+      <div className="w-full h-[90%] flex flex-col p-10 justify-evenly">
+        <h1 className="text-4xl italic">
+          {focusedGameClass.name.toUpperCase()}
+        </h1>
+        {focusedGameClass.abilities.map((ability: Ability) => (
+          <div>
+            {ability.summary !== "" && (
+              <div className="text-2xl text-primary">{`> ${ability.summary}`}</div>
+            )}
+            <div>{renderDetails(ability.details)}</div>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-row justify-center mt-auto">
         <Button color="primary">Select Class</Button>
       </div>
     </div>
   );
-}
+} 

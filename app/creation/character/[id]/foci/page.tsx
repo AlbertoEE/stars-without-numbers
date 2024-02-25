@@ -1,8 +1,6 @@
 "use client";
 
 import SplitDesign from "../../../components/SplitDesign";
-import GameClassSelection from "./components/selection/GameClassSelection";
-import GameClassDescription from "./components/selection/GameClassDescription";
 
 export default function Page({ params }: { params: { id: string } }) {
 
@@ -11,10 +9,10 @@ export default function Page({ params }: { params: { id: string } }) {
     return (
         <SplitDesign
             leftChild={
-                <GameClassSelection />
+                <></>
             }
             rightChild={
-                <GameClassDescription />
+                <></>
             }
         />
     );

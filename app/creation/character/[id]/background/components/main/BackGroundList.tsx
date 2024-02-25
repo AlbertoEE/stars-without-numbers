@@ -17,12 +17,10 @@ export default function App() {
   const {
     filterBackground,
     filterChooseSkill,
-    filterRandomSkill,
     focusedBackground,
     setChosenBenefits,
     setFilterBackground,
     setFilterChooseSkill,
-    setFilterRandomSkill,
     setFocusedBackground,
   } = useStoreBackgroundState();
 
@@ -38,11 +36,10 @@ export default function App() {
   let items = React.useMemo(() => {
     if (!backgroundDefinitionList) return [];
     let filteredValues = [...backgroundDefinitionList];
-    console.log(filterBackground);
 
     if (filterBackground != "") {
       filteredValues = filteredValues.filter((background) =>
-        background.name.startsWith(filterBackground)
+        background.name.startsWith(filterBackground.toLowerCase())
       );
     }
 
@@ -56,7 +53,7 @@ export default function App() {
     }
 
     return filteredValues;
-  }, [filterBackground, filterChooseSkill, filterRandomSkill, backgroundDefinitionList]);
+  }, [filterBackground, filterChooseSkill, backgroundDefinitionList]);
 
   function handleOnBackgroundPress(backgroundDefinition: BackgroundDefinition) {
     setProposedBackground(backgroundDefinition)
@@ -90,7 +87,7 @@ export default function App() {
         <Input
           label="Background"
           placeholder="Filter by background"
-          className="max-w-[30%]"
+          className="max-w-[50%]"
           value={filterBackground}
           onValueChange={setFilterBackground}
         />
@@ -99,7 +96,7 @@ export default function App() {
           placeholder="Select skills"
           selectionMode="multiple"
           selectedKeys={filterChooseSkill}
-          className="max-w-[30%]"
+          className="max-w-[50%]"
           onSelectionChange={(keys: Selection) =>
             setFilterChooseSkill(Array.from(keys).map((key) => key.toString()))
           }
@@ -117,22 +114,6 @@ export default function App() {
                 />
                 <div className="flex-1">{skill.name}</div>
               </div>
-            </SelectItem>
-          ))}
-        </Select>
-        <Select
-          label="Random filter"
-          placeholder="Select skills"
-          selectionMode="multiple"
-          selectedKeys={filterRandomSkill}
-          className="max-w-[30%]"
-          onSelectionChange={(keys: Selection) =>
-            setFilterRandomSkill(Array.from(keys).map((key) => key.toString()))
-          }
-        >
-          {Object.entries(skillDefinitionList).map(([key, value]) => (
-            <SelectItem key={key} value={key}>
-              {key}
             </SelectItem>
           ))}
         </Select>
