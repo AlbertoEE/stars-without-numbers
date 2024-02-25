@@ -1,25 +1,43 @@
 import { Button, Card, CardHeader } from "@nextui-org/react";
 import Image from "next/image";
+import { useStoreGameClassState } from "../../../state";
+import { Ability } from "@/models/GameClassDefinitionModels";
 
 export default function GameClassDescription() {
-    return <div className="w-full h-full flex flex-col p-10 justify-evenly">
-        <h1 className="text-4xl italic">PSYCHIC</h1>
+  const { focusedGameClass } = useStoreGameClassState();
+
+  if (!focusedGameClass) return <></>;
+
+  function renderDetails(details: string[]) {
+    if (details.length === 1) {
+      return <div>{details[0]}</div>;
+    } else {
+      return (
         <div>
-            <div className="text-2xl text-primary">> Re-roll Skill Checks</div>
-            <div>Once per scene, you can reroll a failed skill check, taking the new roll if it’s better.</div>
+          <ul className="pl-10">
+            {details.map((detail: string) => (
+              <li className="list-disc">{detail}</li>
+            ))}
+          </ul>
         </div>
+      );
+    }
+  }
+
+  return (
+    <div className="w-full h-full flex flex-col p-10 justify-evenly">
+      <h1 className="text-4xl italic">{focusedGameClass.name.toUpperCase()}</h1>
+      {focusedGameClass.abilities.map((ability: Ability) => (
         <div>
-            <div className="text-2xl text-primary">> Extra Skill Points</div>
-            <div>When you advance an experience level, you gain a bonus skill point that can be spent on any non-combat, non-psychic skill. You can save this point to spend later if you wish.</div>
+          {ability.summary !== "" && (
+            <div className="text-2xl text-primary">{`> ${ability.summary}`}</div>
+          )}
+          <div>{renderDetails(ability.details)}</div>
         </div>
-        <div>
-            <div className="text-2xl text-primary">> Free non-combat focus</div>
-            <div>
-                You gain a free level in a non-combat focus.
-            </div>
-        </div>
-        <div className="flex flex-row justify-center">
-            <Button color="primary">Select Class</Button>
-        </div>
-    </div>;
+      ))}
+      <div className="flex flex-row justify-center">
+        <Button color="primary">Select Class</Button>
+      </div>
+    </div>
+  );
 }

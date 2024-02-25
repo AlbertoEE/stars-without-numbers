@@ -143,8 +143,10 @@ export const useStoreDefinitionDataState = create<DefinitionDataState>(((set) =>
     skillDefinitionList: [],
     attributeDefinitionList: [],
     backgroundDefinitionList: [],
+    gameClassDefinitionList: [],
     setSkillDefinitions: (newSkillDefinitionList) => set({ skillDefinitionList: newSkillDefinitionList }),
     setAttributeDefinitions: (newAttributeDefinitionList) => set({ attributeDefinitionList: newAttributeDefinitionList }),
     setBackgroundDefinitionList: (newBackgroundDefinitionList) => set({ backgroundDefinitionList: newBackgroundDefinitionList }),
+    setGameClassDefinitionList: (newGameClassDefinitionList: GameClassDefinition[]) => set({ gameClassDefinitionList: newGameClassDefinitionList })
 })));
 

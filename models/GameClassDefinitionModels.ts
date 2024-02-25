@@ -1,11 +1,19 @@
 export interface GameClassDefinition {
     name: string,
     abilities: Ability[],
-    atackBonusFormula: (level: number) => number,
-    hitPointsFormula: (constitutionModifier: number) => number,
+    gameSubclasses?: GameSubClass[],
+    atackBonusFormula: (level: number, gameSubClass?: GameSubClass) => number,
+    hitPointsFormula: (constitutionModifier: number, gameSubClass?: GameSubClass) => number,
+    gameClassMagicResource?: () => number | undefined,
 }
 
 export interface Ability {
     summary: string,
-    detail: string,
+    details: string[],
+}
+
+export enum GameSubClass {
+    PARTIAL_WARRIOR,
+    PARTIAL_EXPERT,
+    PARTIAL_PSYCHIC,
 }
