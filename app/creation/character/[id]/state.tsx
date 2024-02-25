@@ -1,5 +1,6 @@
 import { AttributeDefinition } from '@/models/AttributeDefinitionModels';
 import { BackgroundBenefit, BackgroundDefinition } from '@/models/BackgroundDefinitionModels';
+import { GameClassDefinition } from '@/models/GameClassDefinitionModels';
 import { StandardSkillDefinition } from '@/models/StandardSkillDefinitionModels';
 import { DraggedState } from "@/utilities/DragAndDrop";
 import { Key } from "@react-types/shared";
@@ -114,14 +115,28 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
 }));
 
 
+// Classes
+interface GameClassState {
+    focusedGameClass: GameClassDefinition | undefined,
+    setFocusedGameClass: (newFocusedGameClass: GameClassDefinition) => void
+}
+
+export const useStoreGameClassState = create<GameClassState>((set) => ({
+    focusedGameClass: undefined,
+    setFocusedGameClass: (newFocusedGameClass) => set({focusedGameClass: newFocusedGameClass})
+}))
+
+
 // Definitions
 interface DefinitionDataState {
     skillDefinitionList: StandardSkillDefinition[],
     attributeDefinitionList: AttributeDefinition[],
     backgroundDefinitionList: BackgroundDefinition[],
+    gameClassDefinitionList: GameClassDefinition[],
     setSkillDefinitions: (newSkillDefinitionList: StandardSkillDefinition[]) => void;
     setAttributeDefinitions: (newAttributeDefinitionList: AttributeDefinition[]) => void;
     setBackgroundDefinitionList: (newBackgroundDefinitionList: BackgroundDefinition[]) => void;
+    setGameClassDefinitionList: (newGameClassDefinitionList: GameClassDefinition[]) => void;
 }
 
 export const useStoreDefinitionDataState = create<DefinitionDataState>(((set) => ({
