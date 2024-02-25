@@ -16,8 +16,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Notice as a bonus skill. You cannot be surprised, nor can others use the Execution Attack option on you. When you roll initiative, roll twice and take the best result.",
-        skillBenefitList: [
-          "Notice"
+        skillBenefitOptionList: [
+          "notice"
         ]
       },
       {
@@ -34,8 +34,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Stab as a bonus skill. You can draw or sheath a Stowed melee or thrown weapon as an Instant action. You may add your Stab skill level to a melee or thrown weapon’s damage roll or Shock damage, assuming it has any to begin with.",
-        skillBenefitList: [
-          "Stab"
+        skillBenefitOptionList: [
+          "stab"
         ]
       },
       {
@@ -52,8 +52,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Sneak as a bonus skill. You can conceal an object no larger than a knife or pistol from anything less invasive than a strip search, including normal TL4 weapon detection devices. You can draw or produce this object as an On Turn action, and your point-blank ranged attacks made from surprise with it cannot miss the target.",
-        skillBenefitList: [
-          "Sneak"
+        skillBenefitOptionList: [
+          "sneak"
         ]
       },
       {
@@ -70,8 +70,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Lead as a bonus skill. Once per day, you can make a request from an NPC who is not openly hostile to you, rolling a Cha/Lead skill check at a difficulty of the NPC’s Morale score. If you succeed, they will comply with the request, provided it is not harmful or extremely uncharacteristic.",
-        skillBenefitList: [
-          "Lead"
+        skillBenefitOptionList: [
+          "lead"
         ]
       },
       {
@@ -88,8 +88,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain any combat skill as a bonus skill. You can use pistol-sized ranged weapons in melee without suffering penalties for the proximity of melee attackers. You ignore Shock damage from melee assailants, even if you’re unarmored at the time.",
-        skillBenefitList: [
-          "Any Combat"
+        skillBenefitOptionList: [
+          "any Combat"
         ]
       },
       {
@@ -106,8 +106,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Connect as a bonus skill. If you’ve spent at least a week in a not-entirely-hostile location, you’ll have built a web of contacts willing to do favors for you that are no more than mildly illegal. You can call on one favor per game day and the GM decides how far they’ll go for you.",
-        skillBenefitList: [
-          "Connect"
+        skillBenefitOptionList: [
+          "connect"
         ]
       },
       {
@@ -139,8 +139,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Talk as a bonus skill. You speak all the languages common to the sector and can learn new ones to a workable level in a week, becoming fluent in a month. Reroll 1s on any skill check dice related to negotiation or diplomacy.",
-        skillBenefitList: [
-          "Talk"
+        skillBenefitOptionList: [
+          "talk"
         ]
       },
       {
@@ -157,8 +157,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Shoot as a bonus skill. You can draw or holster a Stowed ranged weapon as an On Turn action. You may add your Shoot skill level to a ranged weapon’s damage roll.",
-        skillBenefitList: [
-          "Gain Shoot"
+        skillBenefitOptionList: [
+          "shoot"
         ]
       },
       {
@@ -175,8 +175,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Program as a bonus skill. When attempting to hack a database or computerized system, roll 3d6 on the skill check and drop the lowest die.",
-        skillBenefitList: [
-          "Program"
+        skillBenefitOptionList: [
+          "program"
         ]
       },
       {
@@ -193,8 +193,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Heal as a bonus skill. You may attempt to stabilize one mortally-wounded adjacent person per round as an On Turn action. When rolling Heal skill checks, roll 3d6 and drop the lowest die.",
-        skillBenefitList: [
-          "Heal"
+        skillBenefitOptionList: [
+          "heal"
         ]
       },
       {
@@ -211,8 +211,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Lead as a bonus skill. You can acquire henchmen within 24 hours of arriving in a community, assuming anyone is suitable hench material. These henchmen will not fight except to save their own lives, but will escort you on adventures and risk great danger to help you. Most henchmen will be treated as Peaceful Humans from the Xenobestiary section of the book. You can have one henchmen at a time for every three character levels you have, rounded up. You can release henchmen with no hard feelings at any plausible time and pick them back up later should you be without a current henchman.",
-        skillBenefitList: [
-          "Lead"
+        skillBenefitOptionList: [
+          "lead"
         ]
       },
       {
@@ -244,8 +244,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Stab as a bonus skill. All enemies adjacent to you at the end of your turn whom you have not attacked suffer the Shock damage of your weapon if their Armor Class is not too high to be affected.",
-        skillBenefitList: [
-          "Stab"
+        skillBenefitOptionList: [
+          "stab"
         ]
       },
       {
@@ -262,8 +262,9 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Punch or Stab as a bonus skill. The Shock damage of your weapon treats all targets as if they were AC 10, assuming your weapon is capable of harming the target in the first place.",
-        skillBenefitList: [
-          "Punch Or Stab"
+        skillBenefitOptionList: [
+          "punch",
+          "stab"
         ]
       },
       {
@@ -280,8 +281,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Shoot as a bonus skill. When making a skill check for an Execution Attack or target shooting, roll 3d6 and drop the lowest die.",
-        skillBenefitList: [
-          "Shoot"
+        skillBenefitOptionList: [
+          "shoot"
         ]
       },
       {
@@ -298,8 +299,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain a non-combat, non-psychic skill as a bonus. Roll 3d6 and drop the lowest die for all skill checks in this skill.",
-        skillBenefitList: [
-          "Any Non Combat"
+        skillBenefitOptionList: [
+          "non combat"
         ]
       },
       {
@@ -316,8 +317,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Lead as a bonus skill. Your ship gains 2 extra Command Points at the start of each turn.",
-        skillBenefitList: [
-          "Lead"
+        skillBenefitOptionList: [
+          "lead"
         ]
       },
       {
@@ -334,8 +335,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Pilot as a bonus skill. You automatically succeed at all spike drill-related skill checks of difficulty 10 or less.",
-        skillBenefitList: [
-          "Pilot"
+        skillBenefitOptionList: [
+          "pilot"
         ]
       },
       {
@@ -352,8 +353,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Fix as a bonus skill. Your Maintenance score is doubled, allowing you to maintain twice as many mods. Both ship and gear mods cost only half their usual price in credits, though pretech salvage requirements remain the same.",
-        skillBenefitList: [
-          "Fix"
+        skillBenefitOptionList: [
+          "fix"
         ]
       },
       {
@@ -370,8 +371,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Punch as a bonus skill. Your unarmed attacks become more dangerous as your Punch skill increases. At level-0, they do 1d6 damage. At level-1, they do 1d8 damage. At level-2 they do 1d10, level-3 does 1d12, and level-4 does 1d12+1. At Punch-1 or better, they have the Shock quality equal to your Punch skill against AC 15 or less. While you normally add your Punch skill level to any unarmed damage, don’t add it twice to this Shock damage.",
-        skillBenefitList: [
-          "Punch"
+        skillBenefitOptionList: [
+          "punch"
         ]
       },
       {
@@ -388,8 +389,8 @@ const focusList: FocusDefinition[] = [
       {
         level: 1,
         description: "Gain Survive as a bonus skill. You can convey basic ideas in all the common languages of the sector. You can always find free transport to a desired destination for yourself and a small group of your friends provided any traffic goes to the place. Finding this transport takes no more than an hour, but it may not be a strictly legitimate means of travel and may require working passage.",
-        skillBenefitList: [
-          "Survive"
+        skillBenefitOptionList: [
+          "survive"
         ]
       },
       {

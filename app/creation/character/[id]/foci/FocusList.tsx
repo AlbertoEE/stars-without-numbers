@@ -1,6 +1,5 @@
 "use client";
 
-import { BackgroundBenefitType, BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import {
   Card, CardBody,
   Image,
@@ -29,7 +28,8 @@ export default function App() {
   const [proposedBackground, setProposedBackground] = useState<FocusDefinition>();
 
   const {
-    focusDefinitionList
+    focusDefinitionList,
+    skillDefinitionList
   } = useStoreDefinitionDataState()
 
   let items = React.useMemo(() => {
@@ -62,24 +62,24 @@ export default function App() {
   if (!focusDefinitionList) return <></>;
 
   return (
-    <div className="h-full w-full flex flex-col"> 
+    <div className="h-full w-full flex flex-col p-5"> 
 
-      <div className="flex flex-row justify-center space-between gap-3 p-5">
+      <div className="flex flex-row justify-center space-between gap-3 pb-5 h-[10%]">
         <Input
-          label="Background"
-          placeholder="Filter by background"
+          label="Focus"
+          placeholder="Filter by focus..."
           className="max-w-[50%]"
           value={filterFocus}
           onValueChange={setFilterFocus}
         />
         <Select
-          label="Choose filter"
-          placeholder="Select skills"
+          label="Skill filter"
+          placeholder="Select skills..."
           selectionMode="multiple"
           selectedKeys={filterBenefitSkill}
           className="max-w-[50%]"
           onSelectionChange={(keys: Selection) =>
-            setfilterBenefitSkill(Array.from(keys).map((key) => key.toString()))
+            setFilterBenefitSkill(Array.from(keys).map((key) => key.toString()))
           }
         >
           {skillDefinitionList.map((skill) => (
@@ -99,12 +99,12 @@ export default function App() {
           ))}
         </Select>
       </div>
-      <div className="overflow-y-auto px-5 pb-5 flex-1">
+      <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-2">
         {items.map((item) => (
           <Card
-            className={`mb-2 w-full ${item.name == focusedBackground?.name && 'bg-blue-500'}`}
-            isPressable={item.name != focusedBackground?.name}
-            onPress={() => handleOnBackgroundPress(item)}
+            className={`w-[45%] ${item.name == focusedFocus?.name && 'bg-blue-500'}`}
+            isPressable={item.name != focusedFocus?.name}
+            onPress={() => {}}
             key={item.name}
           >
             <CardBody className="text-center">

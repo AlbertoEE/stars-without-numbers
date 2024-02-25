@@ -76,14 +76,14 @@ export default function App() {
   if (!backgroundDefinitionList || !skillDefinitionList) return <></>;
 
   return (
-    <div className="h-full w-full flex flex-col">
+    <div className="h-full w-full flex flex-col p-5">
       <ModalWarning
         isOpen={isOpen}
         onClose={onClose}
         onAccept={onAcceptModal}
         warning={"If you change the background you will lose your progress. Are you sure?"}
       />
-      <div className="flex flex-row justify-center space-between gap-3 p-5">
+      <div className="h-[10%] flex flex-row justify-center space-between gap-3 pb-5">
         <Input
           label="Background"
           placeholder="Filter by background"
@@ -118,13 +118,12 @@ export default function App() {
           ))}
         </Select>
       </div>
-      <div className="overflow-y-auto px-5 pb-5 flex-1">
+      <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-2">
         {items.map((item) => (
           <Card
-            className={`mb-2 w-full ${item.name == focusedBackground?.name && 'bg-blue-500'}`}
+            className={`w-[45%] h-fit ${item.name == focusedBackground?.name && 'bg-blue-500'}`}
             isPressable={item.name != focusedBackground?.name}
             onPress={() => handleOnBackgroundPress(item)}
-            key={item.name}
           >
             <CardBody className="text-center">
               <div className="flex flex-row">
