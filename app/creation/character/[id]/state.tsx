@@ -1,5 +1,6 @@
 import { AttributeDefinition } from '@/models/AttributeDefinitionModels';
 import { BackgroundBenefit, BackgroundDefinition } from '@/models/BackgroundDefinitionModels';
+import { FocusDefinition } from '@/models/FocusDefinitionModels';
 import { GameClassDefinition } from '@/models/GameClassDefinitionModels';
 import { StandardSkillDefinition } from '@/models/StandardSkillDefinitionModels';
 import { DraggedState } from "@/utilities/DragAndDrop";
@@ -39,7 +40,7 @@ export const useStoreBasicAttributesState = create<BasicAttributesState>(((set) 
     setDragged: (newDragged) => set({ dragged: newDragged }),
     setDraggedOver: (newDraggedOver) => set({ draggedOver: newDraggedOver }),
     setDetail: (newDetail) => set({ detail: newDetail }),
-    setAttributeTab: (newAttributeTab: Key) => set({attributeTab: newAttributeTab}),
+    setAttributeTab: (newAttributeTab: Key) => set({ attributeTab: newAttributeTab }),
 })));
 
 
@@ -65,7 +66,6 @@ export function deleteBenefitByName(
 interface BackgroundState {
     filterBackground: string;
     filterChooseSkill: string[];
-    filterRandomSkill: string[];
     focusedBackground: BackgroundDefinition | undefined;
     chosenBenefits: BackgroundBenefit[];
     randomResults: BackgroundBenefit[];
@@ -74,7 +74,6 @@ interface BackgroundState {
     rolledDice: boolean;
     setFilterBackground: (newFilterBackground: string) => void;
     setFilterChooseSkill: (newFilterChooseSkill: string[]) => void;
-    setFilterRandomSkill: (newFilterRandomSkill: string[]) => void;
     setFocusedBackground: (newFocusedBackground: BackgroundDefinition) => void;
     setChosenBenefits: (newChosenBenefits: BackgroundBenefit[]) => void;
     setRandomResults: (newRandomResults: BackgroundBenefit[]) => void;
@@ -86,7 +85,6 @@ interface BackgroundState {
 export const useStoreBackgroundState = create<BackgroundState>((set) => ({
     filterBackground: "",
     filterChooseSkill: [],
-    filterRandomSkill: [],
     focusedBackground: undefined,
     chosenSkillsMap: new Map(),
     chosenBenefits: [],
@@ -98,8 +96,6 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
         set({ filterBackground: newFilterBackground }),
     setFilterChooseSkill: (newFilterChooseSkill) =>
         set({ filterChooseSkill: newFilterChooseSkill }),
-    setFilterRandomSkill: (newFilterRandomSkill) =>
-        set({ filterRandomSkill: newFilterRandomSkill }),
     setFocusedBackground: (newFocusedBackground) =>
         set({ focusedBackground: newFocusedBackground }),
     setChosenBenefits: (newChosenBenefits) =>
@@ -123,8 +119,27 @@ interface GameClassState {
 
 export const useStoreGameClassState = create<GameClassState>((set) => ({
     focusedGameClass: undefined,
-    setFocusedGameClass: (newFocusedGameClass) => set({focusedGameClass: newFocusedGameClass})
+    setFocusedGameClass: (newFocusedGameClass) => set({ focusedGameClass: newFocusedGameClass })
 }))
+
+
+interface FociState {
+    filterFocus: string;
+    filterBenefitSkill: string[];
+    focusedFocus: FocusDefinition | undefined;
+    setFilterFocus: (newFilterFocus: string) => void;
+    setFilterBenefitSkill: (newFilterBenefitSkill: string[]) => void; 
+    setFocusedFocus: (newFocusedFocus: FocusDefinition) => void;
+}
+
+export const useStoreFociState = create<FociState>((set) => ({
+    filterFocus: "",
+    filterBenefitSkill: [],
+    focusedFocus: undefined,
+    setFilterFocus: (newFilterFocus) => set({ filterFocus: newFilterFocus }),
+    setFilterBenefitSkill: (newFilterBenefitSkill) => set({ filterBenefitSkill: newFilterBenefitSkill }),
+    setFocusedFocus: (newFocusedFocus) => set({ focusedFocus: newFocusedFocus }),
+}));
 
 
 // Definitions
@@ -133,10 +148,12 @@ interface DefinitionDataState {
     attributeDefinitionList: AttributeDefinition[],
     backgroundDefinitionList: BackgroundDefinition[],
     gameClassDefinitionList: GameClassDefinition[],
+    focusDefinitionList: FocusDefinition[],
     setSkillDefinitions: (newSkillDefinitionList: StandardSkillDefinition[]) => void;
     setAttributeDefinitions: (newAttributeDefinitionList: AttributeDefinition[]) => void;
     setBackgroundDefinitionList: (newBackgroundDefinitionList: BackgroundDefinition[]) => void;
     setGameClassDefinitionList: (newGameClassDefinitionList: GameClassDefinition[]) => void;
+    setFocusDefinitionList: (newFocusDefinitionList: FocusDefinition[]) => void;
 }
 
 export const useStoreDefinitionDataState = create<DefinitionDataState>(((set) => ({
@@ -144,9 +161,11 @@ export const useStoreDefinitionDataState = create<DefinitionDataState>(((set) =>
     attributeDefinitionList: [],
     backgroundDefinitionList: [],
     gameClassDefinitionList: [],
+    focusDefinitionList: [],
     setSkillDefinitions: (newSkillDefinitionList) => set({ skillDefinitionList: newSkillDefinitionList }),
     setAttributeDefinitions: (newAttributeDefinitionList) => set({ attributeDefinitionList: newAttributeDefinitionList }),
     setBackgroundDefinitionList: (newBackgroundDefinitionList) => set({ backgroundDefinitionList: newBackgroundDefinitionList }),
-    setGameClassDefinitionList: (newGameClassDefinitionList: GameClassDefinition[]) => set({ gameClassDefinitionList: newGameClassDefinitionList })
+    setGameClassDefinitionList: (newGameClassDefinitionList: GameClassDefinition[]) => set({ gameClassDefinitionList: newGameClassDefinitionList }),
+    setFocusDefinitionList: (newFocusDefinitionList: FocusDefinition[]) => set({ focusDefinitionList: newFocusDefinitionList })
 })));
 

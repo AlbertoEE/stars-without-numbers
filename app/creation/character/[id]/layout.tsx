@@ -3,6 +3,7 @@
 import {
   attributeDefinitionRepository,
   backgroundDefinitionRepository,
+  focusDefinitionRepository,
   gameClassDefinitionRepository,
   skillsDefinitionRepository,
 } from "@/injection/injection";
@@ -15,6 +16,7 @@ import useSWR from "swr";
 import SectionButton from "./components/SectionButton";
 import { useStoreDefinitionDataState } from "./state"; // Adjust the import path as needed
 import { GameClassDefinition } from "@/models/GameClassDefinitionModels";
+import { FocusDefinition } from "@/models/FocusDefinitionModels";
 
 export default function Layout(props: { children: ReactNode }) {
 
@@ -23,6 +25,7 @@ export default function Layout(props: { children: ReactNode }) {
     setSkillDefinitions,
     setBackgroundDefinitionList,
     setGameClassDefinitionList,
+    setFocusDefinitionList,
   } = useStoreDefinitionDataState();
 
   const { data: skillDefinitionList } = useSWR<StandardSkillDefinition[]>(
@@ -44,27 +47,36 @@ export default function Layout(props: { children: ReactNode }) {
     gameClassDefinitionRepository.getGameClassDefinitionList
   );
 
+  const { data: focusDefinitionList } = useSWR<FocusDefinition[]>(
+    "GlobalFocusDefinition",
+    focusDefinitionRepository.getFoci
+  );
+
   useEffect(() => {
     if (
       attributeDefinitionList &&
       skillDefinitionList &&
       backgroundDefinitionList &&
-      gameClassDefinitionList
+      gameClassDefinitionList &&
+      focusDefinitionList
     ) {
       setSkillDefinitions(skillDefinitionList);
       setAttributeDefinitions(attributeDefinitionList);
       setBackgroundDefinitionList(backgroundDefinitionList);
       setGameClassDefinitionList(gameClassDefinitionList);
+      setFocusDefinitionList(focusDefinitionList);
     }
   }, [
     skillDefinitionList,
     attributeDefinitionList,
     backgroundDefinitionList,
     gameClassDefinitionList,
+    focusDefinitionList,
     setSkillDefinitions,
     setAttributeDefinitions,
     setBackgroundDefinitionList,
     setGameClassDefinitionList,
+    setFocusDefinitionList
   ]);
 
   useEffect(() => {
