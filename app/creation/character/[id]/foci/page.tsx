@@ -1,16 +1,17 @@
 "use client";
 
 import SplitDesign from "../../../components/SplitDesign";
+import { useStoreFociState } from "../state";
 import FocusList from "./FocusList";
 import { Image } from "@nextui-org/react";
 
 export default function Page({ params }: { params: { id: string } }) {
-  const gameClassesNames = ["Psyquic", "Warrior", "Expert", "Adventurer"];
+  const { focusedFocus } = useStoreFociState();
 
   return (
     <SplitDesign
       leftChild={<FocusList />}
-      rightChild={
+      rightChild={ true &&
         <div className="w-full h-full flex flex-col p-5 justify-evenly">
           <div className="flex flex-row items-center gap-4">
             <Image

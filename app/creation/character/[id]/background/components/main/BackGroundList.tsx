@@ -118,7 +118,7 @@ export default function App() {
           ))}
         </Select>
       </div>
-      <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-2">
+      <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-3">
         {items.map((item) => (
           <Card
             className={`w-[45%] h-fit ${item.name == focusedBackground?.name && 'bg-blue-500'}`}

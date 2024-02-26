@@ -99,7 +99,7 @@ export default function App() {
           ))}
         </Select>
       </div>
-      <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-2">
+      <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-3">
         {items.map((item) => (
           <Card
             className={`w-[45%] ${item.name == focusedFocus?.name && 'bg-blue-500'}`}
@@ -111,7 +111,7 @@ export default function App() {
               <div className="flex flex-row">
                 <Image
                   className="mx-4 my-0"
-                  src={`/imgs/backgrounds/${item.name}.svg`}
+                  src={`/imgs/foci/${(item.name).replace(" ", "-")}.svg`}
                   alt="me"
                   width="24"
                   height="24"

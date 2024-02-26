@@ -13,7 +13,7 @@ export default function SplitDesign(props: {
   return (
     <div className="flex flex-row items-center justify-center gap-4 w-full h-full">
       <Card className="h-[85%] w-1/2 flex flex-col items-center">{props.leftChild}</Card>
-      <Card className="h-[85%] w-1/2 flex flex-col items-center">{props.rightChild}</Card>
+      {props.rightChild && <Card className="h-[85%] w-1/2 flex flex-col items-center">{props.rightChild}</Card>}
     </div >
   );
 }
