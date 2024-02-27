@@ -3,7 +3,7 @@ import {
   BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels";
 import { rollDice } from "@/utilities/Roll";
-import { Button, Card, CardBody } from "@nextui-org/react";
+import { Button, Card, CardBody, Divider } from "@nextui-org/react";
 import { useState } from "react";
 import { useStoreBackgroundState } from "../../../../state";
 import GenericBenefitCellResult from "./GenericBenefitCellResult";
@@ -78,73 +78,79 @@ export default function RandomMain(props: {
     <>
       {!rolledDice && (
         <>
-          <div className="flex flex-row justify-around">
-            <Card className="p-5 w-[43%]">
-              <div className="flex flex-row items-center justify-center">
-                <div>
-                  <Button
-                    onPress={() => handleRollSelection("minus", "learning")}
-                    className="text-2xl m-2"
-                    size="sm"
-                  >
-                    -
-                  </Button>
+          <div className="w-full h-full">
+            <div className="flex flex-row justify-around">
+              <Card className="w-[40%] p-4">
+                <div className="flex flex-row items-center justify-center">
+                  <div>
+                    <Button
+                      onPress={() => handleRollSelection("minus", "learning")}
+                      className="text-2xl m-2"
+                      size="sm"
+                    >
+                      -
+                    </Button>
+                  </div>
+                  <div>{rolls.learningRolls}</div>
+                  <div>
+                    <Button
+                      onPress={() => handleRollSelection("plus", "learning")}
+                      className="text-2xl m-2"
+                      size="sm"
+                    >
+                      +
+                    </Button>
+                  </div>
                 </div>
-                <div>{rolls.learningRolls}</div>
-                <div>
-                  <Button
-                    onPress={() => handleRollSelection("plus", "learning")}
-                    className="text-2xl m-2"
-                    size="sm"
-                  >
-                    +
-                  </Button>
+                <Divider className="my-2"/>
+                <div className="mx-auto">
+                  {props.backgroundDefinition.benefits.learning.map((benefit) => (
+                    <div className="flex-1 my-1 mx-0">
+                      <SpecificBenefitCell benefit={benefit} />
+                    </div>
+                  ))}
                 </div>
-              </div>
-              {props.backgroundDefinition.benefits.learning.map((benefit) => (
-                <div className="flex-1 py-1 px-3">
-                  <SpecificBenefitCell benefit={benefit} />
+              </Card>
+              <Card className="w-[40%] p-4">
+                <div className="flex flex-row items-center justify-center">
+                  <div>
+                    <Button
+                      onPress={() => handleRollSelection("minus", "growth")}
+                      className="text-2xl m-2"
+                      size="sm"
+                    >
+                      -
+                    </Button>
+                  </div>
+                  <div>{rolls.growthRolls}</div>
+                  <div>
+                    <Button
+                      onPress={() => handleRollSelection("plus", "growth")}
+                      className="text-2xl m-2"
+                      size="sm"
+                    >
+                      +
+                    </Button>
+                  </div>
                 </div>
-              ))}
-            </Card>
-            <Card className="p-5 w-[43%]">
-              <div className="flex flex-row items-center justify-center">
-                <div>
-                  <Button
-                    onPress={() => handleRollSelection("minus", "growth")}
-                    className="text-2xl m-2"
-                    size="sm"
-                  >
-                    -
-                  </Button>
-                </div>
-                <div>{rolls.growthRolls}</div>
-                <div>
-                  <Button
-                    onPress={() => handleRollSelection("plus", "growth")}
-                    className="text-2xl m-2"
-                    size="sm"
-                  >
-                    +
-                  </Button>
-                </div>
-              </div>
-              {props.backgroundDefinition.benefits.growth.map((benefit) => (
-                <div className="py-1 px-3">
-                  <SpecificBenefitCell benefit={benefit} />
-                </div>
-              ))}
+                {props.backgroundDefinition.benefits.growth.map((benefit) => (
+                  <div className="py-1 px-3">
+                    <SpecificBenefitCell benefit={benefit} />
+                  </div>
+                ))}
+              </Card>
+            </div>
+
+            <Card
+              className="m-auto mt-4 w-[45%] bg-gray-600"
+              isPressable
+              onPress={handleRoll}
+            >
+              <CardBody className="text-center justify-center">
+                {3 - rolls.availableRolls}/3 🎲
+              </CardBody>
             </Card>
           </div>
-          <Card
-            className="h-12 w-24 m-auto mt-2"
-            isPressable
-            onPress={handleRoll}
-          >
-            <CardBody className="text-center justify-center">
-              {3 - rolls.availableRolls}/3 🎲
-            </CardBody>
-          </Card>
         </>
       )}
       {rolledDice && (

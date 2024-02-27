@@ -108,7 +108,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
           </Dropdown>
         </div>
       </div>
-      <div className="overflow-y-auto px-3 py-4 whitespace-pre-line">
+      <div className="overflow-y-auto px-3 whitespace-pre-line my-4">
         {focusedBackground.description}
       </div>
       <div className="w-full flex-1">
