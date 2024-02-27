@@ -64,16 +64,12 @@ export function deleteBenefitByName(
     }
 }
 interface BackgroundState {
-    filterBackground: string;
-    filterChooseSkill: string[];
     focusedBackground: BackgroundDefinition | undefined;
     chosenBenefits: BackgroundBenefit[];
     randomResults: BackgroundBenefit[];
     backgroundTab: Key;
     backgroundBenefitTab: Key;
     rolledDice: boolean;
-    setFilterBackground: (newFilterBackground: string) => void;
-    setFilterChooseSkill: (newFilterChooseSkill: string[]) => void;
     setFocusedBackground: (newFocusedBackground: BackgroundDefinition) => void;
     setChosenBenefits: (newChosenBenefits: BackgroundBenefit[]) => void;
     setRandomResults: (newRandomResults: BackgroundBenefit[]) => void;
@@ -83,8 +79,6 @@ interface BackgroundState {
 }
 
 export const useStoreBackgroundState = create<BackgroundState>((set) => ({
-    filterBackground: "",
-    filterChooseSkill: [],
     focusedBackground: undefined,
     chosenSkillsMap: new Map(),
     chosenBenefits: [],
@@ -92,10 +86,6 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
     backgroundTab: "backgroundDescription",
     backgroundBenefitTab: "predifined",
     rolledDice: false,
-    setFilterBackground: (newFilterBackground) =>
-        set({ filterBackground: newFilterBackground }),
-    setFilterChooseSkill: (newFilterChooseSkill) =>
-        set({ filterChooseSkill: newFilterChooseSkill }),
     setFocusedBackground: (newFocusedBackground) =>
         set({ focusedBackground: newFocusedBackground }),
     setChosenBenefits: (newChosenBenefits) =>

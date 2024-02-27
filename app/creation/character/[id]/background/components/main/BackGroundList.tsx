@@ -12,26 +12,26 @@ import { Select, SelectItem } from "@nextui-org/select";
 import React, { useState } from "react";
 import { useStoreBackgroundState, useStoreDefinitionDataState } from "../../../state";
 import ModalWarning from "@/app/creation/components/ModalWarning";
+import Filter from "../list/Filter";
+import List from "../list/List";
 
 export default function App() {
+  const [filterBackground, setFilterBackground] = useState<string>("")
+  const [filterChooseSkill, setFilterChooseSkill] = useState<string>("")
+  const [proposedBackground, setProposedBackground] = useState<BackgroundDefinition>();
+
   const {
-    filterBackground,
-    filterChooseSkill,
     focusedBackground,
     setChosenBenefits,
-    setFilterBackground,
-    setFilterChooseSkill,
     setFocusedBackground,
   } = useStoreBackgroundState();
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const [proposedBackground, setProposedBackground] = useState<BackgroundDefinition>();
 
   const {
     skillDefinitionList,
     backgroundDefinitionList,
   } = useStoreDefinitionDataState()
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   let items = React.useMemo(() => {
     if (!backgroundDefinitionList) return [];
@@ -83,63 +83,20 @@ export default function App() {
         onAccept={onAcceptModal}
         warning={"If you change the background you will lose your progress. Are you sure?"}
       />
-      <div className="h-[10%] flex flex-row justify-center space-between gap-3 pb-5">
-        <Input
-          label="Background"
-          placeholder="Filter by background"
-          className="max-w-[50%]"
-          value={filterBackground}
-          onValueChange={setFilterBackground}
-        />
-        <Select
-          label="Choose filter"
-          placeholder="Select skills"
-          selectionMode="multiple"
-          selectedKeys={filterChooseSkill}
-          className="max-w-[50%]"
-          onSelectionChange={(keys: Selection) =>
-            setFilterChooseSkill(Array.from(keys).map((key) => key.toString()))
-          }
-        >
-          {skillDefinitionList.map((skill) => (
-            <SelectItem key={skill.name} textValue={skill.name}>
-              <div className="flex flex-row">
-                <Image
-                  loading="eager"
-                  className="mx-4 my-0 flex-1"
-                  src={`/imgs/skills/${skill.name}.svg`}
-                  alt="me"
-                  width="24"
-                  height="24"
-                />
-                <div className="flex-1">{skill.name}</div>
-              </div>
-            </SelectItem>
-          ))}
-        </Select>
-      </div>
-      <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-3">
-        {items.map((item) => (
-          <Card
-            className={`w-[45%] h-fit ${item.name == focusedBackground?.name && 'bg-blue-500'}`}
-            isPressable={item.name != focusedBackground?.name}
-            onPress={() => handleOnBackgroundPress(item)}
-          >
-            <CardBody className="text-center">
-              <div className="flex flex-row">
-                <Image
-                  className="mx-4 my-0"
-                  src={`/imgs/backgrounds/${item.name}.svg`}
-                  alt="me"
-                  width="24"
-                  height="24"
-                />
-                <div>{item.name.toUpperCase()}</div>
-              </div>
-            </CardBody>
-          </Card>
-        ))}
-      </div>
+      <Filter
+        inputState={filterBackground}
+        setInputState={setFilterBackground}
+        selectKeysState={filterChooseSkill}
+        setSelectKeysState={setFilterChooseSkill}
+        selectOptionList={skillDefinitionList.map(e => e.name)}
+        imageFolder={"/imgs/skills"}
+      />
+      <List
+        items={items}
+        focusedItemName={focusedBackground?.name}
+        handleOnItemPress={handleOnBackgroundPress}
+        imageFolder={"/imgs/backgrounds"}
+      />
     </div>
   );
 }

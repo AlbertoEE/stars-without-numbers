@@ -1,36 +1,42 @@
-import { Select, SelectItem, Input } from "@nextui-org/react";
+import { Select, SelectItem, Input, Image } from "@nextui-org/react";
+import { Key, Selection } from "@react-types/shared";
 
-export default function Filter() {
-    return <div className="h-[10%] flex flex-row justify-center space-between gap-3 pb-5">
+export default function Filter(props: {
+    inputState: string,
+    setInputState: (value: string) => void,
+    selectKeysState: Iterable<Key>,
+    setSelectKeysState: (keys: Selection) => any,
+    selectOptionList: string[],
+    imageFolder: string
+}) {
+    return <div className="h-[10%] flex flex-row items-center justify-center space-between gap-3 pb-5">
         <Input
-            label="Background"
-            placeholder="Filter by background"
+            label="Filter"
+            placeholder="Type to filter..."
             className="max-w-[50%]"
-            value={filterBackground}
-            onValueChange={setFilterBackground}
+            value={props.inputState}
+            onValueChange={props.setInputState}
         />
         <Select
-            label="Choose filter"
-            placeholder="Select skills"
+            label="Filter"
+            placeholder="Choose interesting options..."
             selectionMode="multiple"
-            selectedKeys={filterChooseSkill}
+            selectedKeys={props.selectKeysState}
             className="max-w-[50%]"
-            onSelectionChange={(keys: Selection) =>
-                setFilterChooseSkill(Array.from(keys).map((key) => key.toString()))
-            }
+            onSelectionChange={props.setSelectKeysState}
         >
-            {skillDefinitionList.map((skill) => (
-                <SelectItem key={skill.name} textValue={skill.name}>
+            {props.selectOptionList.map((option) => (
+                <SelectItem key={option} textValue={option}>
                     <div className="flex flex-row">
                         <Image
                             loading="eager"
                             className="mx-4 my-0 flex-1"
-                            src={`/imgs/skills/${skill.name}.svg`}
+                            src={`${props.imageFolder}/${option}.svg`}
                             alt="me"
                             width="24"
                             height="24"
                         />
-                        <div className="flex-1">{skill.name}</div>
+                        <div className="flex-1">{option}</div>
                     </div>
                 </SelectItem>
             ))}
