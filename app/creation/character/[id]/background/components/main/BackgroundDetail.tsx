@@ -1,35 +1,35 @@
 import {
   Button,
-  Card,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Image,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  Tab,
-  Tabs,
   useDisclosure,
 } from "@nextui-org/react";
 import { Key } from "@react-types/shared";
 import { useState } from "react";
-import ChooseBenefitsTab from "../tabs/choose/ChooseBenefitsTab";
-import PredefinedBenefitsTab from "../tabs/predifined/PredifinedBenefitsTab";
-import RandomSkillTab from "../tabs/random/RandomSkillTab";
 import { useStoreBackgroundState } from "../../../state";
+import PredifinedMain from "../tabs/predifined/PredifinedMain";
+import RandomMain from "../tabs/random/RandomMain";
+import ChooseMain from "../tabs/choose/ChooseMain";
 
 export default function BackgroundDetail(props: { characterId: string }) {
+  const [selectedKey, setSelectedKey] = useState(new Set(["quick"]));
+  const [proposedTab, setProposedTab] = useState<Key>("");
+
   const {
     focusedBackground,
     setChosenBenefits,
-    backgroundTab,
-    setBackgroundTab,
     backgroundBenefitTab,
     setBackgroundBenefitTab,
     setRolledDice,
   } = useStoreBackgroundState();
-
-  const [proposedTab, setProposedTab] = useState<Key>("");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -55,90 +55,65 @@ export default function BackgroundDetail(props: { characterId: string }) {
     onClose();
   }
 
+  function renderBenefitSelectionType() {
+    switch (selectedKey.currentKey) {
+      case "quick":
+        return <PredifinedMain backgroundDefinition={focusedBackground!} />
+      case "choose":
+        return <ChooseMain backgroundDefinition={focusedBackground!} />
+      case "random":
+        return <RandomMain backgroundDefinition={focusedBackground!} />
+      default:
+        return <PredifinedMain backgroundDefinition={focusedBackground!} />
+    }
+  }
+
   return (
-    <div className="w-full h-full">
-      <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                ⚠️ Progress Could be lost!
-              </ModalHeader>
-              <ModalBody>
-                <p>
-                  If you change the background benefit selection method you will
-                  lose the progress you have made so far. Are you sure you want
-                  to select a new method?{" "}
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={changeTabButClean}>
-                  Yes
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-      <Tabs
-        key="a"
-        aria-label="Options"
-        classNames={{
-          base: "w-full h-[5%]",
-          tabList:
-            "w-full gap-6 relative rounded-none p-0 border-b border-divider",
-          panel: "p-0 h-[95%]",
-        }}
-        selectedKey={backgroundTab}
-        onSelectionChange={setBackgroundTab}
-      >
-        <Tab key="backgroundDescription" title="Description">
-          <div className="p-5">
-            <div className="flex flex-row">
-              <Image
-                className="ml-4 mb-4"
-                src={`/imgs/backgrounds/${focusedBackground.name}.svg`}
-                alt="me"
-                width="64"
-                height="64"
-              />
-              <h1 className="font-orbitron font-bold uppercase tracking-widest text-xs p-4">
-                {focusedBackground.name}
-              </h1>
-            </div>
-            <div className="px-3 py-4 whitespace-pre-line">
-              {focusedBackground.description}
-            </div>
-          </div>
-        </Tab>
-        <Tab key="skills" title="Skills">
-          <div className="w-full">
-            <Tabs
-              key="underlined"
-              variant="underlined"
-              aria-label="Options"
-              fullWidth
-              selectedKey={backgroundBenefitTab}
-              onSelectionChange={handleBenefitTabChange}
+    <div className="w-full h-full flex flex-col overflow-hidden p-5">
+      <div className="flex flex-row items-center">
+        <Image
+          className=""
+          src={`/imgs/backgrounds/${focusedBackground.name}.svg`}
+          alt="me"
+          width="64"
+          height="64"
+        />
+        <h1 className="font-orbitron font-bold uppercase tracking-widest text-4xl ml-4">
+          {focusedBackground.name}
+        </h1>
+        <div className="ml-auto">
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                color="primary"
+                variant="solid"
+                className="capitalize w-44"
+              >
+                Selection: {selectedKey}
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="Dropdown Variants"
+              color="primary"
+              variant="solid"
+              selectionMode="single"
+              selectedKeys={selectedKey}
+              onSelectionChange={setSelectedKey}
+
             >
-              <Tab key="predifined" title="Predefined">
-                <PredefinedBenefitsTab
-                  backgroundDefinition={focusedBackground}
-                />
-              </Tab>
-              <Tab key="choose" title="Choose">
-                <ChooseBenefitsTab background={focusedBackground} />
-              </Tab>
-              <Tab key="random" title="Random">
-                <RandomSkillTab background={focusedBackground} />
-              </Tab>
-            </Tabs>
-          </div>
-        </Tab>
-      </Tabs>
+              <DropdownItem key="quick">Quick</DropdownItem>
+              <DropdownItem key="choose">Choose</DropdownItem>
+              <DropdownItem key="random">Random</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+      </div>
+      <div className="overflow-y-auto px-3 py-4 whitespace-pre-line">
+        {focusedBackground.description}
+      </div>
+      <div className="w-full flex-1">
+        {renderBenefitSelectionType()}
+      </div>
     </div>
   );
 }

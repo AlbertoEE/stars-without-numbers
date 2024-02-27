@@ -6,7 +6,6 @@ export default function TabStructure(props: {
 }) {
   return (
     <>
-      <div className="p-5 whitespace-pre-line">{props.description}</div>
       {props.children}
     </>
   );

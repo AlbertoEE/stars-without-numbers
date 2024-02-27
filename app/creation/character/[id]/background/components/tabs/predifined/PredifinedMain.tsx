@@ -40,7 +40,6 @@ export default function PredifinedMain(props: { backgroundDefinition: Background
                     </div>
                 }
             </div>
-            <div>{chosenBenefits.map((e) => e.name)}</div>
         </>
     );
 }

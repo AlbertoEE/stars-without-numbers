@@ -1,10 +1,10 @@
 import { BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import ChooseBenefitCell from "./ChooseBenefitCell";
 import { Card, CardBody } from "@nextui-org/react";
 import { useStoreBackgroundState } from "../../../../state";
+import ChooseBenefitCell from "./ChooseBenefitCell";
 
 export default function ChooseMain(props: {
-  background: BackgroundDefinition;
+  backgroundDefinition: BackgroundDefinition;
 }) {
   const { chosenBenefits } = useStoreBackgroundState();
 
@@ -16,7 +16,7 @@ export default function ChooseMain(props: {
         </CardBody>
       </Card>
       <div className="flex flex-col">
-        {props.background.benefits.learning
+        {props.backgroundDefinition.benefits.learning
           .filter(
             (obj, index, self) =>
               index === self.findIndex((t) => t.name === obj.name)
@@ -27,7 +27,6 @@ export default function ChooseMain(props: {
             </div>
           ))}
       </div>
-      <div>{chosenBenefits.map((e) => e.name)}</div>
     </>
   );
 }

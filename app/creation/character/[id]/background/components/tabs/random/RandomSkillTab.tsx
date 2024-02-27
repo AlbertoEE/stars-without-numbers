@@ -9,8 +9,8 @@ export default function RandomSkillTab(props: {
 
   return (
     <TabStructure
-      description={description}
-      children={<RandomMain background={props.background} />}
+      description={""}
+      children={<RandomMain backgroundDefinition={props.background} />}
     />
   );
 }
