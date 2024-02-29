@@ -2,8 +2,8 @@
 
 import SplitDesign from "../../../components/SplitDesign";
 import { useStoreBackgroundState } from "../state";
-import BackgroundList from "./components/main/BackGroundList";
-import BackgroundDetail from "./components/main/BackgroundDetail";
+import BackgroundDetail from "./components/BackgroundDetail";
+import BackgroundList from "./components/BackGroundList";
 
 export default function Page({ params }: { params: { id: string } }) {
   const {focusedBackground} = useStoreBackgroundState()

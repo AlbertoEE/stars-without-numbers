@@ -1,19 +1,14 @@
 "use client";
 
+import ModalWarning from "@/app/creation/components/ModalWarning";
 import { BackgroundBenefitType, BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import {
-  Card, CardBody,
-  Image,
-  Input,
-  Selection,
   useDisclosure
 } from "@nextui-org/react";
-import { Select, SelectItem } from "@nextui-org/select";
 import React, { useState } from "react";
-import { useStoreBackgroundState, useStoreDefinitionDataState } from "../../../state";
-import ModalWarning from "@/app/creation/components/ModalWarning";
-import Filter from "../list/Filter";
-import List from "../list/List";
+import { useStoreBackgroundState, useStoreDefinitionDataState } from "../../state";
+import Filter from "../../components/list/Filter";
+import List from "../../components/list/List";
 
 export default function App() {
   const [filterBackground, setFilterBackground] = useState<string>("")

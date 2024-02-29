@@ -4,7 +4,6 @@ import { FocusDefinition } from '@/models/FocusDefinitionModels';
 import { GameClassDefinition } from '@/models/GameClassDefinitionModels';
 import { StandardSkillDefinition } from '@/models/StandardSkillDefinitionModels';
 import { DraggedState } from "@/utilities/DragAndDrop";
-import { Key } from "@react-types/shared";
 import { create } from "zustand";
 
 
@@ -19,13 +18,13 @@ interface BasicAttributesState {
     dragged: DraggedState;
     draggedOver: DraggedState;
     detail: string;
-    attributeTab: Key;
+    attributeTab: string;
     setInitialValues: (newAttributes: AttributeValue) => void;
     setChosenAttributes: (newAttributes: AttributeValue) => void;
     setDragged: (newDraggedState: DraggedState) => void;
     setDraggedOver: (newDraggedState: DraggedState) => void;
     setDetail: (newDetail: string) => void;
-    setAttributeTab: (newAttributeTab: Key) => void;
+    setAttributeTab: (newAttributeTab: string) => void;
 }
 
 export const useStoreBasicAttributesState = create<BasicAttributesState>(((set) => ({
@@ -40,7 +39,7 @@ export const useStoreBasicAttributesState = create<BasicAttributesState>(((set) 
     setDragged: (newDragged) => set({ dragged: newDragged }),
     setDraggedOver: (newDraggedOver) => set({ draggedOver: newDraggedOver }),
     setDetail: (newDetail) => set({ detail: newDetail }),
-    setAttributeTab: (newAttributeTab: Key) => set({ attributeTab: newAttributeTab }),
+    setAttributeTab: (newAttributeTab: string) => set({ attributeTab: newAttributeTab }),
 })));
 
 
@@ -67,14 +66,12 @@ interface BackgroundState {
     focusedBackground: BackgroundDefinition | undefined;
     chosenBenefits: BackgroundBenefit[];
     randomResults: BackgroundBenefit[];
-    backgroundTab: Key;
-    backgroundBenefitTab: Key;
+    backgroundBenefitSelectionMethod: string;
     rolledDice: boolean;
     setFocusedBackground: (newFocusedBackground: BackgroundDefinition) => void;
     setChosenBenefits: (newChosenBenefits: BackgroundBenefit[]) => void;
     setRandomResults: (newRandomResults: BackgroundBenefit[]) => void;
-    setBackgroundTab: (newBackgroundTab: Key) => void;
-    setBackgroundBenefitTab: (newBackgroundBenefitTab: Key) => void;
+    setBackgroundBenefitSelectionMethod: (newBackgroundBenefitTab: string) => void;
     setRolledDice: (newRolledDice: boolean) => void;
 }
 
@@ -84,7 +81,7 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
     chosenBenefits: [],
     randomResults: [],
     backgroundTab: "backgroundDescription",
-    backgroundBenefitTab: "predifined",
+    backgroundBenefitSelectionMethod: "choose",
     rolledDice: false,
     setFocusedBackground: (newFocusedBackground) =>
         set({ focusedBackground: newFocusedBackground }),
@@ -92,10 +89,8 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
         set({ chosenBenefits: newChosenBenefits }),
     setRandomResults: (newRandomResults) =>
         set({ randomResults: newRandomResults }),
-    setBackgroundTab: (newBackgroundTab) =>
-        set({ backgroundTab: newBackgroundTab }),
-    setBackgroundBenefitTab: (newBackgroundBenefitTab) =>
-        set({ backgroundBenefitTab: newBackgroundBenefitTab }),
+    setBackgroundBenefitSelectionMethod: (newBackgroundBenefitTab) =>
+        set({ backgroundBenefitSelectionMethod: newBackgroundBenefitTab }),
     setRolledDice: (newRolledDice) =>
         set({ rolledDice: newRolledDice }),
 }));
