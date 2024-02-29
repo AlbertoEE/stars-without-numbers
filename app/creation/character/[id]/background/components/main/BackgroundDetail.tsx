@@ -1,5 +1,6 @@
 import {
   Button,
+  Divider,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -108,10 +109,12 @@ export default function BackgroundDetail(props: { characterId: string }) {
           </Dropdown>
         </div>
       </div>
-      <div className="overflow-y-auto px-3 whitespace-pre-line my-4">
+      <h1 className="text-xl my-4">Description</h1>
+      <div className="overflow-y-auto px-3 whitespace-pre-line mb-4">
         {focusedBackground.description}
       </div>
-      <div className="w-full flex-1">
+      <Divider />
+      <div className="w-full flex-1 my-4">
         {renderBenefitSelectionType()}
       </div>
     </div>

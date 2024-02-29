@@ -9,7 +9,7 @@ export default function PredifinedMain(props: { backgroundDefinition: Background
         chosenBenefits,
         setChosenBenefits,
     } = useStoreBackgroundState();
-    
+
     useEffect(() => {
         const predifinedBenefits: BackgroundBenefit[] = [];
 
@@ -26,12 +26,15 @@ export default function PredifinedMain(props: { backgroundDefinition: Background
 
     return (
         <>
-            <div className="flex flex-col">
-                {props.backgroundDefinition.benefits.predifined.map((benefit) => (
-                    <div className="flex-1 py-1 px-3">
-                        <PredifinedBenefitCell benefit={benefit} />
-                    </div>
-                ))}
+            <h1 className="text-xl mb-4">Predifined Skills Obtained</h1>
+            <div className="flex flex-row">
+                {
+                    props.backgroundDefinition.benefits.predifined.map((benefit) => (
+                        <div className="flex-1 py-1 px-3">
+                            <PredifinedBenefitCell benefit={benefit} />
+                        </div>
+                    ))
+                }
                 {
                     <div className="flex-1 py-1 px-3">
                         <PredifinedBenefitCell

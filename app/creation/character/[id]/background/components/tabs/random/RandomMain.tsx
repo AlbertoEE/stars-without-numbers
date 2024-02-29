@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useStoreBackgroundState } from "../../../../state";
 import GenericBenefitCellResult from "./GenericBenefitCellResult";
 import SpecificBenefitCell from "./SpecificBenefitCell";
+import TableOptions from "./TableOptions";
 
 export default function RandomMain(props: {
   backgroundDefinition: BackgroundDefinition;
@@ -80,65 +81,16 @@ export default function RandomMain(props: {
         <>
           <div className="w-full h-full">
             <div className="flex flex-row justify-around">
-              <Card className="w-[40%] p-4">
-                <div className="flex flex-row items-center justify-center">
-                  <div>
-                    <Button
-                      onPress={() => handleRollSelection("minus", "learning")}
-                      className="text-2xl m-2"
-                      size="sm"
-                    >
-                      -
-                    </Button>
-                  </div>
-                  <div>{rolls.learningRolls}</div>
-                  <div>
-                    <Button
-                      onPress={() => handleRollSelection("plus", "learning")}
-                      className="text-2xl m-2"
-                      size="sm"
-                    >
-                      +
-                    </Button>
-                  </div>
-                </div>
-                <Divider className="my-2"/>
-                <div className="mx-auto">
-                  {props.backgroundDefinition.benefits.learning.map((benefit) => (
-                    <div className="flex-1 my-1 mx-0">
-                      <SpecificBenefitCell benefit={benefit} />
-                    </div>
-                  ))}
-                </div>
-              </Card>
-              <Card className="w-[40%] p-4">
-                <div className="flex flex-row items-center justify-center">
-                  <div>
-                    <Button
-                      onPress={() => handleRollSelection("minus", "growth")}
-                      className="text-2xl m-2"
-                      size="sm"
-                    >
-                      -
-                    </Button>
-                  </div>
-                  <div>{rolls.growthRolls}</div>
-                  <div>
-                    <Button
-                      onPress={() => handleRollSelection("plus", "growth")}
-                      className="text-2xl m-2"
-                      size="sm"
-                    >
-                      +
-                    </Button>
-                  </div>
-                </div>
-                {props.backgroundDefinition.benefits.growth.map((benefit) => (
-                  <div className="py-1 px-3">
-                    <SpecificBenefitCell benefit={benefit} />
-                  </div>
-                ))}
-              </Card>
+              <TableOptions
+                rolls={rolls.learningRolls}
+                benefits={props.backgroundDefinition.benefits.learning}
+                onMinusPress={() => handleRollSelection("minus", "learning")}
+                onPlusPress={() => handleRollSelection("plus", "learning")} />
+              <TableOptions
+                rolls={rolls.growthRolls}
+                benefits={props.backgroundDefinition.benefits.growth}
+                onMinusPress={() => handleRollSelection("minus", "growth")}
+                onPlusPress={() => handleRollSelection("plus", "growth")} />
             </div>
 
             <Card
