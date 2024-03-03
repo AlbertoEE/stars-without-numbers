@@ -9,7 +9,7 @@ export default function ChooseMain(props: {
 
   return (
     <>
-      <h1 className="text-xl mb-4">Upgrade up to <span className="italic">{chosenBenefits.length - 1 + "/2"}</span> skills</h1>
+      <h1 className="text-xl mb-4">Upgrade up to <span>{`[${2 - (chosenBenefits.length - 1)}]`}</span> skills</h1>
       <div className="flex flex-col mx-auto">
         {props.backgroundDefinition.benefits.learning
           .filter(
