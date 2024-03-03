@@ -1,19 +1,92 @@
 import {
-    BackgroundBenefit,
-    BackgroundBenefitType,
+  BackgroundBenefit,
+  BackgroundBenefitType,
+  BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels";
+import {
+  addBenefit,
+  deleteBenefitByName,
+  useStoreBackgroundState,
+} from "../../state";
 import { Button } from "@nextui-org/react";
-import { addBenefit, deleteBenefitByName, useStoreBackgroundState } from "../../../../state";
+import { useState, Key } from "react";
+import BenefitImage from "./commons/BenefitImage";
+import DropDownGenericBenefit from "./commons/DropDownGenericBenefit";
 
-export default function ButtonLevelUpBenefit(props: {
+export default function ChooseSelectionMethod(props: {
+  backgroundDefinition: BackgroundDefinition;
+}) {
+  const { chosenBenefits } = useStoreBackgroundState();
+
+  return (
+    <>
+      <h1 className="text-xl mb-4">
+        Upgrade up to <span>{`[${2 - (chosenBenefits.length - 1)}]`}</span>{" "}
+        skills
+      </h1>
+      <div className="flex flex-col mx-auto">
+        {props.backgroundDefinition.benefits.learning
+          .filter(
+            (obj, index, self) =>
+              index === self.findIndex((t) => t.name === obj.name)
+          )
+          .map((benefit) => (
+            <div className="flex-1 py-1 px-3">
+              <ChooseBenefitCell benefit={benefit} />
+            </div>
+          ))}
+      </div>
+    </>
+  );
+}
+
+export function ChooseBenefitCell(props: { benefit: BackgroundBenefit }) {
+  const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
+  const [selectedKeys, setSelectedKeys] = useState<
+    Iterable<Key> | undefined | "all"
+  >(undefined);
+
+  function handleOnDropdownChange(keys: Selection) {
+    const cloneChosenBenefits = [...chosenBenefits];
+    deleteBenefitByName(cloneChosenBenefits, selectedKeys?.currentKey);
+    setSelectedKeys(keys);
+    setChosenBenefits(cloneChosenBenefits);
+  }
+
+  function renderSpecificBenefit() {
+    return <div>{props.benefit.name}</div>;
+  }
+
+  function renderGenericBenefit() {
+    return (
+      <DropDownGenericBenefit
+        benefit={props.benefit}
+        selectedKeys={selectedKeys}
+        handleOnDropdownChange={handleOnDropdownChange}
+      />
+    );
+  }
+
+  return (
+    <div className="flex flex-row items-center gap-2 select-none">
+      <ButtonLevelUpBenefit
+        backgroundBenefit={props.benefit}
+        dropdownChosenBenefit={selectedKeys?.currentKey}
+      />
+      <BenefitImage benefit={props.benefit} />
+      {props.benefit.subtype === "specific"
+        ? renderSpecificBenefit()
+        : renderGenericBenefit()}
+    </div>
+  );
+}
+
+export function ButtonLevelUpBenefit(props: {
   backgroundBenefit: BackgroundBenefit;
   dropdownChosenBenefit: string | undefined;
 }) {
-  const {
-    chosenBenefits,
-    focusedBackground: detailBackground,
-    setChosenBenefits,
-  } = useStoreBackgroundState();
+  const { chosenBenefits, focusedBackground, setChosenBenefits } =
+    useStoreBackgroundState();
 
   function handleChooseSkill(sign: "plus" | "minus") {
     const chosenBenefit: BackgroundBenefit = getChosenBenefit();
@@ -53,7 +126,7 @@ export default function ButtonLevelUpBenefit(props: {
 
   function checkBenefitCount(expectedCount: number): boolean {
     const isBenefitNameMatch =
-      props.backgroundBenefit.name == detailBackground?.benefits.free.name;
+      props.backgroundBenefit.name == focusedBackground?.benefits.free.name;
     const benefitCount = chosenBenefits.filter(
       (e) => e.name == props.backgroundBenefit.name
     ).length;

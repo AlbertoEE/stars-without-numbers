@@ -12,8 +12,8 @@ import {
 import { Selection } from "@react-types/shared";
 import { useEffect, useState } from "react";
 import { useStoreBackgroundState } from "../../state";
-import ChooseMain from "./benefitSelectionType/choose/ChooseMain";
-import RandomMain from "./benefitSelectionType/random/RandomMain";
+import ChooseSelectionMethod from "./ChooseSelectionMethod";
+import RandomSelectionMethod from "./RandomSelectionMethod";
 
 export default function BackgroundDetail(props: { characterId: string }) {
   const [proposedBackgroundSelectionType, setProposedBackgroundSelectionType] = useState<string>("");
@@ -59,9 +59,9 @@ export default function BackgroundDetail(props: { characterId: string }) {
   function renderBenefitSelectionType() {
     switch (backgroundBenefitSelectionMethod) {
       case "choose":
-        return <ChooseMain backgroundDefinition={focusedBackground!} />
+        return <ChooseSelectionMethod backgroundDefinition={focusedBackground!} />
       case "random":
-        return <RandomMain backgroundDefinition={focusedBackground!} />
+        return <RandomSelectionMethod backgroundDefinition={focusedBackground!} />
     }
   }
 

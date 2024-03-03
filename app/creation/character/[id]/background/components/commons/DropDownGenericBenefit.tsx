@@ -11,7 +11,7 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { Key, Selection } from "@react-types/shared";
-import { useStoreDefinitionDataState } from "../../../../state";
+import { useStoreDefinitionDataState } from "../../../state";
 
 export default function DropDownGenericBenefit(props: {
   benefit: BackgroundBenefit;
