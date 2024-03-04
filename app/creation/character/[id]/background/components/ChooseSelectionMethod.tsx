@@ -156,10 +156,6 @@ export function ButtonLevelUpBenefit(props: {
       >
         -
       </Button>
-      <div className="min-w-unit-6 text-right">
-        {skillLevel === -1 ? "❌" : skillLevel}
-      </div>
-      <div>LvL</div>
       <Button
         isIconOnly
         isDisabled={
@@ -172,6 +168,10 @@ export function ButtonLevelUpBenefit(props: {
       >
         +
       </Button>
+      <div>LvL</div>
+      <div className="min-w-unit-6 text-center">
+        {skillLevel === -1 ? "❌" : skillLevel}
+      </div>
     </>
   );
 }

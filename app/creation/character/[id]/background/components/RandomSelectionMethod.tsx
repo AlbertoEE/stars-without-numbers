@@ -108,7 +108,9 @@ export default function RandomSelectionMethod(props: {
 
   function renderRandomResults() {
     return (
-      <div className="flex flex-col gap-2">
+      <>
+      <h1 className="text-xl mb-2">Roll Results</h1>
+      <div className="flex flex-col gap-2 px-3">
         {chosenBenefits.map((e: BackgroundBenefit, i) =>
           e.subtype !== "specific" ? (
             <GenericBenefitCellResult benefit={e} index={i} />
@@ -117,6 +119,7 @@ export default function RandomSelectionMethod(props: {
           )
         )}
       </div>
+      </>
     );
   }
 
@@ -149,7 +152,7 @@ export function GenericBenefitCellResult(props: {
     return (
       <div className="flex flex-row">
         <BenefitImage benefit={props.benefit} />
-        <div className="mr-2">+1</div>
+        <div className="mx-2">+1</div>
         <DropDownGenericBenefit
           dropDownName={props.benefit.selected?.get(option)?.name}
           benefit={props.benefit}
@@ -175,17 +178,6 @@ export function GenericBenefitCellResult(props: {
   }
 
   return render();
-}
-
-export function SpecificBenefitCell(props: {
-  benefit: BackgroundBenefit;
-}) {
-  return (
-    <div className="flex flex-row">
-      <BenefitImage benefit={props.benefit} />
-      <div>{props.benefit.name}</div>
-    </div>
-  );
 }
 
 export function TableOptions(props: {
@@ -225,4 +217,14 @@ export function TableOptions(props: {
           ))}
       </div>
   </Card>
+}
+export function SpecificBenefitCell(props: {
+  benefit: BackgroundBenefit;
+}) {
+  return (
+    <div className="flex flex-row">
+      <BenefitImage benefit={props.benefit} />
+      <div className="ml-4">{props.benefit.name}</div>
+    </div>
+  );
 }

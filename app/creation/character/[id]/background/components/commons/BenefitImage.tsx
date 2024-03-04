@@ -11,7 +11,7 @@ export default function BenefitImage(props: {
   return (
     <Image
       loading="eager"
-      className="mx-2 my-0 flex-1"
+      className="my-0 flex-1"
       src={folderPath + props.benefit.name + ".svg"}
       alt="me"
       width="24"
