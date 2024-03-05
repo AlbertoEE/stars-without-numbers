@@ -1,31 +1,23 @@
 "use client";
 
-import {
-  Card, CardBody,
-  Image,
-  Input,
-  Selection,
-  useDisclosure
-} from "@nextui-org/react";
-import { Select, SelectItem } from "@nextui-org/select";
+import { useDisclosure } from "@nextui-org/react";
 import React, { useState } from "react";
 import ModalWarning from "@/app/creation/components/ModalWarning";
 import { useStoreDefinitionDataState, useStoreFociState } from "../state";
 import { FocusDefinition } from "@/models/FocusDefinitionModels";
+import Filter from "../components/list/Filter";
+import { Key } from "@react-types/shared";
+import List from "../components/list/List";
+
 
 export default function App() {
-  const {
-    filterFocus,
-    filterBenefitSkill,
-    focusedFocus,
-    setFilterFocus,
-    setFilterBenefitSkill,
-    setFocusedFocus,
-  } = useStoreFociState();
+  const { focusedFocus, setFocusedFocus } = useStoreFociState();
+
+  const [filterFocus, setFilterFocus] = useState<string>("")
+  const [filterBenefitSkill, setFilterBenefitSkill] = useState<Iterable<Key>>([])
+  const [proposedBackground, setProposedBackground] = useState<FocusDefinition>();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const [proposedBackground, setProposedBackground] = useState<FocusDefinition>();
 
   const {
     focusDefinitionList,
@@ -61,67 +53,38 @@ export default function App() {
 
   if (!focusDefinitionList) return <></>;
 
-  return (
-    <div className="h-full w-full flex flex-col p-5"> 
+  function onAcceptModal() {
+    setFocusedFocus(proposedBackground!)
+    onClose()
+  }
 
-      <div className="flex flex-row justify-center space-between gap-3 pb-5 h-[10%]">
-        <Input
-          label="Focus"
-          placeholder="Filter by focus..."
-          className="max-w-[50%]"
-          value={filterFocus}
-          onValueChange={setFilterFocus}
-        />
-        <Select
-          label="Skill filter"
-          placeholder="Select skills..."
-          selectionMode="multiple"
-          selectedKeys={filterBenefitSkill}
-          className="max-w-[50%]"
-          onSelectionChange={(keys: Selection) =>
-            setFilterBenefitSkill(Array.from(keys).map((key) => key.toString()))
-          }
-        >
-          {skillDefinitionList.map((skill) => (
-            <SelectItem key={skill.name} textValue={skill.name}>
-              <div className="flex flex-row">
-                <Image
-                  loading="eager"
-                  className="mx-4 my-0 flex-1"
-                  src={`/imgs/skills/${skill.name}.svg`}
-                  alt="me"
-                  width="24"
-                  height="24"
-                />
-                <div className="flex-1">{skill.name}</div>
-              </div>
-            </SelectItem>
-          ))}
-        </Select>
-      </div>
-      <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-3">
-        {items.map((item) => (
-          <Card
-            className={`w-[45%] ${item.name == focusedFocus?.name && 'bg-blue-500'}`}
-            isPressable={item.name != focusedFocus?.name}
-            onPress={() => {}}
-            key={item.name}
-          >
-            <CardBody className="text-center">
-              <div className="flex flex-row">
-                <Image
-                  className="mx-4 my-0"
-                  src={`/imgs/foci/${(item.name).replace(" ", "-")}.svg`}
-                  alt="me"
-                  width="24"
-                  height="24"
-                />
-                <div>{item.name.toUpperCase()}</div>
-              </div>
-            </CardBody>
-          </Card>
-        ))}
-      </div>
+  function handleOnFocusPress(backgroundDefinition: FocusDefinition) {
+    setProposedBackground(backgroundDefinition)
+    onOpen()
+  }
+
+  return (
+    <div className="h-full w-full flex flex-col p-5">
+      <ModalWarning
+        isOpen={isOpen}
+        onClose={onClose}
+        onAccept={onAcceptModal}
+        warning={"If you change the background you will lose your progress. Are you sure?"}
+      />
+      <Filter
+        inputState={filterFocus}
+        setInputState={setFilterFocus}
+        selectKeysState={filterBenefitSkill}
+        setSelectKeysState={setFilterBenefitSkill}
+        selectOptionList={skillDefinitionList.map(e => e.name)}
+        imageFolder={"/imgs/skills"}
+      />
+      <List
+        items={items}
+        focusedItemName={focusedFocus?.name}
+        handleOnItemPress={handleOnFocusPress}
+        imageFolder={"/imgs/foci"}
+      />
     </div>
   );
 }

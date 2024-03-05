@@ -8,6 +8,7 @@ export interface FocusDefinition {
 export interface FocusLevelDefinition {
     level: number,
     description: string,
+    descriptionSchema: string[],
     skillBenefitOptionList?: string[],
 }
 
