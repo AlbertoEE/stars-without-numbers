@@ -11,7 +11,7 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <SplitDesign
       leftChild={<FocusList />}
-      rightChild={<FocusDetail />}
+      rightChild={focusedFocus && <FocusDetail />}
     />
   );
 }

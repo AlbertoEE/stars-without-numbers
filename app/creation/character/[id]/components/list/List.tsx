@@ -17,7 +17,7 @@ export default function List<T>(props: {
                     <div className="flex flex-row">
                         <Image
                             className="mx-4 my-0"
-                            src={`${props.imageFolder}/${item.name}.svg`}
+                            src={`${props.imageFolder}/${item.name.replace(" ", "-")}.svg`}
                             alt="me"
                             width="24"
                             height="24"

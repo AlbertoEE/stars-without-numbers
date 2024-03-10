@@ -8,3 +8,27 @@
     font-weight: 400;
     font-style: normal;
 }
+
+/* Adjusts the width of the scrollbar */
+::-webkit-scrollbar {
+    width: 8px; /* or any value to make it thinner */
+    height: 8px; /* For horizontal scrollbars */
+}
+
+/* Styles the track (background) of the scrollbar */
+::-webkit-scrollbar-track {
+    background: #3a3939; /* Light grey track */
+    border-radius: 10px; 
+}
+
+/* Styles the handle (the part you drag) of the scrollbar */
+::-webkit-scrollbar-thumb {
+    background: #888; /* Darker grey handle */
+    border-radius: 10px; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #747474; /* Even darker grey on hover */
+    border-radius: 10px; 
+}

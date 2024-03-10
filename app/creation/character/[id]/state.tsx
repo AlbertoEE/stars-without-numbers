@@ -107,23 +107,32 @@ export const useStoreGameClassState = create<GameClassState>((set) => ({
     setFocusedGameClass: (newFocusedGameClass) => set({ focusedGameClass: newFocusedGameClass })
 }))
 
+export interface FocusSelection {
+    focus: FocusDefinition;
+    level: number;
+    origin: "foci" | "gameClass";
+}
 
 interface FociState {
     filterFocus: string;
     filterBenefitSkill: string[];
     focusedFocus: FocusDefinition | undefined;
+    chosenFoci: FocusSelection[];
     setFilterFocus: (newFilterFocus: string) => void;
-    setFilterBenefitSkill: (newFilterBenefitSkill: string[]) => void; 
+    setFilterBenefitSkill: (newFilterBenefitSkill: string[]) => void;
     setFocusedFocus: (newFocusedFocus: FocusDefinition) => void;
+    setChosenFoci: (newChosenFoci: FocusSelection[]) => void;
 }
 
 export const useStoreFociState = create<FociState>((set) => ({
     filterFocus: "",
     filterBenefitSkill: [],
     focusedFocus: undefined,
+    chosenFoci: [],
     setFilterFocus: (newFilterFocus) => set({ filterFocus: newFilterFocus }),
     setFilterBenefitSkill: (newFilterBenefitSkill) => set({ filterBenefitSkill: newFilterBenefitSkill }),
     setFocusedFocus: (newFocusedFocus) => set({ focusedFocus: newFocusedFocus }),
+    setChosenFoci: (newChosenFoci: FocusSelection[]) => set({ chosenFoci: newChosenFoci }),
 }));
 
 
