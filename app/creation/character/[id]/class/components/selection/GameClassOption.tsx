@@ -1,12 +1,12 @@
-import { type GameClassDefinition } from "@/models/GameClassDefinitionModels";
-import { Card, CardHeader } from "@nextui-org/react";
-import Image from "next/image";
-import { useStoreGameClassState } from "../../../state";
+import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
+import { Card, CardHeader } from "@nextui-org/react"
+import Image from "next/image"
+import { useStoreGameClassState } from "../../../state"
 
 export default function GameClassOption(props: {
-  gameClassDefinition: GameClassDefinition;
+  gameClassDefinition: GameClassDefinition
 }) {
-  const { setFocusedGameClass } = useStoreGameClassState();
+  const { setFocusedGameClass } = useStoreGameClassState()
 
   return (
     <Card
@@ -14,7 +14,9 @@ export default function GameClassOption(props: {
       radius="lg"
       className="border-none flex-1 rounded-none"
       isPressable
-      onPress={() => { setFocusedGameClass(props.gameClassDefinition); }}
+      onPress={() => {
+        setFocusedGameClass(props.gameClassDefinition)
+      }}
     >
       <CardHeader className="flex flex-col items-center mt-auto mb-auto h-full m-0 p-0">
         <div className="select-none w-full h-full flex flex-col items-center justify-center drop-shadow-[0_4.2px_0.2px_rgba(0,0,0,1)] backdrop-blur hover:backdrop-blur-none text-white italic text-5xl transition duration-1000 ease-in-out">
@@ -28,5 +30,5 @@ export default function GameClassOption(props: {
         src={`/imgs/classes/${props.gameClassDefinition.name}.png`}
       />
     </Card>
-  );
+  )
 }

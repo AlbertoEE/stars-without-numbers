@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   attributeDefinitionRepository,
@@ -6,51 +6,50 @@ import {
   focusDefinitionRepository,
   gameClassDefinitionRepository,
   skillsDefinitionRepository,
-} from "@/injection/injection";
-import { type AttributeDefinition } from "@/models/AttributeDefinitionModels";
-import { type BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
-import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels";
-import { usePathname, useRouter } from "next/navigation";
-import { type ReactNode, useEffect } from "react";
-import useSWR from "swr";
-import SectionButton from "./components/SectionButton";
-import { useStoreDefinitionDataState } from "./state"; // Adjust the import path as needed
-import { type GameClassDefinition } from "@/models/GameClassDefinitionModels";
-import { type FocusDefinition } from "@/models/FocusDefinitionModels";
+} from "@/injection/injection"
+import { type AttributeDefinition } from "@/models/AttributeDefinitionModels"
+import { type BackgroundDefinition } from "@/models/BackgroundDefinitionModels"
+import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
+import { usePathname, useRouter } from "next/navigation"
+import { type ReactNode, useEffect } from "react"
+import useSWR from "swr"
+import SectionButton from "./components/SectionButton"
+import { useStoreDefinitionDataState } from "./state" // Adjust the import path as needed
+import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
+import { type FocusDefinition } from "@/models/FocusDefinitionModels"
 
 export default function Layout(props: { children: ReactNode }) {
-
   const {
     setAttributeDefinitions,
     setSkillDefinitions,
     setBackgroundDefinitionList,
     setGameClassDefinitionList,
     setFocusDefinitionList,
-  } = useStoreDefinitionDataState();
+  } = useStoreDefinitionDataState()
 
   const { data: skillDefinitionList } = useSWR<StandardSkillDefinition[]>(
     "GlobalSkillDefinition",
-    skillsDefinitionRepository.getSkills
-  );
+    skillsDefinitionRepository.getSkills,
+  )
   const { data: attributeDefinitionList } = useSWR<AttributeDefinition[]>(
     "GlobalAttributeDefinition",
-    attributeDefinitionRepository.getAttributes
-  );
+    attributeDefinitionRepository.getAttributes,
+  )
 
   const { data: backgroundDefinitionList } = useSWR<BackgroundDefinition[]>(
     "GlobalBackgroundDefinition",
-    backgroundDefinitionRepository.getBackgrounds
-  );
+    backgroundDefinitionRepository.getBackgrounds,
+  )
 
   const { data: gameClassDefinitionList } = useSWR<GameClassDefinition[]>(
     "GlobalGameClassDefinition",
-    gameClassDefinitionRepository.getGameClassDefinitionList
-  );
+    gameClassDefinitionRepository.getGameClassDefinitionList,
+  )
 
   const { data: focusDefinitionList } = useSWR<FocusDefinition[]>(
     "GlobalFocusDefinition",
-    focusDefinitionRepository.getFoci
-  );
+    focusDefinitionRepository.getFoci,
+  )
 
   useEffect(() => {
     if (
@@ -60,11 +59,11 @@ export default function Layout(props: { children: ReactNode }) {
       gameClassDefinitionList &&
       focusDefinitionList
     ) {
-      setSkillDefinitions(skillDefinitionList);
-      setAttributeDefinitions(attributeDefinitionList);
-      setBackgroundDefinitionList(backgroundDefinitionList);
-      setGameClassDefinitionList(gameClassDefinitionList);
-      setFocusDefinitionList(focusDefinitionList);
+      setSkillDefinitions(skillDefinitionList)
+      setAttributeDefinitions(attributeDefinitionList)
+      setBackgroundDefinitionList(backgroundDefinitionList)
+      setGameClassDefinitionList(gameClassDefinitionList)
+      setFocusDefinitionList(focusDefinitionList)
     }
   }, [
     skillDefinitionList,
@@ -76,24 +75,24 @@ export default function Layout(props: { children: ReactNode }) {
     setAttributeDefinitions,
     setBackgroundDefinitionList,
     setGameClassDefinitionList,
-    setFocusDefinitionList
-  ]);
+    setFocusDefinitionList,
+  ])
 
   useEffect(() => {
     // Solo añadir el listener si `window` está definido (lado del cliente)
     if (typeof window !== "undefined") {
       const handleBeforeUnload = (e) => {
-        e.preventDefault();
-        e.returnValue = ""; // Algunos navegadores requieren que `returnValue` se establezca.
-      };
+        e.preventDefault()
+        e.returnValue = "" // Algunos navegadores requieren que `returnValue` se establezca.
+      }
 
-      window.addEventListener("beforeunload", handleBeforeUnload);
+      window.addEventListener("beforeunload", handleBeforeUnload)
 
       return () => {
-        window.removeEventListener("beforeunload", handleBeforeUnload);
-      };
+        window.removeEventListener("beforeunload", handleBeforeUnload)
+      }
     }
-  }, []);
+  }, [])
 
   return (
     <>
@@ -110,5 +109,5 @@ export default function Layout(props: { children: ReactNode }) {
       </div>
       {props.children}
     </>
-  );
+  )
 }

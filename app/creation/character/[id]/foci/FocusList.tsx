@@ -1,57 +1,55 @@
-"use client";
+"use client"
 
-import ModalWarning from "@/app/creation/components/ModalWarning";
-import { type FocusDefinition } from "@/models/FocusDefinitionModels";
-import { useDisclosure } from "@nextui-org/react";
-import { type Key } from "@react-types/shared";
-import React, { useState } from "react";
-import Filter from "../components/list/Filter";
-import List from "../components/list/List";
-import { useStoreDefinitionDataState, useStoreFociState } from "../state";
-
+import ModalWarning from "@/app/creation/components/ModalWarning"
+import { type FocusDefinition } from "@/models/FocusDefinitionModels"
+import { useDisclosure } from "@nextui-org/react"
+import { type Key } from "@react-types/shared"
+import React, { useState } from "react"
+import Filter from "../components/list/Filter"
+import List from "../components/list/List"
+import { useStoreDefinitionDataState, useStoreFociState } from "../state"
 
 export default function App() {
-  const { focusedFocus, setFocusedFocus } = useStoreFociState();
+  const { focusedFocus, setFocusedFocus } = useStoreFociState()
 
   const [filterFocus, setFilterFocus] = useState<string>("")
-  const [filterBenefitSkill, setFilterBenefitSkill] = useState<Iterable<Key>>([])
-  const [proposedBackground, setProposedBackground] = useState<FocusDefinition>();
+  const [filterBenefitSkill, setFilterBenefitSkill] = useState<Iterable<Key>>(
+    [],
+  )
+  const [proposedBackground, setProposedBackground] =
+    useState<FocusDefinition>()
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const {
-    focusDefinitionList,
-    skillDefinitionList
-  } = useStoreDefinitionDataState()
+  const { focusDefinitionList, skillDefinitionList } =
+    useStoreDefinitionDataState()
 
   const items = React.useMemo(() => {
-    if (!focusDefinitionList) return [];
-    let filteredValues = [...focusDefinitionList];
+    if (!focusDefinitionList) return []
+    let filteredValues = [...focusDefinitionList]
 
     if (filterFocus != "") {
       filteredValues = filteredValues.filter((background) =>
-        background.name.startsWith(filterFocus.toLowerCase())
-      );
+        background.name.startsWith(filterFocus.toLowerCase()),
+      )
     }
 
     if (filterBenefitSkill.length > 0) {
-      filteredValues = filteredValues
-        .filter((focus: FocusDefinition) =>
-          filterBenefitSkill
-            .every((filter: string) =>
-              focus.levels
-                .filter(focusLevel => focusLevel.skillBenefitOptionList)
-                .map(focusLevel => focusLevel.skillBenefitOptionList)
-                .flat()
-                .includes(filter)
-            )
-        );
+      filteredValues = filteredValues.filter((focus: FocusDefinition) =>
+        filterBenefitSkill.every((filter: string) =>
+          focus.levels
+            .filter((focusLevel) => focusLevel.skillBenefitOptionList)
+            .map((focusLevel) => focusLevel.skillBenefitOptionList)
+            .flat()
+            .includes(filter),
+        ),
+      )
     }
 
-    return filteredValues;
-  }, [filterFocus, filterBenefitSkill, focusDefinitionList]);
+    return filteredValues
+  }, [filterFocus, filterBenefitSkill, focusDefinitionList])
 
-  if (!focusDefinitionList) return <></>;
+  if (!focusDefinitionList) return <></>
 
   function onAcceptModal() {
     setFocusedFocus(proposedBackground!)
@@ -69,14 +67,16 @@ export default function App() {
         isOpen={isOpen}
         onClose={onClose}
         onAccept={onAcceptModal}
-        warning={"If you change the background you will lose your progress. Are you sure?"}
+        warning={
+          "If you change the background you will lose your progress. Are you sure?"
+        }
       />
       <Filter
         inputState={filterFocus}
         setInputState={setFilterFocus}
         selectKeysState={filterBenefitSkill}
         setSelectKeysState={setFilterBenefitSkill}
-        selectOptionList={skillDefinitionList.map(e => e.name)}
+        selectOptionList={skillDefinitionList.map((e) => e.name)}
         imageFolder={"/imgs/skills"}
       />
       <List
@@ -86,5 +86,5 @@ export default function App() {
         imageFolder={"/imgs/foci"}
       />
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import { Button } from "@nextui-org/react"
 
 export default function PsychicBenefitDetail() {
   return (
@@ -31,5 +31,5 @@ export default function PsychicBenefitDetail() {
         <Button color="success">Buy Technique</Button>
       </div>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
 export interface AttributeDefinition {
-  name: string;
-  description: string;
-  type: AttributeDefinitionType[];
+  name: string
+  description: string
+  type: AttributeDefinitionType[]
 }
 
 export enum AttributeDefinitionType {

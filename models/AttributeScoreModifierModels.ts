@@ -1,1 +1,1 @@
-export type AttributeScoreModifier = Record<number, number>;
+export type AttributeScoreModifier = Record<number, number>

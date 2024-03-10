@@ -1,78 +1,78 @@
 import {
   type BackgroundBenefit,
   type BackgroundDefinition,
-} from "@/models/BackgroundDefinitionModels";
-import { rollDice } from "@/utilities/Roll";
-import { Button, Card, CardBody, Divider } from "@nextui-org/react";
-import { useState } from "react";
-import { useStoreBackgroundState } from "../../state";
-import BenefitImage from "./commons/BenefitImage";
-import DropDownGenericBenefit from "./commons/DropDownGenericBenefit";
+} from "@/models/BackgroundDefinitionModels"
+import { rollDice } from "@/utilities/Roll"
+import { Button, Card, CardBody, Divider } from "@nextui-org/react"
+import { useState } from "react"
+import { useStoreBackgroundState } from "../../state"
+import BenefitImage from "./commons/BenefitImage"
+import DropDownGenericBenefit from "./commons/DropDownGenericBenefit"
 
 export default function RandomSelectionMethod(props: {
-  backgroundDefinition: BackgroundDefinition;
+  backgroundDefinition: BackgroundDefinition
 }) {
   const { chosenBenefits, setChosenBenefits, rolledDice, setRolledDice } =
-    useStoreBackgroundState();
+    useStoreBackgroundState()
 
   const [rolls, setRolls] = useState({
     availableRolls: 3,
     growthRolls: 0,
     learningRolls: 0,
-  });
+  })
 
-  const growthSkills = props.backgroundDefinition.benefits.growth;
-  const learningSkills = props.backgroundDefinition.benefits.learning;
+  const growthSkills = props.backgroundDefinition.benefits.growth
+  const learningSkills = props.backgroundDefinition.benefits.learning
 
   function handleRoll() {
-    if (rolls.availableRolls != 0) return;
+    if (rolls.availableRolls != 0) return
 
-    setRolledDice(true);
-    const results = [];
+    setRolledDice(true)
+    const results = []
 
     for (let i = 0; i < rolls.growthRolls; i++) {
-      const diceRollResult = rollDice(1, growthSkills.length) - 1;
-      results.push({ ...growthSkills[diceRollResult] });
+      const diceRollResult = rollDice(1, growthSkills.length) - 1
+      results.push({ ...growthSkills[diceRollResult] })
     }
     for (let i = 0; i < rolls.learningRolls; i++) {
-      const diceRollResult = rollDice(1, learningSkills.length) - 1;
-      results.push({ ...learningSkills[diceRollResult] });
+      const diceRollResult = rollDice(1, learningSkills.length) - 1
+      results.push({ ...learningSkills[diceRollResult] })
     }
 
-    setChosenBenefits([props.backgroundDefinition.benefits.free]);
-    results.push({ ...props.backgroundDefinition.benefits.free });
+    setChosenBenefits([props.backgroundDefinition.benefits.free])
+    results.push({ ...props.backgroundDefinition.benefits.free })
 
-    setChosenBenefits(results);
+    setChosenBenefits(results)
   }
 
   function handleRollSelection(
     sign: "minus" | "plus",
-    table: "growth" | "learning"
+    table: "growth" | "learning",
   ) {
     setRolls((prev) => {
-      let { availableRolls, growthRolls, learningRolls } = prev;
+      let { availableRolls, growthRolls, learningRolls } = prev
 
       switch (true) {
         case sign === "minus" && table === "growth" && growthRolls > 0:
-          growthRolls--;
-          availableRolls++;
-          break;
+          growthRolls--
+          availableRolls++
+          break
         case sign === "minus" && table === "learning" && learningRolls > 0:
-          learningRolls--;
-          availableRolls++;
-          break;
+          learningRolls--
+          availableRolls++
+          break
         case sign === "plus" && table === "growth" && availableRolls > 0:
-          growthRolls++;
+          growthRolls++
           availableRolls--
-          break;
+          break
         case sign === "plus" && table === "learning" && availableRolls > 0:
-          learningRolls++;
+          learningRolls++
           availableRolls--
-          break;
+          break
       }
 
-      return { availableRolls, growthRolls, learningRolls };
-    });
+      return { availableRolls, growthRolls, learningRolls }
+    })
   }
 
   function renderRandomTables() {
@@ -82,14 +82,22 @@ export default function RandomSelectionMethod(props: {
           <TableOptions
             rolls={rolls.learningRolls}
             benefits={props.backgroundDefinition.benefits.learning}
-            onMinusPress={() => { handleRollSelection("minus", "learning"); }}
-            onPlusPress={() => { handleRollSelection("plus", "learning"); }}
+            onMinusPress={() => {
+              handleRollSelection("minus", "learning")
+            }}
+            onPlusPress={() => {
+              handleRollSelection("plus", "learning")
+            }}
           />
           <TableOptions
             rolls={rolls.growthRolls}
             benefits={props.backgroundDefinition.benefits.growth}
-            onMinusPress={() => { handleRollSelection("minus", "growth"); }}
-            onPlusPress={() => { handleRollSelection("plus", "growth"); }}
+            onMinusPress={() => {
+              handleRollSelection("minus", "growth")
+            }}
+            onPlusPress={() => {
+              handleRollSelection("plus", "growth")
+            }}
           />
         </div>
 
@@ -103,49 +111,49 @@ export default function RandomSelectionMethod(props: {
           </CardBody>
         </Card>
       </>
-    );
+    )
   }
 
   function renderRandomResults() {
     return (
       <>
-      <h1 className="text-xl mb-2">Roll Results</h1>
-      <div className="flex flex-col gap-2 px-3">
-        {chosenBenefits.map((e: BackgroundBenefit, i) =>
-          e.subtype !== "specific" ? (
-            <GenericBenefitCellResult benefit={e} index={i} />
-          ) : (
-            <SpecificBenefitCell benefit={e} />
-          )
-        )}
-      </div>
+        <h1 className="text-xl mb-2">Roll Results</h1>
+        <div className="flex flex-col gap-2 px-3">
+          {chosenBenefits.map((e: BackgroundBenefit, i) =>
+            e.subtype !== "specific" ? (
+              <GenericBenefitCellResult benefit={e} index={i} />
+            ) : (
+              <SpecificBenefitCell benefit={e} />
+            ),
+          )}
+        </div>
       </>
-    );
+    )
   }
 
-  return rolledDice ? renderRandomResults() : renderRandomTables();
+  return rolledDice ? renderRandomResults() : renderRandomTables()
 }
 
 export function GenericBenefitCellResult(props: {
-  benefit: BackgroundBenefit;
-  index: number;
+  benefit: BackgroundBenefit
+  index: number
 }) {
-  const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
+  const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState()
 
   function handleOnDropdownChange(keys: Selection, option: number) {
-    const cloneChosenBenefits = [...chosenBenefits];
+    const cloneChosenBenefits = [...chosenBenefits]
 
-    const foundBenefit = cloneChosenBenefits[props.index];
+    const foundBenefit = cloneChosenBenefits[props.index]
 
-    foundBenefit.selected = foundBenefit.selected || new Map();
+    foundBenefit.selected = foundBenefit.selected || new Map()
 
     foundBenefit.selected.set(option, {
       name: keys.currentKey,
       type: props.benefit.type,
       subtype: "specific",
-    });
+    })
 
-    setChosenBenefits(cloneChosenBenefits);
+    setChosenBenefits(cloneChosenBenefits)
   }
 
   function renderGenericBenefitRow(option: number) {
@@ -161,70 +169,70 @@ export function GenericBenefitCellResult(props: {
               ? new Set([props.benefit.selected.get(option)?.name])
               : new Set()
           }
-          handleOnDropdownChange={(keys: Selection) =>
-            { handleOnDropdownChange(keys, option); }
-          }
+          handleOnDropdownChange={(keys: Selection) => {
+            handleOnDropdownChange(keys, option)
+          }}
         />
       </div>
-    );
+    )
   }
 
   function render() {
-    const rows = [];
+    const rows = []
     for (let i = 0; i < props.benefit.amount!; i++) {
-      rows.push(renderGenericBenefitRow(i));
+      rows.push(renderGenericBenefitRow(i))
     }
-    return rows;
+    return rows
   }
 
-  return render();
+  return render()
 }
 
 export function TableOptions(props: {
-  rolls: number,
-  benefits: BackgroundBenefit[],
-  onMinusPress: () => void,
+  rolls: number
+  benefits: BackgroundBenefit[]
+  onMinusPress: () => void
   onPlusPress: () => void
 }) {
-  return <Card className="w-[40%] p-4">
+  return (
+    <Card className="w-[40%] p-4">
       <div className="flex flex-row items-center justify-center">
-          <div>
-              <Button
-                  onPress={props.onMinusPress}
-                  className="text-2xl m-2"
-                  size="sm"
-              >
-                  -
-              </Button>
-          </div>
-          <div>{props.rolls}</div>
-          <div>
-              <Button
-                  onPress={props.onPlusPress}
-                  className="text-2xl m-2"
-                  size="sm"
-              >
-                  +
-              </Button>
-          </div>
+        <div>
+          <Button
+            onPress={props.onMinusPress}
+            className="text-2xl m-2"
+            size="sm"
+          >
+            -
+          </Button>
+        </div>
+        <div>{props.rolls}</div>
+        <div>
+          <Button
+            onPress={props.onPlusPress}
+            className="text-2xl m-2"
+            size="sm"
+          >
+            +
+          </Button>
+        </div>
       </div>
       <Divider className="my-2" />
       <div className="mx-auto">
-          {props.benefits.map((benefit) => (
-              <div className="flex-1 my-1 mx-0">
-                  <SpecificBenefitCell benefit={benefit} />
-              </div>
-          ))}
+        {props.benefits.map((benefit) => (
+          <div className="flex-1 my-1 mx-0">
+            <SpecificBenefitCell benefit={benefit} />
+          </div>
+        ))}
       </div>
-  </Card>
+    </Card>
+  )
 }
-export function SpecificBenefitCell(props: {
-  benefit: BackgroundBenefit;
-}) {
+export function SpecificBenefitCell(props: { benefit: BackgroundBenefit }) {
   return (
     <div className="flex flex-row">
       <BenefitImage benefit={props.benefit} />
       <div className="ml-4">{props.benefit.name}</div>
     </div>
-  );
+  )
 }

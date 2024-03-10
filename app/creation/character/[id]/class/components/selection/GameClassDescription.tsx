@@ -1,16 +1,16 @@
-import { Button, Card, CardHeader } from "@nextui-org/react";
-import Image from "next/image";
-import { useStoreGameClassState } from "../../../state";
-import { type Ability } from "@/models/GameClassDefinitionModels";
+import { Button, Card, CardHeader } from "@nextui-org/react"
+import Image from "next/image"
+import { useStoreGameClassState } from "../../../state"
+import { type Ability } from "@/models/GameClassDefinitionModels"
 
 export default function GameClassDescription() {
-  const { focusedGameClass } = useStoreGameClassState();
+  const { focusedGameClass } = useStoreGameClassState()
 
-  if (!focusedGameClass) return <></>;
+  if (!focusedGameClass) return <></>
 
   function renderDetails(details: string[]) {
     if (details.length === 1) {
-      return <div>{details[0]}</div>;
+      return <div>{details[0]}</div>
     } else {
       return (
         <div>
@@ -20,7 +20,7 @@ export default function GameClassDescription() {
             ))}
           </ul>
         </div>
-      );
+      )
     }
   }
 
@@ -43,5 +43,5 @@ export default function GameClassDescription() {
         <Button color="primary">Select Class</Button>
       </div>
     </div>
-  );
-} 
+  )
+}

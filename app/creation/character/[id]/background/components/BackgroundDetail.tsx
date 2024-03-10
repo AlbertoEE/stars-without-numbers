@@ -1,4 +1,4 @@
-import ModalWarning from "@/app/creation/components/ModalWarning";
+import ModalWarning from "@/app/creation/components/ModalWarning"
 import {
   Button,
   Divider,
@@ -7,16 +7,17 @@ import {
   DropdownMenu,
   DropdownTrigger,
   Image,
-  useDisclosure
-} from "@nextui-org/react";
-import { type Selection } from "@react-types/shared";
-import { useEffect, useState } from "react";
-import { useStoreBackgroundState } from "../../state";
-import ChooseSelectionMethod from "./ChooseSelectionMethod";
-import RandomSelectionMethod from "./RandomSelectionMethod";
+  useDisclosure,
+} from "@nextui-org/react"
+import { type Selection } from "@react-types/shared"
+import { useEffect, useState } from "react"
+import { useStoreBackgroundState } from "../../state"
+import ChooseSelectionMethod from "./ChooseSelectionMethod"
+import RandomSelectionMethod from "./RandomSelectionMethod"
 
 export default function BackgroundDetail(props: { characterId: string }) {
-  const [proposedBackgroundSelectionType, setProposedBackgroundSelectionType] = useState<string>("");
+  const [proposedBackgroundSelectionType, setProposedBackgroundSelectionType] =
+    useState<string>("")
 
   const {
     focusedBackground,
@@ -24,21 +25,18 @@ export default function BackgroundDetail(props: { characterId: string }) {
     setBackgroundBenefitSelectionMethod: setBackgroundSelectionType,
     setRolledDice,
     setChosenBenefits,
-  } = useStoreBackgroundState();
+  } = useStoreBackgroundState()
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-  useEffect(
-    setFreeSkill,
-    [
-      focusedBackground,
-      backgroundBenefitSelectionMethod,
-      setChosenBenefits,
-      setRolledDice
-    ]
-  )
+  useEffect(setFreeSkill, [
+    focusedBackground,
+    backgroundBenefitSelectionMethod,
+    setChosenBenefits,
+    setRolledDice,
+  ])
 
-  if (focusedBackground == undefined) return;
+  if (focusedBackground == undefined) return
 
   function setFreeSkill() {
     setChosenBenefits([focusedBackground?.benefits.free!])
@@ -46,22 +44,26 @@ export default function BackgroundDetail(props: { characterId: string }) {
   }
 
   function onSelectionChange(selection: string) {
-    if (selection == backgroundBenefitSelectionMethod) return;
-    setProposedBackgroundSelectionType(selection);
-    onOpen();
+    if (selection == backgroundBenefitSelectionMethod) return
+    setProposedBackgroundSelectionType(selection)
+    onOpen()
   }
 
   function onAcceptModal() {
-    setBackgroundSelectionType(proposedBackgroundSelectionType);
-    onClose();
+    setBackgroundSelectionType(proposedBackgroundSelectionType)
+    onClose()
   }
 
   function renderBenefitSelectionType() {
     switch (backgroundBenefitSelectionMethod) {
       case "choose":
-        return <ChooseSelectionMethod backgroundDefinition={focusedBackground!} />
+        return (
+          <ChooseSelectionMethod backgroundDefinition={focusedBackground!} />
+        )
       case "random":
-        return <RandomSelectionMethod backgroundDefinition={focusedBackground!} />
+        return (
+          <RandomSelectionMethod backgroundDefinition={focusedBackground!} />
+        )
     }
   }
 
@@ -71,7 +73,9 @@ export default function BackgroundDetail(props: { characterId: string }) {
         isOpen={isOpen}
         onClose={onClose}
         onAccept={onAcceptModal}
-        warning={"If you change the background you will lose your progress. Are you sure?"}
+        warning={
+          "If you change the background you will lose your progress. Are you sure?"
+        }
       />
       <div className="w-full h-full flex flex-col overflow-hidden p-5">
         <div className="flex flex-row items-center">
@@ -97,26 +101,20 @@ export default function BackgroundDetail(props: { characterId: string }) {
           {focusedBackground.description}
         </div>
         <Divider />
-        <div className="w-full flex-1 my-4">
-          {renderBenefitSelectionType()}
-        </div>
+        <div className="w-full flex-1 my-4">{renderBenefitSelectionType()}</div>
       </div>
     </>
-  );
+  )
 }
 
 export function BenefitSelectionTypeDropDown(props: {
-  onSelectionChange: (key: string) => any;
-  selectedKey: string,
+  onSelectionChange: (key: string) => any
+  selectedKey: string
 }) {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button
-          color="primary"
-          variant="solid"
-          className="capitalize w-44"
-        >
+        <Button color="primary" variant="solid" className="capitalize w-44">
           Selection: {props.selectedKey}
         </Button>
       </DropdownTrigger>
@@ -126,7 +124,9 @@ export function BenefitSelectionTypeDropDown(props: {
         variant="solid"
         selectionMode="single"
         selectedKeys={props.selectedKey}
-        onSelectionChange={(key: Selection) => props.onSelectionChange(key.currentKey)}
+        onSelectionChange={(key: Selection) =>
+          props.onSelectionChange(key.currentKey)
+        }
       >
         <DropdownItem key="choose">Choose</DropdownItem>
         <DropdownItem key="random">Random</DropdownItem>

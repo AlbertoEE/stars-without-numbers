@@ -1,10 +1,10 @@
-import { type AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
-import { type AttributeScoreModifierRepository } from "./AttributeScoreModifierRepository";
+import { type AttributeScoreModifier } from "@/models/AttributeScoreModifierModels"
+import { type AttributeScoreModifierRepository } from "./AttributeScoreModifierRepository"
 
 export class InMemoryAttributeScoreModifierRepository
   implements AttributeScoreModifierRepository
 {
-  getAttributeScoreModifiers = () => attributeScoreModifier;
+  getAttributeScoreModifiers = () => attributeScoreModifier
 }
 
 const attributeScoreModifier: AttributeScoreModifier = {
@@ -28,4 +28,4 @@ const attributeScoreModifier: AttributeScoreModifier = {
   18: 2,
   19: 2,
   20: 2,
-};
+}

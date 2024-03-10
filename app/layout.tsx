@@ -1,15 +1,14 @@
-"use client";
+"use client"
 
-import "@/styles/globals.css";
-import { Providers } from "./providers";
-import CustomNavbar from "./components/CustomNavbar";
+import "@/styles/globals.css"
+import { Providers } from "./providers"
+import CustomNavbar from "./components/CustomNavbar"
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="h-screen">
@@ -23,5 +22,5 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { type AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
+import { type AttributeScoreModifier } from "@/models/AttributeScoreModifierModels"
 
 export interface AttributeScoreModifierRepository {
-    getAttributeScoreModifiers: () => AttributeScoreModifier
+  getAttributeScoreModifiers: () => AttributeScoreModifier
 }

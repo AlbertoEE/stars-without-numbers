@@ -1,19 +1,19 @@
 export interface FocusDefinition {
-    name: string,
-    description: string,
-    levels: FocusLevelDefinition[],
-    type: FocusType
+  name: string
+  description: string
+  levels: FocusLevelDefinition[]
+  type: FocusType
 }
 
 export interface FocusLevelDefinition {
-    level: number,
-    description: string,
-    descriptionSchema: string[],
-    skillBenefitOptionList?: string[],
+  level: number
+  description: string
+  descriptionSchema: string[]
+  skillBenefitOptionList?: string[]
 }
 
 export enum FocusType {
-    COMBAT_FOCUS,
-    PSYCHIC_FOUCS,
-    NON_COMBAT_FOCUS,
+  COMBAT_FOCUS,
+  PSYCHIC_FOUCS,
+  NON_COMBAT_FOCUS,
 }
