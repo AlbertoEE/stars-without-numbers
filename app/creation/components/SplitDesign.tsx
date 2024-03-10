@@ -16,7 +16,7 @@ export default function SplitDesign(props: {
   useEffect(() => {
     if (props.rightChild) {
       // Inicia la animación después de un breve retraso (opcional)
-      setTimeout(() => setIsVisible(true), 10); // Ajusta este tiempo según sea necesario
+      setTimeout(() => { setIsVisible(true); }, 10); // Ajusta este tiempo según sea necesario
     } else {
       setIsVisible(false);
     }

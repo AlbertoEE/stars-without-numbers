@@ -1,5 +1,5 @@
-import { StandardSkillDefinition, StandardSkillDefinitionType } from "@/models/StandardSkillDefinitionModels";
-import { SkillDefinitionRepository } from "./SkillDefinitionRepository";
+import { type StandardSkillDefinition, StandardSkillDefinitionType } from "@/models/StandardSkillDefinitionModels";
+import { type SkillDefinitionRepository } from "./SkillDefinitionRepository";
 
 
 export class InMemorySkillDefinitionRepository implements SkillDefinitionRepository {

@@ -1,6 +1,6 @@
 import {
-  BackgroundBenefit,
-  BackgroundDefinition,
+  type BackgroundBenefit,
+  type BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels";
 import { rollDice } from "@/utilities/Roll";
 import { Button, Card, CardBody, Divider } from "@nextui-org/react";
@@ -28,14 +28,14 @@ export default function RandomSelectionMethod(props: {
     if (rolls.availableRolls != 0) return;
 
     setRolledDice(true);
-    let results = [];
+    const results = [];
 
     for (let i = 0; i < rolls.growthRolls; i++) {
-      let diceRollResult = rollDice(1, growthSkills.length) - 1;
+      const diceRollResult = rollDice(1, growthSkills.length) - 1;
       results.push({ ...growthSkills[diceRollResult] });
     }
     for (let i = 0; i < rolls.learningRolls; i++) {
-      let diceRollResult = rollDice(1, learningSkills.length) - 1;
+      const diceRollResult = rollDice(1, learningSkills.length) - 1;
       results.push({ ...learningSkills[diceRollResult] });
     }
 
@@ -82,14 +82,14 @@ export default function RandomSelectionMethod(props: {
           <TableOptions
             rolls={rolls.learningRolls}
             benefits={props.backgroundDefinition.benefits.learning}
-            onMinusPress={() => handleRollSelection("minus", "learning")}
-            onPlusPress={() => handleRollSelection("plus", "learning")}
+            onMinusPress={() => { handleRollSelection("minus", "learning"); }}
+            onPlusPress={() => { handleRollSelection("plus", "learning"); }}
           />
           <TableOptions
             rolls={rolls.growthRolls}
             benefits={props.backgroundDefinition.benefits.growth}
-            onMinusPress={() => handleRollSelection("minus", "growth")}
-            onPlusPress={() => handleRollSelection("plus", "growth")}
+            onMinusPress={() => { handleRollSelection("minus", "growth"); }}
+            onPlusPress={() => { handleRollSelection("plus", "growth"); }}
           />
         </div>
 
@@ -133,9 +133,9 @@ export function GenericBenefitCellResult(props: {
   const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState();
 
   function handleOnDropdownChange(keys: Selection, option: number) {
-    let cloneChosenBenefits = [...chosenBenefits];
+    const cloneChosenBenefits = [...chosenBenefits];
 
-    let foundBenefit = cloneChosenBenefits[props.index];
+    const foundBenefit = cloneChosenBenefits[props.index];
 
     foundBenefit.selected = foundBenefit.selected || new Map();
 
@@ -162,7 +162,7 @@ export function GenericBenefitCellResult(props: {
               : new Set()
           }
           handleOnDropdownChange={(keys: Selection) =>
-            handleOnDropdownChange(keys, option)
+            { handleOnDropdownChange(keys, option); }
           }
         />
       </div>
@@ -170,7 +170,7 @@ export function GenericBenefitCellResult(props: {
   }
 
   function render() {
-    let rows = [];
+    const rows = [];
     for (let i = 0; i < props.benefit.amount!; i++) {
       rows.push(renderGenericBenefitRow(i));
     }

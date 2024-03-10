@@ -1,6 +1,6 @@
 "use client";
 
-import { AttributeDefinitionRepository } from "@/data/AttributeDefinition/AttributeDefinitionRepository";
+import { type AttributeDefinitionRepository } from "@/data/AttributeDefinition/AttributeDefinitionRepository";
 import { InMemoryAttributeDefinitionRepository } from "@/data/AttributeDefinition/InMemoryAttributeDefinitionRepository";
 import SplitDesign from "../../../components/SplitDesign";
 import AttributeTabs from "./components/AttributeTabs";

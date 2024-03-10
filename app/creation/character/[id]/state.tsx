@@ -1,16 +1,14 @@
-import { AttributeDefinition } from '@/models/AttributeDefinitionModels';
-import { BackgroundBenefit, BackgroundDefinition } from '@/models/BackgroundDefinitionModels';
-import { FocusDefinition } from '@/models/FocusDefinitionModels';
-import { GameClassDefinition } from '@/models/GameClassDefinitionModels';
-import { StandardSkillDefinition } from '@/models/StandardSkillDefinitionModels';
-import { DraggedState } from "@/utilities/DragAndDrop";
+import { type AttributeDefinition } from "@/models/AttributeDefinitionModels";
+import { type BackgroundBenefit, type BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { type FocusDefinition } from "@/models/FocusDefinitionModels";
+import { type GameClassDefinition } from "@/models/GameClassDefinitionModels";
+import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels";
+import { type DraggedState } from "@/utilities/DragAndDrop";
 import { create } from "zustand";
 
 
 // Attributes
-export interface AttributeValue {
-    [key: string]: string;
-}
+export type AttributeValue = Record<string, string>;
 
 interface BasicAttributesState {
     initialValues: AttributeValue,
@@ -34,12 +32,12 @@ export const useStoreBasicAttributesState = create<BasicAttributesState>(((set) 
     draggedOver: { from: "", value: "", key: "" },
     detail: "",
     attributeTab: "standard",
-    setInitialValues: (newInitialValues) => set({ initialValues: newInitialValues }),
-    setChosenAttributes: (newAttributes) => set({ chosenAttributes: newAttributes }),
-    setDragged: (newDragged) => set({ dragged: newDragged }),
-    setDraggedOver: (newDraggedOver) => set({ draggedOver: newDraggedOver }),
-    setDetail: (newDetail) => set({ detail: newDetail }),
-    setAttributeTab: (newAttributeTab: string) => set({ attributeTab: newAttributeTab }),
+    setInitialValues: (newInitialValues) => { set({ initialValues: newInitialValues }); },
+    setChosenAttributes: (newAttributes) => { set({ chosenAttributes: newAttributes }); },
+    setDragged: (newDragged) => { set({ dragged: newDragged }); },
+    setDraggedOver: (newDraggedOver) => { set({ draggedOver: newDraggedOver }); },
+    setDetail: (newDetail) => { set({ detail: newDetail }); },
+    setAttributeTab: (newAttributeTab: string) => { set({ attributeTab: newAttributeTab }); },
 })));
 
 
@@ -84,15 +82,15 @@ export const useStoreBackgroundState = create<BackgroundState>((set) => ({
     backgroundBenefitSelectionMethod: "choose",
     rolledDice: false,
     setFocusedBackground: (newFocusedBackground) =>
-        set({ focusedBackground: newFocusedBackground }),
+        { set({ focusedBackground: newFocusedBackground }); },
     setChosenBenefits: (newChosenBenefits) =>
-        set({ chosenBenefits: newChosenBenefits }),
+        { set({ chosenBenefits: newChosenBenefits }); },
     setRandomResults: (newRandomResults) =>
-        set({ randomResults: newRandomResults }),
+        { set({ randomResults: newRandomResults }); },
     setBackgroundBenefitSelectionMethod: (newBackgroundBenefitTab) =>
-        set({ backgroundBenefitSelectionMethod: newBackgroundBenefitTab }),
+        { set({ backgroundBenefitSelectionMethod: newBackgroundBenefitTab }); },
     setRolledDice: (newRolledDice) =>
-        set({ rolledDice: newRolledDice }),
+        { set({ rolledDice: newRolledDice }); },
 }));
 
 
@@ -104,7 +102,7 @@ interface GameClassState {
 
 export const useStoreGameClassState = create<GameClassState>((set) => ({
     focusedGameClass: undefined,
-    setFocusedGameClass: (newFocusedGameClass) => set({ focusedGameClass: newFocusedGameClass })
+    setFocusedGameClass: (newFocusedGameClass) => { set({ focusedGameClass: newFocusedGameClass }); }
 }))
 
 export interface FocusSelection {
@@ -129,10 +127,10 @@ export const useStoreFociState = create<FociState>((set) => ({
     filterBenefitSkill: [],
     focusedFocus: undefined,
     chosenFoci: [],
-    setFilterFocus: (newFilterFocus) => set({ filterFocus: newFilterFocus }),
-    setFilterBenefitSkill: (newFilterBenefitSkill) => set({ filterBenefitSkill: newFilterBenefitSkill }),
-    setFocusedFocus: (newFocusedFocus) => set({ focusedFocus: newFocusedFocus }),
-    setChosenFoci: (newChosenFoci: FocusSelection[]) => set({ chosenFoci: newChosenFoci }),
+    setFilterFocus: (newFilterFocus) => { set({ filterFocus: newFilterFocus }); },
+    setFilterBenefitSkill: (newFilterBenefitSkill) => { set({ filterBenefitSkill: newFilterBenefitSkill }); },
+    setFocusedFocus: (newFocusedFocus) => { set({ focusedFocus: newFocusedFocus }); },
+    setChosenFoci: (newChosenFoci: FocusSelection[]) => { set({ chosenFoci: newChosenFoci }); },
 }));
 
 
@@ -156,10 +154,10 @@ export const useStoreDefinitionDataState = create<DefinitionDataState>(((set) =>
     backgroundDefinitionList: [],
     gameClassDefinitionList: [],
     focusDefinitionList: [],
-    setSkillDefinitions: (newSkillDefinitionList) => set({ skillDefinitionList: newSkillDefinitionList }),
-    setAttributeDefinitions: (newAttributeDefinitionList) => set({ attributeDefinitionList: newAttributeDefinitionList }),
-    setBackgroundDefinitionList: (newBackgroundDefinitionList) => set({ backgroundDefinitionList: newBackgroundDefinitionList }),
-    setGameClassDefinitionList: (newGameClassDefinitionList: GameClassDefinition[]) => set({ gameClassDefinitionList: newGameClassDefinitionList }),
-    setFocusDefinitionList: (newFocusDefinitionList: FocusDefinition[]) => set({ focusDefinitionList: newFocusDefinitionList })
+    setSkillDefinitions: (newSkillDefinitionList) => { set({ skillDefinitionList: newSkillDefinitionList }); },
+    setAttributeDefinitions: (newAttributeDefinitionList) => { set({ attributeDefinitionList: newAttributeDefinitionList }); },
+    setBackgroundDefinitionList: (newBackgroundDefinitionList) => { set({ backgroundDefinitionList: newBackgroundDefinitionList }); },
+    setGameClassDefinitionList: (newGameClassDefinitionList: GameClassDefinition[]) => { set({ gameClassDefinitionList: newGameClassDefinitionList }); },
+    setFocusDefinitionList: (newFocusDefinitionList: FocusDefinition[]) => { set({ focusDefinitionList: newFocusDefinitionList }); }
 })));
 

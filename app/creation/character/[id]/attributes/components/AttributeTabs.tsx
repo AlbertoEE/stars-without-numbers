@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Tab, Tabs, useDisclosure } from "@nextui-org/react";
-import { Key } from "@react-types/shared";
+import { type Key } from "@react-types/shared";
 import { useEffect, useState } from "react";
 import { useStoreBasicAttributesState } from "../../state";
 import AttributeCreation from "./AttributeCreation";

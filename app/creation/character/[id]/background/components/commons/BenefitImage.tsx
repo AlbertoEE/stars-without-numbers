@@ -1,10 +1,10 @@
-import { BackgroundBenefit, BackgroundBenefitType } from "@/models/BackgroundDefinitionModels";
+import { type BackgroundBenefit, BackgroundBenefitType } from "@/models/BackgroundDefinitionModels";
 import { Image } from "@nextui-org/react";
 
 export default function BenefitImage(props: {
     benefit: BackgroundBenefit
 }) {
-  let folderPath =
+  const folderPath =
     props.benefit.type == BackgroundBenefitType.stat
       ? "/imgs/attributes/"
       : "/imgs/skills/";

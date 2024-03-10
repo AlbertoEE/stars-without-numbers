@@ -1,7 +1,7 @@
 import { Button, Card, CardHeader } from "@nextui-org/react";
 import Image from "next/image";
 import { useStoreGameClassState } from "../../../state";
-import { Ability } from "@/models/GameClassDefinitionModels";
+import { type Ability } from "@/models/GameClassDefinitionModels";
 
 export default function GameClassDescription() {
   const { focusedGameClass } = useStoreGameClassState();

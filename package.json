@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --fix",
+    "check": "eslint ."
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
+    "eslint-config-prettier": "^9.1.0",
     "framer-motion": "^10.16.5",
     "next": "14.0.2",
+    "prettier": "^3.2.5",
     "react": "^18",
     "react-dom": "^18",
     "swr": "^2.2.4",

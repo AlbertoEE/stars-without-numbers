@@ -1,7 +1,7 @@
 "use client";
 
 import ModalWarning from "@/app/creation/components/ModalWarning";
-import { BackgroundBenefitType, BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { BackgroundBenefitType, type BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import {
   useDisclosure
 } from "@nextui-org/react";
@@ -28,7 +28,7 @@ export default function App() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  let items = React.useMemo(() => {
+  const items = React.useMemo(() => {
     if (!backgroundDefinitionList) return [];
     let filteredValues = [...backgroundDefinitionList];
 

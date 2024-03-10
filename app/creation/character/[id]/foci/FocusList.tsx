@@ -1,13 +1,13 @@
 "use client";
 
-import { useDisclosure } from "@nextui-org/react";
-import React, { useState } from "react";
 import ModalWarning from "@/app/creation/components/ModalWarning";
-import { useStoreDefinitionDataState, useStoreFociState } from "../state";
-import { FocusDefinition } from "@/models/FocusDefinitionModels";
+import { type FocusDefinition } from "@/models/FocusDefinitionModels";
+import { useDisclosure } from "@nextui-org/react";
+import { type Key } from "@react-types/shared";
+import React, { useState } from "react";
 import Filter from "../components/list/Filter";
-import { Key } from "@react-types/shared";
 import List from "../components/list/List";
+import { useStoreDefinitionDataState, useStoreFociState } from "../state";
 
 
 export default function App() {
@@ -24,7 +24,7 @@ export default function App() {
     skillDefinitionList
   } = useStoreDefinitionDataState()
 
-  let items = React.useMemo(() => {
+  const items = React.useMemo(() => {
     if (!focusDefinitionList) return [];
     let filteredValues = [...focusDefinitionList];
 

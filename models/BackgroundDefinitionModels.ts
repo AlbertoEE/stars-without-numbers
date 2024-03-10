@@ -1,5 +1,5 @@
-import { AttributeDefinitionType } from "./AttributeDefinitionModels";
-import { StandardSkillDefinitionType } from "./StandardSkillDefinitionModels";
+import { type AttributeDefinitionType } from "./AttributeDefinitionModels";
+import { type StandardSkillDefinitionType } from "./StandardSkillDefinitionModels";
 
 export interface BackgroundDefinition {
   name: string;

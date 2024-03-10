@@ -1,7 +1,7 @@
 import {
-  BackgroundBenefit,
+  type BackgroundBenefit,
   BackgroundBenefitType,
-  BackgroundDefinition,
+  type BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels";
 import {
   addBenefit,
@@ -9,7 +9,7 @@ import {
   useStoreBackgroundState,
 } from "../../state";
 import { Button } from "@nextui-org/react";
-import { useState, Key } from "react";
+import { useState, type Key } from "react";
 import BenefitImage from "./commons/BenefitImage";
 import DropDownGenericBenefit from "./commons/DropDownGenericBenefit";
 
@@ -152,7 +152,7 @@ export function ButtonLevelUpBenefit(props: {
           checkFreeIsStillInChosenBenefits()
         }
         className="h-4"
-        onPress={() => handleChooseSkill("minus")}
+        onPress={() => { handleChooseSkill("minus"); }}
       >
         -
       </Button>
@@ -164,7 +164,7 @@ export function ButtonLevelUpBenefit(props: {
           checkFreeAlreadyMaxLevel()
         }
         className="h-4"
-        onPress={() => handleChooseSkill("plus")}
+        onPress={() => { handleChooseSkill("plus"); }}
       >
         +
       </Button>

@@ -1,0 +1,37 @@
+# Next.js specific
+.next/
+out/
+
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Production build
+.prod/
+
+# Static files
+public/
+
+# Styles
+*.css
+
+# Configuration files
+.env*
+*.json
+
+# Lock files
+yarn.lock
+package-lock.json
+
+# Markdown files (optional, if you want to exclude them)
+*.md
+
+# Images and graphics (optional, exclude if you don't want Prettier to touch these files)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg

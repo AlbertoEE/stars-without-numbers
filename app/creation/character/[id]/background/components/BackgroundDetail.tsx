@@ -9,7 +9,7 @@ import {
   Image,
   useDisclosure
 } from "@nextui-org/react";
-import { Selection } from "@react-types/shared";
+import { type Selection } from "@react-types/shared";
 import { useEffect, useState } from "react";
 import { useStoreBackgroundState } from "../../state";
 import ChooseSelectionMethod from "./ChooseSelectionMethod";

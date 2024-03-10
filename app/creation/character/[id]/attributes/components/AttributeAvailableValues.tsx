@@ -19,8 +19,8 @@ export default function AttributeAvailableValues(props: {
             className="w-12 h-12"
             key={props.keyValue}
             draggable
-            onDragStart={() => setDragged(draggedState)}
-            onDragEnter={() => setDraggedOver(draggedState)}
+            onDragStart={() => { setDragged(draggedState); }}
+            onDragEnter={() => { setDraggedOver(draggedState); }}
             onDragEnd={props.onDragEnd}
             onPress={props.onClick != null ? props.onClick : () => { }}
             isPressable={props.onClick != null}

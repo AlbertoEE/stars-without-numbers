@@ -1,5 +1,5 @@
-import { PsychicClassBenefitDefinition, PsychicClassBenefitDefinitionType } from "@/models/PsychicClassBenefitDefinitionModels";
-import { PsychicGameClassBenefitDefinitionRepository } from "./PsychicGameClassBenefitDefinitionRepository";
+import { type PsychicClassBenefitDefinition, PsychicClassBenefitDefinitionType } from "@/models/PsychicClassBenefitDefinitionModels";
+import { type PsychicGameClassBenefitDefinitionRepository } from "./PsychicGameClassBenefitDefinitionRepository";
 
 export class InMemoryPsychicGameClassDefinitionRepository implements PsychicGameClassBenefitDefinitionRepository {
   getPsychicClassBenefits = () => psychicClassBenefitDefinitions;

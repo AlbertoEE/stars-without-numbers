@@ -1,4 +1,4 @@
-import { StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels";
+import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels";
 
 export interface SkillDefinitionRepository {
     getSkills: () => StandardSkillDefinition[]

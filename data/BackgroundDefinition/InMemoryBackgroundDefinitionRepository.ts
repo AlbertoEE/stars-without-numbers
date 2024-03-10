@@ -1,7 +1,7 @@
 import { AttributeDefinitionType } from "@/models/AttributeDefinitionModels";
-import { BackgroundBenefitType, BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
+import { BackgroundBenefitType, type BackgroundDefinition } from "@/models/BackgroundDefinitionModels";
 import { StandardSkillDefinitionType } from "@/models/StandardSkillDefinitionModels";
-import { BackgroundDefinitionRepository } from "./BackgroundDefinitionRepository";
+import { type BackgroundDefinitionRepository } from "./BackgroundDefinitionRepository";
 
 export class InMemoryBackgroundDefinitionRepository implements BackgroundDefinitionRepository {
     getBackgrounds = () => backgroundDefinitions;

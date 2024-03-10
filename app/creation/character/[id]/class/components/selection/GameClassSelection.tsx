@@ -1,4 +1,4 @@
-import { GameClassDefinition } from "@/models/GameClassDefinitionModels";
+import { type GameClassDefinition } from "@/models/GameClassDefinitionModels";
 import { useStoreDefinitionDataState } from "../../../state";
 import GameClassOption from "./GameClassOption";
 

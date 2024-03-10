@@ -1,8 +1,8 @@
 "use client";
 
-import { AttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/AttributeScoreModifierRepository";
+import { type AttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/AttributeScoreModifierRepository";
 import { InMemoryAttributeScoreModifierRepository } from "@/data/AttributeScoreModififer/InMemoryAttributeScoreModifierRepository";
-import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
+import { type AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
 import { Card, CardBody, Image } from "@nextui-org/react";
 import useSWR from "swr";
 import { useStoreBasicAttributesState } from "../../state";
@@ -41,9 +41,9 @@ export default function AttributeScoreModifierRow(props: {
 
     return (
         <Card
-            onMouseOver={() => setDetail(props.statName)}
+            onMouseOver={() => { setDetail(props.statName); }}
             className="flex-1"
-            onDragEnter={() => setDraggedOver(draggedState)}
+            onDragEnter={() => { setDraggedOver(draggedState); }}
         >
             <CardBody className="flex flex-row items-center justify-center">
                 <table className="flex-1">
@@ -67,8 +67,8 @@ export default function AttributeScoreModifierRow(props: {
                                     <Card
                                         className="w-12 h-12"
                                         draggable
-                                        onDragStart={() => setDragged(draggedState)}
-                                        onDragEnter={() => setDraggedOver(draggedState)}
+                                        onDragStart={() => { setDragged(draggedState); }}
+                                        onDragEnter={() => { setDraggedOver(draggedState); }}
                                         onDragEnd={props.onDragEnd}
                                     >
                                         <CardBody className="flex items-center justify-center text-center px-3 py-1">

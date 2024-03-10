@@ -1,5 +1,5 @@
-import { AttributeDefinition, AttributeDefinitionType } from "@/models/AttributeDefinitionModels";
-import { AttributeDefinitionRepository } from "./AttributeDefinitionRepository";
+import { type AttributeDefinition, AttributeDefinitionType } from "@/models/AttributeDefinitionModels";
+import { type AttributeDefinitionRepository } from "./AttributeDefinitionRepository";
 
 export class InMemoryAttributeDefinitionRepository implements AttributeDefinitionRepository {
     getAttributes = () => {

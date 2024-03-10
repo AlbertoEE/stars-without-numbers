@@ -1,5 +1,5 @@
-import { GameClassDefinition, GameSubClass } from "@/models/GameClassDefinitionModels";
-import { GameClassDefinitionRepository } from "./GameClassDefinitionRepository";
+import { type GameClassDefinition, GameSubClass } from "@/models/GameClassDefinitionModels";
+import { type GameClassDefinitionRepository } from "./GameClassDefinitionRepository";
 import { rollDice } from "@/utilities/Roll";
 
 export class InMemoryGameClassDefinitionRepository implements GameClassDefinitionRepository {
@@ -112,7 +112,7 @@ const gameClassDefinitionList: GameClassDefinition[] = [
         },
         hitPointsFormula: (constitutionModifier: number, gameSubClass?: GameSubClass) => {
             const diceResult = rollDice(1, 6)
-            let result: number = gameSubClass === GameSubClass.PARTIAL_WARRIOR
+            const result: number = gameSubClass === GameSubClass.PARTIAL_WARRIOR
                 ? diceResult + constitutionModifier + 2
                 : diceResult + constitutionModifier
 

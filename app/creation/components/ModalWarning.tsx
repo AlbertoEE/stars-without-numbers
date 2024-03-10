@@ -1,5 +1,5 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/react";
-import { PressEvent } from "@react-types/shared"
+import { type PressEvent } from "@react-types/shared"
 
 export default function ModalWarning(props: {
     isOpen: boolean,

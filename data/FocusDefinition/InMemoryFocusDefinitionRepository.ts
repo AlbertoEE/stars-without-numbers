@@ -1,5 +1,5 @@
-import { FocusDefinition, FocusType } from "@/models/FocusDefinitionModels";
-import { FocusDefinitionRepository } from "./FocusDefinitionRepository";
+import { type FocusDefinition, FocusType } from "@/models/FocusDefinitionModels";
+import { type FocusDefinitionRepository } from "./FocusDefinitionRepository";
 
 
 export class InMemoryFocusDefinitionRepository implements FocusDefinitionRepository {

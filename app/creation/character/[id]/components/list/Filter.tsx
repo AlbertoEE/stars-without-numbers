@@ -1,5 +1,5 @@
 import { Select, SelectItem, Input, Image } from "@nextui-org/react";
-import { Key, Selection } from "@react-types/shared";
+import { type Key, type Selection } from "@react-types/shared";
 
 export default function Filter(props: {
     inputState: string,

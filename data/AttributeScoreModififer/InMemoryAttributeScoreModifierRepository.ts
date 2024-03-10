@@ -1,5 +1,5 @@
-import { AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
-import { AttributeScoreModifierRepository } from "./AttributeScoreModifierRepository";
+import { type AttributeScoreModifier } from "@/models/AttributeScoreModifierModels";
+import { type AttributeScoreModifierRepository } from "./AttributeScoreModifierRepository";
 
 export class InMemoryAttributeScoreModifierRepository
   implements AttributeScoreModifierRepository

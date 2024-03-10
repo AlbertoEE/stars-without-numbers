@@ -10,7 +10,7 @@ export default function SectionButton(props: {
 
   const handleNavigate = () => {
     const currentPath = pathName;
-    let pathSplit = currentPath.split("/")
+    const pathSplit = currentPath.split("/")
     pathSplit.pop()
 
     if (!currentPath.endsWith(`/${props.desiredPath}`)) {

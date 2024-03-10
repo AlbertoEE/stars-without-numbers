@@ -14,8 +14,8 @@ export const handleSwap = (
     setCollectionA: (data: any) => void,
     setCollectionB: (data: any) => void,
 ) => {
-    let collectionAClone = { ...collectionA };
-    let collectionBClone = { ...collectionB };
+    const collectionAClone = { ...collectionA };
+    const collectionBClone = { ...collectionB };
 
     switch (true) {
         case dragged.from === collectionAName && draggedOver.from === collectionAName:

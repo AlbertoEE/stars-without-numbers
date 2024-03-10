@@ -16,8 +16,8 @@ export default function AttributeCreation(props: {
 
     const rollAndApply = (key: string) => {
         if (Number.isNaN(parseInt(initialValues[key]))) {
-            let result = rollDice(3, 6);
-            let initialValuesClone = { ...initialValues };
+            const result = rollDice(3, 6);
+            const initialValuesClone = { ...initialValues };
             initialValuesClone[key] = result.toString();
             setInitialValues(initialValuesClone);
         }
@@ -32,7 +32,7 @@ export default function AttributeCreation(props: {
                         keyValue={key}
                         onDragEnd={handleSwapBetweenInitialAndAttributes}
                         zoneName="initial"
-                        {...(props.random ? { onClick: () => rollAndApply(key) } : null)} />
+                        {...(props.random ? { onClick: () => { rollAndApply(key); } } : null)} />
 
                 ))}
             </div>

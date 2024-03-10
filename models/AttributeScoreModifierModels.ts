@@ -1,3 +1,1 @@
-export interface AttributeScoreModifier {
-    [key: number]: number
-}
+export type AttributeScoreModifier = Record<number, number>;

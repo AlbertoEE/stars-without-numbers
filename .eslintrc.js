@@ -9,6 +9,7 @@ module.exports = {
         "standard-with-typescript",
         "plugin:react/recommended",
         "next/core-web-vitals",
+        "prettier"
     ],
     "overrides": [
         {
@@ -33,6 +34,8 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/jsx-key": "off"
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-key": "off",
+        "@typescript-eslint/quotes": ["error", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
     }
 }
