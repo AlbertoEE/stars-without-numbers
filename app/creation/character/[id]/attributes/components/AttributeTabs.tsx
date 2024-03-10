@@ -44,7 +44,7 @@ export default function AttributeTabs(props: { characterId: string }) {
   }, [])
 
   function handleAttributeTabChange(key: Key) {
-    if (key == attributeTab) return
+    if (key === attributeTab) return
 
     setProposedTab(key)
     onOpen()

@@ -9,9 +9,9 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react"
-import React from "react"
+import React, { type ReactElement } from "react"
 
-export default function CustomNavbar() {
+export default function CustomNavbar(): ReactElement {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
   const menuItems = [

@@ -37,5 +37,6 @@ module.exports = {
         "react/react-in-jsx-scope": "off",
         "react/jsx-key": "off",
         "@typescript-eslint/quotes": ["error", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        "@typescript-eslint/explicit-function-return-type": ["error", { "allowTypedFunctionExpressions": false }],
     }
 }

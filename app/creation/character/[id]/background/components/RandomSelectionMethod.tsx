@@ -25,7 +25,7 @@ export default function RandomSelectionMethod(props: {
   const learningSkills = props.backgroundDefinition.benefits.learning
 
   function handleRoll() {
-    if (rolls.availableRolls != 0) return
+    if (rolls.availableRolls !== 0) return
 
     setRolledDice(true)
     const results = []

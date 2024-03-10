@@ -36,7 +36,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
     setRolledDice,
   ])
 
-  if (focusedBackground == undefined) return
+  if (focusedBackground === undefined) return
 
   function setFreeSkill() {
     setChosenBenefits([focusedBackground?.benefits.free!])
@@ -44,7 +44,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
   }
 
   function onSelectionChange(selection: string) {
-    if (selection == backgroundBenefitSelectionMethod) return
+    if (selection === backgroundBenefitSelectionMethod) return
     setProposedBackgroundSelectionType(selection)
     onOpen()
   }

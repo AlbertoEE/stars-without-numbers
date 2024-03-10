@@ -3,9 +3,9 @@
 import { type AttributeDefinitionRepository } from "@/data/AttributeDefinition/AttributeDefinitionRepository"
 import { InMemoryAttributeDefinitionRepository } from "@/data/AttributeDefinition/InMemoryAttributeDefinitionRepository"
 import SplitDesign from "../../../components/SplitDesign"
+import { useStoreBasicAttributesState } from "../state"
 import AttributeTabs from "./components/AttributeTabs"
 import AttributeDescription from "./components/Description"
-import { useStoreBasicAttributesState } from "../state"
 
 export default function Page({ params }: { params: { id: string } }) {
   const { detail } = useStoreBasicAttributesState()
@@ -13,7 +13,7 @@ export default function Page({ params }: { params: { id: string } }) {
     new InMemoryAttributeDefinitionRepository()
   const attributes = attributeDefinitionRepository.getAttributes()
   const attributeDescription: string | undefined = attributes.find(
-    (attribute) => attribute.name == detail,
+    (attribute) => attribute.name === detail,
   )?.description
 
   return (

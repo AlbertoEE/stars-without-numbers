@@ -7,7 +7,7 @@ export default function AttributeDescription(props: { attribute: string }) {
   const { attributeDefinitionList } = useStoreDefinitionDataState()
 
   const attributeDefinition = attributeDefinitionList.find(
-    (attribute) => attribute.name == props.attribute,
+    (attribute) => attribute.name === props.attribute,
   )
 
   if (!attributeDefinition) return

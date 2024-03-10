@@ -1,7 +1,7 @@
 import { type AttributeDefinition } from "@/models/AttributeDefinitionModels"
 import {
-  type BackgroundBenefit,
   BackgroundBenefitType,
+  type BackgroundBenefit,
 } from "@/models/BackgroundDefinitionModels"
 import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
 import {
@@ -26,7 +26,7 @@ export default function DropDownGenericBenefit(props: {
 
   function generateList() {
     const definitions =
-      props.benefit.type == BackgroundBenefitType.skill
+      props.benefit.type === BackgroundBenefitType.skill
         ? skillDefinitions
         : attributeDefinitions
     return definitions

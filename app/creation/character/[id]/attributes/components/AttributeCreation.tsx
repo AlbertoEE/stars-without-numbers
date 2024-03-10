@@ -4,8 +4,9 @@ import { CardBody } from "@nextui-org/react"
 import AttributeAvailableValues from "./AttributeAvailableValues"
 import AttributeScoreModifierRow from "./AttributeScoreModifier"
 import { useStoreBasicAttributesState } from "../../state"
+import { type ReactElement } from "react"
 
-export default function AttributeCreation(props: { random?: boolean }) {
+export default function AttributeCreation(props: { random?: boolean }): ReactElement {
   const {
     initialValues,
     chosenAttributes: attributes,

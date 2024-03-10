@@ -10,7 +10,7 @@ export default function List<T>(props: {
     <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-3">
       {props.items.map((item) => (
         <Card
-          className={`w-[45%] h-fit ${item.name == props.focusedItemName && "bg-blue-500"}`}
+          className={`w-[45%] h-fit ${item.name === props.focusedItemName && "bg-blue-500"}`}
           isPressable={item.name != props.focusedItemName}
           onPress={() => {
             props.handleOnItemPress(item)

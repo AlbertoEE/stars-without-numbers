@@ -34,15 +34,15 @@ export default function AttributeScoreModifierRow(props: {
 
   const color = () => {
     switch (true) {
-      case modifier == -2:
+      case modifier === -2:
         return "bg-red-950"
-      case modifier == -1:
+      case modifier === -1:
         return "bg-orange-950"
-      case modifier == 0:
+      case modifier === 0:
         return "bg-cyan-800"
-      case modifier == 1:
+      case modifier === 1:
         return "bg-green-800"
-      case modifier == 2:
+      case modifier === 2:
         return "bg-yellow-400"
     }
   }

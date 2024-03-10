@@ -1,15 +1,15 @@
 import {
-  type BackgroundBenefit,
   BackgroundBenefitType,
+  type BackgroundBenefit,
   type BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels"
+import { Button } from "@nextui-org/react"
+import { useState, type Key } from "react"
 import {
   addBenefit,
   deleteBenefitByName,
   useStoreBackgroundState,
 } from "../../state"
-import { Button } from "@nextui-org/react"
-import { useState, type Key } from "react"
 import BenefitImage from "./commons/BenefitImage"
 import DropDownGenericBenefit from "./commons/DropDownGenericBenefit"
 
@@ -95,7 +95,7 @@ export function ButtonLevelUpBenefit(props: {
     if (sign === "plus" && chosenBenefits.length < 3) {
       addBenefit(cloneChosenBenefits, chosenBenefit)
     } else if (sign === "minus" && chosenBenefits.length != 1) {
-      if (cloneChosenBenefits.find((e) => e.name == chosenBenefit.name)) {
+      if (cloneChosenBenefits.find((e) => e.name === chosenBenefit.name)) {
         deleteBenefitByName(cloneChosenBenefits, chosenBenefit.name)
       }
     }
@@ -105,7 +105,7 @@ export function ButtonLevelUpBenefit(props: {
 
   function getChosenBenefit(): BackgroundBenefit {
     return props.backgroundBenefit.subtype === "specific" ||
-      props.dropdownChosenBenefit == undefined
+      props.dropdownChosenBenefit === undefined
       ? props.backgroundBenefit
       : {
           type: BackgroundBenefitType.skill,
@@ -116,22 +116,22 @@ export function ButtonLevelUpBenefit(props: {
 
   const skillLevel =
     chosenBenefits.filter(
-      (benefit) =>
-        benefit.name ==
+      (benefit): boolean =>
+        benefit.name ===
         (props.backgroundBenefit.subtype === "specific" ||
-        props.dropdownChosenBenefit == undefined
+        props.dropdownChosenBenefit === undefined
           ? props.backgroundBenefit.name
           : props.dropdownChosenBenefit),
     ).length - 1
 
   function checkBenefitCount(expectedCount: number): boolean {
     const isBenefitNameMatch =
-      props.backgroundBenefit.name == focusedBackground?.benefits.free.name
+      props.backgroundBenefit.name === focusedBackground?.benefits.free.name
     const benefitCount = chosenBenefits.filter(
-      (e) => e.name == props.backgroundBenefit.name,
+      (e) => e.name === props.backgroundBenefit.name,
     ).length
 
-    return isBenefitNameMatch && benefitCount == expectedCount
+    return isBenefitNameMatch && benefitCount === expectedCount
   }
 
   function checkFreeIsStillInChosenBenefits() {

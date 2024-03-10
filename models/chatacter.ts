@@ -131,7 +131,7 @@ export class Attribute {
   calculateModifier(): number {
     if (this.value < 3) {
       return -2
-    } else if (this.value == 3) {
+    } else if (this.value === 3) {
       return -2
     } else if (this.value <= 7) {
       return -1
@@ -139,7 +139,7 @@ export class Attribute {
       return 0
     } else if (this.value <= 17) {
       return 1
-    } else if (this.value == 18) {
+    } else if (this.value === 18) {
       return 2
     } else if (this.value > 18) {
       return 2

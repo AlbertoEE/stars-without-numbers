@@ -3,7 +3,7 @@ import { type Character } from "@/models/Chatacter"
 export function getCharacter(characterId: string) {
   const storedData = localStorage.getItem("characters")
   const characters: Character[] = storedData ? JSON.parse(storedData) : []
-  return characters.find((c) => c.id == characterId)
+  return characters.find((c) => c.id === characterId)
 }
 
 export function updateCharacter(character: Character) {

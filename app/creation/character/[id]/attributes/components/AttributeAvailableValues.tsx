@@ -2,6 +2,7 @@
 
 import { Card, CardBody } from "@nextui-org/react"
 import { useStoreBasicAttributesState } from "../../state"
+import { type ReactElement } from "react"
 
 export default function AttributeAvailableValues(props: {
   keyValue: string
@@ -9,7 +10,7 @@ export default function AttributeAvailableValues(props: {
   zoneName: string
   onDragEnd: () => void
   onClick?: () => void
-}) {
+}): ReactElement {
   const { setDragged, setDraggedOver } = useStoreBasicAttributesState()
   const draggedState = {
     from: props.zoneName,
