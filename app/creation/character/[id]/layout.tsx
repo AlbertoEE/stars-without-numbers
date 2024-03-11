@@ -6,6 +6,7 @@ import {
   focusDefinitionRepository,
   gameClassDefinitionRepository,
   skillsDefinitionRepository,
+  equipmentDefinitionRepository,
 } from "@/injection/injection"
 import { type AttributeDefinition } from "@/models/AttributeDefinitionModels"
 import { type BackgroundDefinition } from "@/models/BackgroundDefinitionModels"
@@ -17,6 +18,7 @@ import SectionButton from "./components/SectionButton"
 import { useStoreDefinitionDataState } from "./state" // Adjust the import path as needed
 import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
 import { type FocusDefinition } from "@/models/FocusDefinitionModels"
+import Equipment from "@/models/equipment/EquipmentModels"
 
 export default function Layout(props: { children: ReactNode }) {
   const {
@@ -25,6 +27,7 @@ export default function Layout(props: { children: ReactNode }) {
     setBackgroundDefinitionList,
     setGameClassDefinitionList,
     setFocusDefinitionList,
+    setEquipmentDefinition,
   } = useStoreDefinitionDataState()
 
   const { data: skillDefinitionList } = useSWR<StandardSkillDefinition[]>(
@@ -51,19 +54,26 @@ export default function Layout(props: { children: ReactNode }) {
     focusDefinitionRepository.getFoci,
   )
 
+  const { data: equipmentDefinition } = useSWR<Equipment>(
+    "GlobalEquipmentDefinition",
+    equipmentDefinitionRepository.getEquipmentDefinition,
+  )
+
   useEffect(() => {
     if (
       attributeDefinitionList &&
       skillDefinitionList &&
       backgroundDefinitionList &&
       gameClassDefinitionList &&
-      focusDefinitionList
+      focusDefinitionList &&
+      equipmentDefinition
     ) {
       setSkillDefinitions(skillDefinitionList)
       setAttributeDefinitions(attributeDefinitionList)
       setBackgroundDefinitionList(backgroundDefinitionList)
       setGameClassDefinitionList(gameClassDefinitionList)
       setFocusDefinitionList(focusDefinitionList)
+      setEquipmentDefinition(equipmentDefinition)
     }
   }, [
     skillDefinitionList,
@@ -76,6 +86,7 @@ export default function Layout(props: { children: ReactNode }) {
     setBackgroundDefinitionList,
     setGameClassDefinitionList,
     setFocusDefinitionList,
+    setEquipmentDefinition,
   ])
 
   useEffect(() => {

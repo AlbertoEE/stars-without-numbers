@@ -1,4 +1,5 @@
-import { Card, CardBody, Image } from "@nextui-org/react"
+import { Card, CardBody, CardFooter, Image } from "@nextui-org/react"
+import { ReactNode } from "react"
 
 export default function List<T>(props: {
   items: T[]

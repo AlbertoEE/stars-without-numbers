@@ -84,7 +84,7 @@ export default function App() {
         focusedItemName={focusedFocus?.name}
         handleOnItemPress={handleOnFocusPress}
         imageFolder={"/imgs/foci"}
-      />
+      ><h1>Pene</h1></List>
     </div>
   )
 }

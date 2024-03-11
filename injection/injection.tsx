@@ -2,6 +2,8 @@ import { type AttributeDefinitionRepository } from "@/data/AttributeDefinition/A
 import { InMemoryAttributeDefinitionRepository } from "@/data/AttributeDefinition/InMemoryAttributeDefinitionRepository"
 import { type BackgroundDefinitionRepository } from "@/data/BackgroundDefinition/BackgroundDefinitionRepository"
 import { InMemoryBackgroundDefinitionRepository } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository"
+import EquipmentDefinitionRepository from "@/data/Equipment/EquipmentRepository"
+import InMemoryEquipmentDefinitionRepository from "@/data/Equipment/InMemoryEquipmentRepository"
 import { type FocusDefinitionRepository } from "@/data/FocusDefinition/FocusDefinitionRepository"
 import { InMemoryFocusDefinitionRepository } from "@/data/FocusDefinition/InMemoryFocusDefinitionRepository"
 import { type GameClassDefinitionRepository } from "@/data/GameClassDefinition/GameClassDefinitionRepository"
@@ -19,3 +21,5 @@ export const gameClassDefinitionRepository: GameClassDefinitionRepository =
   new InMemoryGameClassDefinitionRepository()
 export const focusDefinitionRepository: FocusDefinitionRepository =
   new InMemoryFocusDefinitionRepository()
+export const equipmentDefinitionRepository: EquipmentDefinitionRepository = 
+  new InMemoryEquipmentDefinitionRepository()

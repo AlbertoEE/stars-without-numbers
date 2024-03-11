@@ -6,6 +6,7 @@ import {
 import { type FocusDefinition } from "@/models/FocusDefinitionModels"
 import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
 import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
+import Equipment from "@/models/equipment/EquipmentModels"
 import { type DraggedState } from "@/utilities/DragAndDrop"
 import { create } from "zustand"
 
@@ -174,6 +175,7 @@ interface DefinitionDataState {
   backgroundDefinitionList: BackgroundDefinition[]
   gameClassDefinitionList: GameClassDefinition[]
   focusDefinitionList: FocusDefinition[]
+  equipmentDefinition: Equipment
   setSkillDefinitions: (
     newSkillDefinitionList: StandardSkillDefinition[],
   ) => void
@@ -187,6 +189,7 @@ interface DefinitionDataState {
     newGameClassDefinitionList: GameClassDefinition[],
   ) => void
   setFocusDefinitionList: (newFocusDefinitionList: FocusDefinition[]) => void
+  setEquipmentDefinition: (newEquipmentDefinition: Equipment) => void
 }
 
 export const useStoreDefinitionDataState = create<DefinitionDataState>(
@@ -196,6 +199,12 @@ export const useStoreDefinitionDataState = create<DefinitionDataState>(
     backgroundDefinitionList: [],
     gameClassDefinitionList: [],
     focusDefinitionList: [],
+    equipmentDefinition: {
+      armors: [],
+      rangedWeapons: [],
+      meleeWeapons: [],
+      generalEquipment: []
+    },
     setSkillDefinitions: (newSkillDefinitionList) => {
       set({ skillDefinitionList: newSkillDefinitionList })
     },
@@ -212,6 +221,9 @@ export const useStoreDefinitionDataState = create<DefinitionDataState>(
     },
     setFocusDefinitionList: (newFocusDefinitionList: FocusDefinition[]) => {
       set({ focusDefinitionList: newFocusDefinitionList })
+    },
+    setEquipmentDefinition: (newEquipmentDefinition: Equipment) => {
+      set({ equipmentDefinition: newEquipmentDefinition })
     },
   }),
 )
