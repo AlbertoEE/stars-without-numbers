@@ -1,7 +1,7 @@
 import { backgroundDefinitions } from "@/data/BackgroundDefinition/InMemoryBackgroundDefinitionRepository"
 import { Tab, Tabs, Divider, Card, Tooltip } from "@nextui-org/react"
-import BenefitImage from "../../../../background/components/tabs/commons/BenefitImage"
 import { type ReactElement, useState } from "react"
+import BenefitImage from "../../../../background/components/commons/BenefitImage"
 
 export default function PsyquicBenefits(props: {}): ReactElement {
   const [tab2, setTab2] = useState()
