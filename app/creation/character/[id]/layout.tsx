@@ -10,15 +10,14 @@ import {
 import { type AttributeDefinition } from "@/models/AttributeDefinitionModels"
 import { type BackgroundDefinition } from "@/models/BackgroundDefinitionModels"
 import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
-import { usePathname, useRouter } from "next/navigation"
-import { type ReactNode, useEffect } from "react"
+import { type ReactNode, useEffect, type ReactElement } from "react"
 import useSWR from "swr"
 import SectionButton from "./components/SectionButton"
 import { useStoreDefinitionDataState } from "./state" // Adjust the import path as needed
 import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
 import { type FocusDefinition } from "@/models/FocusDefinitionModels"
 
-export default function Layout(props: { children: ReactNode }) {
+export default function Layout(props: { children: ReactNode }): ReactElement {
   const {
     setAttributeDefinitions,
     setSkillDefinitions,
@@ -51,7 +50,7 @@ export default function Layout(props: { children: ReactNode }) {
     focusDefinitionRepository.getFoci,
   )
 
-  useEffect(() => {
+  useEffect((): void=> {
     if (
       attributeDefinitionList &&
       skillDefinitionList &&
@@ -78,10 +77,10 @@ export default function Layout(props: { children: ReactNode }) {
     setFocusDefinitionList,
   ])
 
-  useEffect(() => {
+  useEffect((): (() => void) | undefined => {
     // Solo añadir el listener si `window` está definido (lado del cliente)
     if (typeof window !== "undefined") {
-      const handleBeforeUnload = (e) => {
+      const handleBeforeUnload = (e: any): void => {
         e.preventDefault()
         e.returnValue = "" // Algunos navegadores requieren que `returnValue` se establezca.
       }

@@ -4,7 +4,7 @@ import {
   type BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels"
 import { Button } from "@nextui-org/react"
-import { useState, type Key } from "react"
+import { useState, type Key, type ReactElement } from "react"
 import {
   addBenefit,
   deleteBenefitByName,
@@ -15,7 +15,7 @@ import DropDownGenericBenefit from "./commons/DropDownGenericBenefit"
 
 export default function ChooseSelectionMethod(props: {
   backgroundDefinition: BackgroundDefinition
-}) {
+}): ReactElement {
   const { chosenBenefits } = useStoreBackgroundState()
 
   return (
@@ -27,37 +27,41 @@ export default function ChooseSelectionMethod(props: {
       <div className="flex flex-col mx-auto">
         {props.backgroundDefinition.benefits.learning
           .filter(
-            (obj, index, self) =>
-              index === self.findIndex((t) => t.name === obj.name),
+            (obj, index, self): boolean =>
+              index === self.findIndex((t): boolean => t.name === obj.name),
           )
-          .map((benefit) => (
-            <div className="flex-1 py-1 px-3">
-              <ChooseBenefitCell benefit={benefit} />
-            </div>
-          ))}
+          .map(
+            (benefit): ReactElement => (
+              <div className="flex-1 py-1 px-3">
+                <ChooseBenefitCell benefit={benefit} />
+              </div>
+            ),
+          )}
       </div>
     </>
   )
 }
 
-export function ChooseBenefitCell(props: { benefit: BackgroundBenefit }) {
+export function ChooseBenefitCell(props: {
+  benefit: BackgroundBenefit
+}): ReactElement {
   const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState()
   const [selectedKeys, setSelectedKeys] = useState<
     Iterable<Key> | undefined | "all"
   >(undefined)
 
-  function handleOnDropdownChange(keys: Selection) {
+  function handleOnDropdownChange(keys: Selection): void {
     const cloneChosenBenefits = [...chosenBenefits]
     deleteBenefitByName(cloneChosenBenefits, selectedKeys?.currentKey)
     setSelectedKeys(keys)
     setChosenBenefits(cloneChosenBenefits)
   }
 
-  function renderSpecificBenefit() {
+  function renderSpecificBenefit(): ReactElement {
     return <div>{props.benefit.name}</div>
   }
 
-  function renderGenericBenefit() {
+  function renderGenericBenefit(): ReactElement {
     return (
       <DropDownGenericBenefit
         benefit={props.benefit}
@@ -84,18 +88,20 @@ export function ChooseBenefitCell(props: { benefit: BackgroundBenefit }) {
 export function ButtonLevelUpBenefit(props: {
   backgroundBenefit: BackgroundBenefit
   dropdownChosenBenefit: string | undefined
-}) {
+}): ReactElement {
   const { chosenBenefits, focusedBackground, setChosenBenefits } =
     useStoreBackgroundState()
 
-  function handleChooseSkill(sign: "plus" | "minus") {
+  function handleChooseSkill(sign: "plus" | "minus"): void {
     const chosenBenefit: BackgroundBenefit = getChosenBenefit()
     const cloneChosenBenefits: BackgroundBenefit[] = [...chosenBenefits]
 
     if (sign === "plus" && chosenBenefits.length < 3) {
       addBenefit(cloneChosenBenefits, chosenBenefit)
-    } else if (sign === "minus" && chosenBenefits.length != 1) {
-      if (cloneChosenBenefits.find((e) => e.name === chosenBenefit.name)) {
+    } else if (sign === "minus" && chosenBenefits.length !== 1) {
+      if (
+        cloneChosenBenefits.find((e): boolean => e.name === chosenBenefit.name)
+      ) {
         deleteBenefitByName(cloneChosenBenefits, chosenBenefit.name)
       }
     }
@@ -128,17 +134,17 @@ export function ButtonLevelUpBenefit(props: {
     const isBenefitNameMatch =
       props.backgroundBenefit.name === focusedBackground?.benefits.free.name
     const benefitCount = chosenBenefits.filter(
-      (e) => e.name === props.backgroundBenefit.name,
+      (e): boolean => e.name === props.backgroundBenefit.name,
     ).length
 
     return isBenefitNameMatch && benefitCount === expectedCount
   }
 
-  function checkFreeIsStillInChosenBenefits() {
+  function checkFreeIsStillInChosenBenefits(): boolean {
     return checkBenefitCount(1)
   }
 
-  function checkFreeAlreadyMaxLevel() {
+  function checkFreeAlreadyMaxLevel(): boolean {
     return checkBenefitCount(2)
   }
 
@@ -152,7 +158,7 @@ export function ButtonLevelUpBenefit(props: {
           checkFreeIsStillInChosenBenefits()
         }
         className="h-4"
-        onPress={() => {
+        onPress={(): void => {
           handleChooseSkill("minus")
         }}
       >
@@ -166,7 +172,7 @@ export function ButtonLevelUpBenefit(props: {
           checkFreeAlreadyMaxLevel()
         }
         className="h-4"
-        onPress={() => {
+        onPress={(): void => {
           handleChooseSkill("plus")
         }}
       >

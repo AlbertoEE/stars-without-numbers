@@ -1,11 +1,12 @@
 import { Button, Divider, Image, Tooltip } from "@nextui-org/react"
-import { useStoreDefinitionDataState, useStoreFociState } from "../state"
+import { useStoreFociState } from "../state"
+import { type ReactElement } from "react"
 
-export default function FocusDetail(props: {}) {
+export default function FocusDetail(props: {}): ReactElement {
   const { focusedFocus, chosenFoci, setChosenFoci } = useStoreFociState()
 
-  function chooseFocus(level: number) {
-    const cleanedFoci = chosenFoci.filter((focus) => focus.origin != "foci")
+  function chooseFocus(level: number): void {
+    const cleanedFoci = chosenFoci.filter((focus): boolean => focus.origin !== "foci")
     setChosenFoci([
       ...cleanedFoci,
       {
@@ -36,7 +37,7 @@ export default function FocusDetail(props: {}) {
               isIconOnly
               size="sm"
               color="primary"
-              onPress={() => {
+              onPress={(): void => {
                 chooseFocus(1)
               }}
             >
@@ -64,7 +65,7 @@ export default function FocusDetail(props: {}) {
           </div>
           <Divider className="my-2" />
           <ul className="ml-8">
-            {focusedFocus?.levels[0].descriptionSchema.map((e) => (
+            {focusedFocus?.levels[0].descriptionSchema.map((e): ReactElement => (
               <li className="list-disc">{e}</li>
             ))}
           </ul>
@@ -82,7 +83,7 @@ export default function FocusDetail(props: {}) {
                 isDisabled
                 color="primary"
                 isIconOnly
-                onPress={() => {
+                onPress={(): void => {
                   chooseFocus(2)
                 }}
               >
@@ -111,7 +112,7 @@ export default function FocusDetail(props: {}) {
           </Tooltip>
           <Divider className="my-2" />
           <ul className="ml-8">
-            {focusedFocus?.levels[1].descriptionSchema.map((e) => (
+            {focusedFocus?.levels[1].descriptionSchema.map((e): ReactElement => (
               <li className="list-disc">{e}</li>
             ))}
           </ul>

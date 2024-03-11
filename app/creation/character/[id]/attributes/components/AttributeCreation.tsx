@@ -8,7 +8,7 @@ import { type ReactElement } from "react"
 
 export default function AttributeCreation(props: {
   random?: boolean
-}): Element {
+}): ReactElement {
   const {
     initialValues,
     chosenAttributes: attributes,
@@ -18,7 +18,7 @@ export default function AttributeCreation(props: {
     setChosenAttributes: setAttributes,
   } = useStoreBasicAttributesState()
 
-  const handleSwapBetweenInitialAndAttributes = () => {
+  const handleSwapBetweenInitialAndAttributes = (): void => {
     handleSwap(
       dragged,
       draggedOver,
@@ -31,7 +31,7 @@ export default function AttributeCreation(props: {
     )
   }
 
-  const rollAndApply = (key: string) => {
+  const rollAndApply = (key: string): void => {
     if (Number.isNaN(parseInt(initialValues[key]))) {
       const result = rollDice(3, 6)
       const initialValuesClone = { ...initialValues }
@@ -43,30 +43,34 @@ export default function AttributeCreation(props: {
   return (
     <CardBody className="h-full flex flex-col gap-2">
       <div className="flex flex-row items-center justify-center gap-4 h-full flex-1">
-        {Object.entries(initialValues).map(([key, value]) => (
-          <AttributeAvailableValues
-            value={value}
-            keyValue={key}
-            onDragEnd={handleSwapBetweenInitialAndAttributes}
-            zoneName="initial"
-            {...(props.random
-              ? {
-                  onClick: () => {
-                    rollAndApply(key)
-                  },
-                }
-              : null)}
-          />
-        ))}
+        {Object.entries(initialValues).map(
+          ([key, value]): ReactElement => (
+            <AttributeAvailableValues
+              value={value}
+              keyValue={key}
+              onDragEnd={handleSwapBetweenInitialAndAttributes}
+              zoneName="initial"
+              {...(props.random
+                ? {
+                    onClick: (): void => {
+                      rollAndApply(key)
+                    },
+                  }
+                : null)}
+            />
+          ),
+        )}
       </div>
-      {Object.entries(attributes).map(([statName, value]) => (
-        <AttributeScoreModifierRow
-          score={value}
-          statName={statName.toLowerCase()}
-          onDragEnd={handleSwapBetweenInitialAndAttributes}
-          zoneName="attributes"
-        />
-      ))}
+      {Object.entries(attributes).map(
+        ([statName, value]): ReactElement => (
+          <AttributeScoreModifierRow
+            score={value}
+            statName={statName.toLowerCase()}
+            onDragEnd={handleSwapBetweenInitialAndAttributes}
+            zoneName="attributes"
+          />
+        ),
+      )}
     </CardBody>
   )
 }

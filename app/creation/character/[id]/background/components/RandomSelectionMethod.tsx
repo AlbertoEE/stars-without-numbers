@@ -4,14 +4,14 @@ import {
 } from "@/models/BackgroundDefinitionModels"
 import { rollDice } from "@/utilities/Roll"
 import { Button, Card, CardBody, Divider } from "@nextui-org/react"
-import { useState } from "react"
+import { type ReactElement, useState } from "react"
 import { useStoreBackgroundState } from "../../state"
 import BenefitImage from "./commons/BenefitImage"
 import DropDownGenericBenefit from "./commons/DropDownGenericBenefit"
 
 export default function RandomSelectionMethod(props: {
   backgroundDefinition: BackgroundDefinition
-}) {
+}): ReactElement {
   const { chosenBenefits, setChosenBenefits, rolledDice, setRolledDice } =
     useStoreBackgroundState()
 
@@ -24,7 +24,7 @@ export default function RandomSelectionMethod(props: {
   const growthSkills = props.backgroundDefinition.benefits.growth
   const learningSkills = props.backgroundDefinition.benefits.learning
 
-  function handleRoll() {
+  function handleRoll(): void {
     if (rolls.availableRolls !== 0) return
 
     setRolledDice(true)
@@ -48,8 +48,8 @@ export default function RandomSelectionMethod(props: {
   function handleRollSelection(
     sign: "minus" | "plus",
     table: "growth" | "learning",
-  ) {
-    setRolls((prev) => {
+  ): void {
+    setRolls((prev): any => {
       let { availableRolls, growthRolls, learningRolls } = prev
 
       switch (true) {
@@ -75,27 +75,27 @@ export default function RandomSelectionMethod(props: {
     })
   }
 
-  function renderRandomTables() {
+  function renderRandomTables(): ReactElement {
     return (
       <>
         <div className="flex flex-row justify-around">
           <TableOptions
             rolls={rolls.learningRolls}
             benefits={props.backgroundDefinition.benefits.learning}
-            onMinusPress={() => {
+            onMinusPress={(): void => {
               handleRollSelection("minus", "learning")
             }}
-            onPlusPress={() => {
+            onPlusPress={(): void => {
               handleRollSelection("plus", "learning")
             }}
           />
           <TableOptions
             rolls={rolls.growthRolls}
             benefits={props.backgroundDefinition.benefits.growth}
-            onMinusPress={() => {
+            onMinusPress={(): void => {
               handleRollSelection("minus", "growth")
             }}
-            onPlusPress={() => {
+            onPlusPress={(): void => {
               handleRollSelection("plus", "growth")
             }}
           />
@@ -114,17 +114,18 @@ export default function RandomSelectionMethod(props: {
     )
   }
 
-  function renderRandomResults() {
+  function renderRandomResults(): ReactElement {
     return (
       <>
         <h1 className="text-xl mb-2">Roll Results</h1>
         <div className="flex flex-col gap-2 px-3">
-          {chosenBenefits.map((e: BackgroundBenefit, i) =>
-            e.subtype !== "specific" ? (
-              <GenericBenefitCellResult benefit={e} index={i} />
-            ) : (
-              <SpecificBenefitCell benefit={e} />
-            ),
+          {chosenBenefits.map(
+            (e: BackgroundBenefit, i): ReactElement =>
+              e.subtype !== "specific" ? (
+                <GenericBenefitCellResult benefit={e} index={i} />
+              ) : (
+                <SpecificBenefitCell benefit={e} />
+              ),
           )}
         </div>
       </>
@@ -137,10 +138,10 @@ export default function RandomSelectionMethod(props: {
 export function GenericBenefitCellResult(props: {
   benefit: BackgroundBenefit
   index: number
-}) {
+}): ReactElement {
   const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState()
 
-  function handleOnDropdownChange(keys: Selection, option: number) {
+  function handleOnDropdownChange(keys: Selection, option: number): void {
     const cloneChosenBenefits = [...chosenBenefits]
 
     const foundBenefit = cloneChosenBenefits[props.index]
@@ -156,7 +157,7 @@ export function GenericBenefitCellResult(props: {
     setChosenBenefits(cloneChosenBenefits)
   }
 
-  function renderGenericBenefitRow(option: number) {
+  function renderGenericBenefitRow(option: number): ReactElement {
     return (
       <div className="flex flex-row">
         <BenefitImage benefit={props.benefit} />
@@ -169,7 +170,7 @@ export function GenericBenefitCellResult(props: {
               ? new Set([props.benefit.selected.get(option)?.name])
               : new Set()
           }
-          handleOnDropdownChange={(keys: Selection) => {
+          handleOnDropdownChange={(keys: Selection): void => {
             handleOnDropdownChange(keys, option)
           }}
         />
@@ -177,7 +178,7 @@ export function GenericBenefitCellResult(props: {
     )
   }
 
-  function render() {
+  function render(): ReactElement[] {
     const rows = []
     for (let i = 0; i < props.benefit.amount!; i++) {
       rows.push(renderGenericBenefitRow(i))
@@ -185,7 +186,7 @@ export function GenericBenefitCellResult(props: {
     return rows
   }
 
-  return render()
+  return <>{render()}</>
 }
 
 export function TableOptions(props: {
@@ -193,7 +194,7 @@ export function TableOptions(props: {
   benefits: BackgroundBenefit[]
   onMinusPress: () => void
   onPlusPress: () => void
-}) {
+}): ReactElement {
   return (
     <Card className="w-[40%] p-4">
       <div className="flex flex-row items-center justify-center">
@@ -219,16 +220,20 @@ export function TableOptions(props: {
       </div>
       <Divider className="my-2" />
       <div className="mx-auto">
-        {props.benefits.map((benefit) => (
-          <div className="flex-1 my-1 mx-0">
-            <SpecificBenefitCell benefit={benefit} />
-          </div>
-        ))}
+        {props.benefits.map(
+          (benefit): ReactElement => (
+            <div className="flex-1 my-1 mx-0">
+              <SpecificBenefitCell benefit={benefit} />
+            </div>
+          ),
+        )}
       </div>
     </Card>
   )
 }
-export function SpecificBenefitCell(props: { benefit: BackgroundBenefit }) {
+export function SpecificBenefitCell(props: {
+  benefit: BackgroundBenefit
+}): ReactElement {
   return (
     <div className="flex flex-row">
       <BenefitImage benefit={props.benefit} />

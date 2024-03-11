@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/react"
+import { type ReactElement } from "react"
 
-export default function PsychicBenefitDetail() {
+export default function PsychicBenefitDetail(): ReactElement {
   return (
     <div className="w-full h-full p-5 flex flex-col">
       <div className="flex flex-row">

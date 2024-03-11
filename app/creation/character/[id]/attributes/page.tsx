@@ -6,14 +6,15 @@ import SplitDesign from "../../../components/SplitDesign"
 import { useStoreBasicAttributesState } from "../state"
 import AttributeTabs from "./components/AttributeTabs"
 import AttributeDescription from "./components/Description"
+import { type ReactElement } from "react"
 
-export default function Page({ params }: { params: { id: string } }) {
+export default function Page({ params }: { params: { id: string } }): ReactElement {
   const { detail } = useStoreBasicAttributesState()
   const attributeDefinitionRepository: AttributeDefinitionRepository =
     new InMemoryAttributeDefinitionRepository()
   const attributes = attributeDefinitionRepository.getAttributes()
   const attributeDescription: string | undefined = attributes.find(
-    (attribute) => attribute.name === detail,
+    (attribute): boolean => attribute.name === detail,
   )?.description
 
   return (

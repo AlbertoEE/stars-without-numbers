@@ -23,14 +23,14 @@ export default function AttributeAvailableValues(props: {
       className="w-12 h-12"
       key={props.keyValue}
       draggable
-      onDragStart={() => {
+      onDragStart={(): void => {
         setDragged(draggedState)
       }}
-      onDragEnter={() => {
+      onDragEnter={(): void => {
         setDraggedOver(draggedState)
       }}
       onDragEnd={props.onDragEnd}
-      onPress={props.onClick != null ? props.onClick : () => {}}
+      onPress={props.onClick != null ? props.onClick : (): void => {}}
       isPressable={props.onClick != null}
     >
       <CardBody className="text-center justify-center">{props.value}</CardBody>

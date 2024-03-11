@@ -1,12 +1,11 @@
 import { Card } from "@nextui-org/card"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { useState, useEffect, type ReactElement } from "react"
 
 export default function SplitDesign(props: {
   leftChild: React.ReactNode
   rightChild: React.ReactNode
 }): ReactElement {
-  const router = useRouter()
   const path = usePathname().split("/")
   path.pop()
 

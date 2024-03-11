@@ -10,12 +10,14 @@ import {
   useDisclosure,
 } from "@nextui-org/react"
 import { type Selection } from "@react-types/shared"
-import { useEffect, useState } from "react"
+import { type ReactElement, useEffect, useState } from "react"
 import { useStoreBackgroundState } from "../../state"
 import ChooseSelectionMethod from "./ChooseSelectionMethod"
 import RandomSelectionMethod from "./RandomSelectionMethod"
 
-export default function BackgroundDetail(props: { characterId: string }) {
+export default function BackgroundDetail(props: {
+  characterId: string
+}): ReactElement {
   const [proposedBackgroundSelectionType, setProposedBackgroundSelectionType] =
     useState<string>("")
 
@@ -38,23 +40,23 @@ export default function BackgroundDetail(props: { characterId: string }) {
 
   if (focusedBackground === undefined) return
 
-  function setFreeSkill() {
+  function setFreeSkill(): void {
     setChosenBenefits([focusedBackground?.benefits.free!])
     setRolledDice(false)
   }
 
-  function onSelectionChange(selection: string) {
+  function onSelectionChange(selection: string): void {
     if (selection === backgroundBenefitSelectionMethod) return
     setProposedBackgroundSelectionType(selection)
     onOpen()
   }
 
-  function onAcceptModal() {
+  function onAcceptModal(): void {
     setBackgroundSelectionType(proposedBackgroundSelectionType)
     onClose()
   }
 
-  function renderBenefitSelectionType() {
+  function renderBenefitSelectionType(): ReactElement | undefined{
     switch (backgroundBenefitSelectionMethod) {
       case "choose":
         return (
@@ -110,7 +112,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
 export function BenefitSelectionTypeDropDown(props: {
   onSelectionChange: (key: string) => any
   selectedKey: string
-}) {
+}): ReactElement {
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -124,7 +126,7 @@ export function BenefitSelectionTypeDropDown(props: {
         variant="solid"
         selectionMode="single"
         selectedKeys={props.selectedKey}
-        onSelectionChange={(key: Selection) =>
+        onSelectionChange={(key: Selection): void =>
           props.onSelectionChange(key.currentKey)
         }
       >

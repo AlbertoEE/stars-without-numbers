@@ -2,12 +2,13 @@
 
 import { CardBody, Image } from "@nextui-org/react"
 import { useStoreDefinitionDataState } from "../../state"
+import { type ReactElement } from "react"
 
-export default function AttributeDescription(props: { attribute: string }) {
+export default function AttributeDescription(props: { attribute: string }): ReactElement {
   const { attributeDefinitionList } = useStoreDefinitionDataState()
 
   const attributeDefinition = attributeDefinitionList.find(
-    (attribute) => attribute.name === props.attribute,
+    (attribute): boolean => attribute.name === props.attribute,
   )
 
   if (!attributeDefinition) return

@@ -2,10 +2,11 @@ import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
 import { Card, CardHeader } from "@nextui-org/react"
 import Image from "next/image"
 import { useStoreGameClassState } from "../../../state"
+import { type ReactElement } from "react"
 
 export default function GameClassOption(props: {
   gameClassDefinition: GameClassDefinition
-}) {
+}): ReactElement {
   const { setFocusedGameClass } = useStoreGameClassState()
 
   return (
@@ -14,7 +15,7 @@ export default function GameClassOption(props: {
       radius="lg"
       className="border-none flex-1 rounded-none"
       isPressable
-      onPress={() => {
+      onPress={(): void => {
         setFocusedGameClass(props.gameClassDefinition)
       }}
     >
