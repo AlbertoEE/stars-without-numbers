@@ -6,7 +6,9 @@ import AttributeScoreModifierRow from "./AttributeScoreModifier"
 import { useStoreBasicAttributesState } from "../../state"
 import { type ReactElement } from "react"
 
-export default function AttributeCreation(props: { random?: boolean }): ReactElement {
+export default function AttributeCreation(props: {
+  random?: boolean
+}): Element {
   const {
     initialValues,
     chosenAttributes: attributes,

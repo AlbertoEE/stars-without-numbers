@@ -1,4 +1,4 @@
-export const rollDice = (quantity: number, type: number) => {
+export const rollDice = (quantity: number, type: number): number => {
   let total = 0
   for (let index = 0; index < quantity; index++) {
     total += Math.floor(Math.random() * type) + 1

@@ -9,7 +9,7 @@ import { type BackgroundDefinitionRepository } from "./BackgroundDefinitionRepos
 export class InMemoryBackgroundDefinitionRepository
   implements BackgroundDefinitionRepository
 {
-  getBackgrounds = () => backgroundDefinitions
+  getBackgrounds = (): BackgroundDefinition[] => backgroundDefinitions
 }
 
 export const backgroundDefinitions: BackgroundDefinition[] = [

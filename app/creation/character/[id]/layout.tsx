@@ -88,7 +88,7 @@ export default function Layout(props: { children: ReactNode }) {
 
       window.addEventListener("beforeunload", handleBeforeUnload)
 
-      return () => {
+      return (): void => {
         window.removeEventListener("beforeunload", handleBeforeUnload)
       }
     }

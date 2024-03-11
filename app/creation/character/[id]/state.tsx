@@ -190,27 +190,29 @@ interface DefinitionDataState {
 }
 
 export const useStoreDefinitionDataState = create<DefinitionDataState>(
-  (set) => ({
+  (set): DefinitionDataState => ({
     skillDefinitionList: [],
     attributeDefinitionList: [],
     backgroundDefinitionList: [],
     gameClassDefinitionList: [],
     focusDefinitionList: [],
-    setSkillDefinitions: (newSkillDefinitionList) => {
+    setSkillDefinitions: (newSkillDefinitionList): void => {
       set({ skillDefinitionList: newSkillDefinitionList })
     },
-    setAttributeDefinitions: (newAttributeDefinitionList) => {
+    setAttributeDefinitions: (newAttributeDefinitionList): void => {
       set({ attributeDefinitionList: newAttributeDefinitionList })
     },
-    setBackgroundDefinitionList: (newBackgroundDefinitionList) => {
+    setBackgroundDefinitionList: (newBackgroundDefinitionList): void => {
       set({ backgroundDefinitionList: newBackgroundDefinitionList })
     },
     setGameClassDefinitionList: (
       newGameClassDefinitionList: GameClassDefinition[],
-    ) => {
+    ): void => {
       set({ gameClassDefinitionList: newGameClassDefinitionList })
     },
-    setFocusDefinitionList: (newFocusDefinitionList: FocusDefinition[]) => {
+    setFocusDefinitionList: (
+      newFocusDefinitionList: FocusDefinition[],
+    ): void => {
       set({ focusDefinitionList: newFocusDefinitionList })
     },
   }),

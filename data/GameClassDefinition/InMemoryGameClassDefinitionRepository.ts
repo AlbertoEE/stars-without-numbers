@@ -8,7 +8,8 @@ import { rollDice } from "@/utilities/Roll"
 export class InMemoryGameClassDefinitionRepository
   implements GameClassDefinitionRepository
 {
-  getGameClassDefinitionList = () => gameClassDefinitionList
+  getGameClassDefinitionList = (): GameClassDefinition[] =>
+    gameClassDefinitionList
 }
 
 const gameClassDefinitionList: GameClassDefinition[] = [
@@ -34,10 +35,10 @@ const gameClassDefinitionList: GameClassDefinition[] = [
         ],
       },
     ],
-    atackBonusFormula: (level: number) => {
+    atackBonusFormula: (level: number): number => {
       return Math.floor(level / 2)
     },
-    hitPointsFormula: (constitutionModifier: number) => {
+    hitPointsFormula: (constitutionModifier: number): number => {
       const result = rollDice(1, 6) + constitutionModifier
       return result < 1 ? 1 : result
     },
@@ -64,10 +65,10 @@ const gameClassDefinitionList: GameClassDefinition[] = [
         ],
       },
     ],
-    atackBonusFormula: (level: number) => {
+    atackBonusFormula: (level: number): number => {
       return level
     },
-    hitPointsFormula: (constitutionModifier: number) => {
+    hitPointsFormula: (constitutionModifier: number): number => {
       const result = rollDice(1, 6) + constitutionModifier + 2
       return result < 1 ? 1 : result
     },
@@ -94,10 +95,10 @@ const gameClassDefinitionList: GameClassDefinition[] = [
         ],
       },
     ],
-    atackBonusFormula: (level: number) => {
+    atackBonusFormula: (level: number): number => {
       return Math.floor(level / 2)
     },
-    hitPointsFormula: (constitutionModifier: number) => {
+    hitPointsFormula: (constitutionModifier: number): number => {
       const result = rollDice(1, 6) + constitutionModifier
       return result < 1 ? 1 : result
     },
@@ -132,7 +133,7 @@ const gameClassDefinitionList: GameClassDefinition[] = [
         ],
       },
     ],
-    atackBonusFormula: (level: number, gameSubClass?: GameSubClass) => {
+    atackBonusFormula: (level: number, gameSubClass?: GameSubClass): number => {
       return gameSubClass === GameSubClass.PARTIAL_WARRIOR
         ? level
         : Math.floor(level / 2)
@@ -140,7 +141,7 @@ const gameClassDefinitionList: GameClassDefinition[] = [
     hitPointsFormula: (
       constitutionModifier: number,
       gameSubClass?: GameSubClass,
-    ) => {
+    ): number => {
       const diceResult = rollDice(1, 6)
       const result: number =
         gameSubClass === GameSubClass.PARTIAL_WARRIOR

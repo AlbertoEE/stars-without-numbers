@@ -4,7 +4,7 @@ import { type FocusDefinitionRepository } from "./FocusDefinitionRepository"
 export class InMemoryFocusDefinitionRepository
   implements FocusDefinitionRepository
 {
-  getFoci = () => focusList
+  getFoci = (): FocusDefinition[] => focusList
 }
 
 const focusList: FocusDefinition[] = [

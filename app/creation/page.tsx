@@ -3,13 +3,14 @@
 import { Character } from "@/models/Chatacter"
 import { Button } from "@nextui-org/react"
 import { useRouter } from "next/navigation"
+import { type ReactElement } from "react"
 
-export default function Page() {
+export default function Page(): ReactElement {
   const router = useRouter()
   return (
     <div>
       <Button
-        onPress={() => {
+        onPress={(): void => {
           const randomUUID = crypto.randomUUID()
           const character = new Character(randomUUID)
 
