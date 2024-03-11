@@ -6,7 +6,11 @@ import { useStoreBackgroundState } from "../state"
 import BackgroundDetail from "./components/BackgroundDetail"
 import BackgroundList from "./components/BackGroundList"
 
-export default function Page({ params }: { params: { id: string } }): ReactElement {
+export default function Page({
+  params,
+}: {
+  params: { id: string }
+}): ReactElement {
   const { focusedBackground } = useStoreBackgroundState()
 
   return (

@@ -146,7 +146,7 @@ export function GenericBenefitCellResult(props: {
 
     const foundBenefit = cloneChosenBenefits[props.index]
 
-    foundBenefit.selected = foundBenefit.selected || new Map()
+    foundBenefit.selected = foundBenefit.selected ?? new Map()
 
     foundBenefit.selected.set(option, {
       name: keys.currentKey,

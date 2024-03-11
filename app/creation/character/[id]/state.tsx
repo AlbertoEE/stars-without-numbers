@@ -75,7 +75,9 @@ export function deleteBenefitByName(
   cloneChosenBenefits: BackgroundBenefit[],
   benefitName: string,
 ): void {
-  const index = cloneChosenBenefits.findIndex((obj): boolean=> obj.name === benefitName)
+  const index = cloneChosenBenefits.findIndex(
+    (obj): boolean => obj.name === benefitName,
+  )
   if (index !== -1) {
     cloneChosenBenefits.splice(index, 1)
   }

@@ -33,7 +33,7 @@ export default function SectionButton(props: {
           height="32"
         />
         <span>
-          {props.name
+          {props.name != null
             ? props.name.toUpperCase()
             : props.desiredPath.toUpperCase()}
         </span>

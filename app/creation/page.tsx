@@ -15,9 +15,7 @@ export default function Page(): ReactElement {
           const character = new Character(randomUUID)
 
           const charactersString = localStorage.getItem("characters")
-          const characters = charactersString
-            ? JSON.parse(charactersString)
-            : []
+          const characters = JSON.parse(charactersString ?? "[]")
           characters.push(character)
 
           localStorage.setItem("characters", JSON.stringify(characters))

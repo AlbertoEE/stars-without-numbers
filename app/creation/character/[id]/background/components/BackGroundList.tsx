@@ -29,7 +29,6 @@ export default function BackgroundList(): ReactElement {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const items = React.useMemo((): BackgroundDefinition[] => {
-    if (!backgroundDefinitionList) return []
     let filteredValues = [...backgroundDefinitionList]
 
     if (filterBackground !== "") {
@@ -70,8 +69,6 @@ export default function BackgroundList(): ReactElement {
     setFocusedBackground(proposedBackground!)
     onClose()
   }
-
-  if (!backgroundDefinitionList || !skillDefinitionList) return <></>
 
   return (
     <div className="h-full w-full flex flex-col p-5">

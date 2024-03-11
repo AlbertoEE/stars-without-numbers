@@ -50,13 +50,11 @@ export default function AttributeCreation(props: {
               keyValue={key}
               onDragEnd={handleSwapBetweenInitialAndAttributes}
               zoneName="initial"
-              {...(props.random
-                ? {
-                    onClick: (): void => {
-                      rollAndApply(key)
-                    },
-                  }
-                : null)}
+              {...(props.random != null && {
+                onClick: (): void => {
+                  rollAndApply(key)
+                },
+              })}
             />
           ),
         )}

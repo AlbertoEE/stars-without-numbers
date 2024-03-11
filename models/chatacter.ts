@@ -69,7 +69,7 @@ export class SavingThrow {
 
   constructor(name: string, attribute: AttributeName[], cd?: number) {
     this.name = name
-    if (cd) {
+    if (cd != null) {
       this.cd = cd
     }
     this.attributes = attribute

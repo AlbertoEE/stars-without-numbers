@@ -100,7 +100,9 @@ export function ButtonLevelUpBenefit(props: {
       addBenefit(cloneChosenBenefits, chosenBenefit)
     } else if (sign === "minus" && chosenBenefits.length !== 1) {
       if (
-        cloneChosenBenefits.find((e): boolean => e.name === chosenBenefit.name)
+        cloneChosenBenefits.find(
+          (e): boolean => e.name === chosenBenefit.name,
+        ) != null
       ) {
         deleteBenefitByName(cloneChosenBenefits, chosenBenefit.name)
       }
@@ -153,7 +155,7 @@ export function ButtonLevelUpBenefit(props: {
       <Button
         isIconOnly
         isDisabled={
-          (!props.dropdownChosenBenefit &&
+          (props.dropdownChosenBenefit == null &&
             props.backgroundBenefit.subtype !== "specific") ||
           checkFreeIsStillInChosenBenefits()
         }
@@ -167,7 +169,7 @@ export function ButtonLevelUpBenefit(props: {
       <Button
         isIconOnly
         isDisabled={
-          (!props.dropdownChosenBenefit &&
+          (props.dropdownChosenBenefit == null &&
             props.backgroundBenefit.subtype !== "specific") ||
           checkFreeAlreadyMaxLevel()
         }

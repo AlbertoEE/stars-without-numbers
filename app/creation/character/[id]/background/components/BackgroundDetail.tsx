@@ -56,7 +56,7 @@ export default function BackgroundDetail(props: {
     onClose()
   }
 
-  function renderBenefitSelectionType(): ReactElement | undefined{
+  function renderBenefitSelectionType(): ReactElement | undefined {
     switch (backgroundBenefitSelectionMethod) {
       case "choose":
         return (

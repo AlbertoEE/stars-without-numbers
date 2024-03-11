@@ -4,14 +4,16 @@ import { CardBody, Image } from "@nextui-org/react"
 import { useStoreDefinitionDataState } from "../../state"
 import { type ReactElement } from "react"
 
-export default function AttributeDescription(props: { attribute: string }): ReactElement {
+export default function AttributeDescription(props: {
+  attribute: string
+}): ReactElement {
   const { attributeDefinitionList } = useStoreDefinitionDataState()
 
   const attributeDefinition = attributeDefinitionList.find(
     (attribute): boolean => attribute.name === props.attribute,
   )
 
-  if (!attributeDefinition) return
+  if (attributeDefinition == null) return <></>
 
   return (
     <div className="w-full h-full">

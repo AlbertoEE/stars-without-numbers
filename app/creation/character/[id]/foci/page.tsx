@@ -16,7 +16,7 @@ export default function Page({
   return (
     <SplitDesign
       leftChild={<FocusList />}
-      rightChild={focusedFocus && <FocusDetail />}
+      rightChild={focusedFocus != null && <FocusDetail />}
     />
   )
 }

@@ -29,7 +29,7 @@ export default function AttributeScoreModifierRow(props: {
     attributeScoreModifierRepository.getAttributeScoreModifiers,
   )
 
-  if (!data) return
+  if (data == null) return
 
   const modifier = data[parseInt(props.score)]
 

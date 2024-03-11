@@ -13,7 +13,7 @@ export default function SplitDesign(props: {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect((): void => {
-    if (props.rightChild) {
+    if (props.rightChild != null) {
       // Inicia la animación después de un breve retraso (opcional)
       setTimeout((): void => {
         setIsVisible(true)
@@ -28,7 +28,7 @@ export default function SplitDesign(props: {
       <Card className="h-[85%] w-1/2 flex flex-col items-center">
         {props.leftChild}
       </Card>
-      {props.rightChild && (
+      {props.rightChild != null && (
         <Card
           className={`h-[85%] w-1/2 flex flex-col items-center transition-all duration-500 ${
             isVisible

@@ -8,9 +8,11 @@ export default function GameClassSelection(): ReactElement {
 
   return (
     <div className="flex flex-col h-full w-full">
-      {gameClassDefinitionList.map((e: GameClassDefinition): ReactElement => (
-        <GameClassOption gameClassDefinition={e} />
-      ))}
+      {gameClassDefinitionList.map(
+        (e: GameClassDefinition): ReactElement => (
+          <GameClassOption gameClassDefinition={e} />
+        ),
+      )}
     </div>
   )
 }

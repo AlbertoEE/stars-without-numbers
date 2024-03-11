@@ -8,7 +8,11 @@ import AttributeTabs from "./components/AttributeTabs"
 import AttributeDescription from "./components/Description"
 import { type ReactElement } from "react"
 
-export default function Page({ params }: { params: { id: string } }): ReactElement {
+export default function Page({
+  params,
+}: {
+  params: { id: string }
+}): ReactElement {
   const { detail } = useStoreBasicAttributesState()
   const attributeDefinitionRepository: AttributeDefinitionRepository =
     new InMemoryAttributeDefinitionRepository()
@@ -21,7 +25,9 @@ export default function Page({ params }: { params: { id: string } }): ReactEleme
     <SplitDesign
       leftChild={<AttributeTabs characterId={params.id} />}
       rightChild={
-        attributeDescription && <AttributeDescription attribute={detail} />
+        attributeDescription != null && (
+          <AttributeDescription attribute={detail} />
+        )
       }
     />
   )

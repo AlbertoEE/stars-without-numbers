@@ -34,7 +34,11 @@ export default function DropDownGenericBenefit(props: {
       .filter((def: StandardSkillDefinition | AttributeDefinition): boolean =>
         def.type.includes(props.benefit.subtype),
       )
-      .map((def): ReactElement => <DropdownItem key={def.name}>{def.name}</DropdownItem>)
+      .map(
+        (def): ReactElement => (
+          <DropdownItem key={def.name}>{def.name}</DropdownItem>
+        ),
+      )
   }
 
   function renderDropdown(): ReactElement {

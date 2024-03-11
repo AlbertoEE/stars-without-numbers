@@ -50,13 +50,13 @@ export default function Layout(props: { children: ReactNode }): ReactElement {
     focusDefinitionRepository.getFoci,
   )
 
-  useEffect((): void=> {
+  useEffect((): void => {
     if (
-      attributeDefinitionList &&
-      skillDefinitionList &&
-      backgroundDefinitionList &&
-      gameClassDefinitionList &&
-      focusDefinitionList
+      attributeDefinitionList != null &&
+      skillDefinitionList != null &&
+      backgroundDefinitionList != null &&
+      gameClassDefinitionList != null &&
+      focusDefinitionList != null
     ) {
       setSkillDefinitions(skillDefinitionList)
       setAttributeDefinitions(attributeDefinitionList)

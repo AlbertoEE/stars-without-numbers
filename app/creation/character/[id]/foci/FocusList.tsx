@@ -53,8 +53,6 @@ export default function App(): ReactElement {
     return filteredValues
   }, [filterFocus, filterBenefitSkill, focusDefinitionList])
 
-  if (!focusDefinitionList) return <></>
-
   function onAcceptModal(): void {
     setFocusedFocus(proposedBackground!)
     onClose()

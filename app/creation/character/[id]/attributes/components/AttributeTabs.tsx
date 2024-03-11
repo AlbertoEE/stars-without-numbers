@@ -16,7 +16,9 @@ import { type ReactElement, useEffect, useState } from "react"
 import { useStoreBasicAttributesState } from "../../state"
 import AttributeCreation from "./AttributeCreation"
 
-export default function AttributeTabs(props: { characterId: string }): ReactElement {
+export default function AttributeTabs(props: {
+  characterId: string
+}): ReactElement {
   const [proposedTab, setProposedTab] = useState<Key>("")
   const {
     chosenAttributes,

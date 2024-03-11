@@ -6,7 +6,9 @@ export default function FocusDetail(props: {}): ReactElement {
   const { focusedFocus, chosenFoci, setChosenFoci } = useStoreFociState()
 
   function chooseFocus(level: number): void {
-    const cleanedFoci = chosenFoci.filter((focus): boolean => focus.origin !== "foci")
+    const cleanedFoci = chosenFoci.filter(
+      (focus): boolean => focus.origin !== "foci",
+    )
     setChosenFoci([
       ...cleanedFoci,
       {
@@ -65,9 +67,9 @@ export default function FocusDetail(props: {}): ReactElement {
           </div>
           <Divider className="my-2" />
           <ul className="ml-8">
-            {focusedFocus?.levels[0].descriptionSchema.map((e): ReactElement => (
-              <li className="list-disc">{e}</li>
-            ))}
+            {focusedFocus?.levels[0].descriptionSchema.map(
+              (e): ReactElement => <li className="list-disc">{e}</li>,
+            )}
           </ul>
         </div>
         <div className="border-4 p-2 rounded-md">
@@ -112,9 +114,9 @@ export default function FocusDetail(props: {}): ReactElement {
           </Tooltip>
           <Divider className="my-2" />
           <ul className="ml-8">
-            {focusedFocus?.levels[1].descriptionSchema.map((e): ReactElement => (
-              <li className="list-disc">{e}</li>
-            ))}
+            {focusedFocus?.levels[1].descriptionSchema.map(
+              (e): ReactElement => <li className="list-disc">{e}</li>,
+            )}
           </ul>
         </div>
       </div>
