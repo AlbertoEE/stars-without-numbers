@@ -38,10 +38,12 @@ export default function BackgroundDetail(props: {
     setRolledDice,
   ])
 
-  if (focusedBackground === undefined) return
+  if (focusedBackground == null) return <></>
 
   function setFreeSkill(): void {
-    setChosenBenefits([focusedBackground?.benefits.free!])
+    if (focusedBackground == null) return
+
+    setChosenBenefits([focusedBackground.benefits.free])
     setRolledDice(false)
   }
 
@@ -57,14 +59,16 @@ export default function BackgroundDetail(props: {
   }
 
   function renderBenefitSelectionType(): ReactElement | undefined {
+    if (focusedBackground == null) return
+
     switch (backgroundBenefitSelectionMethod) {
       case "choose":
         return (
-          <ChooseSelectionMethod backgroundDefinition={focusedBackground!} />
+          <ChooseSelectionMethod backgroundDefinition={focusedBackground} />
         )
       case "random":
         return (
-          <RandomSelectionMethod backgroundDefinition={focusedBackground!} />
+          <RandomSelectionMethod backgroundDefinition={focusedBackground} />
         )
     }
   }

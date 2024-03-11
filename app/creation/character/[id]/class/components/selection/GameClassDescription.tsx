@@ -6,7 +6,7 @@ import { type ReactElement } from "react"
 export default function GameClassDescription(): ReactElement {
   const { focusedGameClass } = useStoreGameClassState()
 
-  if (!focusedGameClass) return <></>
+  if (focusedGameClass != null) return <></>
 
   function renderDetails(details: string[]): ReactElement {
     if (details.length === 1) {

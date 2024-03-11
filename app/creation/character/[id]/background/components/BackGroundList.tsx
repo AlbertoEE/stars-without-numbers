@@ -59,14 +59,17 @@ export default function BackgroundList(): ReactElement {
   }
 
   function onAcceptModal(): void {
+    if (proposedBackground == null) {
+      console.log("Proposedbackground")
+    }
     setChosenBenefits([
       {
-        name: proposedBackground!.benefits.free.name,
+        name: proposedBackground.benefits.free.name,
         type: BackgroundBenefitType.skill,
         subtype: "specific",
       },
     ])
-    setFocusedBackground(proposedBackground!)
+    setFocusedBackground(proposedBackground)
     onClose()
   }
 

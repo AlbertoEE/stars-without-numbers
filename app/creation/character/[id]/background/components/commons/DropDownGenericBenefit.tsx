@@ -42,11 +42,11 @@ export default function DropDownGenericBenefit(props: {
   }
 
   function renderDropdown(): ReactElement {
-    const dropdownLabel = props.dropDownName
-      ? props.dropDownName
-      : props.selectedKeys && props.selectedKeys.size > 0
+    const dropdownLabel =
+      props.dropDownName ??
+      (props.selectedKeys?.size > 0
         ? `${props.selectedKeys.currentKey} ⚙️`
-        : `${props.benefit.name} ⚙️`
+        : `${props.benefit.name} ⚙️`)
 
     return (
       <Dropdown>

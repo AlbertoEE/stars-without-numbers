@@ -17,7 +17,9 @@ export default function Page({
     <SplitDesign
       leftChild={<BackgroundList />}
       rightChild={
-        focusedBackground && <BackgroundDetail characterId={params.id} />
+        focusedBackground != null && (
+          <BackgroundDetail characterId={params.id} />
+        )
       }
     />
   )

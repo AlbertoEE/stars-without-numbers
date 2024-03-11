@@ -26,7 +26,6 @@ export default function App(): ReactElement {
     useStoreDefinitionDataState()
 
   const items = React.useMemo((): FocusDefinition[] => {
-    if (!focusDefinitionList) return []
     let filteredValues = [...focusDefinitionList]
 
     if (filterFocus !== "") {
@@ -54,7 +53,11 @@ export default function App(): ReactElement {
   }, [filterFocus, filterBenefitSkill, focusDefinitionList])
 
   function onAcceptModal(): void {
-    setFocusedFocus(proposedBackground!)
+    if (proposedBackground == null) {
+      console.log("Proposed background was null.")
+      return
+    }
+    setFocusedFocus(proposedBackground)
     onClose()
   }
 

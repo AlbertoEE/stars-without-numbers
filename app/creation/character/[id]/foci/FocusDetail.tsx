@@ -2,17 +2,21 @@ import { Button, Divider, Image, Tooltip } from "@nextui-org/react"
 import { useStoreFociState } from "../state"
 import { type ReactElement } from "react"
 
-export default function FocusDetail(props: {}): ReactElement {
+export default function FocusDetail(): ReactElement {
   const { focusedFocus, chosenFoci, setChosenFoci } = useStoreFociState()
 
+  if (focusedFocus == null) return <></>
+
   function chooseFocus(level: number): void {
+    if (focusedFocus == null) return
+
     const cleanedFoci = chosenFoci.filter(
       (focus): boolean => focus.origin !== "foci",
     )
     setChosenFoci([
       ...cleanedFoci,
       {
-        focus: focusedFocus!,
+        focus: focusedFocus,
         level,
         origin: "foci",
       },

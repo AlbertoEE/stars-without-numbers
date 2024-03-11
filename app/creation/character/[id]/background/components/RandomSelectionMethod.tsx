@@ -166,7 +166,7 @@ export function GenericBenefitCellResult(props: {
           dropDownName={props.benefit.selected?.get(option)?.name}
           benefit={props.benefit}
           selectedKeys={
-            props.benefit.selected
+            props.benefit.selected != null
               ? new Set([props.benefit.selected.get(option)?.name])
               : new Set()
           }
@@ -179,8 +179,10 @@ export function GenericBenefitCellResult(props: {
   }
 
   function render(): ReactElement[] {
+    if (props.benefit.amount == null) return []
+
     const rows = []
-    for (let i = 0; i < props.benefit.amount!; i++) {
+    for (let i = 0; i < props.benefit.amount; i++) {
       rows.push(renderGenericBenefitRow(i))
     }
     return rows

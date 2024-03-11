@@ -13,12 +13,10 @@ export default function Page({
 }): ReactElement {
   const { focusedGameClass } = useStoreGameClassState()
 
-  const gameClassesNames = ["Psyquic", "Warrior", "Expert", "Adventurer"]
-
   return (
     <SplitDesign
       leftChild={<GameClassSelection />}
-      rightChild={focusedGameClass && <GameClassDescription />}
+      rightChild={focusedGameClass != null && <GameClassDescription />}
     />
   )
 }
