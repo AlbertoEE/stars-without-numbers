@@ -1,6 +1,6 @@
 "use client"
 
-import { Character } from "@/models/Chatacter"
+import { Character } from "@/models/Character"
 import { Button } from "@nextui-org/react"
 import { useRouter } from "next/navigation"
 import { type ReactElement } from "react"

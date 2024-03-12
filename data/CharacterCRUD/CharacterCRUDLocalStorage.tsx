@@ -1,4 +1,4 @@
-import { type Character } from "@/models/Chatacter"
+import { type Character } from "@/models/Character"
 
 export function getCharacter(characterId: string): Character | undefined {
   const storedData = localStorage.getItem("characters")
