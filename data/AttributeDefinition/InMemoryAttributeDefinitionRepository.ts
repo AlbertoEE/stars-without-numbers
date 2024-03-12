@@ -7,7 +7,7 @@ import { type AttributeDefinitionRepository } from "./AttributeDefinitionReposit
 export class InMemoryAttributeDefinitionRepository
   implements AttributeDefinitionRepository
 {
-  getAttributes = () => {
+  getAttributes = (): AttributeDefinition[] => {
     return attributeDefinitions
   }
 }

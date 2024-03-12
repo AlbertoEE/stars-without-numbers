@@ -1,22 +1,21 @@
 import { Card } from "@nextui-org/card"
-import { usePathname, useRouter } from "next/navigation"
-import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
+import { useState, useEffect, type ReactElement } from "react"
 
 export default function SplitDesign(props: {
   leftChild: React.ReactNode
   rightChild: React.ReactNode
-}) {
-  const router = useRouter()
+}): ReactElement {
   const path = usePathname().split("/")
   path.pop()
 
   // Estado para controlar la visibilidad del componente derecho
   const [isVisible, setIsVisible] = useState(false)
 
-  useEffect(() => {
-    if (props.rightChild) {
+  useEffect((): void => {
+    if (props.rightChild != null) {
       // Inicia la animación después de un breve retraso (opcional)
-      setTimeout(() => {
+      setTimeout((): void => {
         setIsVisible(true)
       }, 10) // Ajusta este tiempo según sea necesario
     } else {
@@ -29,7 +28,7 @@ export default function SplitDesign(props: {
       <Card className="h-[85%] w-1/2 flex flex-col items-center">
         {props.leftChild}
       </Card>
-      {props.rightChild && (
+      {props.rightChild != null && (
         <Card
           className={`h-[85%] w-1/2 flex flex-col items-center transition-all duration-500 ${
             isVisible

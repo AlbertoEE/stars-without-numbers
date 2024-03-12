@@ -1,14 +1,15 @@
 import { Image } from "@nextui-org/react"
 import { usePathname, useRouter } from "next/navigation"
+import { type ReactElement } from "react"
 
 export default function SectionButton(props: {
   desiredPath: string
   name?: string
-}) {
+}): ReactElement {
   const router = useRouter()
   const pathName = usePathname()
 
-  const handleNavigate = () => {
+  const handleNavigate = (): void => {
     const currentPath = pathName
     const pathSplit = currentPath.split("/")
     pathSplit.pop()
@@ -32,7 +33,7 @@ export default function SectionButton(props: {
           height="32"
         />
         <span>
-          {props.name
+          {props.name != null
             ? props.name.toUpperCase()
             : props.desiredPath.toUpperCase()}
         </span>

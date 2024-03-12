@@ -13,7 +13,7 @@ export const handleSwap = (
   collectionB: any,
   setCollectionA: (data: any) => void,
   setCollectionB: (data: any) => void,
-) => {
+): void => {
   const collectionAClone = { ...collectionA }
   const collectionBClone = { ...collectionB }
 
@@ -63,7 +63,12 @@ export const handleSwap = (
   }
 }
 
-const swapObjValues = (obj1: any, obj2: any, key1: string, key2: string) => {
+const swapObjValues = (
+  obj1: any,
+  obj2: any,
+  key1: string,
+  key2: string,
+): void => {
   const temp = obj1[key1]
   obj1[key1] = obj2[key2]
   obj2[key2] = temp

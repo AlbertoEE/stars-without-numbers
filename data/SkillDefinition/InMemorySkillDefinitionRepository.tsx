@@ -7,7 +7,7 @@ import { type SkillDefinitionRepository } from "./SkillDefinitionRepository"
 export class InMemorySkillDefinitionRepository
   implements SkillDefinitionRepository
 {
-  getSkills = () => {
+  getSkills = (): StandardSkillDefinition[] => {
     return skillDefinitions
   }
 }

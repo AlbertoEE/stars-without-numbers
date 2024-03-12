@@ -4,12 +4,13 @@ import ModalWarning from "@/app/creation/components/ModalWarning"
 import { type FocusDefinition } from "@/models/FocusDefinitionModels"
 import { useDisclosure } from "@nextui-org/react"
 import { type Key } from "@react-types/shared"
-import React, { useState } from "react"
+import React, { type ReactElement, useState } from "react"
 import Filter from "../components/list/Filter"
 import List from "../components/list/List"
 import { useStoreDefinitionDataState, useStoreFociState } from "../state"
+import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
 
-export default function App() {
+export default function App(): ReactElement {
   const { focusedFocus, setFocusedFocus } = useStoreFociState()
 
   const [filterFocus, setFilterFocus] = useState<string>("")
@@ -24,39 +25,43 @@ export default function App() {
   const { focusDefinitionList, skillDefinitionList } =
     useStoreDefinitionDataState()
 
-  const items = React.useMemo(() => {
-    if (!focusDefinitionList) return []
+  const items = React.useMemo((): FocusDefinition[] => {
     let filteredValues = [...focusDefinitionList]
 
-    if (filterFocus != "") {
-      filteredValues = filteredValues.filter((background) =>
+    if (filterFocus !== "") {
+      filteredValues = filteredValues.filter((background): boolean =>
         background.name.startsWith(filterFocus.toLowerCase()),
       )
     }
 
-    if (filterBenefitSkill.length > 0) {
-      filteredValues = filteredValues.filter((focus: FocusDefinition) =>
-        filterBenefitSkill.every((filter: string) =>
+    filteredValues =
+      filterBenefitSkill.length > 0 &&
+      filteredValues.filter((focus: FocusDefinition): boolean =>
+        filterBenefitSkill.every((filter: string): boolean =>
           focus.levels
-            .filter((focusLevel) => focusLevel.skillBenefitOptionList)
-            .map((focusLevel) => focusLevel.skillBenefitOptionList)
+            .filter((focusLevel): boolean => focusLevel.skillBenefitOptionList)
+            .map(
+              (focusLevel): string[] | undefined =>
+                focusLevel.skillBenefitOptionList,
+            )
             .flat()
             .includes(filter),
         ),
       )
-    }
 
     return filteredValues
   }, [filterFocus, filterBenefitSkill, focusDefinitionList])
 
-  if (!focusDefinitionList) return <></>
-
-  function onAcceptModal() {
-    setFocusedFocus(proposedBackground!)
+  function onAcceptModal(): void {
+    if (proposedBackground == null) {
+      console.log("Proposed background was null.")
+      return
+    }
+    setFocusedFocus(proposedBackground)
     onClose()
   }
 
-  function handleOnFocusPress(backgroundDefinition: FocusDefinition) {
+  function handleOnFocusPress(backgroundDefinition: FocusDefinition): void {
     setProposedBackground(backgroundDefinition)
     onOpen()
   }
@@ -76,7 +81,9 @@ export default function App() {
         setInputState={setFilterFocus}
         selectKeysState={filterBenefitSkill}
         setSelectKeysState={setFilterBenefitSkill}
-        selectOptionList={skillDefinitionList.map((e) => e.name)}
+        selectOptionList={skillDefinitionList.map(
+          (e: StandardSkillDefinition): string => e.name,
+        )}
         imageFolder={"/imgs/skills"}
       />
       <List

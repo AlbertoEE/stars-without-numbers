@@ -4,7 +4,8 @@ import { type AttributeScoreModifierRepository } from "./AttributeScoreModifierR
 export class InMemoryAttributeScoreModifierRepository
   implements AttributeScoreModifierRepository
 {
-  getAttributeScoreModifiers = () => attributeScoreModifier
+  getAttributeScoreModifiers = (): AttributeScoreModifier =>
+    attributeScoreModifier
 }
 
 const attributeScoreModifier: AttributeScoreModifier = {

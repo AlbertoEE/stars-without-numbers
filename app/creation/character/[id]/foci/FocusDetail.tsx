@@ -1,15 +1,22 @@
 import { Button, Divider, Image, Tooltip } from "@nextui-org/react"
-import { useStoreDefinitionDataState, useStoreFociState } from "../state"
+import { useStoreFociState } from "../state"
+import { type ReactElement } from "react"
 
-export default function FocusDetail(props: {}) {
+export default function FocusDetail(): ReactElement {
   const { focusedFocus, chosenFoci, setChosenFoci } = useStoreFociState()
 
-  function chooseFocus(level: number) {
-    const cleanedFoci = chosenFoci.filter((focus) => focus.origin != "foci")
+  if (focusedFocus == null) return <></>
+
+  function chooseFocus(level: number): void {
+    if (focusedFocus == null) return
+
+    const cleanedFoci = chosenFoci.filter(
+      (focus): boolean => focus.origin !== "foci",
+    )
     setChosenFoci([
       ...cleanedFoci,
       {
-        focus: focusedFocus!,
+        focus: focusedFocus,
         level,
         origin: "foci",
       },
@@ -36,7 +43,7 @@ export default function FocusDetail(props: {}) {
               isIconOnly
               size="sm"
               color="primary"
-              onPress={() => {
+              onPress={(): void => {
                 chooseFocus(1)
               }}
             >
@@ -64,9 +71,9 @@ export default function FocusDetail(props: {}) {
           </div>
           <Divider className="my-2" />
           <ul className="ml-8">
-            {focusedFocus?.levels[0].descriptionSchema.map((e) => (
-              <li className="list-disc">{e}</li>
-            ))}
+            {focusedFocus?.levels[0].descriptionSchema.map(
+              (e): ReactElement => <li className="list-disc">{e}</li>,
+            )}
           </ul>
         </div>
         <div className="border-4 p-2 rounded-md">
@@ -82,7 +89,7 @@ export default function FocusDetail(props: {}) {
                 isDisabled
                 color="primary"
                 isIconOnly
-                onPress={() => {
+                onPress={(): void => {
                   chooseFocus(2)
                 }}
               >
@@ -111,9 +118,9 @@ export default function FocusDetail(props: {}) {
           </Tooltip>
           <Divider className="my-2" />
           <ul className="ml-8">
-            {focusedFocus?.levels[1].descriptionSchema.map((e) => (
-              <li className="list-disc">{e}</li>
-            ))}
+            {focusedFocus?.levels[1].descriptionSchema.map(
+              (e): ReactElement => <li className="list-disc">{e}</li>,
+            )}
           </ul>
         </div>
       </div>

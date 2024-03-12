@@ -29,7 +29,7 @@ interface BasicAttributesState {
 }
 
 export const useStoreBasicAttributesState = create<BasicAttributesState>(
-  (set) => ({
+  (set): BasicAttributesState => ({
     initialValues: { A: "14", B: "12", C: "11", D: "10", E: "9", F: "7" },
     chosenAttributes: {
       strength: "0",
@@ -43,22 +43,22 @@ export const useStoreBasicAttributesState = create<BasicAttributesState>(
     draggedOver: { from: "", value: "", key: "" },
     detail: "",
     attributeTab: "standard",
-    setInitialValues: (newInitialValues) => {
+    setInitialValues: (newInitialValues): void => {
       set({ initialValues: newInitialValues })
     },
-    setChosenAttributes: (newAttributes) => {
+    setChosenAttributes: (newAttributes): void => {
       set({ chosenAttributes: newAttributes })
     },
-    setDragged: (newDragged) => {
+    setDragged: (newDragged): void => {
       set({ dragged: newDragged })
     },
-    setDraggedOver: (newDraggedOver) => {
+    setDraggedOver: (newDraggedOver): void => {
       set({ draggedOver: newDraggedOver })
     },
-    setDetail: (newDetail) => {
+    setDetail: (newDetail): void => {
       set({ detail: newDetail })
     },
-    setAttributeTab: (newAttributeTab: string) => {
+    setAttributeTab: (newAttributeTab: string): void => {
       set({ attributeTab: newAttributeTab })
     },
   }),
@@ -68,15 +68,17 @@ export const useStoreBasicAttributesState = create<BasicAttributesState>(
 export function addBenefit(
   cloneChosenBenefits: BackgroundBenefit[],
   benefit: BackgroundBenefit,
-) {
+): void {
   cloneChosenBenefits.push(benefit)
 }
 
 export function deleteBenefitByName(
   cloneChosenBenefits: BackgroundBenefit[],
   benefitName: string,
-) {
-  const index = cloneChosenBenefits.findIndex((obj) => obj.name === benefitName)
+): void {
+  const index = cloneChosenBenefits.findIndex(
+    (obj): boolean => obj.name === benefitName,
+  )
   if (index !== -1) {
     cloneChosenBenefits.splice(index, 1)
   }
@@ -94,30 +96,32 @@ interface BackgroundState {
   setRolledDice: (newRolledDice: boolean) => void
 }
 
-export const useStoreBackgroundState = create<BackgroundState>((set) => ({
-  focusedBackground: undefined,
-  chosenSkillsMap: new Map(),
-  chosenBenefits: [],
-  randomResults: [],
-  backgroundTab: "backgroundDescription",
-  backgroundBenefitSelectionMethod: "choose",
-  rolledDice: false,
-  setFocusedBackground: (newFocusedBackground) => {
-    set({ focusedBackground: newFocusedBackground })
-  },
-  setChosenBenefits: (newChosenBenefits) => {
-    set({ chosenBenefits: newChosenBenefits })
-  },
-  setRandomResults: (newRandomResults) => {
-    set({ randomResults: newRandomResults })
-  },
-  setBackgroundBenefitSelectionMethod: (newBackgroundBenefitTab) => {
-    set({ backgroundBenefitSelectionMethod: newBackgroundBenefitTab })
-  },
-  setRolledDice: (newRolledDice) => {
-    set({ rolledDice: newRolledDice })
-  },
-}))
+export const useStoreBackgroundState = create<BackgroundState>(
+  (set): BackgroundState => ({
+    focusedBackground: undefined,
+    chosenSkillsMap: new Map(),
+    chosenBenefits: [],
+    randomResults: [],
+    backgroundTab: "backgroundDescription",
+    backgroundBenefitSelectionMethod: "choose",
+    rolledDice: false,
+    setFocusedBackground: (newFocusedBackground): void => {
+      set({ focusedBackground: newFocusedBackground })
+    },
+    setChosenBenefits: (newChosenBenefits): void => {
+      set({ chosenBenefits: newChosenBenefits })
+    },
+    setRandomResults: (newRandomResults): void => {
+      set({ randomResults: newRandomResults })
+    },
+    setBackgroundBenefitSelectionMethod: (newBackgroundBenefitTab): void => {
+      set({ backgroundBenefitSelectionMethod: newBackgroundBenefitTab })
+    },
+    setRolledDice: (newRolledDice): void => {
+      set({ rolledDice: newRolledDice })
+    },
+  }),
+)
 
 // Classes
 interface GameClassState {
@@ -125,12 +129,14 @@ interface GameClassState {
   setFocusedGameClass: (newFocusedGameClass: GameClassDefinition) => void
 }
 
-export const useStoreGameClassState = create<GameClassState>((set) => ({
-  focusedGameClass: undefined,
-  setFocusedGameClass: (newFocusedGameClass) => {
-    set({ focusedGameClass: newFocusedGameClass })
-  },
-}))
+export const useStoreGameClassState = create<GameClassState>(
+  (set): GameClassState => ({
+    focusedGameClass: undefined,
+    setFocusedGameClass: (newFocusedGameClass): void => {
+      set({ focusedGameClass: newFocusedGameClass })
+    },
+  }),
+)
 
 export interface FocusSelection {
   focus: FocusDefinition
@@ -149,24 +155,26 @@ interface FociState {
   setChosenFoci: (newChosenFoci: FocusSelection[]) => void
 }
 
-export const useStoreFociState = create<FociState>((set) => ({
-  filterFocus: "",
-  filterBenefitSkill: [],
-  focusedFocus: undefined,
-  chosenFoci: [],
-  setFilterFocus: (newFilterFocus) => {
-    set({ filterFocus: newFilterFocus })
-  },
-  setFilterBenefitSkill: (newFilterBenefitSkill) => {
-    set({ filterBenefitSkill: newFilterBenefitSkill })
-  },
-  setFocusedFocus: (newFocusedFocus) => {
-    set({ focusedFocus: newFocusedFocus })
-  },
-  setChosenFoci: (newChosenFoci: FocusSelection[]) => {
-    set({ chosenFoci: newChosenFoci })
-  },
-}))
+export const useStoreFociState = create<FociState>(
+  (set): FociState => ({
+    filterFocus: "",
+    filterBenefitSkill: [],
+    focusedFocus: undefined,
+    chosenFoci: [],
+    setFilterFocus: (newFilterFocus): void => {
+      set({ filterFocus: newFilterFocus })
+    },
+    setFilterBenefitSkill: (newFilterBenefitSkill): void => {
+      set({ filterBenefitSkill: newFilterBenefitSkill })
+    },
+    setFocusedFocus: (newFocusedFocus): void => {
+      set({ focusedFocus: newFocusedFocus })
+    },
+    setChosenFoci: (newChosenFoci: FocusSelection[]): void => {
+      set({ chosenFoci: newChosenFoci })
+    },
+  }),
+)
 
 // Definitions
 interface DefinitionDataState {
@@ -193,7 +201,7 @@ interface DefinitionDataState {
 }
 
 export const useStoreDefinitionDataState = create<DefinitionDataState>(
-  (set) => ({
+  (set): DefinitionDataState => ({
     skillDefinitionList: [],
     attributeDefinitionList: [],
     backgroundDefinitionList: [],
@@ -205,21 +213,23 @@ export const useStoreDefinitionDataState = create<DefinitionDataState>(
       meleeWeapons: [],
       generalEquipment: []
     },
-    setSkillDefinitions: (newSkillDefinitionList) => {
+    setSkillDefinitions: (newSkillDefinitionList): void => {
       set({ skillDefinitionList: newSkillDefinitionList })
     },
-    setAttributeDefinitions: (newAttributeDefinitionList) => {
+    setAttributeDefinitions: (newAttributeDefinitionList): void => {
       set({ attributeDefinitionList: newAttributeDefinitionList })
     },
-    setBackgroundDefinitionList: (newBackgroundDefinitionList) => {
+    setBackgroundDefinitionList: (newBackgroundDefinitionList): void => {
       set({ backgroundDefinitionList: newBackgroundDefinitionList })
     },
     setGameClassDefinitionList: (
       newGameClassDefinitionList: GameClassDefinition[],
-    ) => {
+    ): void => {
       set({ gameClassDefinitionList: newGameClassDefinitionList })
     },
-    setFocusDefinitionList: (newFocusDefinitionList: FocusDefinition[]) => {
+    setFocusDefinitionList: (
+      newFocusDefinitionList: FocusDefinition[],
+    ): void => {
       set({ focusDefinitionList: newFocusDefinitionList })
     },
     setEquipmentDefinition: (newEquipmentDefinition: Equipment) => {

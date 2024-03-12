@@ -6,7 +6,7 @@ import {
   type BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels"
 import { useDisclosure } from "@nextui-org/react"
-import React, { useState } from "react"
+import React, { type ReactElement, useState } from "react"
 import {
   useStoreBackgroundState,
   useStoreDefinitionDataState,
@@ -14,7 +14,7 @@ import {
 import Filter from "../../components/list/Filter"
 import List from "../../components/list/List"
 
-export default function App() {
+export default function BackgroundList(): ReactElement {
   const [filterBackground, setFilterBackground] = useState<string>("")
   const [filterChooseSkill, setFilterChooseSkill] = useState<string>("")
   const [proposedBackground, setProposedBackground] =
@@ -28,21 +28,22 @@ export default function App() {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const items = React.useMemo(() => {
-    if (!backgroundDefinitionList) return []
+  const items = React.useMemo((): BackgroundDefinition[] => {
     let filteredValues = [...backgroundDefinitionList]
 
-    if (filterBackground != "") {
-      filteredValues = filteredValues.filter((background) =>
+    if (filterBackground !== "") {
+      filteredValues = filteredValues.filter((background): boolean =>
         background.name.startsWith(filterBackground.toLowerCase()),
       )
     }
 
     if (Array.from(filterChooseSkill).length > 0) {
       filteredValues = filteredValues.filter(
-        (background: BackgroundDefinition) =>
-          Array.from(filterChooseSkill).every((filter: string) =>
-            background.benefits.learning.map((e) => e.name).includes(filter),
+        (background: BackgroundDefinition): boolean =>
+          Array.from(filterChooseSkill).every((filter: string): boolean =>
+            background.benefits.learning
+              .map((e): string => e.name)
+              .includes(filter),
           ),
       )
     }
@@ -50,24 +51,27 @@ export default function App() {
     return filteredValues
   }, [filterBackground, filterChooseSkill, backgroundDefinitionList])
 
-  function handleOnBackgroundPress(backgroundDefinition: BackgroundDefinition) {
+  function handleOnBackgroundPress(
+    backgroundDefinition: BackgroundDefinition,
+  ): void {
     setProposedBackground(backgroundDefinition)
     onOpen()
   }
 
-  function onAcceptModal() {
+  function onAcceptModal(): void {
+    if (proposedBackground == null) {
+      console.log("Proposedbackground")
+    }
     setChosenBenefits([
       {
-        name: proposedBackground!.benefits.free.name,
+        name: proposedBackground.benefits.free.name,
         type: BackgroundBenefitType.skill,
         subtype: "specific",
       },
     ])
-    setFocusedBackground(proposedBackground!)
+    setFocusedBackground(proposedBackground)
     onClose()
   }
-
-  if (!backgroundDefinitionList || !skillDefinitionList) return <></>
 
   return (
     <div className="h-full w-full flex flex-col p-5">
@@ -84,7 +88,7 @@ export default function App() {
         setInputState={setFilterBackground}
         selectKeysState={filterChooseSkill}
         setSelectKeysState={setFilterChooseSkill}
-        selectOptionList={skillDefinitionList.map((e) => e.name)}
+        selectOptionList={skillDefinitionList.map((e): string => e.name)}
         imageFolder={"/imgs/skills"}
       />
       <List

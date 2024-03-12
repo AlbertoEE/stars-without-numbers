@@ -12,36 +12,41 @@ import {
 } from "@nextui-org/react"
 import { type Key, type Selection } from "@react-types/shared"
 import { useStoreDefinitionDataState } from "../../../state"
+import { type ReactElement } from "react"
 
 export default function DropDownGenericBenefit(props: {
   benefit: BackgroundBenefit
   selectedKeys: Iterable<Key> | undefined
   dropDownName?: string
   handleOnDropdownChange: (keys: Selection) => any
-}) {
+}): ReactElement {
   const {
     skillDefinitionList: skillDefinitions,
     attributeDefinitionList: attributeDefinitions,
   } = useStoreDefinitionDataState()
 
-  function generateList() {
+  function generateList(): ReactElement[] {
     const definitions =
       props.benefit.type === BackgroundBenefitType.skill
         ? skillDefinitions
         : attributeDefinitions
     return definitions
-      .filter((def: StandardSkillDefinition | AttributeDefinition) =>
+      .filter((def: StandardSkillDefinition | AttributeDefinition): boolean =>
         def.type.includes(props.benefit.subtype),
       )
-      .map((def) => <DropdownItem key={def.name}>{def.name}</DropdownItem>)
+      .map(
+        (def): ReactElement => (
+          <DropdownItem key={def.name}>{def.name}</DropdownItem>
+        ),
+      )
   }
 
-  function renderDropdown() {
-    const dropdownLabel = props.dropDownName
-      ? props.dropDownName
-      : props.selectedKeys && props.selectedKeys.size > 0
+  function renderDropdown(): ReactElement {
+    const dropdownLabel =
+      props.dropDownName ??
+      (props.selectedKeys?.size > 0
         ? `${props.selectedKeys.currentKey} ⚙️`
-        : `${props.benefit.name} ⚙️`
+        : `${props.benefit.name} ⚙️`)
 
     return (
       <Dropdown>

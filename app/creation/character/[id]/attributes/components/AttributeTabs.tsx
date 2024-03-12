@@ -12,11 +12,13 @@ import {
   useDisclosure,
 } from "@nextui-org/react"
 import { type Key } from "@react-types/shared"
-import { useEffect, useState } from "react"
+import { type ReactElement, useEffect, useState } from "react"
 import { useStoreBasicAttributesState } from "../../state"
 import AttributeCreation from "./AttributeCreation"
 
-export default function AttributeTabs(props: { characterId: string }) {
+export default function AttributeTabs(props: {
+  characterId: string
+}): ReactElement {
   const [proposedTab, setProposedTab] = useState<Key>("")
   const {
     chosenAttributes,
@@ -27,9 +29,9 @@ export default function AttributeTabs(props: { characterId: string }) {
   } = useStoreBasicAttributesState()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  useEffect(() => {
+  useEffect((): void => {
     if (
-      JSON.stringify(chosenAttributes) !=
+      JSON.stringify(chosenAttributes) !==
       JSON.stringify({
         Strength: "0",
         Dexterity: "0",
@@ -43,14 +45,14 @@ export default function AttributeTabs(props: { characterId: string }) {
     setInitialValues({ A: "14", B: "12", C: "11", D: "10", E: "9", F: "7" })
   }, [])
 
-  function handleAttributeTabChange(key: Key) {
+  function handleAttributeTabChange(key: Key): void {
     if (key === attributeTab) return
 
     setProposedTab(key)
     onOpen()
   }
 
-  function changeTabButClean() {
+  function changeTabButClean(): void {
     switch (proposedTab) {
       case "standard":
         setInitialValues({ A: "14", B: "12", C: "11", D: "10", E: "9", F: "7" })
@@ -83,7 +85,7 @@ export default function AttributeTabs(props: { characterId: string }) {
     <div className="h-full w-full">
       <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
         <ModalContent>
-          {(onClose) => (
+          {(onClose): ReactElement => (
             <>
               <ModalHeader className="flex flex-col gap-1">
                 ⚠️ Progress Could be lost!

@@ -6,13 +6,14 @@ import { type AttributeScoreModifier } from "@/models/AttributeScoreModifierMode
 import { Card, CardBody, Image } from "@nextui-org/react"
 import useSWR from "swr"
 import { useStoreBasicAttributesState } from "../../state"
+import { type ReactElement } from "react"
 
 export default function AttributeScoreModifierRow(props: {
   score: string
   statName: string
   zoneName: string
   onDragEnd: () => void
-}) {
+}): ReactElement {
   const { setDragged, setDraggedOver, setDetail } =
     useStoreBasicAttributesState()
   const draggedState = {
@@ -28,11 +29,11 @@ export default function AttributeScoreModifierRow(props: {
     attributeScoreModifierRepository.getAttributeScoreModifiers,
   )
 
-  if (!data) return
+  if (data == null) return
 
   const modifier = data[parseInt(props.score)]
 
-  const color = () => {
+  const color = (): string => {
     switch (true) {
       case modifier === -2:
         return "bg-red-950"
@@ -44,16 +45,18 @@ export default function AttributeScoreModifierRow(props: {
         return "bg-green-800"
       case modifier === 2:
         return "bg-yellow-400"
+      default:
+        return ""
     }
   }
 
   return (
     <Card
-      onMouseOver={() => {
+      onMouseOver={(): void => {
         setDetail(props.statName)
       }}
       className="flex-1"
-      onDragEnter={() => {
+      onDragEnter={(): void => {
         setDraggedOver(draggedState)
       }}
     >
@@ -79,10 +82,10 @@ export default function AttributeScoreModifierRow(props: {
                   <Card
                     className="w-12 h-12"
                     draggable
-                    onDragStart={() => {
+                    onDragStart={(): void => {
                       setDragged(draggedState)
                     }}
-                    onDragEnter={() => {
+                    onDragEnter={(): void => {
                       setDraggedOver(draggedState)
                     }}
                     onDragEnd={props.onDragEnd}

@@ -3,12 +3,13 @@
 import "@/styles/globals.css"
 import { Providers } from "./providers"
 import CustomNavbar from "./components/CustomNavbar"
+import { type ReactElement } from "react"
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+}): ReactElement {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="h-screen">

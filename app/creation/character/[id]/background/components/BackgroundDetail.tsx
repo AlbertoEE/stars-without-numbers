@@ -10,12 +10,14 @@ import {
   useDisclosure,
 } from "@nextui-org/react"
 import { type Selection } from "@react-types/shared"
-import { useEffect, useState } from "react"
+import { type ReactElement, useEffect, useState } from "react"
 import { useStoreBackgroundState } from "../../state"
 import ChooseSelectionMethod from "./ChooseSelectionMethod"
 import RandomSelectionMethod from "./RandomSelectionMethod"
 
-export default function BackgroundDetail(props: { characterId: string }) {
+export default function BackgroundDetail(props: {
+  characterId: string
+}): ReactElement {
   const [proposedBackgroundSelectionType, setProposedBackgroundSelectionType] =
     useState<string>("")
 
@@ -36,33 +38,37 @@ export default function BackgroundDetail(props: { characterId: string }) {
     setRolledDice,
   ])
 
-  if (focusedBackground === undefined) return
+  if (focusedBackground == null) return <></>
 
-  function setFreeSkill() {
-    setChosenBenefits([focusedBackground?.benefits.free!])
+  function setFreeSkill(): void {
+    if (focusedBackground == null) return
+
+    setChosenBenefits([focusedBackground.benefits.free])
     setRolledDice(false)
   }
 
-  function onSelectionChange(selection: string) {
+  function onSelectionChange(selection: string): void {
     if (selection === backgroundBenefitSelectionMethod) return
     setProposedBackgroundSelectionType(selection)
     onOpen()
   }
 
-  function onAcceptModal() {
+  function onAcceptModal(): void {
     setBackgroundSelectionType(proposedBackgroundSelectionType)
     onClose()
   }
 
-  function renderBenefitSelectionType() {
+  function renderBenefitSelectionType(): ReactElement | undefined {
+    if (focusedBackground == null) return
+
     switch (backgroundBenefitSelectionMethod) {
       case "choose":
         return (
-          <ChooseSelectionMethod backgroundDefinition={focusedBackground!} />
+          <ChooseSelectionMethod backgroundDefinition={focusedBackground} />
         )
       case "random":
         return (
-          <RandomSelectionMethod backgroundDefinition={focusedBackground!} />
+          <RandomSelectionMethod backgroundDefinition={focusedBackground} />
         )
     }
   }
@@ -110,7 +116,7 @@ export default function BackgroundDetail(props: { characterId: string }) {
 export function BenefitSelectionTypeDropDown(props: {
   onSelectionChange: (key: string) => any
   selectedKey: string
-}) {
+}): ReactElement {
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -124,7 +130,7 @@ export function BenefitSelectionTypeDropDown(props: {
         variant="solid"
         selectionMode="single"
         selectedKeys={props.selectedKey}
-        onSelectionChange={(key: Selection) =>
+        onSelectionChange={(key: Selection): void =>
           props.onSelectionChange(key.currentKey)
         }
       >

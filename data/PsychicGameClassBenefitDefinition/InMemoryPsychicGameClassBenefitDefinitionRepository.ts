@@ -7,7 +7,8 @@ import { type PsychicGameClassBenefitDefinitionRepository } from "./PsychicGameC
 export class InMemoryPsychicGameClassDefinitionRepository
   implements PsychicGameClassBenefitDefinitionRepository
 {
-  getPsychicClassBenefits = () => psychicClassBenefitDefinitions
+  getPsychicClassBenefits = (): PsychicClassBenefitDefinition[] =>
+    psychicClassBenefitDefinitions
 }
 
 const psychicClassBenefitDefinitions: PsychicClassBenefitDefinition[] = [
