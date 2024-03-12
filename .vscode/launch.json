@@ -15,6 +15,26 @@
         "url": "http://localhost:3000"
       },
       {
+        "name": "NextJS: Firefox",
+        "type": "firefox",
+        "request": "launch",
+        "reAttach": true,
+        "url": "http://127.0.0.1:3000",
+        "webRoot": "${workspaceFolder}/examples/blog-starter",
+        "pathMappings": [
+          {
+            "url": "http://127.0.0.1:3000/_next/",
+            "path": "${webRoot}/.next/"
+          }
+        ],
+        "log": {
+          "fileName": "${workspaceFolder}/log.txt",
+          "fileLevel": {
+            "default": "Debug"
+          }
+        }
+      },
+      {
         "name": "Next.js: debug full stack",
         "type": "node-terminal",
         "request": "launch",
@@ -25,5 +45,11 @@
           "action": "debugWithChrome"
         }
       }
+    ],
+    "compounds": [
+      {
+        "name": "Next: Firefox Debugging",
+        "configurations": ["Next.js: debug server-side", "NextJS: Firefox"]
+      },
     ]
   }
