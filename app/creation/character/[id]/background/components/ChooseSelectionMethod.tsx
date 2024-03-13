@@ -4,7 +4,7 @@ import {
   type BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels"
 import { Button } from "@nextui-org/react"
-import { useState, type Key, type ReactElement } from "react"
+import { useState, type ReactElement } from "react"
 import {
   addBenefit,
   deleteBenefitByName,
@@ -12,6 +12,7 @@ import {
 } from "../../state"
 import BenefitImage from "./commons/BenefitImage"
 import DropDownGenericBenefit from "./commons/DropDownGenericBenefit"
+import { type Key, type Selection } from "@react-types/shared"
 
 export default function ChooseSelectionMethod(props: {
   backgroundDefinition: BackgroundDefinition
@@ -46,9 +47,9 @@ export function ChooseBenefitCell(props: {
   benefit: BackgroundBenefit
 }): ReactElement {
   const { chosenBenefits, setChosenBenefits } = useStoreBackgroundState()
-  const [selectedKeys, setSelectedKeys] = useState<
-    Iterable<Key> | undefined | "all"
-  >(undefined)
+  const [selectedKeys, setSelectedKeys] = useState<Iterable<Key> | undefined>(
+    undefined,
+  )
 
   function handleOnDropdownChange(keys: Selection): void {
     const cloneChosenBenefits = [...chosenBenefits]

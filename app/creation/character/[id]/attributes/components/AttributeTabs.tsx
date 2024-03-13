@@ -43,7 +43,7 @@ export default function AttributeTabs(props: {
     )
       return
     setInitialValues({ A: "14", B: "12", C: "11", D: "10", E: "9", F: "7" })
-  }, [])
+  })
 
   function handleAttributeTabChange(key: Key): void {
     if (key === attributeTab) return

@@ -1,2 +1,3 @@
 *.config.*
 next-env.d.ts
+.eslintrc.js
