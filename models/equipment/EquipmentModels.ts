@@ -1,8 +1,8 @@
-import ShopItem from "../ShopItemModels"
-import Armor from "./ArmorModels"
+import { type TechnologyShopItem } from "../ShopItemModels"
+import type ArmorItem from "./ArmorModels"
 
 export default interface Equipment {
-    armors: Armor[]
+    armors: ArmorItem[]
     rangedWeapons: EquipmentItem[]
     meleeWeapons: EquipmentItem[]
     generalEquipment: GeneralEquipment[]
@@ -13,9 +13,8 @@ export interface GeneralEquipment {
     items: EquipmentItem[]
 }
 
-export interface EquipmentItem extends ShopItem {
+export interface EquipmentItem extends TechnologyShopItem {
     encumbrance: number
-    techLevel: number // Some items can have a range of tech levels (General equipment)
 }
 
 export enum GeneralEquipmentType {

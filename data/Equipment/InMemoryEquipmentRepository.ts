@@ -1,9 +1,9 @@
-import Equipment from "@/models/equipment/EquipmentModels"
-import EquipmentDefinitionRepository from "./EquipmentRepository"
+import type Equipment from "@/models/equipment/EquipmentModels"
+import type EquipmentDefinitionRepository from "./EquipmentRepository"
 import { ArmorType } from "@/models/equipment/ArmorModels"
 
 export default class InMemoryEquipmentDefinitionRepository implements EquipmentDefinitionRepository {
-    getEquipmentDefinition = () => equipment
+    getEquipmentDefinition = (): Equipment => equipment
 }
 
 const equipment: Equipment = {
