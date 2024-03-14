@@ -11,6 +11,11 @@ export interface ItemProps {
     onPress?: (e: PressEvent) => void,
 }
 
+export interface ShopItemProps extends ItemProps {
+    cardStyle: string
+    headerStyle: string
+}
+
 export const ITEM_ICON_SIZE = 40
 export const ITEM_CHIP_ICON_SIZE = 16
 

@@ -40,7 +40,7 @@ export default function ArmorItemCard(props: {
                     {props.item.armorClass}{props.item.shield ? "/+1":""} AC
                 </Chip>
                 {props.item.shield &&
-                    <Chip startContent={<ShieldIcon className="fill-current" height="16" width="16"/>}>
+                    <Chip variant="bordered" startContent={<ShieldIcon className="fill-current" height="16" width="16"/>}>
                         Block first shock damage
                     </Chip>
                 }

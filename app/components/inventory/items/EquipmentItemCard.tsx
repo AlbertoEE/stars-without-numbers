@@ -8,7 +8,7 @@ export default function EquipmentItemCard(props: ItemProps): ReactElement {
     return (
         <TechItemCard {...props} chips={[
             ...props.chips ?? [],
-            <Chip variant="flat" endContent={
+            <Chip variant="light" endContent={
                 <WeightIcon className="fill-current mx-1" height="14" width="14" />
             }>{props.item.encumbrance}</Chip>
         ]} />
