@@ -25,8 +25,8 @@ export default function App(): ReactElement {
   const { focusDefinitionList, skillDefinitionList } =
     useStoreDefinitionDataState()
 
-  const items = React.useMemo((): FocusDefinition[] => {
-    let filteredValues = [...focusDefinitionList]
+  const items: FocusDefinition[] = React.useMemo((): FocusDefinition[] => {
+    let filteredValues: FocusDefinition[] = [...focusDefinitionList]
 
     if (filterFocus !== "") {
       filteredValues = filteredValues.filter((background): boolean =>
@@ -34,21 +34,20 @@ export default function App(): ReactElement {
       )
     }
 
-    filteredValues =
-      filterBenefitSkill.length > 0 &&
-      filteredValues.filter((focus: FocusDefinition): boolean =>
-        filterBenefitSkill.every((filter: string): boolean =>
-          focus.levels
-            .filter((focusLevel): boolean => focusLevel.skillBenefitOptionList)
-            .map(
-              (focusLevel): string[] | undefined =>
-                focusLevel.skillBenefitOptionList,
-            )
-            .flat()
-            .includes(filter),
-        ),
+    if (Array.from(filterBenefitSkill).length > 0) {
+      filteredValues = filteredValues.filter(
+        (focus: FocusDefinition): boolean =>
+          Array.from(filterBenefitSkill).every((filter: Key): boolean =>
+            focus.levels
+              .map(
+                (focusLevel): string[] =>
+                  focusLevel.skillBenefitOptionList ?? [],
+              )
+              .flat()
+              .includes(filter.toString()),
+          ),
       )
-
+    }
     return filteredValues
   }, [filterFocus, filterBenefitSkill, focusDefinitionList])
 
