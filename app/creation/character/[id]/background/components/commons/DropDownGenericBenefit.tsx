@@ -9,7 +9,7 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-} from "@nextui-org/react"
+} from "@nextui-org/dropdown"
 import { type Key, type Selection } from "@react-types/shared"
 import { useStoreDefinitionDataState } from "../../../state"
 import { type ReactElement } from "react"
