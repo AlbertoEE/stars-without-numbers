@@ -14,13 +14,13 @@ export default function TechItemCard(props: ItemProps): ReactElement {
         "text-cyan-100 bg-gradient-to-br from-cyan-500/30"
     ]
     const techLevelCardStyles: string[] = [
-        "border-medium border-gray-700",
-        "border-medium border-green-900",
-        "border-medium border-blue-900",
-        "border-medium border-purple-900",
-        "border-medium border-yellow-900",
-        "border-medium border-orange-900",
-        "border-medium border-cyan-500/70"
+        "border-gray-700",
+        "border-green-900",
+        "border-blue-900",
+        "border-purple-900",
+        "border-yellow-900",
+        "border-orange-900",
+        "border-cyan-500/70"
     ]
     const chip = (
         <Chip variant="light" startContent={

@@ -5,6 +5,7 @@ export default interface Equipment {
     armors: ArmorItem[]
     rangedWeapons: EquipmentItem[]
     meleeWeapons: EquipmentItem[]
+    heavyWeapons: EquipmentItem[]
     generalEquipment: GeneralEquipment[]
 }
 

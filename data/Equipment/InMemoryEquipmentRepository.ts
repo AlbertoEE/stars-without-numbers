@@ -73,5 +73,6 @@ const equipment: Equipment = {
     }],
     rangedWeapons: [],
     meleeWeapons: [],
+    heavyWeapons: [],
     generalEquipment: [],
 }

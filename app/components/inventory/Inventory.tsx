@@ -1,53 +1,70 @@
 import type Equipment from "@/models/equipment/EquipmentModels";
 import { type ReactElement } from "react";
 import ArmorItemCard from "./items/ArmorItemCard";
-import { Card, CardBody, CardFooter, CardHeader, Divider, Link, Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, CardHeader, Divider, Link, Navbar, NavbarContent, NavbarItem, ScrollShadow } from "@nextui-org/react";
 
 export default function Inventory(props: {
     equipment: Equipment
 }): ReactElement {
     let showingCategories: string[] = ["armor"]
-    const scrollToCategory = (key: React.Key | string): void => {
-        console.log(key)
-    }
     const isShowingCategory = (category: string): boolean =>
         showingCategories.includes(category)
     return (
-        <div className="flex flex-col h-full">
-            <Navbar isBordered className="flex-1" position="static">
-                <NavbarContent>
-                    <NavbarItem isActive={isShowingCategory("armor")}>
-                        <Link color="foreground" href="#armor">ARMOR</Link>
-                    </NavbarItem>
-                    <NavbarItem>
-                        <Link color="foreground" href="#rangedWeapons">RANGED WEAPONS</Link>
-                    </NavbarItem>
+        <Card className="flex flex-col h-full w-full pb-5">
+            <Navbar isBordered className="flex-1 rounded-t-large border-small py-2" 
+                classNames={{
+                    item: [
+                        "data-[active=true]:after:content-['']",
+                        "data-[active=true]:border-b-small"
+                    ]
+                }}
+            position="static">
+                <NavbarContent className="flex flex-wrap">
+                    <div className="flex justify-between w-full">
+                        <NavbarItem isActive={isShowingCategory("armor")}>
+                            <Link color="foreground" href="#armor">ARMOR</Link>
+                        </NavbarItem>
+                        <NavbarItem isActive={isShowingCategory("rangedWeapons")}>
+                            <Link color="foreground" href="#rangedWeapons">RANGED WEAPONS</Link>
+                        </NavbarItem>
+                        <NavbarItem isActive={isShowingCategory("meleeWeapons")}>
+                            <Link color="foreground" href="#meleeWeapons">MELEE WEAPONS</Link>
+                        </NavbarItem>
+                        <NavbarItem isActive={isShowingCategory("heavyWeapons")}>
+                            <Link color="foreground" href="#heavyWeapons">HEAVY WEAPONS</Link>
+                        </NavbarItem>
+                    </div>
+                    <div className="flex w-full justify-center">
+                        <NavbarItem isActive={isShowingCategory("generalEquipment")}>
+                            <Link color="foreground" href="#generalEquipment">GENERAL EQUIPMENT</Link>
+                        </NavbarItem>
+                    </div>
                 </NavbarContent>
             </Navbar>
-            <div className="overflow-y-auto scroll-smooth">
-                <Card radius="none" id="armor">
+            <ScrollShadow className="overflow-y-auto scroll-smooth p-5">
+                <Card radius="none" id="armor" className="mt-5 scroll-mt-5">
                     <CardHeader className="justify-center"><h1>ARMOR</h1></CardHeader>
                     <Divider />
                     <CardBody>
-                        <div className="flex flex-wrap justify-evenly w-[95%] gap-1">
+                        <div className="flex flex-wrap justify-evenly gap-1">
                             {props.equipment.armors.map((item): ReactElement => (
                                 <ArmorItemCard item={item} />
                             ))}
                         </div>
                     </CardBody>
                 </Card>
-                <Card radius="none" id="rangedWeapons">
+                <Card radius="none" id="rangedWeapons" className="mt-6 scroll-mt-6">
                     <CardHeader className="justify-center"><h1>RANGED WEAPONS</h1></CardHeader>
                     <Divider />
                     <CardBody>
-                        <div className="flex flex-wrap justify-evenly w-[95%] gap-1">
+                        <div className="flex flex-wrap justify-evenly gap-1">
                             {props.equipment.armors.map((item): ReactElement => (
                                 <ArmorItemCard item={item} />
                             ))}
                         </div>
                     </CardBody>
                 </Card>
-            </div>
-        </div>
+            </ScrollShadow>
+        </Card>
     )
 }
