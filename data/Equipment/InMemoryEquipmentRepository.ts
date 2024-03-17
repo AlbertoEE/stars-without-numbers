@@ -1,6 +1,7 @@
 import type Equipment from "@/models/equipment/EquipmentModels"
 import type EquipmentDefinitionRepository from "./EquipmentRepository"
 import { ArmorType } from "@/models/equipment/ArmorModels"
+import { GeneralEquipmentType } from "@/models/equipment/EquipmentModels"
 
 export default class InMemoryEquipmentDefinitionRepository implements EquipmentDefinitionRepository {
     getEquipmentDefinition = (): Equipment => equipment
@@ -71,8 +72,45 @@ const equipment: Equipment = {
         techLevel: 6,
         cost: 30000,
     }],
-    rangedWeapons: [],
-    meleeWeapons: [],
-    heavyWeapons: [],
-    generalEquipment: [],
+    rangedWeapons: [
+        {
+            name: "Test Ranged Weapon",
+            description: "Warpaint is the common term for the bizarre combat fashions and scrap-built street harness of gangers, cult enforcers, street toughs, and other marginal sorts with little money but much need for protection. Most warpaint is fashioned of scrounged scraps of TL4 materials that are exceptionally tough or rigid, filled out with gang colors, body paint, intimidating tattoos, and the usual threatening grimace. It is often exceedingly impractical but inspirational to its wearer; an NPC in warpaint that is meaningful to them gains a +1 Morale bonus. Most warpaint is either pieced together over years or taken from the dead. Actually purchasing a finished suit comes at the listed price, assuming someone can be found willing to part with theirs.",
+            encumbrance: 0,
+            techLevel: 0,
+            cost: 300,
+        }
+    ],
+    meleeWeapons: [
+        {
+            name: "Test Melee Weapon",
+            description: "Warpaint is the common term for the bizarre combat fashions and scrap-built street harness of gangers, cult enforcers, street toughs, and other marginal sorts with little money but much need for protection. Most warpaint is fashioned of scrounged scraps of TL4 materials that are exceptionally tough or rigid, filled out with gang colors, body paint, intimidating tattoos, and the usual threatening grimace. It is often exceedingly impractical but inspirational to its wearer; an NPC in warpaint that is meaningful to them gains a +1 Morale bonus. Most warpaint is either pieced together over years or taken from the dead. Actually purchasing a finished suit comes at the listed price, assuming someone can be found willing to part with theirs.",
+            encumbrance: 0,
+            techLevel: 0,
+            cost: 300,
+        }
+    ],
+    heavyWeapons: [
+        {
+            name: "Test Heavy Weapon",
+            description: "Warpaint is the common term for the bizarre combat fashions and scrap-built street harness of gangers, cult enforcers, street toughs, and other marginal sorts with little money but much need for protection. Most warpaint is fashioned of scrounged scraps of TL4 materials that are exceptionally tough or rigid, filled out with gang colors, body paint, intimidating tattoos, and the usual threatening grimace. It is often exceedingly impractical but inspirational to its wearer; an NPC in warpaint that is meaningful to them gains a +1 Morale bonus. Most warpaint is either pieced together over years or taken from the dead. Actually purchasing a finished suit comes at the listed price, assuming someone can be found willing to part with theirs.",
+            encumbrance: 0,
+            techLevel: 0,
+            cost: 300,
+        }
+    ],
+    generalEquipment: [
+        {
+            type: GeneralEquipmentType.AMMO_AND_POWER,
+            items: [
+                {
+                    name: "Test Melee Weapon",
+                    description: "Warpaint is the common term for the bizarre combat fashions and scrap-built street harness of gangers, cult enforcers, street toughs, and other marginal sorts with little money but much need for protection. Most warpaint is fashioned of scrounged scraps of TL4 materials that are exceptionally tough or rigid, filled out with gang colors, body paint, intimidating tattoos, and the usual threatening grimace. It is often exceedingly impractical but inspirational to its wearer; an NPC in warpaint that is meaningful to them gains a +1 Morale bonus. Most warpaint is either pieced together over years or taken from the dead. Actually purchasing a finished suit comes at the listed price, assuming someone can be found willing to part with theirs.",
+                    encumbrance: 0,
+                    techLevel: 0,
+                    cost: 300,
+                }
+            ]
+        }
+    ],
 }

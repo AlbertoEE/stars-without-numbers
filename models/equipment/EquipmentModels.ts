@@ -27,3 +27,5 @@ export enum GeneralEquipmentType {
     TOOLS_AND_MEDICAL = "Tools and Medical",
     OTHER = "Other",
 }
+
+export type EquipmentItemTypes = ArmorItem | GeneralEquipment | EquipmentItem
