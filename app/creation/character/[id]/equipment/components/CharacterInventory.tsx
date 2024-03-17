@@ -1,7 +1,15 @@
-import { type ReactElement } from "react";
+import EquipmentInventory from "@/app/components/inventory/EquipmentInventory";
+import { useState, type ReactElement } from "react";
 
 export default function CharacterInventory(): ReactElement  {
+    const [characterInventory] = useState({
+        armors: [],
+        rangedWeapons: [],
+        meleeWeapons: [],
+        heavyWeapons: [],
+        generalEquipment: []
+      })
     return (
-        <h1>Inventory</h1>
+        <EquipmentInventory id="inventory" equipment={characterInventory}/>
     )
 }

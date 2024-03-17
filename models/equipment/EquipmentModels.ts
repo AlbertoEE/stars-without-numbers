@@ -9,6 +9,16 @@ export default interface Equipment {
     generalEquipment: GeneralEquipment[]
 }
 
+export const emptyEquipment = (): Equipment => {
+    return {
+        armors: [],
+        rangedWeapons: [],
+        meleeWeapons: [],
+        heavyWeapons: [],
+        generalEquipment: []
+    }
+}
+
 export interface GeneralEquipment {
     type: GeneralEquipmentType
     items: EquipmentItem[]

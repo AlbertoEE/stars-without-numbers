@@ -16,7 +16,7 @@ export default function BenefitImage(props: {
     <Image
       loading="eager"
       className="my-0 flex-1"
-      src={folderPath + props.benefit.name + ".svg"}
+      src={`${folderPath}${props.benefit.name}.svg`}
       alt="me"
       width="24"
       height="24"
