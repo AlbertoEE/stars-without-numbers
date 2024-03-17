@@ -11,12 +11,76 @@ const config: Config = {
   ],
   theme: {
     extend: {
+    
+    
+    
       fontFamily: {
         "roboto-mono": ["Roboto Mono", "monospace"],
       },
     },
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        "space-theme": {
+          colors: {
+            background: {
+              DEFAULT: "#48525d",
+              foreground: "#0a9396",
+            },
+            foreground: {
+              DEFAULT: "#1F1F1F",
+              foreground: "#e9d8a6",
+            },
+            divider: {
+              DEFAULT: "#1F1F1F",
+              foreground: "#ee9b00",
+            },
+            overlay: {
+              DEFAULT: "#1F1F1F",
+              foreground: "#ca6702",
+            },
+            focus: {
+              DEFAULT: "#1F1F1F",
+              foreground: "#ee9b00",
+            },
+            content1: {
+              DEFAULT: "#141414",
+              foreground: "#e9d8a6",
+            },
+            content2: {
+              DEFAULT: "#1F1F1F",
+              foreground: "#e9d8a6",
+            },
+            primary: {
+              DEFAULT: "#0a9396",
+              foreground: "#e9d8a6",
+            },
+            secondary: {
+              DEFAULT: "#005f73",
+              foreground: "#e9d8a6",
+            },
+            default: {
+              DEFAULT: "#ffff",
+              foreground: "#94d2bd",
+            },
+            success: {
+              DEFAULT: "#94d2bd",
+              foreground: "#0a2f51",
+            },
+            warning: {
+              DEFAULT: "#ee9b00",
+              foreground: "#0a2f51",
+            },
+            danger: {
+              DEFAULT: "#9b2226",
+              foreground: "#e9d8a6",
+            },
+          },
+        },
+      },
+    }),
+  ],
 }
 export default config

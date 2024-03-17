@@ -1,4 +1,4 @@
-import { Card, CardBody, Image } from "@nextui-org/react"
+import { Button, Card, CardBody, Image } from "@nextui-org/react"
 import { type ReactElement } from "react"
 
 export default function List<T>(props: {
@@ -11,26 +11,24 @@ export default function List<T>(props: {
     <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-3">
       {props.items.map(
         (item): ReactElement => (
-          <Card
-            className={`w-[45%] h-fit ${item.name === props.focusedItemName && "bg-blue-500"}`}
-            isPressable={item.name !== props.focusedItemName}
+          <Button
+            className={`w-[45%] ${item.name === props.focusedItemName && "bg-secondary"} bg-content2 text-white`}
+            disabled={item.name === props.focusedItemName}
             onPress={(): void => {
               props.handleOnItemPress(item)
             }}
           >
-            <CardBody className="text-center">
-              <div className="flex flex-row">
-                <Image
-                  className="mx-4 my-0"
-                  src={`${props.imageFolder}/${item.name.replace(" ", "-")}.svg`}
-                  alt="me"
-                  width="24"
-                  height="24"
-                />
-                <div>{item.name.toUpperCase()}</div>
-              </div>
-            </CardBody>
-          </Card>
+            <div className="flex flex-row justify-start w-full">
+              <Image
+                className="mx-4 my-0"
+                src={`${props.imageFolder}/${item.name.replace(" ", "-")}.svg`}
+                alt="me"
+                width="24"
+                height="24"
+              />
+              <div>{item.name.toUpperCase()}</div>
+            </div>
+          </Button>
         ),
       )}
     </div>

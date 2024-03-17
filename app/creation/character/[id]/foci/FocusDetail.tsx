@@ -1,17 +1,27 @@
-import { Button, Divider, Image, Tooltip } from "@nextui-org/react"
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Image,
+} from "@nextui-org/react"
 import { useStoreFociState } from "../state"
 import { type ReactElement } from "react"
-import Buy from "@/public/imgs/ui/buy.svg"
 import Get from "@/public/imgs/ui/get.svg"
+import {
+  type FocusLevelDefinition,
+  type FocusDefinition,
+  FocusType,
+} from "@/models/FocusDefinitionModels"
 
 export default function FocusDetail(): ReactElement {
   const { focusedFocus, chosenFoci, setChosenFoci } = useStoreFociState()
 
   if (focusedFocus == null) return <></>
 
-  function chooseFocus(level: number): void {
-    if (focusedFocus == null) return
-
+  function chooseFocus(level: number, focusedFocus: FocusDefinition): void {
     const cleanedFoci = chosenFoci.filter(
       (focus): boolean => focus.origin !== "foci",
     )
@@ -35,105 +45,136 @@ export default function FocusDetail(): ReactElement {
           width="64"
           height="64"
         />
-        <h1 className="font-bold uppercase text-4xl">{focusedFocus?.name}</h1>
-      </div>
-      <div className="flex flex-col gap-4 overflow-y-auto pr-5">
-        <div>{focusedFocus?.description}</div>
         <div>
-          <div className="flex gap-4 items-center">
-            <Button
-              isIconOnly
-              size="sm"
-              color="primary"
-              onPress={(): void => {}}
-            >
-              {false && <Get />}
-              <Buy />
-            </Button>
-            <h2 className="text-2xl italic">Level 1</h2>
-          </div>
-          <Divider className="my-2" />
-          <div>
-            <ul className="ml-8">
-              {focusedFocus?.levels[0].descriptionSchema.map(
-                (e): ReactElement => <li className="list-disc">{e}</li>,
-              )}
-            </ul>
-          </div>
+          <h1 className="font-bold uppercase text-4xl">{focusedFocus.name}</h1>
+          <div>Type: {Object.values(focusedFocus.type)}</div>
         </div>
-        <div>
-          <Tooltip
-            content="This level is not available at character creation."
-            placement="top-start"
-            closeDelay={0}
-            delay={70}
-          >
-            <div className="flex gap-4 items-center">
-              <Button
-                size="sm"
-                isDisabled
-                color="primary"
-                isIconOnly
-                onPress={(): void => {
-                  chooseFocus(2)
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-http-get"
-                  width="44"
-                  height="44"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="#ffffff"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M7 8h-2a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2v-4h-1" />
-                  <path d="M14 8h-4v8h4" />
-                  <path d="M10 12h2.5" />
-                  <path d="M17 8h4" />
-                  <path d="M19 8v8" />
-                </svg>
-              </Button>
-              <h2 className="text-2xl italic">Level 2</h2>
-            </div>
-          </Tooltip>
+        <div className="ml-auto text-right">
+          <div>Any Focus: 1</div>
           <Divider className="my-2" />
-          <ul className="ml-8">
-            {focusedFocus?.levels[1].descriptionSchema.map(
-              (e): ReactElement => <li className="list-disc">{e}</li>,
-            )}
-          </ul>
+          <div>Class Focus: 1</div>
+        </div>
+      </div>
+      <Divider />
+      <div className="flex flex-col gap-4 overflow-y-auto pr-5">
+        <div>{focusedFocus.description}</div>
+        <div>
+          {focusedFocus.levels.map(
+            (lvlDef: FocusLevelDefinition): ReactElement => (
+              <FociLevelSection
+                status="bought"
+                className="mt-4"
+                level={lvlDef.level}
+              >
+                <FociLevelDescription
+                  focusLevelDefinition={lvlDef}
+                  onFocusLevelSelectionPress={function (): void {
+                    throw new Error("Function not implemented.")
+                  }}
+                  level={lvlDef.level}
+                />
+              </FociLevelSection>
+            ),
+          )}
+          <Card className="p-2">
+            <CardHeader className="text-2xl">
+              Level 1
+            </CardHeader>
+            <CardBody>
+              <FociLevelDescription
+                focusLevelDefinition={focusedFocus.levels[0]}
+                onFocusLevelSelectionPress={function (): void {
+                  throw new Error("Function not implemented.")
+                }}
+                level={0}
+              />
+            </CardBody>
+            <CardFooter>
+              <div className="flex items-center gap-4 mt-2 w-full">
+                <div className="border-gray-500 border-3 py-[6px] px-3 flex-1">
+                  <div className="flex w-full">
+                    <div>Precio:</div>
+                    <div className={`ml-auto text-yellow-400`}>1 GFP</div>
+                  </div>
+                </div>
+                <Button
+                  className={`ml-auto border-yellow-400 border-3 text-yellow-400 hover:text-white hover:border-white rounded-none`}
+                  size="md"
+                  variant="bordered"
+                  onPress={(): void => {}}
+                >
+                  OBTENER
+                </Button>
+              </div>
+            </CardFooter>
+          </Card>
         </div>
       </div>
     </div>
   )
 }
 
-export function FociLevel(props: {
-  focu
+export function FociLevelSection(props: {
+  level: number
+  children: ReactElement
+  className?: string
+  status: "bought" | "available" | "blocked"
+}): ReactElement {
+  let color = ""
+
+  switch (props.status) {
+    case "bought":
+      color = "green-400"
+      break
+    case "available":
+      color = "yellow-400"
+      break
+    case "blocked":
+      color = "red-400"
+      break
+  }
+
+  return (
+    <div className={`border-${color} border-3 p-4 ${props.className}`}>
+      <div className="text-2xl">Level - {props.level}</div>
+      <Divider className="my-4" />
+      {props.children}
+      <div className="flex items-center gap-4 mt-2">
+        <div className="border-gray-500 border-3 py-[6px] px-3 flex-1">
+          <div className="flex w-full">
+            <div>Precio:</div>
+            <div className={`ml-auto text-${color}`}>1 GFP</div>
+          </div>
+        </div>
+        <Button
+          className={`ml-auto border-${color} border-3 text-${color} hover:text-white hover:border-white rounded-none`}
+          size="md"
+          variant="bordered"
+          onPress={(): void => {}}
+        >
+          {props.status === "available" && "OBTENER"}
+          {props.status === "blocked" && "BLOCKED"}
+          {props.status === "bought" && "REFUND"}
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+export function FociLevelDescription(props: {
+  focusLevelDefinition: FocusLevelDefinition
   onFocusLevelSelectionPress: () => void
+  level: number
 }): ReactElement {
   return (
-    <>
-      <div className="flex gap-4 items-center">
-        <Button isIconOnly size="sm" color="primary" onPress={(): void => {}}>
-          {false && <Get />}
-          <Buy />
-        </Button>
-        <h2 className="text-2xl italic">Level 1</h2>
-      </div>
-      <Divider className="my-2" />
-      <div>
-        <ul className="ml-8">
-          {focusedFocus?.levels[0].descriptionSchema.map(
-            (e): ReactElement => <li className="list-disc">{e}</li>,
-          )}
-        </ul>
-      </div>
-    </>
+    <div>
+      <ul className="ml-8">
+        {props.focusLevelDefinition.descriptionSchema.map(
+          (e): ReactElement => (
+            <li className="list-disc">{e}</li>
+          ),
+        )}
+      </ul>
+    </div>
   )
 }
