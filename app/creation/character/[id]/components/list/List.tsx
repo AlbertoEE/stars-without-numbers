@@ -1,3 +1,4 @@
+import SwnButton from "@/app/components/SwnButton"
 import { Button, Card, CardBody, Image } from "@nextui-org/react"
 import { type ReactElement } from "react"
 
@@ -11,12 +12,13 @@ export default function List<T>(props: {
     <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-3">
       {props.items.map(
         (item): ReactElement => (
-          <Button
-            className={`w-[45%] ${item.name === props.focusedItemName && "bg-secondary"} bg-content2 text-white`}
+          <SwnButton
+            className={`w-[45%] ${item.name === props.focusedItemName && "bg-secondary"}`}
             disabled={item.name === props.focusedItemName}
             onPress={(): void => {
               props.handleOnItemPress(item)
             }}
+            
           >
             <div className="flex flex-row justify-start w-full">
               <Image
@@ -28,7 +30,7 @@ export default function List<T>(props: {
               />
               <div>{item.name.toUpperCase()}</div>
             </div>
-          </Button>
+          </SwnButton>
         ),
       )}
     </div>

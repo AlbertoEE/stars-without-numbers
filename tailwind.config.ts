@@ -26,30 +26,34 @@ const config: Config = {
         "space-theme": {
           colors: {
             background: {
-              DEFAULT: "#48525d",
+              DEFAULT: "#fff",
               foreground: "#0a9396",
             },
-            foreground: {
-              DEFAULT: "#1F1F1F",
+            foreground: { // Used for general text
+              DEFAULT: "#fff",
               foreground: "#e9d8a6",
             },
+            default: {
+              DEFAULT: "#fff",
+              foreground: "#94d2bd",
+            },
             divider: {
-              DEFAULT: "#1F1F1F",
+              DEFAULT: "#fff",
               foreground: "#ee9b00",
             },
             overlay: {
-              DEFAULT: "#1F1F1F",
+              DEFAULT: "#fff",
               foreground: "#ca6702",
             },
             focus: {
-              DEFAULT: "#1F1F1F",
+              DEFAULT: "#fff",
               foreground: "#ee9b00",
             },
             content1: {
-              DEFAULT: "#141414",
+              DEFAULT: "#141414", // Used for cards
               foreground: "#e9d8a6",
             },
-            content2: {
+            content2: { // Used for buttons
               DEFAULT: "#1F1F1F",
               foreground: "#e9d8a6",
             },
@@ -60,10 +64,6 @@ const config: Config = {
             secondary: {
               DEFAULT: "#005f73",
               foreground: "#e9d8a6",
-            },
-            default: {
-              DEFAULT: "#ffff",
-              foreground: "#94d2bd",
             },
             success: {
               DEFAULT: "#94d2bd",

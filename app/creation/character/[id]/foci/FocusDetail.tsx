@@ -15,6 +15,7 @@ import {
   type FocusDefinition,
   FocusType,
 } from "@/models/FocusDefinitionModels"
+import SwnCard from "@/app/components/SwnCard"
 
 export default function FocusDetail(): ReactElement {
   const { focusedFocus, chosenFoci, setChosenFoci } = useStoreFociState()
@@ -58,12 +59,11 @@ export default function FocusDetail(): ReactElement {
       <Divider />
       <div className="flex flex-col gap-4 overflow-y-auto pr-5">
         <div>{focusedFocus.description}</div>
-        <div>
+        <div className="flex flex-col gap-4">
           {focusedFocus.levels.map(
             (lvlDef: FocusLevelDefinition): ReactElement => (
               <FociLevelSection
                 status="bought"
-                className="mt-4"
                 level={lvlDef.level}
               >
                 <FociLevelDescription
@@ -76,38 +76,6 @@ export default function FocusDetail(): ReactElement {
               </FociLevelSection>
             ),
           )}
-          <Card className="p-2">
-            <CardHeader className="text-2xl">
-              Level 1
-            </CardHeader>
-            <CardBody>
-              <FociLevelDescription
-                focusLevelDefinition={focusedFocus.levels[0]}
-                onFocusLevelSelectionPress={function (): void {
-                  throw new Error("Function not implemented.")
-                }}
-                level={0}
-              />
-            </CardBody>
-            <CardFooter>
-              <div className="flex items-center gap-4 mt-2 w-full">
-                <div className="border-gray-500 border-3 py-[6px] px-3 flex-1">
-                  <div className="flex w-full">
-                    <div>Precio:</div>
-                    <div className={`ml-auto text-yellow-400`}>1 GFP</div>
-                  </div>
-                </div>
-                <Button
-                  className={`ml-auto border-yellow-400 border-3 text-yellow-400 hover:text-white hover:border-white rounded-none`}
-                  size="md"
-                  variant="bordered"
-                  onPress={(): void => {}}
-                >
-                  OBTENER
-                </Button>
-              </div>
-            </CardFooter>
-          </Card>
         </div>
       </div>
     </div>
@@ -120,44 +88,31 @@ export function FociLevelSection(props: {
   className?: string
   status: "bought" | "available" | "blocked"
 }): ReactElement {
-  let color = ""
-
-  switch (props.status) {
-    case "bought":
-      color = "green-400"
-      break
-    case "available":
-      color = "yellow-400"
-      break
-    case "blocked":
-      color = "red-400"
-      break
-  }
-
   return (
-    <div className={`border-${color} border-3 p-4 ${props.className}`}>
-      <div className="text-2xl">Level - {props.level}</div>
-      <Divider className="my-4" />
-      {props.children}
-      <div className="flex items-center gap-4 mt-2">
-        <div className="border-gray-500 border-3 py-[6px] px-3 flex-1">
-          <div className="flex w-full">
-            <div>Precio:</div>
-            <div className={`ml-auto text-${color}`}>1 GFP</div>
+    <SwnCard cardInCard className={`p-2 ${props.className}`}>
+      <CardHeader className="text-2xl">LEVEL {props.level}</CardHeader>
+      <Divider />
+      <CardBody>{props.children}</CardBody>
+      <Divider />
+      <CardFooter>
+        <div className="flex items-center gap-4 mt-2 w-full">
+          <div className="border-gray-500 border-3 py-[6px] px-3 flex-1">
+            <div className="flex w-full">
+              <div>Precio:</div>
+              <div className={`ml-auto text-yellow-400`}>1 GFP</div>
+            </div>
           </div>
+          <Button
+            className={`ml-auto border-yellow-400 border-3 text-yellow-400 hover:text-white hover:border-white rounded-none`}
+            size="md"
+            variant="bordered"
+            onPress={(): void => {}}
+          >
+            OBTENER
+          </Button>
         </div>
-        <Button
-          className={`ml-auto border-${color} border-3 text-${color} hover:text-white hover:border-white rounded-none`}
-          size="md"
-          variant="bordered"
-          onPress={(): void => {}}
-        >
-          {props.status === "available" && "OBTENER"}
-          {props.status === "blocked" && "BLOCKED"}
-          {props.status === "bought" && "REFUND"}
-        </Button>
-      </div>
-    </div>
+      </CardFooter>
+    </SwnCard>
   )
 }
 
