@@ -1,5 +1,5 @@
 import SwnButton from "@/app/components/SwnButton"
-import { Button, Card, CardBody, Image } from "@nextui-org/react"
+import { Image } from "@nextui-org/react"
 import { type ReactElement } from "react"
 
 export default function List<T>(props: {
@@ -9,16 +9,15 @@ export default function List<T>(props: {
   imageFolder: string
 }): ReactElement {
   return (
-    <div className="overflow-y-auto h-90% w-ful flex flex-wrap justify-evenly gap-3">
+    <div className="overflow-y-auto h-90% w-full flex flex-wrap justify-evenly gap-3 p-4">
       {props.items.map(
         (item): ReactElement => (
           <SwnButton
-            className={`w-[45%] ${item.name === props.focusedItemName && "bg-secondary"}`}
+            className={`w-full ${item.name === props.focusedItemName && "bg-secondary"}`}
             disabled={item.name === props.focusedItemName}
             onPress={(): void => {
               props.handleOnItemPress(item)
             }}
-            
           >
             <div className="flex flex-row justify-start w-full">
               <Image

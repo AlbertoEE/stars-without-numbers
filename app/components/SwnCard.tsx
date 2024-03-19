@@ -11,9 +11,7 @@ const SwnCard: React.FC<SwnCardProps> = ({
   ...props
 }): ReactElement => {
   const classNameBg =
-    cardInCard === undefined || !cardInCard
-      ? "bg-content1 bg-opacity-90"
-      : "bg-content2"
+    cardInCard === undefined || !cardInCard ? "bg-content1" : "bg-content2"
   return (
     <Card
       {...props}

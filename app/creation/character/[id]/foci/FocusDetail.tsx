@@ -16,6 +16,7 @@ import {
   FocusType,
 } from "@/models/FocusDefinitionModels"
 import SwnCard from "@/app/components/SwnCard"
+import SwnButton from "@/app/components/SwnButton"
 
 export default function FocusDetail(): ReactElement {
   const { focusedFocus, chosenFoci, setChosenFoci } = useStoreFociState()
@@ -62,10 +63,7 @@ export default function FocusDetail(): ReactElement {
         <div className="flex flex-col gap-4">
           {focusedFocus.levels.map(
             (lvlDef: FocusLevelDefinition): ReactElement => (
-              <FociLevelSection
-                status="bought"
-                level={lvlDef.level}
-              >
+              <FociLevelSection status="bought" level={lvlDef.level}>
                 <FociLevelDescription
                   focusLevelDefinition={lvlDef}
                   onFocusLevelSelectionPress={function (): void {
@@ -88,6 +86,9 @@ export function FociLevelSection(props: {
   className?: string
   status: "bought" | "available" | "blocked"
 }): ReactElement {
+  const myStyle = {
+    backgroundImage: "",
+  }
   return (
     <SwnCard cardInCard className={`p-2 ${props.className}`}>
       <CardHeader className="text-2xl">LEVEL {props.level}</CardHeader>
@@ -96,20 +97,21 @@ export function FociLevelSection(props: {
       <Divider />
       <CardFooter>
         <div className="flex items-center gap-4 mt-2 w-full">
-          <div className="border-gray-500 border-3 py-[6px] px-3 flex-1">
-            <div className="flex w-full">
+          <div className="border-divider border-3 py-[6px] px-3 flex-1 rounded-sm">
+            <div className="flex w-full justify-between">
               <div>Precio:</div>
-              <div className={`ml-auto text-yellow-400`}>1 GFP</div>
+              <div className={`text-yellow-400`}>1 GFP</div>
             </div>
           </div>
-          <Button
-            className={`ml-auto border-yellow-400 border-3 text-yellow-400 hover:text-white hover:border-white rounded-none`}
+          <SwnButton
+            color="warning"
             size="md"
             variant="bordered"
+            style={myStyle}
             onPress={(): void => {}}
           >
             OBTENER
-          </Button>
+          </SwnButton>
         </div>
       </CardFooter>
     </SwnCard>
