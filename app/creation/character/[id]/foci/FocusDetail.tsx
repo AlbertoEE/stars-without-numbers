@@ -1,6 +1,4 @@
 import {
-  Button,
-  Card,
   CardBody,
   CardFooter,
   CardHeader,
@@ -9,11 +7,9 @@ import {
 } from "@nextui-org/react"
 import { useStoreFociState } from "../state"
 import { type ReactElement } from "react"
-import Get from "@/public/imgs/ui/get.svg"
 import {
   type FocusLevelDefinition,
   type FocusDefinition,
-  FocusType,
 } from "@/models/FocusDefinitionModels"
 import SwnCard from "@/app/components/SwnCard"
 import SwnButton from "@/app/components/SwnButton"

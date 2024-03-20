@@ -1,5 +1,6 @@
 import React, { type ReactElement } from "react"
-import { Button, type ButtonProps } from "@nextui-org/react"
+import { type ButtonProps } from "@nextui-org/react"
+import { CustomButton } from "./CustomButton"
 
 interface SwnButtonProps extends ButtonProps {}
 
@@ -11,8 +12,8 @@ const SwnButton: React.FC<SwnButtonProps> = ({
     "bg-content2 text-content2-foreground hover:text-white hover:border-white"
 
   return (
-    <Button
-      className={`${props.color === undefined && colorRelated} bg-stripe-lime-600 ${className}`}
+    <CustomButton
+      className={`${props.color === undefined && colorRelated} rounded-sm ${className}`}
       {...props}
     />
   )
