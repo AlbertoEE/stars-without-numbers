@@ -100,7 +100,7 @@ export function FociLevelSection(props: {
             </div>
           </div>
           <SwnButton
-            color="warning"
+            color="danger"
             size="md"
             variant="bordered"
             style={myStyle}

@@ -1,8 +1,18 @@
 import React, { type ReactElement } from "react"
 import { type ButtonProps } from "@nextui-org/react"
-import { CustomButton } from "./CustomButton"
+import { Button, extendVariants } from "@nextui-org/react"
 
 interface SwnButtonProps extends ButtonProps {}
+
+export const CustomButton = extendVariants(Button, {
+  variants: {
+    color: {
+      warning: "bg-stripe-warning-default",
+      danger: "bg-stripe-danger-default text-danger-foreground",
+      success: "bg-stripe-success-default",
+    },
+  },
+})
 
 const SwnButton: React.FC<SwnButtonProps> = ({
   className,
@@ -13,7 +23,7 @@ const SwnButton: React.FC<SwnButtonProps> = ({
 
   return (
     <CustomButton
-      className={`${props.color === undefined && colorRelated} rounded-sm ${className}`}
+      className={`${props.color === undefined && colorRelated} text-red- rounded-sm ${className}`}
       {...props}
     />
   )
