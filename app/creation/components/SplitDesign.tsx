@@ -1,3 +1,4 @@
+import SwnCard from "@/app/components/SwnCard"
 import { Card } from "@nextui-org/card"
 import { usePathname } from "next/navigation"
 import { useState, useEffect, type ReactElement } from "react"
@@ -25,11 +26,11 @@ export default function SplitDesign(props: {
 
   return (
     <div className="flex flex-row items-center justify-center gap-4 w-full h-full">
-      <Card className="h-[85%] w-1/2 flex flex-col items-center">
+      <SwnCard className="h-[85%] w-1/2 flex flex-col items-center">
         {props.leftChild}
-      </Card>
+      </SwnCard>
       {props.rightChild != null && (
-        <Card
+        <SwnCard
           className={`h-[85%] w-1/2 flex flex-col items-center transition-all duration-500 ${
             isVisible
               ? "opacity-100 scale-100 max-h-full"
@@ -37,7 +38,7 @@ export default function SplitDesign(props: {
           }`}
         >
           {props.rightChild}
-        </Card>
+        </SwnCard>
       )}
     </div>
   )

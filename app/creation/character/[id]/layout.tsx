@@ -110,9 +110,9 @@ export default function Layout(props: { children: ReactNode }): ReactElement {
       <div className="fixed translate-y-[-50%] left-0 top-[50%] flex flex-col items-start p-1 rounded-r-lg">
         <SectionButton desiredPath={"attributes"} />
         <SectionButton desiredPath={"background"} />
-        <SectionButton desiredPath={"foci"} />
         <SectionButton desiredPath={"free-skill"} name="free skill" />
         <SectionButton desiredPath={"class"} />
+        <SectionButton desiredPath={"foci"} />
         <SectionButton desiredPath={"equipment"} />
         <SectionButton desiredPath={"hit Points"} />
         <SectionButton desiredPath={"other Stats"} />

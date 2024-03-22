@@ -13,7 +13,7 @@ export interface FocusLevelDefinition {
 }
 
 export enum FocusType {
-  COMBAT_FOCUS,
-  PSYCHIC_FOUCS,
-  NON_COMBAT_FOCUS,
+  COMBAT_FOCUS = "combat",
+  PSYCHIC_FOUCS = "psychic",
+  NON_COMBAT_FOCUS = "non combat",
 }
