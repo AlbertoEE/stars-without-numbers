@@ -3,9 +3,10 @@ import type Equipment from "@/models/equipment/EquipmentModels";
 import { type ReactElement } from "react";
 
 export default function CharacterInventory(props: {
+    credits: number,
     equipment: Equipment
 }): ReactElement  {
     return (
-        <EquipmentInventory id="inventory" equipment={props.equipment}/>
+        <EquipmentInventory id="inventory" equipment={props.equipment} credits={props.credits}/>
     )
 }

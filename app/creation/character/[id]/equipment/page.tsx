@@ -16,7 +16,7 @@ export default function EquipmentPage(): ReactElement {
 
     return (
         <SplitDesign
-            leftChild={<CharacterInventory equipment={characterInventory}/>}
+            leftChild={<CharacterInventory equipment={characterInventory} credits={1000}/>}
             rightChild={<Shop onBuy={onBuy}/>}
         />
     )

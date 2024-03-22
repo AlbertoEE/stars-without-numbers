@@ -2,20 +2,22 @@ import type Equipment from "@/models/equipment/EquipmentModels";
 import { type ReactElement, useEffect, useState, useCallback } from "react";
 import ArmorItemCard from "./items/ArmorItemCard";
 import { Card, Divider, Link, Navbar, NavbarContent, NavbarItem, ScrollShadow } from "@nextui-org/react";
-import ARMOR_ICON from "@/public/imgs/equipment/armor.svg"
-import RANGED_WEAPONS_ICON from "@/public/imgs/equipment/ranged_weapon.svg"
-import MELEE_WEAPONS_ICON from "@/public/imgs/equipment/melee_weapon.svg"
-import HEAVY_WEAPONS_ICON from "@/public/imgs/equipment/heavy_weapon.svg"
-import GENERAL_EQUIPMENT from "@/public/imgs/equipment/general_equipment.svg"
+import ArmorIcon from "@/public/imgs/equipment/armor.svg"
+import RangedWeaponIcon from "@/public/imgs/equipment/ranged_weapon.svg"
+import MeleeWeaponIcon from "@/public/imgs/equipment/melee_weapon.svg"
+import HeavyWeaponIcon from "@/public/imgs/equipment/heavy_weapon.svg"
+import GeneralEquipmentIcon from "@/public/imgs/equipment/general_equipment.svg"
 import { ITEM_ICON_DEFAULT_PROPS } from "./items/ItemCommons";
 import InventorySection from "./InventorySection";
 import type ArmorItem from "@/models/equipment/ArmorModels";
 import { EquipmentItemType, EquipmentItemTypeValues, type AnyEquipmentItem, type EquipmentSection } from "@/models/equipment/EquipmentModels";
 import EquipmentItemCard from "./items/EquipmentItemCard";
+import CreditsChip from "./CreditsChip";
 
 export default function EquipmentInventory(props: {
     id: string,
     equipment: Equipment,
+    credits?: number,
     onPress?: (item: AnyEquipmentItem) => void,
 }): ReactElement {
     const [showingCategories, setShowingCategories] = useState([""])
@@ -90,17 +92,17 @@ export default function EquipmentInventory(props: {
     const getSectionIcon = (itemType: EquipmentItemType): ReactElement => {
         switch(itemType) {
             case EquipmentItemType.ARMOR:
-                return <ARMOR_ICON {...ITEM_ICON_DEFAULT_PROPS} />
+                return <ArmorIcon {...ITEM_ICON_DEFAULT_PROPS} />
             case EquipmentItemType.RANGED_WEAPON:
-                return <RANGED_WEAPONS_ICON {...ITEM_ICON_DEFAULT_PROPS} />
+                return <RangedWeaponIcon {...ITEM_ICON_DEFAULT_PROPS} />
             case EquipmentItemType.MELEE_WEAPON:
-                return <MELEE_WEAPONS_ICON {...ITEM_ICON_DEFAULT_PROPS} />
+                return <MeleeWeaponIcon {...ITEM_ICON_DEFAULT_PROPS} />
             case EquipmentItemType.HEAVY_WEAPON:
-                return <HEAVY_WEAPONS_ICON {...ITEM_ICON_DEFAULT_PROPS} />
+                return <HeavyWeaponIcon {...ITEM_ICON_DEFAULT_PROPS} />
             case EquipmentItemType.GENERAL_EQUIPMENT:
-                return <GENERAL_EQUIPMENT {...ITEM_ICON_DEFAULT_PROPS} />
+                return <GeneralEquipmentIcon {...ITEM_ICON_DEFAULT_PROPS} />
             default:
-                return <GENERAL_EQUIPMENT {...ITEM_ICON_DEFAULT_PROPS}/>
+                return <GeneralEquipmentIcon {...ITEM_ICON_DEFAULT_PROPS}/>
         }
     }
 
@@ -129,10 +131,14 @@ export default function EquipmentInventory(props: {
                 position="static">
                 <div>
                     <h1>{props.id.toUpperCase()}</h1>
+                    <div className="flex w-full justify-end">
+                        {(props.credits != null)&&(
+                            <CreditsChip credits={props.credits}/>
+                        )}
+                    </div>
                 </div>
                 <Divider className="h-[70%]" orientation="vertical"/>
                 <NavbarContent className="flex justify-between w-full">
-                    {EquipmentItemTypeValues.length}
                     { EquipmentItemTypeValues.map((itemType: EquipmentItemType): ReactElement => (
                         <NavbarItem isActive={isSectionActive(itemType)}>
                             <Link color="foreground" href={`#${sectionId(itemType)}`}>
