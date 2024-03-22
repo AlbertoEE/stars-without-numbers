@@ -17,7 +17,7 @@ import SectionButton from "./components/SectionButton"
 import { useStoreDefinitionDataState } from "./state" // Adjust the import path as needed
 import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
 import { type FocusDefinition } from "@/models/FocusDefinitionModels"
-import Equipment from "@/models/equipment/EquipmentModels"
+import type Equipment from "@/models/equipment/EquipmentModels"
 
 export default function Layout(props: { children: ReactNode }): ReactElement {
   const {
@@ -80,6 +80,7 @@ export default function Layout(props: { children: ReactNode }): ReactElement {
     backgroundDefinitionList,
     gameClassDefinitionList,
     focusDefinitionList,
+    equipmentDefinition,
     setSkillDefinitions,
     setAttributeDefinitions,
     setBackgroundDefinitionList,

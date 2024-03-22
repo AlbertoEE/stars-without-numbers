@@ -10,7 +10,7 @@ import GENERAL_EQUIPMENT from "@/public/imgs/equipment/general_equipment.svg"
 import { ITEM_ICON_DEFAULT_PROPS } from "./items/ItemCommons";
 import InventorySection from "./InventorySection";
 import type ArmorItem from "@/models/equipment/ArmorModels";
-import { type EquipmentItem, type GeneralEquipment } from "@/models/equipment/EquipmentModels";
+import { EquipmentItemType, EquipmentItemTypeValues, type AnyEquipmentItem, type EquipmentSection } from "@/models/equipment/EquipmentModels";
 import EquipmentItemCard from "./items/EquipmentItemCard";
 
 export default function EquipmentInventory(props: {
@@ -61,12 +61,55 @@ export default function EquipmentInventory(props: {
         }
     }, [setShowingCategory, removeShowingCategory, props.id])
 
-    const isSectionActive = (itemList: any[], id: string): boolean => {
-        return (itemList?.length ?? 0) > 0 && showingCategories.includes(sectionId(id))
+    const isSectionActive = (itemType: EquipmentItemType): boolean => {
+        return (props.equipment.get(itemType)?.length ?? 0) > 0 && showingCategories.includes(sectionId(itemType))
     }
 
-    const sectionId = (id: string): string => {
-        return `${props.id}-${id}`
+    const sectionId = (itemType: EquipmentItemType): string => {
+        return `${props.id}-${itemType.toLowerCase()}`
+    }
+
+    const sectionName = (itemType: EquipmentItemType): string => {
+        switch(itemType) {
+            case EquipmentItemType.ARMOR:
+                return "ARMORS"
+            case EquipmentItemType.RANGED_WEAPON:
+                return "RANGED WEAPONS"
+            case EquipmentItemType.MELEE_WEAPON:
+                return "MELEE WEAPONS"
+            case EquipmentItemType.HEAVY_WEAPON:
+                return "HEAVY WEAPONS"
+            case EquipmentItemType.GENERAL_EQUIPMENT:
+                return "GENERAL EQUIPMENT"
+            default:
+                return itemType
+        }
+    }
+
+    const getSectionIcon = (itemType: EquipmentItemType): ReactElement => {
+        switch(itemType) {
+            case EquipmentItemType.ARMOR:
+                return <ARMOR_ICON {...ITEM_ICON_DEFAULT_PROPS} />
+            case EquipmentItemType.RANGED_WEAPON:
+                return <RANGED_WEAPONS_ICON {...ITEM_ICON_DEFAULT_PROPS} />
+            case EquipmentItemType.MELEE_WEAPON:
+                return <MELEE_WEAPONS_ICON {...ITEM_ICON_DEFAULT_PROPS} />
+            case EquipmentItemType.HEAVY_WEAPON:
+                return <HEAVY_WEAPONS_ICON {...ITEM_ICON_DEFAULT_PROPS} />
+            case EquipmentItemType.GENERAL_EQUIPMENT:
+                return <GENERAL_EQUIPMENT {...ITEM_ICON_DEFAULT_PROPS} />
+            default:
+                return <GENERAL_EQUIPMENT {...ITEM_ICON_DEFAULT_PROPS}/>
+        }
+    }
+
+    const getItemCard = (item: AnyEquipmentItem): ReactElement => {
+        switch(item.itemType) {
+            case EquipmentItemType.ARMOR:
+                return <ArmorItemCard item={item as ArmorItem}/>
+            default:
+                return <EquipmentItemCard item={item}/>
+        }
     }
 
     return (
@@ -88,61 +131,24 @@ export default function EquipmentInventory(props: {
                 </div>
                 <Divider className="h-[70%]" orientation="vertical"/>
                 <NavbarContent className="flex justify-between w-full">
-                    <NavbarItem isActive={isSectionActive(props.equipment.armors, "armor")}>
-                        <Link color="foreground" href={`#${sectionId("armor")}`}>
-                            <ARMOR_ICON {...ITEM_ICON_DEFAULT_PROPS} />
-                        </Link>
-                    </NavbarItem>
-                    <NavbarItem isActive={isSectionActive(props.equipment.rangedWeapons, "rangedWeapons")}>
-                        <Link color="foreground" href={`#${sectionId("rangedWeapons")}`}>
-                            <RANGED_WEAPONS_ICON {...ITEM_ICON_DEFAULT_PROPS} />
-                        </Link>
-                    </NavbarItem>
-                    <NavbarItem isActive={isSectionActive(props.equipment.meleeWeapons, "meleeWeapons")}>
-                        <Link color="foreground" href={`#${sectionId("meleeWeapons")}`}>
-                            <MELEE_WEAPONS_ICON {...ITEM_ICON_DEFAULT_PROPS} />
-                        </Link>
-                    </NavbarItem>
-                    <NavbarItem isActive={isSectionActive(props.equipment.heavyWeapons, "heavyWeapons")}>
-                        <Link color="foreground" href={`#${sectionId("heavyWeapons")}`}>
-                            <HEAVY_WEAPONS_ICON {...ITEM_ICON_DEFAULT_PROPS} />
-                        </Link>
-                    </NavbarItem>
-                    <NavbarItem isActive={isSectionActive(props.equipment.generalEquipment, "generalEquipment")}>
-                        <Link color="foreground" href={`#${sectionId("generalEquipment")}`}>
-                            <GENERAL_EQUIPMENT {...ITEM_ICON_DEFAULT_PROPS} />
-                        </Link>
-                    </NavbarItem>
+                    {EquipmentItemTypeValues.length}
+                    { EquipmentItemTypeValues.map((itemType: EquipmentItemType): ReactElement => (
+                        <NavbarItem isActive={isSectionActive(itemType)}>
+                            <Link color="foreground" href={`#${sectionId(itemType)}`}>
+                                { getSectionIcon(itemType) }
+                            </Link>
+                        </NavbarItem>
+                    )) }
                 </NavbarContent>
             </Navbar>
             <ScrollShadow id="inventory-scroll" className="overflow-y-auto scroll-smooth px-5 tb-5 h-full">
-                <InventorySection id={sectionId("armor")} title="ARMOR">
-                    {props.equipment.armors?.map((item: ArmorItem): ReactElement => (
-                        <ArmorItemCard item={item}/>
-                    ))}
-                </InventorySection>
-                <InventorySection id={sectionId("rangedWeapons")} title="RANGED WEAPONS">
-                    {props.equipment.rangedWeapons?.map((item: EquipmentItem): ReactElement => (
-                        <EquipmentItemCard item={item}/>
-                    ))}
-                </InventorySection>
-                <InventorySection id={sectionId("meleeWeapons")} title="MELEE WEAPONS">
-                    {props.equipment.meleeWeapons?.map((item: EquipmentItem): ReactElement => (
-                        <EquipmentItemCard item={item}/>
-                    ))}
-                </InventorySection>
-                <InventorySection id={sectionId("heavyWeapons")} title="HEAVY WEAPONS">
-                    {props.equipment.heavyWeapons?.map((item: EquipmentItem): ReactElement => (
-                        <EquipmentItemCard item={item}/>
-                    ))}
-                </InventorySection>
-                <InventorySection id={sectionId("generalEquipment")} title="GENERAL EQUIPMENT">
-                    {props.equipment.generalEquipment?.map((equipmentSubtype: GeneralEquipment): ReactElement[] => (
-                        equipmentSubtype.items.map((item: EquipmentItem): ReactElement => (
-                            <EquipmentItemCard subtitle={equipmentSubtype.type} item={item}/>
-                        ))
-                    )).flat()}
-                </InventorySection>
+                { props.equipment.sections().map((section: EquipmentSection): ReactElement => (
+                    <InventorySection id={sectionId(section.itemType)} title={sectionName(section.itemType)}>
+                        {section.items.map((item: AnyEquipmentItem): ReactElement => (
+                            getItemCard(item)
+                        ))}
+                    </InventorySection>
+                )) }
             </ScrollShadow>
         </Card>
     )

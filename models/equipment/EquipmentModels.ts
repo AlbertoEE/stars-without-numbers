@@ -1,41 +1,95 @@
 import { type TechnologyShopItem } from "../ShopItemModels"
 import type ArmorItem from "./ArmorModels"
+import { type GeneralEquipmentItem } from "./GeneralEquipmentModels"
+import type HeavyWeapon from "./HeavyWeaponModels"
+import type MeleeWeapon from "./MeleeWeaponModels"
+import type RangedWeapon from "./RangedWeaponModels"
 
-export default interface Equipment {
-    armors: ArmorItem[]
-    rangedWeapons: EquipmentItem[]
-    meleeWeapons: EquipmentItem[]
-    heavyWeapons: EquipmentItem[]
-    generalEquipment: GeneralEquipment[]
-}
+export default class Equipment implements EquipmentModel {
+    armors: ArmorItem[] = []
+    rangedWeapons: RangedWeapon[] = []
+    meleeWeapons: MeleeWeapon[] = []
+    heavyWeapons: HeavyWeapon[] = []
+    generalEquipment: GeneralEquipmentItem[] = []
 
-export const emptyEquipment = (): Equipment => {
-    return {
-        armors: [],
-        rangedWeapons: [],
-        meleeWeapons: [],
-        heavyWeapons: [],
-        generalEquipment: []
+    constructor(equipment: EquipmentModel) {
+        this.armors = equipment?.armors ?? []
+        this.rangedWeapons = equipment?.rangedWeapons ?? []
+        this.meleeWeapons = equipment?.meleeWeapons ?? []
+        this.heavyWeapons = equipment?.heavyWeapons ?? []
+        this.generalEquipment = equipment?.generalEquipment ?? []
+    }
+
+    add(item: AnyEquipmentItem): void {
+        (this.get(item.itemType)??this.generalEquipment).push(item)
+    }
+
+    get(itemType: EquipmentItemType | string): AnyEquipmentItem[] | null {
+        switch(itemType) {
+            case EquipmentItemType.ARMOR:
+            case "armor":
+                return this.armors
+            case EquipmentItemType.RANGED_WEAPON:
+            case "rangedWeapons":
+                return this.rangedWeapons
+            case EquipmentItemType.MELEE_WEAPON:
+            case "meleeWeapons":
+                return this.meleeWeapons
+            case EquipmentItemType.HEAVY_WEAPON:
+            case "heavyWeapons":
+                return this.heavyWeapons
+            case EquipmentItemType.GENERAL_EQUIPMENT:
+            case "generalEquipment":
+                return this.generalEquipment
+            default:
+                return null
+        }
+    }
+
+    asMap(): Map<string, AnyEquipmentItem> {
+        return new Map(Object.entries(this))
+    }
+
+    sections(): EquipmentSection[] {
+        return EquipmentItemTypeValues
+            .map((itemType): EquipmentSection => ({itemType, items: this.get(itemType)??[]}))
     }
 }
 
-export interface GeneralEquipment {
-    type: GeneralEquipmentType
-    items: EquipmentItem[]
+export interface EquipmentSection {
+    itemType: EquipmentItemType,
+    items: AnyEquipmentItem[]
+}
+
+export interface EquipmentModel {
+    armors: ArmorItem[]
+    rangedWeapons: RangedWeapon[]
+    meleeWeapons: MeleeWeapon[]
+    heavyWeapons: HeavyWeapon[]
+    generalEquipment: GeneralEquipmentItem[]
 }
 
 export interface EquipmentItem extends TechnologyShopItem {
+    itemType: EquipmentItemType
     encumbrance: number
 }
 
-export enum GeneralEquipmentType {
-    AMMO_AND_POWER = "Ammo and Power",
-    COMMUNICATIONS = "Communications",
-    COMPUTING_GEAR = "Computing Gear",
-    FIELD_EQUIPMENT = "Field Equipment",
-    PHARMACEUTICS = "Pharmaceutics",
-    TOOLS_AND_MEDICAL = "Tools and Medical",
-    OTHER = "Other",
+export enum EquipmentItemType {
+    ARMOR="ARMOR",
+    RANGED_WEAPON="RANGED_WEAPON",
+    MELEE_WEAPON="MELEE_WEAPON",
+    HEAVY_WEAPON="HEAVY_WEAPON",
+    GENERAL_EQUIPMENT="GENERAL_EQUIPMENT",
 }
+export const EquipmentItemTypeValues = Object.values(EquipmentItemType)
+    .filter((it): boolean => typeof it === "string")
+    .map((it): EquipmentItemType => it as EquipmentItemType)
 
-export type EquipmentItemTypes = ArmorItem | GeneralEquipment | EquipmentItem
+// export const EquipmentItemTypeValues = [
+//     EquipmentItemType.ARMOR,
+//     EquipmentItemType.RANGED_WEAPON,
+//     EquipmentItemType.MELEE_WEAPON,
+//     EquipmentItemType.HEAVY_WEAPON,
+//     EquipmentItemType.GENERAL_EQUIPMENT,
+// ]
+export type AnyEquipmentItem = ArmorItem | RangedWeapon | MeleeWeapon | HeavyWeapon | GeneralEquipmentItem | EquipmentItem

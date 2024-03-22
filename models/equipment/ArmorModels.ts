@@ -1,7 +1,8 @@
-import { type EquipmentItem } from "./EquipmentModels"
+import { type EquipmentItem, type EquipmentItemType } from "./EquipmentModels"
 
 export default interface ArmorItem extends EquipmentItem {
-    armorType: ArmorType
+    itemType: EquipmentItemType.ARMOR
+    subtype: ArmorType
     armorClass: number
     shield: boolean
 }

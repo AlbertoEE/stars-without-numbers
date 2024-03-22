@@ -2,6 +2,7 @@ export default interface ShopItem {
     name: string
     description: string
     cost: number
+    subtype?: any
 }
 
 export interface TechnologyShopItem extends ShopItem {

@@ -12,8 +12,8 @@ export default function ShopItemCard(props: ShopItemProps): ReactElement {
                         {props.icon ?? <CoinIcon {...ITEM_ICON_DEFAULT_PROPS}/>}
                         <div>
                             <div>{props.item.name}</div>
-                            { props.subtitle != null && 
-                                <div className="italic text-xs text-gray-400">{props.subtitle}</div>
+                            { props.item.subtype != null && 
+                                <div className="italic text-xs text-gray-400">{props.item.subtype}</div>
                             }
                         </div>
                     </div>

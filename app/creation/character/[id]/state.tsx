@@ -6,8 +6,7 @@ import {
 import { type FocusDefinition } from "@/models/FocusDefinitionModels"
 import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
 import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
-import type Equipment from "@/models/equipment/EquipmentModels";
-import { emptyEquipment } from "@/models/equipment/EquipmentModels"
+import Equipment from "@/models/equipment/EquipmentModels";
 import { type DraggedState } from "@/utilities/DragAndDrop"
 import { create } from "zustand"
 
@@ -208,7 +207,7 @@ export const useStoreDefinitionDataState = create<DefinitionDataState>(
     backgroundDefinitionList: [],
     gameClassDefinitionList: [],
     focusDefinitionList: [],
-    equipmentDefinition: emptyEquipment(),
+    equipmentDefinition: new Equipment(),
     setSkillDefinitions: (newSkillDefinitionList): void => {
       set({ skillDefinitionList: newSkillDefinitionList })
     },
