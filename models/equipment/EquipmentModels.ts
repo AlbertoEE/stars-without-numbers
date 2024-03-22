@@ -12,7 +12,7 @@ export default class Equipment implements EquipmentModel {
     heavyWeapons: HeavyWeapon[] = []
     generalEquipment: GeneralEquipmentItem[] = []
 
-    constructor(equipment: EquipmentModel) {
+    constructor(equipment?: EquipmentModel) {
         this.armors = equipment?.armors ?? []
         this.rangedWeapons = equipment?.rangedWeapons ?? []
         this.meleeWeapons = equipment?.meleeWeapons ?? []

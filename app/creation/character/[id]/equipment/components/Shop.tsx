@@ -1,12 +1,15 @@
 import EquipmentInventory from "@/app/components/inventory/EquipmentInventory"
 import { useStoreDefinitionDataState } from "../../state"
 import { type ReactElement } from "react"
+import { type AnyEquipmentItem } from "@/models/equipment/EquipmentModels"
 
-export default function Shop(): ReactElement  {
+export default function Shop(props: {
+    onBuy: (item: AnyEquipmentItem) => void,
+}): ReactElement  {
     
     const { equipmentDefinition } = useStoreDefinitionDataState()
 
     return (
-        <EquipmentInventory id="shop" equipment={equipmentDefinition}/>
+        <EquipmentInventory id="shop" equipment={equipmentDefinition} onPress={props.onBuy}/>
     )
 }

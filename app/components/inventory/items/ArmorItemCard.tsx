@@ -1,5 +1,4 @@
 import { type ReactElement } from "react"
-import { type PressEvent } from "@react-types/shared"
 import type ArmorItem from "@/models/equipment/ArmorModels"
 import EquipmentItemCard from "./EquipmentItemCard"
 import PrimitiveArmorIcon from "@/public/imgs/equipment/primitive_armor.svg"
@@ -10,17 +9,18 @@ import ShieldIcon from "@/public/imgs/equipment/shield.svg"
 import { Chip } from "@nextui-org/react"
 import { ArmorType } from "@/models/equipment/ArmorModels"
 import { ITEM_ICON_DEFAULT_PROPS } from "./ItemCommons"
+import { type AnyEquipmentItem } from "@/models/equipment/EquipmentModels"
 
 
 export default function ArmorItemCard(props: {
     item: ArmorItem,
-    onPress?: (e: PressEvent) => void,
+    onPress?: (item: AnyEquipmentItem) => void,
 }): ReactElement {
     const armorIcon = (): ReactElement => {
         if (props.item.shield) {
             return <ShieldIcon {...ITEM_ICON_DEFAULT_PROPS}/>
         } else {
-            switch(props.item.armorType) {
+            switch(props.item.subtype) {
                 case ArmorType.PRIMITIVE_ARMOR: 
                     return <PrimitiveArmorIcon {...ITEM_ICON_DEFAULT_PROPS}/>
                 case ArmorType.STREET_ARMOR: 
@@ -34,7 +34,7 @@ export default function ArmorItemCard(props: {
     }
 
     return (
-        <EquipmentItemCard  {...props} subtitle={props.item.armorType} icon={armorIcon()}>
+        <EquipmentItemCard  {...props} icon={armorIcon()}>
             <div className="flex gap-2">
                 <Chip color="primary" className="text-blue-50 bg-blue-900">
                     {props.item.armorClass}{props.item.shield ? "/+1":""} AC

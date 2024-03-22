@@ -2,10 +2,15 @@ import { Card, CardBody, CardHeader, Chip } from "@nextui-org/react";
 import CoinIcon from "@/public/imgs/equipment/coin.svg"
 import { type ReactElement } from "react";
 import { ITEM_ICON_DEFAULT_PROPS, type ShopItemProps } from "./ItemCommons";
+import { type PressEvent } from "@react-types/shared";
+
 
 export default function ShopItemCard(props: ShopItemProps): ReactElement {
     return (
-        <Card radius="none" className={`w-full border-medium ${props.cardStyle}`} isPressable={props.onPress != null} onPress={props.onPress}>
+        <Card radius="none" 
+            className={`w-full border-medium ${props.cardStyle}`} 
+            isPressable={props.onPress != null} 
+            onPress={(e: PressEvent): void => {if (props.onPress != null) props.onPress(props.item)}}>
             <CardHeader className={props.headerStyle}>
                 <div className="flex justify-between w-full">
                     <div className="flex align-middle gap-4">

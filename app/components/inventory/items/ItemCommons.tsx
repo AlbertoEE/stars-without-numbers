@@ -1,14 +1,12 @@
-import { type EquipmentItem } from "@/models/equipment/EquipmentModels";
+import { type AnyEquipmentItem, type EquipmentItem } from "@/models/equipment/EquipmentModels";
 import { type ReactNode, type ReactElement } from "react";
-import { type PressEvent } from "@react-types/shared"
 
 export interface ItemProps {
     item: EquipmentItem,
-    subtitle?: string,
     icon?: ReactElement,
     chips?: ReactElement[],
     children?: ReactNode[] | ReactNode,
-    onPress?: (e: PressEvent) => void,
+    onPress?: (item: AnyEquipmentItem) => void,
 }
 
 export interface ShopItemProps extends ItemProps {

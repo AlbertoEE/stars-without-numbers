@@ -15,7 +15,8 @@ import EquipmentItemCard from "./items/EquipmentItemCard";
 
 export default function EquipmentInventory(props: {
     id: string,
-    equipment: Equipment
+    equipment: Equipment,
+    onPress?: (item: AnyEquipmentItem) => void,
 }): ReactElement {
     const [showingCategories, setShowingCategories] = useState([""])
 
@@ -106,9 +107,9 @@ export default function EquipmentInventory(props: {
     const getItemCard = (item: AnyEquipmentItem): ReactElement => {
         switch(item.itemType) {
             case EquipmentItemType.ARMOR:
-                return <ArmorItemCard item={item as ArmorItem}/>
+                return <ArmorItemCard item={item as ArmorItem} onPress={props.onPress}/>
             default:
-                return <EquipmentItemCard item={item}/>
+                return <EquipmentItemCard item={item} onPress={props.onPress}/>
         }
     }
 
