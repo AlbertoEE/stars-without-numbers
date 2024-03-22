@@ -12,6 +12,7 @@ export interface ItemProps {
 export interface ShopItemProps extends ItemProps {
     cardStyle: string
     headerStyle: string
+    isAffordable: boolean
 }
 
 export const ITEM_ICON_SIZE = 40

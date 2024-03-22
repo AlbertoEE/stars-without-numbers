@@ -1,3 +1,4 @@
+import { it } from "node:test"
 import { type TechnologyShopItem } from "../ShopItemModels"
 import type ArmorItem from "./ArmorModels"
 import { type GeneralEquipmentItem } from "./GeneralEquipmentModels"
@@ -22,6 +23,14 @@ export default class Equipment implements EquipmentModel {
 
     add(item: AnyEquipmentItem): void {
         (this.get(item.itemType)??this.generalEquipment).push(item)
+    }
+
+    remove(item: AnyEquipmentItem): void {
+        const itemList = this.get(item.itemType)
+        const index = itemList?.findIndex((it: AnyEquipmentItem): boolean => it === item)
+        if (index != null && index > -1) {
+            itemList?.splice(index, 1)
+        }
     }
 
     get(itemType: EquipmentItemType | string): AnyEquipmentItem[] | null {

@@ -12,6 +12,7 @@ export default function ShopItemCard(props: ShopItemProps): ReactElement {
         <Card radius="none" 
             className={`w-full border-medium ${props.cardStyle}`} 
             isPressable={props.onPress != null} 
+            isDisabled={!props.isAffordable}
             onPress={(e: PressEvent): void => {if (props.onPress != null) props.onPress(props.item)}}>
             <CardHeader className={props.headerStyle}>
                 <div className="flex justify-between w-full">
@@ -26,7 +27,7 @@ export default function ShopItemCard(props: ShopItemProps): ReactElement {
                     </div>
                     <div className="flex justify-end">
                         {props.chips ?? null}
-                        <CreditsChip credits={props.item.cost}/>
+                        <CreditsChip credits={props.item.cost} variant={props.isAffordable ? "default" : "unaffordable"}/>
                     </div>
                 </div>
             </CardHeader>

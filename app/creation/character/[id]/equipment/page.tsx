@@ -18,10 +18,16 @@ export default function EquipmentPage(): ReactElement {
         }
     }
 
+    const onRefund = (item: AnyEquipmentItem):void => {
+        equipment.remove(item)
+        setEquipment(equipment)
+        setCredits(credits+item.cost)
+    }
+
     return (
         <SplitDesign
-            leftChild={<CharacterInventory equipment={equipment} credits={credits}/>}
-            rightChild={<Shop onBuy={onBuy}/>}
+            leftChild={<CharacterInventory equipment={equipment} credits={credits} onRefund={onRefund}/>}
+            rightChild={<Shop budget={credits} onBuy={onBuy}/>}
         />
     )
 }

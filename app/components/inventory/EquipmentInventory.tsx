@@ -17,6 +17,7 @@ import CreditsChip from "./CreditsChip";
 export default function EquipmentInventory(props: {
     id: string,
     equipment: Equipment,
+    budget?:number,
     credits?: number,
     onPress?: (item: AnyEquipmentItem) => void,
 }): ReactElement {
@@ -107,11 +108,15 @@ export default function EquipmentInventory(props: {
     }
 
     const getItemCard = (item: AnyEquipmentItem): ReactElement => {
+        const itemProps = {
+            isAffordable: ((props.budget == null) || item.cost <= props.budget),
+            onPress: props.onPress
+        }
         switch(item.itemType) {
             case EquipmentItemType.ARMOR:
-                return <ArmorItemCard item={item as ArmorItem} onPress={props.onPress}/>
+                return <ArmorItemCard item={item as ArmorItem} {...itemProps}/>
             default:
-                return <EquipmentItemCard item={item} onPress={props.onPress}/>
+                return <EquipmentItemCard item={item} {...itemProps}/>
         }
     }
 
