@@ -7,31 +7,28 @@ import {
 } from "@nextui-org/react"
 import { useStoreFociState } from "../state"
 import { type ReactElement } from "react"
-import {
-  type FocusLevelDefinition,
-  type FocusDefinition,
-} from "@/models/FocusDefinitionModels"
+import { type FocusLevelDefinition } from "@/models/FocusDefinitionModels"
 import SwnCard from "@/app/components/SwnCard"
 import SwnButton from "@/app/components/SwnButton"
 
 export default function FocusDetail(): ReactElement {
-  const { focusedFocus, chosenFoci, setChosenFoci } = useStoreFociState()
+  const { focusedFocus } = useStoreFociState()
 
   if (focusedFocus == null) return <></>
 
-  function chooseFocus(level: number, focusedFocus: FocusDefinition): void {
-    const cleanedFoci = chosenFoci.filter(
-      (focus): boolean => focus.origin !== "foci",
-    )
-    setChosenFoci([
-      ...cleanedFoci,
-      {
-        focus: focusedFocus,
-        level,
-        origin: "foci",
-      },
-    ])
-  }
+  // function chooseFocus(level: number, focusedFocus: FocusDefinition): void {
+  //   const cleanedFoci = chosenFoci.filter(
+  //     (focus): boolean => focus.origin !== "foci",
+  //   )
+  //   setChosenFoci([
+  //     ...cleanedFoci,
+  //     {
+  //       focus: focusedFocus,
+  //       level,
+  //       origin: "foci",
+  //     },
+  //   ])
+  // }
 
   return (
     <div className="flex flex-col gap-4 w-full h-full py-5 px-5">
@@ -100,7 +97,7 @@ export function FociLevelSection(props: {
             </div>
           </div>
           <SwnButton
-            color="danger"
+            color="warning"
             size="md"
             variant="bordered"
             style={myStyle}

@@ -2,7 +2,6 @@
 
 import "@/styles/globals.css"
 import { Providers } from "./providers"
-import CustomNavbar from "./components/CustomNavbar"
 import { type ReactElement } from "react"
 
 export default function RootLayout({

@@ -1,5 +1,4 @@
 import SwnCard from "@/app/components/SwnCard"
-import { Card } from "@nextui-org/card"
 import { usePathname } from "next/navigation"
 import { useState, useEffect, type ReactElement } from "react"
 

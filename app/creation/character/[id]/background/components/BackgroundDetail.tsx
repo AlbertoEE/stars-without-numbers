@@ -130,8 +130,8 @@ export function BenefitSelectionTypeDropDown(props: {
         variant="solid"
         selectionMode="single"
         selectedKeys={props.selectedKey}
-        onSelectionChange={(key: Selection): void =>
-          props.onSelectionChange(key.currentKey)
+        onSelectionChange={
+          (key: Selection): void => props.onSelectionChange(key.currentKey) // eslint-disable-line
         }
       >
         <DropdownItem key="choose">Choose</DropdownItem>
