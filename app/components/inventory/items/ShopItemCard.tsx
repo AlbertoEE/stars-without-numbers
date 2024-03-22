@@ -11,7 +11,7 @@ export default function ShopItemCard(props: ShopItemProps): ReactElement {
     return (
         <Card radius="none" 
             className={`w-full border-medium ${props.cardStyle}`} 
-            isPressable={props.onPress != null} 
+            isPressable={props.onPress != null && props.isAffordable} 
             isDisabled={!props.isAffordable}
             onPress={(e: PressEvent): void => {if (props.onPress != null) props.onPress(props.item)}}>
             <CardHeader className={props.headerStyle}>
