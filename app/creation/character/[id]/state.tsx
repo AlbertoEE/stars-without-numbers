@@ -176,6 +176,26 @@ export const useStoreFociState = create<FociState>(
   }),
 )
 
+// Equipment
+interface EquipmentState {
+  equipment: Equipment,
+  credits: number,
+  setEquipment: (newEquipment: Equipment) => void,
+  setCredits: (newEquipment: number) => void,
+}
+export const useStoreEquipment = create<EquipmentState>(
+  (set): EquipmentState => ({
+    equipment: new Equipment(),
+    credits: 1000,
+    setEquipment: (newEquipment: Equipment): void => {
+      set({ equipment: newEquipment })
+    },
+    setCredits: (newCredits: number): void => {
+      set({ credits: newCredits })
+    },
+  }),
+)
+
 // Definitions
 interface DefinitionDataState {
   skillDefinitionList: StandardSkillDefinition[]

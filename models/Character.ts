@@ -7,6 +7,7 @@ export class Character {
   standardSkillPoints = 0
   classSkillPoints = 0
   mana: Mana
+  credits: number = 0
   hitPoints: HitPoints = new HitPoints()
   stats: Attributes = new Attributes()
   standardSkills: Skill[] = []

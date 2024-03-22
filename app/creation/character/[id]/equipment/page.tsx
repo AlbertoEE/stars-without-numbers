@@ -2,21 +2,25 @@
 import SplitDesign from "@/app/creation/components/SplitDesign";
 import Shop from "./components/Shop";
 import CharacterInventory from "./components/CharacterInventory";
-import { useState, type ReactElement } from "react";
-import Equipment, { type AnyEquipmentItem } from "@/models/equipment/EquipmentModels";
+import { type ReactElement } from "react";
+import { type AnyEquipmentItem } from "@/models/equipment/EquipmentModels";
+import { useStoreEquipment } from "../state";
 
 export default function EquipmentPage(): ReactElement {
 
-    const [characterInventory, setCharacterInventory] = useState(new Equipment())
+    const {equipment, setEquipment, credits, setCredits } = useStoreEquipment()
 
     const onBuy = (item: AnyEquipmentItem):void => {
-        characterInventory.add(item)
-        setCharacterInventory(characterInventory)
+        if (item.cost <= credits) {
+            equipment.add(item)
+            setEquipment(equipment)
+            setCredits(credits-item.cost)
+        }
     }
 
     return (
         <SplitDesign
-            leftChild={<CharacterInventory equipment={characterInventory} credits={1000}/>}
+            leftChild={<CharacterInventory equipment={equipment} credits={credits}/>}
             rightChild={<Shop onBuy={onBuy}/>}
         />
     )
