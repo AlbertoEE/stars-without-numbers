@@ -198,6 +198,7 @@ export default function EquipmentInventory(props: {
             <InventorySection
               id={sectionId(section.itemType)}
               title={sectionName(section.itemType)}
+              className={section.itemType === EquipmentItemType.GENERAL_EQUIPMENT ? "h-[68px]" : "h-[120px]"}
             >
               {section.items.map(
                 (item: AnyEquipmentItem): ReactElement => getItemCard(item),

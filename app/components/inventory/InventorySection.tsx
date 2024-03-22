@@ -5,8 +5,10 @@ import SwnCard from "../SwnCard"
 export default function InventorySection(props: {
   id: string
   title: string
+  className: string
   children: ReactElement[]
 }): ReactElement {
+    
   return (
     <SwnCard
       cardInCard
@@ -24,7 +26,7 @@ export default function InventorySection(props: {
             {props.children}
           </div>
         ) : (
-          <SwnCard className="h-[120px]"></SwnCard>
+          <SwnCard className={`${props.className}`}></SwnCard>
         )}
       </CardBody>
     </SwnCard>
