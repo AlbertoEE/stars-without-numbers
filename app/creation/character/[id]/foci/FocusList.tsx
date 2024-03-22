@@ -90,7 +90,9 @@ export default function App(): ReactElement {
         focusedItemName={focusedFocus?.name}
         handleOnItemPress={handleOnFocusPress}
         imageFolder={"/imgs/foci"}
-      ><h1>Pene</h1></List>
+      >
+        <h1>Pene</h1>
+      </List>
     </div>
   )
 }

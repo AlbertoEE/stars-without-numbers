@@ -7,92 +7,98 @@ import type MeleeWeapon from "./MeleeWeaponModels"
 import type RangedWeapon from "./RangedWeaponModels"
 
 export default class Equipment implements EquipmentModel {
-    armors: ArmorItem[] = []
-    rangedWeapons: RangedWeapon[] = []
-    meleeWeapons: MeleeWeapon[] = []
-    heavyWeapons: HeavyWeapon[] = []
-    generalEquipment: GeneralEquipmentItem[] = []
+  armors: ArmorItem[] = []
+  rangedWeapons: RangedWeapon[] = []
+  meleeWeapons: MeleeWeapon[] = []
+  heavyWeapons: HeavyWeapon[] = []
+  generalEquipment: GeneralEquipmentItem[] = []
 
-    constructor(equipment?: EquipmentModel) {
-        this.armors = equipment?.armors ?? []
-        this.rangedWeapons = equipment?.rangedWeapons ?? []
-        this.meleeWeapons = equipment?.meleeWeapons ?? []
-        this.heavyWeapons = equipment?.heavyWeapons ?? []
-        this.generalEquipment = equipment?.generalEquipment ?? []
-    }
+  constructor(equipment?: EquipmentModel) {
+    this.armors = equipment?.armors ?? []
+    this.rangedWeapons = equipment?.rangedWeapons ?? []
+    this.meleeWeapons = equipment?.meleeWeapons ?? []
+    this.heavyWeapons = equipment?.heavyWeapons ?? []
+    this.generalEquipment = equipment?.generalEquipment ?? []
+  }
 
-    add(item: AnyEquipmentItem): void {
-        (this.get(item.itemType)??this.generalEquipment).push(item)
-    }
+  add(item: AnyEquipmentItem): void {
+    ;(this.get(item.itemType) ?? this.generalEquipment).push(item)
+  }
 
-    remove(item: AnyEquipmentItem): void {
-        const itemList = this.get(item.itemType)
-        const index = itemList?.findIndex((it: AnyEquipmentItem): boolean => it === item)
-        if (index != null && index > -1) {
-            itemList?.splice(index, 1)
-        }
+  remove(item: AnyEquipmentItem): void {
+    const itemList = this.get(item.itemType)
+    const index = itemList?.findIndex(
+      (it: AnyEquipmentItem): boolean => it === item,
+    )
+    if (index != null && index > -1) {
+      itemList?.splice(index, 1)
     }
+  }
 
-    get(itemType: EquipmentItemType | string): AnyEquipmentItem[] | null {
-        switch(itemType) {
-            case EquipmentItemType.ARMOR:
-            case "armor":
-                return this.armors
-            case EquipmentItemType.RANGED_WEAPON:
-            case "rangedWeapons":
-                return this.rangedWeapons
-            case EquipmentItemType.MELEE_WEAPON:
-            case "meleeWeapons":
-                return this.meleeWeapons
-            case EquipmentItemType.HEAVY_WEAPON:
-            case "heavyWeapons":
-                return this.heavyWeapons
-            case EquipmentItemType.GENERAL_EQUIPMENT:
-            case "generalEquipment":
-                return this.generalEquipment
-            default:
-                return null
-        }
+  get(itemType: EquipmentItemType | string): AnyEquipmentItem[] | null {
+    switch (itemType) {
+      case EquipmentItemType.ARMOR:
+      case "armor":
+        return this.armors
+      case EquipmentItemType.RANGED_WEAPON:
+      case "rangedWeapons":
+        return this.rangedWeapons
+      case EquipmentItemType.MELEE_WEAPON:
+      case "meleeWeapons":
+        return this.meleeWeapons
+      case EquipmentItemType.HEAVY_WEAPON:
+      case "heavyWeapons":
+        return this.heavyWeapons
+      case EquipmentItemType.GENERAL_EQUIPMENT:
+      case "generalEquipment":
+        return this.generalEquipment
+      default:
+        return null
     }
+  }
 
-    asMap(): Map<string, AnyEquipmentItem> {
-        return new Map(Object.entries(this))
-    }
+  asMap(): Map<string, AnyEquipmentItem> {
+    return new Map(Object.entries(this))
+  }
 
-    sections(): EquipmentSection[] {
-        return EquipmentItemTypeValues
-            .map((itemType): EquipmentSection => ({itemType, items: this.get(itemType)??[]}))
-    }
+  sections(): EquipmentSection[] {
+    return EquipmentItemTypeValues.map(
+      (itemType): EquipmentSection => ({
+        itemType,
+        items: this.get(itemType) ?? [],
+      }),
+    )
+  }
 }
 
 export interface EquipmentSection {
-    itemType: EquipmentItemType,
-    items: AnyEquipmentItem[]
+  itemType: EquipmentItemType
+  items: AnyEquipmentItem[]
 }
 
 export interface EquipmentModel {
-    armors: ArmorItem[]
-    rangedWeapons: RangedWeapon[]
-    meleeWeapons: MeleeWeapon[]
-    heavyWeapons: HeavyWeapon[]
-    generalEquipment: GeneralEquipmentItem[]
+  armors: ArmorItem[]
+  rangedWeapons: RangedWeapon[]
+  meleeWeapons: MeleeWeapon[]
+  heavyWeapons: HeavyWeapon[]
+  generalEquipment: GeneralEquipmentItem[]
 }
 
 export interface EquipmentItem extends TechnologyShopItem {
-    itemType: EquipmentItemType
-    encumbrance: number
+  itemType: EquipmentItemType
+  encumbrance: number
 }
 
 export enum EquipmentItemType {
-    ARMOR="ARMOR",
-    RANGED_WEAPON="RANGED_WEAPON",
-    MELEE_WEAPON="MELEE_WEAPON",
-    HEAVY_WEAPON="HEAVY_WEAPON",
-    GENERAL_EQUIPMENT="GENERAL_EQUIPMENT",
+  ARMOR = "ARMOR",
+  RANGED_WEAPON = "RANGED_WEAPON",
+  MELEE_WEAPON = "MELEE_WEAPON",
+  HEAVY_WEAPON = "HEAVY_WEAPON",
+  GENERAL_EQUIPMENT = "GENERAL_EQUIPMENT",
 }
 export const EquipmentItemTypeValues = Object.values(EquipmentItemType)
-    .filter((it): boolean => typeof it === "string")
-    .map((it): EquipmentItemType => it as EquipmentItemType)
+  .filter((it): boolean => typeof it === "string")
+  .map((it): EquipmentItemType => it as EquipmentItemType)
 
 // export const EquipmentItemTypeValues = [
 //     EquipmentItemType.ARMOR,
@@ -101,4 +107,10 @@ export const EquipmentItemTypeValues = Object.values(EquipmentItemType)
 //     EquipmentItemType.HEAVY_WEAPON,
 //     EquipmentItemType.GENERAL_EQUIPMENT,
 // ]
-export type AnyEquipmentItem = ArmorItem | RangedWeapon | MeleeWeapon | HeavyWeapon | GeneralEquipmentItem | EquipmentItem
+export type AnyEquipmentItem =
+  | ArmorItem
+  | RangedWeapon
+  | MeleeWeapon
+  | HeavyWeapon
+  | GeneralEquipmentItem
+  | EquipmentItem

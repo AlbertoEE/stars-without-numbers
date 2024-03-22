@@ -21,5 +21,5 @@ export const gameClassDefinitionRepository: GameClassDefinitionRepository =
   new InMemoryGameClassDefinitionRepository()
 export const focusDefinitionRepository: FocusDefinitionRepository =
   new InMemoryFocusDefinitionRepository()
-export const equipmentDefinitionRepository: EquipmentDefinitionRepository = 
+export const equipmentDefinitionRepository: EquipmentDefinitionRepository =
   new InMemoryEquipmentDefinitionRepository()

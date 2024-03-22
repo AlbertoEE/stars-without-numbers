@@ -6,7 +6,7 @@ import {
 import { type FocusDefinition } from "@/models/FocusDefinitionModels"
 import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
 import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
-import Equipment from "@/models/equipment/EquipmentModels";
+import Equipment from "@/models/equipment/EquipmentModels"
 import { type DraggedState } from "@/utilities/DragAndDrop"
 import { create } from "zustand"
 
@@ -190,10 +190,10 @@ export const useStoreFociState = create<FociState>(
 
 // Equipment
 interface EquipmentState {
-  equipment: Equipment,
-  credits: number,
-  setEquipment: (newEquipment: Equipment) => void,
-  setCredits: (newEquipment: number) => void,
+  equipment: Equipment
+  credits: number
+  setEquipment: (newEquipment: Equipment) => void
+  setCredits: (newEquipment: number) => void
 }
 export const useStoreEquipment = create<EquipmentState>(
   (set): EquipmentState => ({
