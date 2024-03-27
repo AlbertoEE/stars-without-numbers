@@ -9,7 +9,7 @@ import SwnButton from "../../SwnButton"
 
 export default function ShopItemCard(props: ShopItemProps): ReactElement {
 
-  const [descriptionShowing, setDescriptionShowing] = useState(new Set<string>([]));
+  const [descriptionShowing, setDescriptionShowing] = useState<any>(new Set());
 
   const onBuy = (e: PressEvent): void => {
     if (props.onPress != null) props.onPress(props.item)
