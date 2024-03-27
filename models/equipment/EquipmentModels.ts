@@ -2,15 +2,15 @@ import { it } from "node:test"
 import { type TechnologyShopItem } from "../ShopItemModels"
 import type ArmorItem from "./ArmorModels"
 import { type GeneralEquipmentItem } from "./GeneralEquipmentModels"
-import type HeavyWeapon from "./HeavyWeaponModels"
-import type MeleeWeapon from "./MeleeWeaponModels"
-import type RangedWeapon from "./RangedWeaponModels"
+import type HeavyWeaponItem from "./HeavyWeaponModels"
+import type MeleeWeaponItem from "./MeleeWeaponModels"
+import type RangedWeaponItem from "./RangedWeaponModels"
 
 export default class Equipment implements EquipmentModel {
   armors: ArmorItem[] = []
-  rangedWeapons: RangedWeapon[] = []
-  meleeWeapons: MeleeWeapon[] = []
-  heavyWeapons: HeavyWeapon[] = []
+  rangedWeapons: RangedWeaponItem[] = []
+  meleeWeapons: MeleeWeaponItem[] = []
+  heavyWeapons: HeavyWeaponItem[] = []
   generalEquipment: GeneralEquipmentItem[] = []
 
   constructor(equipment?: EquipmentModel) {
@@ -78,9 +78,9 @@ export interface EquipmentSection {
 
 export interface EquipmentModel {
   armors: ArmorItem[]
-  rangedWeapons: RangedWeapon[]
-  meleeWeapons: MeleeWeapon[]
-  heavyWeapons: HeavyWeapon[]
+  rangedWeapons: RangedWeaponItem[]
+  meleeWeapons: MeleeWeaponItem[]
+  heavyWeapons: HeavyWeaponItem[]
   generalEquipment: GeneralEquipmentItem[]
 }
 
@@ -109,8 +109,8 @@ export const EquipmentItemTypeValues = Object.values(EquipmentItemType)
 // ]
 export type AnyEquipmentItem =
   | ArmorItem
-  | RangedWeapon
-  | MeleeWeapon
-  | HeavyWeapon
+  | RangedWeaponItem
+  | MeleeWeaponItem
+  | HeavyWeaponItem
   | GeneralEquipmentItem
   | EquipmentItem

@@ -26,6 +26,8 @@ import {
 import EquipmentItemCard from "./items/EquipmentItemCard"
 import CreditsChip from "./CreditsChip"
 import SwnCard from "../SwnCard"
+import type RangedWeaponItem from "@/models/equipment/RangedWeaponModels"
+import RangedWeaponItemCard from "./items/RangedWeaponItemCard"
 
 export default function EquipmentInventory(props: {
   id: string
@@ -150,6 +152,8 @@ export default function EquipmentInventory(props: {
     switch (item.itemType) {
       case EquipmentItemType.ARMOR:
         return <ArmorItemCard item={item as ArmorItem} {...itemProps} />
+      case EquipmentItemType.RANGED_WEAPON:
+        return <RangedWeaponItemCard item={item as RangedWeaponItem} {...itemProps} />
       default:
         return <EquipmentItemCard item={item} {...itemProps} />
     }
