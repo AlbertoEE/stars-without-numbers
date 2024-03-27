@@ -13,6 +13,7 @@ export default function Shop(props: {
     <EquipmentInventory
       id="shop"
       equipment={equipmentDefinition}
+      isShop
       budget={props.budget}
       onPress={props.onBuy}
     />

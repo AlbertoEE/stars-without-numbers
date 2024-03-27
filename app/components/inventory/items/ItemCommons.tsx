@@ -9,6 +9,7 @@ export interface ItemProps {
   icon?: ReactElement
   chips?: ReactElement[]
   children?: ReactNode[] | ReactNode
+  buttonContent?: ReactElement | string
   onPress?: (item: AnyEquipmentItem) => void
 }
 

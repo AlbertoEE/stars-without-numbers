@@ -30,6 +30,7 @@ import SwnCard from "../SwnCard"
 export default function EquipmentInventory(props: {
   id: string
   equipment: Equipment
+  isShop?: boolean,
   budget?: number
   credits?: number
   onPress?: (item: AnyEquipmentItem) => void
@@ -144,6 +145,7 @@ export default function EquipmentInventory(props: {
     const itemProps = {
       isAffordable: props.budget == null || item.cost <= props.budget,
       onPress: props.onPress,
+      buttonContent: (props.isShop ?? false) ? "BUY" : "REFUND"
     }
     switch (item.itemType) {
       case EquipmentItemType.ARMOR:
@@ -198,7 +200,7 @@ export default function EquipmentInventory(props: {
             <InventorySection
               id={sectionId(section.itemType)}
               title={sectionName(section.itemType)}
-              className={section.itemType === EquipmentItemType.GENERAL_EQUIPMENT ? "h-[68px]" : "h-[120px]"}
+              className="h-[124px]"
             >
               {section.items.map(
                 (item: AnyEquipmentItem): ReactElement => getItemCard(item),
