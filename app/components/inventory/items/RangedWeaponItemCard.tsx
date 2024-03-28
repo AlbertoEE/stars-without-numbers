@@ -6,6 +6,7 @@ import RangedWeaponIcon from "@/public/imgs/equipment/ranged_weapon.svg"
 import MagazineIcon from "@/public/imgs/equipment/magazine.svg"
 import { type AnyEquipmentItem } from "@/models/equipment/EquipmentModels"
 import type RangedWeaponItem from "@/models/equipment/RangedWeaponModels"
+import DamageChip from "./stats/DamageChip"
 
 export default function RangedWeaponItemCard(props: {
   item: RangedWeaponItem
@@ -18,9 +19,7 @@ export default function RangedWeaponItemCard(props: {
   return (
     <EquipmentItemCard {...props} icon={icon()}>
       <div className="flex gap-2">
-        <Chip variant="bordered" color="danger">
-          {`${props.item.damage} - ${props.item.range[0]}/${props.item.range[1]}m`}
-        </Chip>
+        <DamageChip {...props.item} />
         <Tooltip 
           isDisabled={!props.item.extraReloadAction} 
           closeDelay={100}

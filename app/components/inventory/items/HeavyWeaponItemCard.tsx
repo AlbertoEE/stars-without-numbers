@@ -6,6 +6,7 @@ import HeavyWeaponIcon from "@/public/imgs/equipment/heavy_weapon.svg"
 import MagazineIcon from "@/public/imgs/equipment/magazine.svg"
 import { type AnyEquipmentItem } from "@/models/equipment/EquipmentModels"
 import type HeavyWeaponItem from "@/models/equipment/HeavyWeaponModels"
+import DamageChip from "./stats/DamageChip"
 
 export default function HeavyWeaponItemCard(props: {
   item: HeavyWeaponItem
@@ -18,9 +19,7 @@ export default function HeavyWeaponItemCard(props: {
   return (
     <EquipmentItemCard {...props} icon={icon()}>
       <div className="flex gap-2">
-        <Chip variant="bordered" color="danger">
-          {`${props.item.damage} - ${props.item.range[0]}/${props.item.range[1]}m`}
-        </Chip>
+        <DamageChip {...props.item} />
         <Chip variant="bordered">
           <div className="flex">
             <MagazineIcon height="16" width="16" className="fill-current mr-1"/>
