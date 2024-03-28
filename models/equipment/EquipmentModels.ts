@@ -1,7 +1,6 @@
-import { it } from "node:test"
 import { type TechnologyShopItem } from "../ShopItemModels"
 import type ArmorItem from "./ArmorModels"
-import { type GeneralEquipmentItem } from "./GeneralEquipmentModels"
+import type GeneralEquipmentItem from "./GeneralEquipmentModels"
 import type HeavyWeaponItem from "./HeavyWeaponModels"
 import type MeleeWeaponItem from "./MeleeWeaponModels"
 import type RangedWeaponItem from "./RangedWeaponModels"

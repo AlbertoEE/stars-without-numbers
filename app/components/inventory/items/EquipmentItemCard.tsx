@@ -16,7 +16,8 @@ export default function EquipmentItemCard(props: ItemProps): ReactElement {
             <WeightIcon className="fill-current mx-1" height="14" width="14" />
           }
         >
-          {props.item.encumbrance}
+          {/* "∞" */}
+          <span className={props.item.encumbrance === "∞" ? "text-xl" : ""}>{props.item.encumbrance}</span>
         </Chip>,
       ]}
     />
