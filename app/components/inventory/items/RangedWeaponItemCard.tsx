@@ -19,7 +19,7 @@ export default function RangedWeaponItemCard(props: {
     <EquipmentItemCard {...props} icon={icon()}>
       <div className="flex gap-2">
         <Chip variant="bordered" color="danger">
-          {`${props.item.damage} ${props.item.range[0]}/${props.item.range[1]}m`}
+          {`${props.item.damage} - ${props.item.range[0]}/${props.item.range[1]}m`}
         </Chip>
         <Tooltip 
           isDisabled={!props.item.extraReloadAction} 
@@ -36,9 +36,11 @@ export default function RangedWeaponItemCard(props: {
             </div>
           </Chip>
         </Tooltip>
-        <Chip color="primary">
-          Dex
-        </Chip>
+        {(props.item.attribute != null) && 
+          <Chip color="primary">
+            {props.item.attribute}
+          </Chip>
+        }
       </div>
     </EquipmentItemCard>
   )

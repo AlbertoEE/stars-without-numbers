@@ -1,10 +1,8 @@
-import { type EquipmentItem, type EquipmentItemType } from "./EquipmentModels"
+import { type EquipmentItemType } from "./EquipmentModels"
+import { type ProjectileWeapon } from "./WeaponModels"
 
-export default interface RangedWeaponItem extends EquipmentItem {
-  itemType: EquipmentItemType.RANGED_WEAPON
-  damage: string,
-  range: [number, number],
-  magazine: number,
+export default interface RangedWeaponItem extends ProjectileWeapon {
+  itemType: EquipmentItemType.RANGED_WEAPON,
   extraReloadAction: boolean,
   burst: boolean,
 }

@@ -86,7 +86,7 @@ export interface EquipmentModel {
 
 export interface EquipmentItem extends TechnologyShopItem {
   itemType: EquipmentItemType
-  encumbrance: number
+  encumbrance: number | "∞"
 }
 
 export enum EquipmentItemType {
@@ -100,13 +100,6 @@ export const EquipmentItemTypeValues = Object.values(EquipmentItemType)
   .filter((it): boolean => typeof it === "string")
   .map((it): EquipmentItemType => it as EquipmentItemType)
 
-// export const EquipmentItemTypeValues = [
-//     EquipmentItemType.ARMOR,
-//     EquipmentItemType.RANGED_WEAPON,
-//     EquipmentItemType.MELEE_WEAPON,
-//     EquipmentItemType.HEAVY_WEAPON,
-//     EquipmentItemType.GENERAL_EQUIPMENT,
-// ]
 export type AnyEquipmentItem =
   | ArmorItem
   | RangedWeaponItem
