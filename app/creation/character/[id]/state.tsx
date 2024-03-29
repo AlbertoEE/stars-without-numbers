@@ -147,6 +147,7 @@ export interface FocusSelection {
 export interface FocusPoints {
   generalFocusPoints: number
   combatFocusPoints: number
+  nonCombatFocusPoints: number
   psychicFocusPoints: number
 }
 
@@ -155,11 +156,12 @@ interface FociState {
   filterBenefitSkill: string[]
   focusedFocus: FocusDefinition | undefined
   chosenFoci: FocusSelection[]
-  availableFocusPoints: FocusPoints
+  focusPoints: FocusPoints
   setFilterFocus: (newFilterFocus: string) => void
   setFilterBenefitSkill: (newFilterBenefitSkill: string[]) => void
   setFocusedFocus: (newFocusedFocus: FocusDefinition) => void
   setChosenFoci: (newChosenFoci: FocusSelection[]) => void
+  setFocusPoints: (newFocusPoints: FocusPoints) => void
 }
 
 export const useStoreFociState = create<FociState>(
@@ -168,7 +170,7 @@ export const useStoreFociState = create<FociState>(
     filterBenefitSkill: [],
     focusedFocus: undefined,
     chosenFoci: [],
-    availableFocusPoints: {
+    focusPoints: {
       generalFocusPoints: 1,
       combatFocusPoints: 0,
       psychicFocusPoints: 0,
@@ -184,6 +186,9 @@ export const useStoreFociState = create<FociState>(
     },
     setChosenFoci: (newChosenFoci: FocusSelection[]): void => {
       set({ chosenFoci: newChosenFoci })
+    },
+    setFocusPoints: (newFocusPoints: FocusPoints): void => {
+      set({ focusPoints: newFocusPoints })
     },
   }),
 )

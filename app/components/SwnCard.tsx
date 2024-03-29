@@ -15,7 +15,7 @@ const SwnCard: React.FC<SwnCardProps> = ({
   return (
     <Card
       {...props}
-      className={`${classNameBg} rounded-md shadow-2xl text-foreground ${className}`}
+      className={`${classNameBg} rounded-sm shadow-2xl text-foreground ${className}`}
     />
   )
 }

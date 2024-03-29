@@ -2,7 +2,7 @@
 
 import ModalWarning from "@/app/creation/components/ModalWarning"
 import { type FocusDefinition } from "@/models/FocusDefinitionModels"
-import { useDisclosure } from "@nextui-org/react"
+import { Chip, useDisclosure } from "@nextui-org/react"
 import { type Key } from "@react-types/shared"
 import React, { type ReactElement, useState } from "react"
 import Filter from "../components/list/Filter"
@@ -13,43 +13,12 @@ import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionMo
 export default function App(): ReactElement {
   const { focusedFocus, setFocusedFocus } = useStoreFociState()
 
-  const [filterFocus, setFilterFocus] = useState<string>("")
-  const [filterBenefitSkill, setFilterBenefitSkill] = useState<Iterable<Key>>(
-    [],
-  )
   const [proposedBackground, setProposedBackground] =
     useState<FocusDefinition>()
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const { focusDefinitionList, skillDefinitionList } =
-    useStoreDefinitionDataState()
-
-  const items: FocusDefinition[] = React.useMemo((): FocusDefinition[] => {
-    let filteredValues: FocusDefinition[] = [...focusDefinitionList]
-
-    if (filterFocus !== "") {
-      filteredValues = filteredValues.filter((background): boolean =>
-        background.name.startsWith(filterFocus.toLowerCase()),
-      )
-    }
-
-    if (Array.from(filterBenefitSkill).length > 0) {
-      filteredValues = filteredValues.filter(
-        (focus: FocusDefinition): boolean =>
-          Array.from(filterBenefitSkill).every((filter: Key): boolean =>
-            focus.levels
-              .map(
-                (focusLevel): string[] =>
-                  focusLevel.skillBenefitOptionList ?? [],
-              )
-              .flat()
-              .includes(filter.toString()),
-          ),
-      )
-    }
-    return filteredValues
-  }, [filterFocus, filterBenefitSkill, focusDefinitionList])
+  const { focusDefinitionList } = useStoreDefinitionDataState()
 
   function onAcceptModal(): void {
     if (proposedBackground == null) {
@@ -75,24 +44,17 @@ export default function App(): ReactElement {
           "If you change the background you will lose your progress. Are you sure?"
         }
       />
-      <Filter
-        inputState={filterFocus}
-        setInputState={setFilterFocus}
-        selectKeysState={filterBenefitSkill}
-        setSelectKeysState={setFilterBenefitSkill}
-        selectOptionList={skillDefinitionList.map(
-          (e: StandardSkillDefinition): string => e.name,
-        )}
-        imageFolder={"/imgs/skills"}
-      />
       <List
-        items={items}
+        items={focusDefinitionList}
         focusedItemName={focusedFocus?.name}
         handleOnItemPress={handleOnFocusPress}
         imageFolder={"/imgs/foci"}
-      >
-        <h1>Pene</h1>
-      </List>
+        body={(item): ReactElement => (
+          <div className="ml-auto mt-auto text-xs italic">
+            <Chip size="sm">{item.type}</Chip>
+          </div>
+        )}
+      />
     </div>
   )
 }
