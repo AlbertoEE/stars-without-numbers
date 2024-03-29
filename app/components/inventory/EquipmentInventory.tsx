@@ -28,6 +28,12 @@ import CreditsChip from "./CreditsChip"
 import SwnCard from "../SwnCard"
 import type RangedWeaponItem from "@/models/equipment/RangedWeaponModels"
 import RangedWeaponItemCard from "./items/RangedWeaponItemCard"
+import MeleeWeaponItemCard from "./items/MeleeWeaponItemCard"
+import type MeleeWeaponItem from "@/models/equipment/MeleeWeaponModels"
+import HeavyWeaponItemCard from "./items/HeavyWeaponItemCard"
+import type HeavyWeaponItem from "@/models/equipment/HeavyWeaponModels"
+import GeneralEquipmentItemCard from "./items/GeneralEquipmentItemCard"
+import type GeneralEquipmentItem from "@/models/equipment/GeneralEquipmentModels"
 
 export default function EquipmentInventory(props: {
   id: string
@@ -154,6 +160,12 @@ export default function EquipmentInventory(props: {
         return <ArmorItemCard item={item as ArmorItem} {...itemProps} />
       case EquipmentItemType.RANGED_WEAPON:
         return <RangedWeaponItemCard item={item as RangedWeaponItem} {...itemProps} />
+      case EquipmentItemType.MELEE_WEAPON:
+        return <MeleeWeaponItemCard item={item as MeleeWeaponItem} {...itemProps} />
+      case EquipmentItemType.HEAVY_WEAPON:
+        return <HeavyWeaponItemCard item={item as HeavyWeaponItem} {...itemProps} />
+      case EquipmentItemType.GENERAL_EQUIPMENT:
+        return <GeneralEquipmentItemCard item={item as GeneralEquipmentItem} {...itemProps} />
       default:
         return <EquipmentItemCard item={item} {...itemProps} />
     }

@@ -6,6 +6,7 @@ import {
   type EquipmentModel,
 } from "@/models/equipment/EquipmentModels"
 import { GeneralEquipmentType } from "@/models/equipment/GeneralEquipmentModels"
+import { MeleeWeaponType } from "@/models/equipment/MeleeWeaponModels"
 
 export default class InMemoryEquipmentDefinitionRepository
   implements EquipmentDefinitionRepository
@@ -119,9 +120,11 @@ const equipment = new Equipment({
   meleeWeapons: [
     {
       itemType: EquipmentItemType.MELEE_WEAPON,
-      name: "Test Melee Weapon",
+      subtype: MeleeWeaponType.SMALL_WEAPON,
+      name: "Small primitive weapon",
       description:
-        "Warpaint is the common term for the bizarre combat fashions and scrap-built street harness of gangers, cult enforcers, street toughs, and other marginal sorts with little money but much need for protection. Most warpaint is fashioned of scrounged scraps of TL4 materials that are exceptionally tough or rigid, filled out with gang colors, body paint, intimidating tattoos, and the usual threatening grimace. It is often exceedingly impractical but inspirational to its wearer; an NPC in warpaint that is meaningful to them gains a +1 Morale bonus. Most warpaint is either pieced together over years or taken from the dead. Actually purchasing a finished suit comes at the listed price, assuming someone can be found willing to part with theirs.",
+        "Small weapons are small one-handed implements no larger than a baton or knife. These weapons are easily concealed in normal clothing, and can even be kept Readied up sleeves or in tailored pockets. Many can be thrown at a range up to 10 meters.",
+      damage: "1d4",
       encumbrance: 0,
       techLevel: 0,
       cost: 300,
@@ -130,10 +133,14 @@ const equipment = new Equipment({
   heavyWeapons: [
     {
       itemType: EquipmentItemType.HEAVY_WEAPON,
-      name: "Test Heavy Weapon",
+      name: "Heavy Machine Gun",
       description:
-        "Warpaint is the common term for the bizarre combat fashions and scrap-built street harness of gangers, cult enforcers, street toughs, and other marginal sorts with little money but much need for protection. Most warpaint is fashioned of scrounged scraps of TL4 materials that are exceptionally tough or rigid, filled out with gang colors, body paint, intimidating tattoos, and the usual threatening grimace. It is often exceedingly impractical but inspirational to its wearer; an NPC in warpaint that is meaningful to them gains a +1 Morale bonus. Most warpaint is either pieced together over years or taken from the dead. Actually purchasing a finished suit comes at the listed price, assuming someone can be found willing to part with theirs.",
-      encumbrance: 0,
+        "Heavy machine guns represent a large family of air- or water-cooled projectile weapons that are usually fed with belts of linked ammunition. HMGs require a ve-hicle mounting or emplaced firing position for effective results. An HMG magazine contains enough ammuni-tion for 10 rounds of firing, but each round of firing eats 25 credits worth of projectile ammunition.",
+      damage: "3d6",
+      supressFire: true,
+      range: [500, 2000],
+      magazine: 10,
+      encumbrance: "∞",
       techLevel: 0,
       cost: 300,
     },
@@ -142,12 +149,13 @@ const equipment = new Equipment({
     {
       itemType: EquipmentItemType.GENERAL_EQUIPMENT,
       subtype: GeneralEquipmentType.AMMO_AND_POWER,
-      name: "Test Melee Weapon",
+      name: "Ammo, 20 rounds",
       description:
-        "Warpaint is the common term for the bizarre combat fashions and scrap-built street harness of gangers, cult enforcers, street toughs, and other marginal sorts with little money but much need for protection. Most warpaint is fashioned of scrounged scraps of TL4 materials that are exceptionally tough or rigid, filled out with gang colors, body paint, intimidating tattoos, and the usual threatening grimace. It is often exceedingly impractical but inspirational to its wearer; an NPC in warpaint that is meaningful to them gains a +1 Morale bonus. Most warpaint is either pieced together over years or taken from the dead. Actually purchasing a finished suit comes at the listed price, assuming someone can be found willing to part with theirs.",
-      encumbrance: 0,
-      techLevel: 0,
-      cost: 300,
+        "A few worlds are too primitive or too resource-poor to manufacture ammunition, but the vast majority of worlds provide cartridges in almost every conceivable caliber and make. Most local gunsmiths can load ammunition to any specification required by a buyer.",
+      bundleable: true,
+      encumbrance: 1,
+      techLevel: 2,
+      cost: 10,
     },
   ],
 } satisfies EquipmentModel)

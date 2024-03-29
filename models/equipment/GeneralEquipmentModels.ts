@@ -1,8 +1,10 @@
 import { type EquipmentItem, type EquipmentItemType } from "./EquipmentModels"
 
-export interface GeneralEquipmentItem extends EquipmentItem {
+export default interface GeneralEquipmentItem extends EquipmentItem {
   itemType: EquipmentItemType.GENERAL_EQUIPMENT
   subtype?: GeneralEquipmentType
+  bundleable: boolean
+  bundled?: number
 }
 
 export enum GeneralEquipmentType {
