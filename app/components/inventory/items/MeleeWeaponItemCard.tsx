@@ -12,18 +12,16 @@ export default function MeleeWeaponItemCard(props: {
   onPress?: (item: AnyEquipmentItem) => void
 }): ReactElement {
   const icon = (): ReactElement => {
-    return <MeleeWeaponIcon {...ITEM_ICON_DEFAULT_PROPS}/>
+    return <MeleeWeaponIcon {...ITEM_ICON_DEFAULT_PROPS} />
   }
 
   return (
     <EquipmentItemCard {...props} icon={icon()}>
       <div className="flex gap-2">
         <DamageChip {...props.item} />
-        {(props.item.attribute != null) && 
-          <Chip color="primary">
-            {props.item.attribute}
-          </Chip>
-        }
+        {props.item.attribute != null && (
+          <Chip color="primary">{props.item.attribute}</Chip>
+        )}
       </div>
     </EquipmentItemCard>
   )

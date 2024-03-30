@@ -174,6 +174,7 @@ export const useStoreFociState = create<FociState>(
       generalFocusPoints: 1,
       combatFocusPoints: 0,
       psychicFocusPoints: 0,
+      nonCombatFocusPoints: 0,
     },
     setFilterFocus: (newFilterFocus): void => {
       set({ filterFocus: newFilterFocus })

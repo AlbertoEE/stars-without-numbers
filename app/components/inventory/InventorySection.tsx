@@ -8,7 +8,6 @@ export default function InventorySection(props: {
   className: string
   children: ReactElement[]
 }): ReactElement {
-    
   return (
     <SwnCard
       cardInCard

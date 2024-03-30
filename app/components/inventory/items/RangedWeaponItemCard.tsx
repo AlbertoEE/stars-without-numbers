@@ -13,33 +13,34 @@ export default function RangedWeaponItemCard(props: {
   onPress?: (item: AnyEquipmentItem) => void
 }): ReactElement {
   const icon = (): ReactElement => {
-    return <RangedWeaponIcon {...ITEM_ICON_DEFAULT_PROPS}/>
+    return <RangedWeaponIcon {...ITEM_ICON_DEFAULT_PROPS} />
   }
 
   return (
     <EquipmentItemCard {...props} icon={icon()}>
       <div className="flex gap-2">
         <DamageChip {...props.item} />
-        <Tooltip 
-          isDisabled={!props.item.extraReloadAction} 
+        <Tooltip
+          isDisabled={!props.item.extraReloadAction}
           closeDelay={100}
-          color="warning" 
-          content="This weapon requires two Main Actions to reload instead of one">
+          color="warning"
+          content="This weapon requires two Main Actions to reload instead of one"
+        >
           <Chip variant="bordered">
             <div className="flex">
-              <MagazineIcon height="16" width="16" className="fill-current mr-1"/>
+              <MagazineIcon
+                height="16"
+                width="16"
+                className="fill-current mr-1"
+              />
               {`${props.item.magazine}`}
-              {props.item.extraReloadAction && 
-                " *2xMA"
-              }
+              {props.item.extraReloadAction && " *2xMA"}
             </div>
           </Chip>
         </Tooltip>
-        {(props.item.attribute != null) && 
-          <Chip color="primary">
-            {props.item.attribute}
-          </Chip>
-        }
+        {props.item.attribute != null && (
+          <Chip color="primary">{props.item.attribute}</Chip>
+        )}
       </div>
     </EquipmentItemCard>
   )

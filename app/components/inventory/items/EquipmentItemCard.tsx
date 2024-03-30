@@ -17,7 +17,9 @@ export default function EquipmentItemCard(props: ItemProps): ReactElement {
           }
         >
           {/* "∞" */}
-          <span className={props.item.encumbrance === "∞" ? "text-xl" : ""}>{props.item.encumbrance}</span>
+          <span className={props.item.encumbrance === "∞" ? "text-xl" : ""}>
+            {props.item.encumbrance}
+          </span>
         </Chip>,
       ]}
     />

@@ -8,7 +8,7 @@ export default interface MeleeWeaponItem extends WeaponItem {
 }
 
 export interface MeleeWeaponShock {
-  damage: number,
+  damage: number
   armorClass: number
 }
 

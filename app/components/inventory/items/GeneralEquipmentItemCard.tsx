@@ -11,15 +11,13 @@ export default function GeneralEquipmentItemCard(props: {
   onPress?: (item: AnyEquipmentItem) => void
 }): ReactElement {
   const icon = (): ReactElement => {
-    return <GeneralEquipmentIcon {...ITEM_ICON_DEFAULT_PROPS}/>
+    return <GeneralEquipmentIcon {...ITEM_ICON_DEFAULT_PROPS} />
   }
 
   return (
     <EquipmentItemCard {...props} icon={icon()}>
       <div className="flex gap-2">
-        <Chip variant="bordered">
-          {props.item.bundleable && "Bundleable"}
-        </Chip>
+        <Chip variant="bordered">{props.item.bundleable && "Bundleable"}</Chip>
       </div>
     </EquipmentItemCard>
   )

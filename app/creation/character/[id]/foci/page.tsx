@@ -3,7 +3,7 @@
 import { type ReactElement } from "react"
 import SplitDesign from "../../../components/SplitDesign"
 import { useStoreFociState } from "../state"
-import FocusDetail from "./FocusDetail"
+import FocusDetail from "./FocusDetail/FocusDetail"
 import FocusList from "./FocusList"
 
 export default function Page({

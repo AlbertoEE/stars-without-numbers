@@ -38,7 +38,7 @@ import type GeneralEquipmentItem from "@/models/equipment/GeneralEquipmentModels
 export default function EquipmentInventory(props: {
   id: string
   equipment: Equipment
-  isShop?: boolean,
+  isShop?: boolean
   budget?: number
   credits?: number
   onPress?: (item: AnyEquipmentItem) => void
@@ -153,19 +153,33 @@ export default function EquipmentInventory(props: {
     const itemProps = {
       isAffordable: props.budget == null || item.cost <= props.budget,
       onPress: props.onPress,
-      buttonContent: (props.isShop ?? false) ? "BUY" : "REFUND"
+      buttonContent: props.isShop ?? false ? "BUY" : "REFUND",
     }
     switch (item.itemType) {
       case EquipmentItemType.ARMOR:
         return <ArmorItemCard item={item as ArmorItem} {...itemProps} />
       case EquipmentItemType.RANGED_WEAPON:
-        return <RangedWeaponItemCard item={item as RangedWeaponItem} {...itemProps} />
+        return (
+          <RangedWeaponItemCard
+            item={item as RangedWeaponItem}
+            {...itemProps}
+          />
+        )
       case EquipmentItemType.MELEE_WEAPON:
-        return <MeleeWeaponItemCard item={item as MeleeWeaponItem} {...itemProps} />
+        return (
+          <MeleeWeaponItemCard item={item as MeleeWeaponItem} {...itemProps} />
+        )
       case EquipmentItemType.HEAVY_WEAPON:
-        return <HeavyWeaponItemCard item={item as HeavyWeaponItem} {...itemProps} />
+        return (
+          <HeavyWeaponItemCard item={item as HeavyWeaponItem} {...itemProps} />
+        )
       case EquipmentItemType.GENERAL_EQUIPMENT:
-        return <GeneralEquipmentItemCard item={item as GeneralEquipmentItem} {...itemProps} />
+        return (
+          <GeneralEquipmentItemCard
+            item={item as GeneralEquipmentItem}
+            {...itemProps}
+          />
+        )
       default:
         return <EquipmentItemCard item={item} {...itemProps} />
     }
