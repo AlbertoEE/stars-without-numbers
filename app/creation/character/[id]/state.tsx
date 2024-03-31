@@ -175,7 +175,7 @@ export const useStoreFociState = create<FociState>(
     chosenFoci: [],
     focusPoints: {
       generalFocus: 1,
-      combatFocus: 1,
+      combatFocus: 0,
       psychicFocus: 0,
       nonCombatFocus: 0,
     },

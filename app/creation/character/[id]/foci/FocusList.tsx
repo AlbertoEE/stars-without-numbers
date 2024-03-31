@@ -9,6 +9,7 @@ import Filter from "../components/list/Filter"
 import List from "../components/list/List"
 import { useStoreDefinitionDataState, useStoreFociState } from "../state"
 import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
+import SwnChip from "@/app/components/swn/SwnChip"
 
 export default function App(): ReactElement {
   const { focusedFocus, setFocusedFocus } = useStoreFociState()
@@ -51,7 +52,9 @@ export default function App(): ReactElement {
         imageFolder={"/imgs/foci"}
         body={(item): ReactElement => (
           <div className="ml-auto mt-auto text-xs italic">
-            <Chip size="sm">{item.type}</Chip>
+            <SwnChip className="bg-secondary text-secondary-foreground">
+              {item.type}
+            </SwnChip>
           </div>
         )}
       />

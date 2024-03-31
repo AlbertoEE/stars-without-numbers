@@ -17,7 +17,7 @@ export default function List<T>(props: {
         (item): ReactElement => (
           <SwnCard
             cardInCard
-            className={`w-full ${item.name === props.focusedItemName && "bg-secondary"}`}
+            className={`w-full ${item.name === props.focusedItemName && "bg-primary text-primary-foreground"}`}
             isPressable={item.name !== props.focusedItemName}
             onPress={(): void => {
               props.handleOnItemPress(item)
