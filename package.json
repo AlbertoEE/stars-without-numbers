@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
+    "@testing-library/jest-dom": "^6.4.2",
     "eslint-config-prettier": "^9.1.0",
     "framer-motion": "^10.16.5",
     "next": "14.1",
@@ -20,7 +21,7 @@
     "react": "^18",
     "react-dom": "^18",
     "swr": "^2.2.4",
-    "zustand": "^4.4.6"
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
@@ -30,6 +31,7 @@
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^1.4.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.0.2",

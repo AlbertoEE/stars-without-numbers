@@ -138,6 +138,8 @@ export const useStoreGameClassState = create<GameClassState>(
   }),
 )
 
+// Focus
+
 export interface FocusSelection {
   focus: FocusDefinition
   level: number
@@ -151,7 +153,7 @@ export interface FocusPoints {
   psychicFocusPoints: number
 }
 
-interface FociState {
+export interface FociState {
   filterFocus: string
   filterBenefitSkill: string[]
   focusedFocus: FocusDefinition | undefined

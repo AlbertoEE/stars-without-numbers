@@ -7,6 +7,7 @@ import {
 } from "../../../state"
 import SwnCard from "@/app/components/SwnCard"
 import { CardHeader, Divider, CardBody, CardFooter } from "@nextui-org/react"
+import SwnButton from "@/app/components/SwnButton"
 
 export function FociLevelSection(props: {
   focusedFocus: FocusDefinition
@@ -25,6 +26,49 @@ export function FociLevelSection(props: {
         origin: "foci",
       },
     ])
+  }
+
+  function renderButton(
+    chosenFoci: FocusSelection[],
+    level: number,
+    focusedFocus: FocusDefinition,
+    focusPoints: FocusPoints,
+  ): ReactElement | undefined {
+    const isFocusChosen = chosenFoci.some(
+      (e): boolean => e.focus === focusedFocus && e.level === level,
+    )
+    if (isFocusChosen) return <SwnButton>Refund</SwnButton>
+
+    const canBuyLevelOne = level === 1 && canBuyFocus(focusedFocus, focusPoints)
+    const hasPreviousLevelFocus =
+      level === 2 &&
+      chosenFoci.some(
+        (e): boolean => e.focus === focusedFocus && e.level === level - 1,
+      )
+    const canBuyLevelTwo =
+      hasPreviousLevelFocus && canBuyFocus(focusedFocus, focusPoints)
+
+    if (canBuyLevelOne || canBuyLevelTwo) return <SwnButton>Buy</SwnButton>
+
+    return <SwnButton>Blocked</SwnButton>
+  }
+
+  function canBuyFocus(
+    focusedFocus: FocusDefinition,
+    focusPoints: FocusPoints,
+  ): boolean {
+    if (focusPoints.generalFocusPoints >= 1) return true
+
+    switch (focusedFocus.type) {
+      case FocusType.COMBAT_FOCUS:
+        return focusPoints.combatFocusPoints >= 1
+      case FocusType.PSYCHIC_FOCUS:
+        return focusPoints.psychicFocusPoints >= 1
+      case FocusType.NON_COMBAT_FOCUS:
+        return focusPoints.nonCombatFocusPoints >= 1
+      default:
+        return false
+    }
   }
 
   return (
@@ -61,47 +105,4 @@ export function FociLevelSection(props: {
       </CardFooter>
     </SwnCard>
   )
-}
-
-export function renderButton(
-  chosenFoci: FocusSelection[],
-  level: number,
-  focusedFocus: FocusDefinition,
-  focusPoints: FocusPoints,
-): string | undefined {
-  const isFocusChosen = chosenFoci.some(
-    (e): boolean => e.focus === focusedFocus && e.level === level,
-  )
-  if (isFocusChosen) return "refund"
-
-  const canBuyLevelOne = level === 1 && canBuyFocus(focusedFocus, focusPoints)
-  const hasPreviousLevelFocus =
-    level === 2 &&
-    chosenFoci.some(
-      (e): boolean => e.focus === focusedFocus && e.level === level - 1,
-    )
-  const canBuyLevelTwo =
-    hasPreviousLevelFocus && canBuyFocus(focusedFocus, focusPoints)
-
-  if (canBuyLevelOne || canBuyLevelTwo) return "buy"
-
-  return "blocked"
-}
-
-function canBuyFocus(
-  focusedFocus: FocusDefinition,
-  focusPoints: FocusPoints,
-): boolean {
-  if (focusPoints.generalFocusPoints >= 1) return true
-
-  switch (focusedFocus.type) {
-    case FocusType.COMBAT_FOCUS:
-      return focusPoints.combatFocusPoints >= 1
-    case FocusType.PSYCHIC_FOCUS:
-      return focusPoints.psychicFocusPoints >= 1
-    case FocusType.NON_COMBAT_FOCUS:
-      return focusPoints.nonCombatFocusPoints >= 1
-    default:
-      return false
-  }
 }
