@@ -1,5 +1,5 @@
 import { type FocusLevelDefinition } from "@/models/FocusDefinitionModels"
-import { Divider, Image } from "@nextui-org/react"
+import { Chip, Divider, Image } from "@nextui-org/react"
 import { type ReactElement } from "react"
 import { useStoreFociState } from "../../state"
 import { FociLevelSection } from "./components/FociLevelSection/FociLevelSection"
