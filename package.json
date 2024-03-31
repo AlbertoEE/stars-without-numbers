@@ -51,6 +51,9 @@
     "vitest": "^1.4.0"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "*.{js,ts,tsx}": [
+      "prettier --write",
+      "eslint --cache --fix"
+    ]
   }
 }

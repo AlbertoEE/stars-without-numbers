@@ -1,6 +1,5 @@
-import SwnCard from "@/app/components/swn/SwnCard"
 import { type FocusLevelDefinition } from "@/models/FocusDefinitionModels"
-import { Chip, Divider, Image } from "@nextui-org/react"
+import { Divider, Image } from "@nextui-org/react"
 import { type ReactElement } from "react"
 import { useStoreFociState } from "../../state"
 import { FociLevelSection } from "./components/FociLevelSection/FociLevelSection"
@@ -8,7 +7,7 @@ import SwnChip from "@/app/components/swn/SwnChip"
 
 export default function FocusDetail(): ReactElement {
   const { focusedFocus, focusPoints } = useStoreFociState()
-
+  //
   if (focusedFocus === undefined) return <></>
 
   return (
