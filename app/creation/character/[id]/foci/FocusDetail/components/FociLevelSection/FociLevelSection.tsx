@@ -1,5 +1,5 @@
 import SwnCard from "@/app/components/swn/SwnCard"
-import { FocusType, type FocusDefinition } from "@/models/FocusDefinitionModels"
+import { type FocusDefinition } from "@/models/FocusDefinitionModels"
 import { CardBody, CardFooter, CardHeader, Divider } from "@nextui-org/react"
 import { type ReactElement } from "react"
 import { useStoreFociState } from "../../../../state"
@@ -20,7 +20,15 @@ export function FociLevelSection({
     const isFocusChosen = chosenFoci.some(
       (e): boolean => e.focus === focusedFocus && e.level === level,
     )
-    if (isFocusChosen)
+    if (isFocusChosen && isHigherLevelChosen()) {
+      return (
+        <FocusButton
+          type={"refund_blocked"}
+          level={level}
+          focusedFocus={focusedFocus}
+        />
+      )
+    } else if (isFocusChosen && !isHigherLevelChosen()) {
       return (
         <FocusButton
           type={"refund"}
@@ -28,6 +36,7 @@ export function FociLevelSection({
           focusedFocus={focusedFocus}
         />
       )
+    }
 
     const canBuyLevelOne = level === 1 && availableFocusPoints()
     const hasPreviousLevelFocus =
@@ -48,18 +57,14 @@ export function FociLevelSection({
   }
 
   function availableFocusPoints(): boolean {
-    if (focusPoints.generalFocusPoints >= 1) return true
+    if (focusPoints.generalFocus >= 1) return true
+    return focusPoints[focusedFocus.type] >= 1
+  }
 
-    switch (focusedFocus.type) {
-      case FocusType.COMBAT_FOCUS:
-        return focusPoints.combatFocusPoints >= 1
-      case FocusType.PSYCHIC_FOCUS:
-        return focusPoints.psychicFocusPoints >= 1
-      case FocusType.NON_COMBAT_FOCUS:
-        return focusPoints.nonCombatFocusPoints >= 1
-      default:
-        return false
-    }
+  function isHigherLevelChosen(): boolean {
+    return chosenFoci.some(
+      (e): boolean => e.focus === focusedFocus && e.level > level,
+    )
   }
 
   return (

@@ -16,6 +16,7 @@ interface ButtonType {
   color: color
   text: string
   onPress?: () => void
+  isDisabled: boolean
 }
 
 export function FocusButton({
@@ -23,7 +24,7 @@ export function FocusButton({
   level,
   focusedFocus,
 }: {
-  type: "buy" | "refund" | "blocked"
+  type: "buy" | "refund" | "blocked" | "refund_blocked"
   level: number
   focusedFocus: FocusDefinition
 }): ReactElement {
@@ -35,16 +36,25 @@ export function FocusButton({
       color: "warning",
       text: "BUY",
       onPress: buyFocus,
+      isDisabled: false,
     },
     refund: {
       color: "success",
       text: "REFUND",
       onPress: refundFocus,
+      isDisabled: false,
+    },
+    refund_blocked: {
+      color: "success",
+      text: "REFUND",
+      onPress: undefined,
+      isDisabled: true,
     },
     blocked: {
       color: "danger",
       text: "BLOCKED",
       onPress: undefined,
+      isDisabled: true,
     },
   }
 
@@ -82,15 +92,13 @@ export function FocusButton({
   }
 
   function refundFocus(): void {
-    const focusPointKey = focusedFocus.type
-
     const foundFocus = chosenFoci.find(
       (f): boolean => f.focus === focusedFocus && f.level === level,
     )
     if (foundFocus !== undefined) {
       setFocusPoints({
         ...focusPoints,
-        [focusPointKey]: focusPoints[focusPointKey] + 1,
+        [foundFocus.currencyUsed]: focusPoints[foundFocus.currencyUsed] + 1,
       })
 
       setChosenFoci(chosenFoci.filter((f): boolean => f !== foundFocus))
@@ -102,7 +110,8 @@ export function FocusButton({
       color={types[type].color}
       variant="bordered"
       onPress={types[type].onPress}
-      {...(type === "blocked" && { isDisabled: true })}
+      isDisabled={types[type].isDisabled}
+      className="w-[25%]"
     >
       {types[type].text}
     </SwnButton>

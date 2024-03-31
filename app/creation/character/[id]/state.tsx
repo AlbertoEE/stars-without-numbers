@@ -3,7 +3,7 @@ import {
   type BackgroundBenefit,
   type BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels"
-import { FocusType, type FocusDefinition } from "@/models/FocusDefinitionModels"
+import { type FocusType, type FocusDefinition } from "@/models/FocusDefinitionModels"
 import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
 import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
 import Equipment from "@/models/equipment/EquipmentModels"
@@ -175,7 +175,7 @@ export const useStoreFociState = create<FociState>(
     chosenFoci: [],
     focusPoints: {
       generalFocus: 1,
-      combatFocus: 0,
+      combatFocus: 1,
       psychicFocus: 0,
       nonCombatFocus: 0,
     },
