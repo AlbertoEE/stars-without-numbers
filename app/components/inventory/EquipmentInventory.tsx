@@ -1,6 +1,20 @@
+import type ArmorItem from "@/models/equipment/ArmorModels"
 import type Equipment from "@/models/equipment/EquipmentModels"
-import { type ReactElement, useEffect, useState, useCallback } from "react"
-import ArmorItemCard from "./items/ArmorItemCard"
+import {
+  EquipmentItemType,
+  EquipmentItemTypeValues,
+  type AnyEquipmentItem,
+  type EquipmentSection,
+} from "@/models/equipment/EquipmentModels"
+import type GeneralEquipmentItem from "@/models/equipment/GeneralEquipmentModels"
+import type HeavyWeaponItem from "@/models/equipment/HeavyWeaponModels"
+import type MeleeWeaponItem from "@/models/equipment/MeleeWeaponModels"
+import type RangedWeaponItem from "@/models/equipment/RangedWeaponModels"
+import ArmorIcon from "@/public/imgs/equipment/armor.svg"
+import GeneralEquipmentIcon from "@/public/imgs/equipment/general_equipment.svg"
+import HeavyWeaponIcon from "@/public/imgs/equipment/heavy_weapon.svg"
+import MeleeWeaponIcon from "@/public/imgs/equipment/melee_weapon.svg"
+import RangedWeaponIcon from "@/public/imgs/equipment/ranged_weapon.svg"
 import {
   Divider,
   Link,
@@ -9,31 +23,17 @@ import {
   NavbarItem,
   ScrollShadow,
 } from "@nextui-org/react"
-import ArmorIcon from "@/public/imgs/equipment/armor.svg"
-import RangedWeaponIcon from "@/public/imgs/equipment/ranged_weapon.svg"
-import MeleeWeaponIcon from "@/public/imgs/equipment/melee_weapon.svg"
-import HeavyWeaponIcon from "@/public/imgs/equipment/heavy_weapon.svg"
-import GeneralEquipmentIcon from "@/public/imgs/equipment/general_equipment.svg"
-import { ITEM_ICON_DEFAULT_PROPS } from "./items/ItemCommons"
-import InventorySection from "./InventorySection"
-import type ArmorItem from "@/models/equipment/ArmorModels"
-import {
-  EquipmentItemType,
-  EquipmentItemTypeValues,
-  type AnyEquipmentItem,
-  type EquipmentSection,
-} from "@/models/equipment/EquipmentModels"
-import EquipmentItemCard from "./items/EquipmentItemCard"
+import { useCallback, useEffect, useState, type ReactElement } from "react"
+import SwnCard from "../swn/SwnCard"
 import CreditsChip from "./CreditsChip"
-import SwnCard from "../SwnCard"
-import type RangedWeaponItem from "@/models/equipment/RangedWeaponModels"
-import RangedWeaponItemCard from "./items/RangedWeaponItemCard"
-import MeleeWeaponItemCard from "./items/MeleeWeaponItemCard"
-import type MeleeWeaponItem from "@/models/equipment/MeleeWeaponModels"
-import HeavyWeaponItemCard from "./items/HeavyWeaponItemCard"
-import type HeavyWeaponItem from "@/models/equipment/HeavyWeaponModels"
+import InventorySection from "./InventorySection"
+import ArmorItemCard from "./items/ArmorItemCard"
+import EquipmentItemCard from "./items/EquipmentItemCard"
 import GeneralEquipmentItemCard from "./items/GeneralEquipmentItemCard"
-import type GeneralEquipmentItem from "@/models/equipment/GeneralEquipmentModels"
+import HeavyWeaponItemCard from "./items/HeavyWeaponItemCard"
+import { ITEM_ICON_DEFAULT_PROPS } from "./items/ItemCommons"
+import MeleeWeaponItemCard from "./items/MeleeWeaponItemCard"
+import RangedWeaponItemCard from "./items/RangedWeaponItemCard"
 
 export default function EquipmentInventory(props: {
   id: string

@@ -1,11 +1,5 @@
-import SwnCard from "@/app/components/SwnCard"
-import {
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Chip,
-  Image,
-} from "@nextui-org/react"
+import SwnCard from "@/app/components/swn/SwnCard"
+import { CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react"
 import { type ReactElement } from "react"
 
 export default function List<T>(props: {

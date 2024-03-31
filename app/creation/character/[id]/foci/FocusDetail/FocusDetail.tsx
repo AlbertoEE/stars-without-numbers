@@ -1,12 +1,13 @@
+import SwnCard from "@/app/components/swn/SwnCard"
 import { type FocusLevelDefinition } from "@/models/FocusDefinitionModels"
-import CoinIcon from "@/public/imgs/equipment/coin.svg"
-import { Divider, Image } from "@nextui-org/react"
+import { Chip, Divider, Image } from "@nextui-org/react"
 import { type ReactElement } from "react"
 import { useStoreFociState } from "../../state"
 import { FociLevelSection } from "./components/FociLevelSection/FociLevelSection"
+import SwnChip from "@/app/components/swn/SwnChip"
 
 export default function FocusDetail(): ReactElement {
-  const { focusedFocus } = useStoreFociState()
+  const { focusedFocus, focusPoints } = useStoreFociState()
 
   if (focusedFocus === undefined) return <></>
 
@@ -24,19 +25,11 @@ export default function FocusDetail(): ReactElement {
           <h1 className="font-bold uppercase text-4xl">{focusedFocus.name}</h1>
           <div>Type: {Object.values(focusedFocus.type)}</div>
         </div>
-        <div className="flex ml-auto gap-6 mr-2">
-          <div className="flex flex-col">
-            <CoinIcon className="fill-current" />
-            <div>18</div>
-          </div>
-          <div className="flex flex-col">
-            <CoinIcon className="fill-current" />
-            <div>18</div>
-          </div>
-          <div className="flex flex-col">
-            <CoinIcon className="fill-current" />
-            <div>18</div>
-          </div>
+        <div className="grid grid-cols-2 gap-4 ml-auto mr-4 p-2">
+          <SwnChip radius="sm">{focusPoints.generalFocus}-G</SwnChip>
+          <SwnChip radius="sm">{focusPoints.combatFocus}-C</SwnChip>
+          <SwnChip radius="sm">{focusPoints.nonCombatFocus}-N</SwnChip>
+          <SwnChip radius="sm">{focusPoints.psychicFocus}-P</SwnChip>
         </div>
       </div>
       <Divider />

@@ -1,6 +1,6 @@
 import { CardBody, CardHeader, Divider } from "@nextui-org/react"
 import { type ReactElement } from "react"
-import SwnCard from "../SwnCard"
+import SwnCard from "../swn/SwnCard"
 
 export default function InventorySection(props: {
   id: string

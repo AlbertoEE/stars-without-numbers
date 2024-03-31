@@ -1,8 +1,8 @@
-import { type FocusDefinition, FocusType } from "@/models/FocusDefinitionModels"
+import SwnCard from "@/app/components/swn/SwnCard"
+import { FocusType, type FocusDefinition } from "@/models/FocusDefinitionModels"
+import { CardBody, CardFooter, CardHeader, Divider } from "@nextui-org/react"
 import { type ReactElement } from "react"
 import { useStoreFociState } from "../../../../state"
-import SwnCard from "@/app/components/SwnCard"
-import { CardHeader, Divider, CardBody, CardFooter } from "@nextui-org/react"
 import { FocusButton } from "./components/BuyButton"
 
 export function FociLevelSection({

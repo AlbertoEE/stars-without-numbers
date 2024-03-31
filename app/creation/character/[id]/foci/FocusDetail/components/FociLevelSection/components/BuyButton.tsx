@@ -1,6 +1,6 @@
-import SwnButton from "@/app/components/SwnButton"
+import SwnButton from "@/app/components/swn/SwnButton"
 import { useStoreFociState } from "@/app/creation/character/[id]/state"
-import { type FocusDefinition, FocusType } from "@/models/FocusDefinitionModels"
+import { FocusType, type FocusDefinition } from "@/models/FocusDefinitionModels"
 import { type ReactElement } from "react"
 
 type color =

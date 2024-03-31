@@ -1,16 +1,16 @@
+import GeneralEquipmentIcon from "@/public/imgs/equipment/general_equipment.svg"
 import {
   Accordion,
   AccordionItem,
   CardBody,
   CardHeader,
 } from "@nextui-org/react"
-import { useState, type ReactElement } from "react"
-import { ITEM_ICON_DEFAULT_PROPS, type ShopItemProps } from "./ItemCommons"
 import { type PressEvent } from "@react-types/shared"
-import GeneralEquipmentIcon from "@/public/imgs/equipment/general_equipment.svg"
+import { useState, type ReactElement } from "react"
+import SwnButton from "../../swn/SwnButton"
+import SwnCard from "../../swn/SwnCard"
 import CreditsChip from "../CreditsChip"
-import SwnCard from "../../SwnCard"
-import SwnButton from "../../SwnButton"
+import { ITEM_ICON_DEFAULT_PROPS, type ShopItemProps } from "./ItemCommons"
 
 export default function ShopItemCard(props: ShopItemProps): ReactElement {
   const [descriptionShowing, setDescriptionShowing] = useState<any>(new Set())

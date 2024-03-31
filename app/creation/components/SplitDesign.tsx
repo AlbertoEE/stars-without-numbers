@@ -1,6 +1,6 @@
-import SwnCard from "@/app/components/SwnCard"
+import SwnCard from "@/app/components/swn/SwnCard"
 import { usePathname } from "next/navigation"
-import { useState, useEffect, type ReactElement } from "react"
+import { useEffect, useState, type ReactElement } from "react"
 
 export default function SplitDesign(props: {
   leftChild: React.ReactNode
