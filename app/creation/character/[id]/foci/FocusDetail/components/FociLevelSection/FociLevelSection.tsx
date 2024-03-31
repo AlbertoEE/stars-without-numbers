@@ -1,62 +1,53 @@
 import { type FocusDefinition, FocusType } from "@/models/FocusDefinitionModels"
 import { type ReactElement } from "react"
-import {
-  type FocusPoints,
-  type FocusSelection,
-  useStoreFociState,
-} from "../../../state"
+import { useStoreFociState } from "../../../../state"
 import SwnCard from "@/app/components/SwnCard"
 import { CardHeader, Divider, CardBody, CardFooter } from "@nextui-org/react"
-import SwnButton from "@/app/components/SwnButton"
+import { FocusButton } from "./components/BuyButton"
 
-export function FociLevelSection(props: {
+export function FociLevelSection({
+  focusedFocus,
+  level,
+  className,
+}: {
   focusedFocus: FocusDefinition
   level: number
   className?: string
 }): ReactElement {
-  const { chosenFoci, focusPoints, setFocusPoints, setChosenFoci } =
-    useStoreFociState()
+  const { chosenFoci, focusPoints } = useStoreFociState()
 
-  function buyFocus(): void {
-    setChosenFoci([
-      ...chosenFoci,
-      {
-        focus: props.focusedFocus,
-        level: props.level,
-        origin: "foci",
-      },
-    ])
-  }
-
-  function renderButton(
-    chosenFoci: FocusSelection[],
-    level: number,
-    focusedFocus: FocusDefinition,
-    focusPoints: FocusPoints,
-  ): ReactElement | undefined {
+  function renderButton(): ReactElement | undefined {
     const isFocusChosen = chosenFoci.some(
       (e): boolean => e.focus === focusedFocus && e.level === level,
     )
-    if (isFocusChosen) return <SwnButton>Refund</SwnButton>
+    if (isFocusChosen)
+      return (
+        <FocusButton
+          type={"refund"}
+          level={level}
+          focusedFocus={focusedFocus}
+        />
+      )
 
-    const canBuyLevelOne = level === 1 && canBuyFocus(focusedFocus, focusPoints)
+    const canBuyLevelOne = level === 1 && availableFocusPoints()
     const hasPreviousLevelFocus =
       level === 2 &&
       chosenFoci.some(
         (e): boolean => e.focus === focusedFocus && e.level === level - 1,
       )
-    const canBuyLevelTwo =
-      hasPreviousLevelFocus && canBuyFocus(focusedFocus, focusPoints)
+    const canBuyLevelTwo = hasPreviousLevelFocus && availableFocusPoints()
 
-    if (canBuyLevelOne || canBuyLevelTwo) return <SwnButton>Buy</SwnButton>
+    if (canBuyLevelOne || canBuyLevelTwo)
+      return (
+        <FocusButton type={"buy"} level={level} focusedFocus={focusedFocus} />
+      )
 
-    return <SwnButton>Blocked</SwnButton>
+    return (
+      <FocusButton type={"blocked"} level={level} focusedFocus={focusedFocus} />
+    )
   }
 
-  function canBuyFocus(
-    focusedFocus: FocusDefinition,
-    focusPoints: FocusPoints,
-  ): boolean {
+  function availableFocusPoints(): boolean {
     if (focusPoints.generalFocusPoints >= 1) return true
 
     switch (focusedFocus.type) {
@@ -72,13 +63,13 @@ export function FociLevelSection(props: {
   }
 
   return (
-    <SwnCard cardInCard className={`p-2 ${props.className}`}>
-      <CardHeader className="text-2xl">LEVEL {props.level}</CardHeader>
+    <SwnCard cardInCard className={`p-2 ${className}`}>
+      <CardHeader className="text-2xl">LEVEL {level}</CardHeader>
       <Divider />
       <CardBody>
         <div>
           <ul className="ml-8">
-            {props.focusedFocus.levels[props.level - 1].descriptionSchema.map(
+            {focusedFocus.levels[level - 1].descriptionSchema.map(
               (e): ReactElement => (
                 <li className="list-disc">{e}</li>
               ),
@@ -95,12 +86,7 @@ export function FociLevelSection(props: {
               <div className={`text-yellow-400`}>1 GFP</div>
             </div>
           </div>
-          {renderButton(
-            chosenFoci,
-            props.level,
-            props.focusedFocus,
-            focusPoints,
-          )}
+          {renderButton()}
         </div>
       </CardFooter>
     </SwnCard>

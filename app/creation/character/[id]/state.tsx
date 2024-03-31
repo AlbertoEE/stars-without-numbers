@@ -3,7 +3,7 @@ import {
   type BackgroundBenefit,
   type BackgroundDefinition,
 } from "@/models/BackgroundDefinitionModels"
-import { type FocusDefinition } from "@/models/FocusDefinitionModels"
+import { FocusType, type FocusDefinition } from "@/models/FocusDefinitionModels"
 import { type GameClassDefinition } from "@/models/GameClassDefinitionModels"
 import { type StandardSkillDefinition } from "@/models/StandardSkillDefinitionModels"
 import Equipment from "@/models/equipment/EquipmentModels"
@@ -144,13 +144,14 @@ export interface FocusSelection {
   focus: FocusDefinition
   level: number
   origin: "foci" | "gameClass"
+  currencyUsed: FocusType
 }
 
 export interface FocusPoints {
-  generalFocusPoints: number
-  combatFocusPoints: number
-  nonCombatFocusPoints: number
-  psychicFocusPoints: number
+  generalFocus: number
+  combatFocus: number
+  psychicFocus: number
+  nonCombatFocus: number
 }
 
 export interface FociState {

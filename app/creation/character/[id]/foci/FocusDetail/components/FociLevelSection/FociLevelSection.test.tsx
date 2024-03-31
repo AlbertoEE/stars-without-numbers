@@ -1,6 +1,6 @@
 import { FocusType } from "@/models/FocusDefinitionModels"
 import { beforeEach, describe, expect, it } from "vitest"
-import { useStoreFociState, type FocusSelection } from "../../../state"
+import { useStoreFociState, type FocusSelection } from "../../../../state"
 import { render, screen } from "@testing-library/react"
 import { FociLevelSection } from "./FociLevelSection"
 

@@ -3,7 +3,7 @@ import CoinIcon from "@/public/imgs/equipment/coin.svg"
 import { Divider, Image } from "@nextui-org/react"
 import { type ReactElement } from "react"
 import { useStoreFociState } from "../../state"
-import { FociLevelSection } from "./components/FociLevelSection"
+import { FociLevelSection } from "./components/FociLevelSection/FociLevelSection"
 
 export default function FocusDetail(): ReactElement {
   const { focusedFocus } = useStoreFociState()
