@@ -1,5 +1,5 @@
 import { type FocusLevelDefinition } from "@/models/FocusDefinitionModels"
-import { Chip, Divider, Image } from "@nextui-org/react"
+import { Divider, Image } from "@nextui-org/react"
 import { type ReactElement } from "react"
 import { useStoreFociState } from "../../state"
 import { FociLevelSection } from "./components/FociLevelSection/FociLevelSection"
@@ -9,7 +9,7 @@ export default function FocusDetail(): ReactElement {
   const { focusedFocus, focusPoints } = useStoreFociState()
 
   if (focusedFocus === undefined) return <></>
-  
+
   return (
     <div className="flex flex-col gap-4 w-full h-full py-5 px-5">
       <div className="flex flex-row items-center gap-4">
