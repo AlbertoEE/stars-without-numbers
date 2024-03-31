@@ -9,7 +9,6 @@ export default function FocusDetail(): ReactElement {
   const { focusedFocus, focusPoints } = useStoreFociState()
 
   if (focusedFocus === undefined) return <></>
-  //
   
   return (
     <div className="flex flex-col gap-4 w-full h-full py-5 px-5">
